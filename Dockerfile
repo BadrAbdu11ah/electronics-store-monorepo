@@ -21,11 +21,14 @@ RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 # Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy project files
-COPY . /var/www
+# Copy composer.json and composer.lock first to cache dependencies
+COPY composer.json composer.lock ./
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
+
+# Copy the rest of the project
+COPY . .
 
 # Set permissions for storage and bootstrap/cache
 RUN chown -R www-data:www-data /var/www \
