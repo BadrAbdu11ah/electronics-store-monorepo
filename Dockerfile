@@ -1,10 +1,10 @@
-# Use official PHP 8.2 image with PHP-FPM
+# استخدم صورة PHP 8.2 مع PHP-FPM
 FROM php:8.2-fpm
 
-# Set working directory
+# تعيين مجلد العمل
 WORKDIR /var/www
 
-# Install system dependencies and PostgreSQL dev libraries
+# تثبيت الحزم الأساسية وPostgreSQL dev libraries
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -16,28 +16,31 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && apt-get clean
 
-# Install PHP extensions required by Laravel, including PostgreSQL
+# تثبيت امتدادات PHP المطلوبة للـ Laravel
 RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 
-# Install Composer globally
+# تثبيت Composer عالميًا
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy composer.json and composer.lock first to cache dependencies
-COPY composer.json composer.lock ./
-
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
-
-# Copy the rest of the project
+# نسخ كل ملفات المشروع أولاً
 COPY . .
 
-# Set permissions for storage and bootstrap/cache
+# تثبيت dependencies الخاصة بـ Laravel
+RUN composer install --no-dev --optimize-autoloader
+
+# توليد مفتاح التطبيق (يمكنك استخدام مفتاح ثابت من قبل أو توليده على Render)
+RUN php artisan key:generate
+
+# ضبط الأذونات على storage و bootstrap/cache
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage \
     && chmod -R 755 /var/www/bootstrap/cache
 
-# Expose port (Render uses $PORT)
+# تعيين متغير المنفذ لـ Render
+ENV PORT 9000
+
+# تعريض المنفذ
 EXPOSE 9000
 
-# Start PHP-FPM
+# تشغيل PHP-FPM
 CMD ["php-fpm"]
