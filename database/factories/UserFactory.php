@@ -12,33 +12,48 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
+     * كلمة المرور الافتراضية للمستخدمين الوهميين
      */
     protected static ?string $password;
 
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * تعريف الحالة الافتراضية للمودل (البيانات العشوائية)
      */
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            // // ربط الأسماء مع هيكلية المتجر الجديدة (users_)
+            'users_name'       => fake()->name(),
+            'users_email'      => fake()->unique()->safeEmail(),
+            'users_password'   => static::$password ??= Hash::make('123456'), // كلمة مرور موحدة للاختبار
+            'users_phone'      => fake()->phoneNumber(),
+            'users_approve'    => 1, // تفعيل الحساب تلقائياً للمستخدمين الوهميين
+            
+            // // الحقول المضافة
+            'role'             => 'user', 
+            'api_token'        => hash('sha256', Str::random(60)), // توليد توكن عشوائي مشفر
+            
+            'remember_token'   => Str::random(10),
         ];
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
+     * حالة خاصة للمستخدمين غير المفعلين (غير الموافق عليهم)
      */
-    public function unverified(): static
+    public function unapproved(): static
     {
         return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+            'users_approve' => 0,
+        ]);
+    }
+
+    /**
+     * حالة خاصة لإنشاء حساب "مدير" بسرعة
+     */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'admin',
         ]);
     }
 }

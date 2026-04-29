@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('users_email')->unique();
             $table->string('users_password');
             $table->string('users_phone'); 
+            
+            // // الحقول الجديدة المضافة من مشروع إدارة الطلبات
+            $table->string('role')->default('user'); // // تحديد صلاحية المستخدم (admin, user, etc)
+            $table->string('api_token', 80)->unique()->nullable()->default(null); // // التوكن الخاص بالـ API
+            
             $table->string('users_verfiycode')->nullable();
             $table->integer('users_approve')->default(0); 
             $table->rememberToken();

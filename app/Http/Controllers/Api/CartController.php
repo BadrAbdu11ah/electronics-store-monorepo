@@ -1,118 +1,119 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Items;
 use Illuminate\Http\Request;
 
-
 class CartController extends Controller
 {
-    public function add(Request $request)
+    /**
+     * عرض محتويات السلة
+     * GET /api/cart
+     */
+    public function index(Request $request)
     {
-        $request->validate([
-            "usersid" => "required",
-            "itemsid" => "required"
+        $user = $request->user();
+
+        // // جلب البيانات مع علاقة المنتجات
+        $cartAll = Cart::with("item")
+                    ->where("carts_usersID", $user->users_id)
+                    ->where("carts_ordersID", 0)
+                    ->get();
+
+        // // معالجة البيانات لحساب الكميات والأسعار باستخدام Collections
+        $itemsData = $cartAll->groupBy('carts_itemsID')->map(function ($group) {
+            $item       = $group->first();
+            $unitPrice  = $item->item->items_price_discount; 
+            $countItems = $group->count();
+            
+            return [
+                'item'             => $item->item,
+                'count_items'      => $countItems,
+                'item_price'       => $unitPrice,
+                'total_item_price' => $countItems * $unitPrice, 
+            ];
+        })->values();
+
+        $totalPriceAll = $cartAll->sum(fn($cart) => $cart->item->items_price_discount);
+
+        return response()->json([
+            "status"     => "success",
+            "data"       => $itemsData,
+            "totalprice" => $totalPriceAll,
+            "countall"   => $cartAll->count()
         ]);
+    }
+
+    /**
+     * إضافة منتج للسلة
+     * POST /api/cart/{items_id}
+     */
+    public function store(Request $request, $items_id)
+    {
+        $user = $request->user();
+
+        // // التحقق من وجود المنتج في قاعدة البيانات
+        if (!Items::where('items_id', $items_id)->exists()) {
+            return response()->json(["status" => "failure", "message" => "المنتج غير موجود"], 404);
+        }
 
         $cart = Cart::create([
-            "carts_usersID" => $request->usersid,
-            "carts_itemsID" => $request->itemsid
+            "carts_usersID"  => $user->users_id,
+            "carts_itemsID"  => $items_id,
+            "carts_ordersID" => 0
         ]);
-
-        if (!$cart) {
-            return response()->json(["status" => "failure"], 500);
-        }
 
         return response()->json(["status" => "success"]);
     }
 
-    public function remove(Request $request)
+    /**
+     * حذف قطعة واحدة من المنتج من السلة
+     * DELETE /api/cart/{items_id}
+     */
+    public function destroy(Request $request, $items_id)
     {
-        $request->validate([
-            "usersid" => "required",
-            "itemsid" => "required"
-        ]);
+        $user = $request->user();
 
-        // البحث عن السجل وحذفه
-        $cart = Cart::where("carts_usersID", $request->usersid)
-                    ->where("carts_itemsID", $request->itemsid)
+        // // حذف سجل واحد فقط (لتنفيذ فكرة تقليل الكمية بالواحد)
+        $deleted = Cart::where("carts_usersID", $user->users_id)
+                    ->where("carts_itemsID", $items_id)
                     ->where("carts_ordersID", 0)
                     ->limit(1)
                     ->delete();
 
-        if (!$cart) {
-           return response()->json(["status" => "noData"]); 
+        if (!$deleted) {
+           return response()->json(["status" => "failure", "message" => "العنصر غير موجود بالسلة"]); 
         }
 
         return response()->json(["status" => "success"]);
     }
 
-    public function getCountItems(Request $request)
+    /**
+     * الحصول على عدد العناصر لمنتج محدد وتفاصيله
+     * GET /api/cart/count/{items_id}
+     */
+    public function getCountItems(Request $request, $items_id)
     {
-        $request->validate([
-            "usersid" => "required",
-            "itemsid" => "required"
-        ]);
-        $countCart = Cart::where("carts_usersID", $request->usersid)
-                        ->where("carts_itemsID", $request->itemsid)
+        $user = $request->user();
+
+        $countCart = Cart::where("carts_usersID", $user->users_id)
+                        ->where("carts_itemsID", $items_id)
                         ->where("carts_ordersID", 0)
                         ->count();
-        $items = Items::where("items_id", $request->itemsid)
-                            ->first();
-        if (!$items) {
-            return response()->json([
-                "status" => "failure", 
-                "errorKey" => "noData"
-            ]);
+
+        $item = Items::find($items_id);
+
+        if (!$item) {
+            return response()->json(["status" => "failure", "message" => "المنتج غير موجود"], 404);
         }
 
         return response()->json([
             "status" => "success", 
             "count"  => $countCart,
-            "data"  => $items
-            ]);
-    }
-
-    public function view(Request $request)
-    {
-        $request->validate([
-            "usersid" => "required",
-        ]);
-
-        $cartAll = Cart::with("item")
-                    ->where("carts_usersID", $request->usersid)
-                    ->where("carts_ordersID", 0)
-                    ->get();
-
-        $itemsData = $cartAll->groupBy('carts_itemsID')->map(function ($group) {
-            $item       = $group->first();
-            $unitPrice  = $item->item->discounted_price;
-            $countItems = $group->count();
-            
-            $totalItemPrice = $countItems * $unitPrice;
-
-            return [
-                'item'             => $item->item,
-                'count_items'      => $countItems,
-                'item_price'       => $unitPrice,
-                'total_item_price' => $totalItemPrice, 
-            ];
-        })->values();
-
-        $totalPriceAll = $cartAll->sum(function($cart) {
-            return $cart->item->discounted_price;
-        });
-
-        $totalCount = $cartAll->count();
-
-        return response()->json([
-            "status"     => "success",
-            "data"       => $itemsData,
-            "totalprice" => $totalPriceAll, 
-            "countall"   => $totalCount
+            "data"   => $item
         ]);
     }
 }

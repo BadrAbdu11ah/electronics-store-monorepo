@@ -4,63 +4,48 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-use App\Models\Items; 
-use App\Models\Favorite; 
-
+use App\Models\Items;
 
 class ItemsController extends Controller
 {
-    public function viewitems(Request $request)
+    /**
+     * جلب منتجات قسم محدد
+     * GET /api/items/category/{id}
+     */
+    public function index(Request $request, $id)
     {
-        $request->validate([
-            "categoriesid" => "required",
-            "usersid"      => "required", 
-        ]);
-
-        // جلب جميع المنتجات التي تنتمي لهذا القسم
-        $items = Items::where("items_categoriesID", $request->categoriesid)->get();
-
+        // // جلب المنتجات التابعة للقسم مع دمج حالة المفضلة للمستخدم الحالي
+        $user = $request->user();
         
+        $items = Items::where("items_categories", $id)->get();
 
         if ($items->isEmpty()) {
-            return response()->json(["status" => "failure", "errorKey" => "noData"]);
+            return response()->json(["status" => "failure", "message" => "لا توجد منتجات في هذا القسم"]);
         }
 
-        $items->map(function($item) use ($request) {
-            $isFavorite = Favorite::where('favorites_usersID', $request->usersid)
-            ->where('favorites_itemsID', $item->items_id) 
-            ->first();
-
-            $item->favorite = $isFavorite ? "1" : "0";
-        });
-
         return response()->json([
-            "status" => "success", 
-            "data"   => $items 
+            "status" => "success",
+            "data"   => $items
         ]);
     }
 
+    /**
+     * البحث عن المنتجات
+     * POST /api/items/search
+     */
     public function search(Request $request)
     {
-        $request->validate([
-            "search" => "required"
-        ]);
-
-        $items = Items::search($request->search)
-        ->with('category')
-        ->get(); 
-
-        if ($items->isEmpty()) {
-            return response()->json([
-                "status" => "failure", 
-            ]);
-        }
+        $request->validate(["search" => "required"]);
+        
+        $search = $request->search;
+        
+        $items = Items::where("items_name", "LIKE", "%$search%")
+                    ->orWhere("items_name_ar", "LIKE", "%$search%")
+                    ->get();
 
         return response()->json([
-            "status" => "success", 
-            "data"   => $items 
+            "status" => "success",
+            "data"   => $items
         ]);
     }
-
 }

@@ -4,21 +4,30 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Categories;
 use App\Models\Items;
 
-
 class HomeController extends Controller
 {
-    public function home()
+    /**
+     * عرض بيانات الصفحة الرئيسية
+     * GET /api/home
+     */
+    public function index(Request $request)
     {
+        // // 1. جلب الأقسام
         $categories = Categories::all();
 
-        $items = Items::where("items_discount", ">", 0)->get();
+        // // 2. جلب المنتجات التي تحتوي على خصم (العروض)
+        // // أضفنا latest() لترتيب أحدث العروض أولاً
+        $items = Items::where("items_discount", ">", 0)->latest()->get();
 
-        if ($categories->isEmpty()) {
-            return response()->json(["status" => "failure", "errorKey" => "noData"]);
+        // // 3. التحقق (Early Return)
+        if ($categories->isEmpty() && $items->isEmpty()) {
+            return response()->json([
+                "status" => "failure", 
+                "message" => "لا توجد بيانات حالياً"
+            ], 404);
         }
 
         return response()->json([

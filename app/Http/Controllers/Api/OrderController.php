@@ -1,7 +1,8 @@
 <?php
-namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller;
 
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Coupon;
@@ -11,167 +12,149 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {  
-    public function checkout(Request $request)
+    /**
+     * إتمام عملية الشراء (Checkout)
+     * POST /api/order/checkout
+     */
+    public function store(Request $request)
     {
         $request->validate([
-            'usersid'            => "required",
-            'addressesid'        => "required",
-            'type'               => "required", // 0 => Delivery, 1 => Drive Thru
-            'pricedelivery'      => "required",
-            'price'              => "required",
-            'couponsid'          => "required", 
-            'paymentmethod'       => "required",
+            'addressesid'   => "required",
+            'type'          => "required", // 0 => Delivery, 1 => Drive Thru
+            'pricedelivery' => "required",
+            'price'         => "required",
+            'couponsid'     => "required", 
+            'paymentmethod' => "required",
         ]);
 
+        $user = $request->user();
+
         try {
-            return DB::transaction(function () use ($request) {
-                
-                $now = now(); 
+            return DB::transaction(function () use ($request, $user) {
                 
                 $totalPrice = $request->price;
                 
+                // // 1. التحقق من الكوبون (بناءً على المعرف الممرر)
                 $coupon = Coupon::where("coupons_id", $request->couponsid)
-                    ->where("coupons_expiredate", ">", $now) 
+                    ->where("coupons_expiredate", ">", now()) 
                     ->where("coupons_count", ">", 0)
                     ->first();
 
                 if (!$coupon && $request->couponsid != 0) {
                     return response()->json([
-                    "status" => "failure",
-                    "message" => "coupon"
+                        "status"  => "failure",
+                        "message" => "الكوبون لم يعد صالحاً"
                     ]);
                 }
-                if($coupon){
+
+                // // 2. معالجة الخصم
+                if ($coupon) {
                     $totalPrice = $totalPrice - ($totalPrice * ($coupon->coupons_discount / 100));     
                     $coupon->decrement('coupons_count'); 
                 }
 
-                $priceDelivery = $request->pricedelivery;
-                if($request->type == "1"){
-                    $priceDelivery = "0";
-                }
-                
+                // // 3. حساب سعر التوصيل والعنوان
+                $priceDelivery = ($request->type == "1") ? 0 : $request->pricedelivery;
+                $totalPrice    = $totalPrice + $priceDelivery;
+                $addressID     = ($request->addressesid == "0") ? null : $request->addressesid;
 
-                $totalPrice = $totalPrice + $priceDelivery;
-
-                $addressID = $request->addressesid == "0" ? null : $request->addressesid;
-
+                // // 4. إنشاء الطلب
                 $order = Order::create([
-                    "orders_usersID"        => $request->usersid,
+                    "orders_usersID"        => $user->users_id,
                     "orders_addressesID"    => $addressID,
                     "orders_type"           => $request->type,
                     "orders_price_delivery" => $priceDelivery,
                     "orders_price"          => $request->price,
                     "orders_total_price"    => $totalPrice,
-                    "orders_couponID"         => $request->couponsid,
+                    "orders_couponID"       => $request->couponsid,
                     "orders_payment_method" => $request->paymentmethod,
+                    "orders_status"         => 0 // 0 => Pending
                 ]);
 
-                 
-                $orderID = $order->orders_id;
-
-                Cart::where("carts_usersID", $request->usersid)
+                // // 5. تحديث السلة: ربط العناصر المفتوحة بهذا الطلب
+                Cart::where("carts_usersID", $user->users_id)
                     ->where("carts_ordersID", 0)
-                    ->update(['carts_ordersID' => $orderID]);
+                    ->update(['carts_ordersID' => $order->orders_id]);
 
                 return response()->json([
-                    "status" => "success",
-                    "message" => "تم الطلب بنجاح"
+                    "status"  => "success",
+                    "message" => "تم تسجيل طلبك بنجاح برقم #{$order->orders_id}"
                 ]);
             });
         } catch (\Exception $e) {
             return response()->json([
-                "status" => "failure",
-                "message" => "خطأ في السيرفر: " . $e->getMessage()
+                "status"  => "failure",
+                "message" => "فشل في إتمام الطلب، يرجى المحاولة لاحقاً"
             ], 500);
         }
     }
-    public function pending(Request $request)
+
+    /**
+     * عرض جميع طلبات المستخدم
+     * GET /api/order
+     */
+    public function index(Request $request)
     {
-        $request->validate([
-            'usersid' => "required",
-        ]);
+        $user = $request->user();
 
         $orders = Order::with('coupon')
-            ->where("orders_usersID", $request->usersid)
+            ->where("orders_usersID", $user->users_id)
+            ->latest() // // أحدث الطلبات أولاً
             ->get();
 
         if ($orders->isEmpty()) {
-            return response()->json([
-                "status" => "failure",
-                "message" => "No Data"
-            ]);
+            return response()->json(["status" => "failure", "message" => "لا توجد طلبات سابقة"]);
         }
 
-        $orders->map(function($order) {
-
-            $couponDiscount = 0;
-            if ($order->coupon) {
-                $couponDiscount = $order->coupon->coupons_discount;
-            }
-            
-            $order->orders_couponID_discount = $couponDiscount;
+        // // تخصيص البيانات للعرض في التطبيق
+        $orders->transform(function($order) {
+            $order->coupon_discount = $order->coupon ? $order->coupon->coupons_discount : 0;
             return $order;
         });
 
-        return response()->json([
-            "status" => "success",
-            "data" => $orders
-        ]);
+        return response()->json(["status" => "success", "data" => $orders]);
     }
 
-    public function details(Request $request)
+    /**
+     * عرض تفاصيل طلب محدد
+     * GET /api/order/details/{id}
+     */
+    public function show(Request $request, $id)
     {
-        $request->validate([
-            'usersid'   => "required",
-            'ordersid'  => "required",
-            'addressid' => "required",
-        ]);
+        $user = $request->user();
 
-        $cartAll = Cart::with("item")
-                    ->where("carts_usersID", $request->usersid)
-                    ->where("carts_ordersID", $request->ordersid)
+        // // جلب عناصر السلة المرتبطة بهذا الطلب تحديداً
+        $cartItems = Cart::with("item")
+                    ->where("carts_usersID", $user->users_id)
+                    ->where("carts_ordersID", $id)
                     ->get();
 
-        $itemsData = $cartAll->groupBy('carts_itemsID')->map(function ($group) {
-            $item       = $group->first();
-            $unitPrice  = $item->item->discounted_price;
-            $countItems = $group->count();
-            
-            $totalItemPrice = $countItems * $unitPrice;
+        if ($cartItems->isEmpty()) {
+            return response()->json(["status" => "failure", "message" => "تفاصيل الطلب غير موجودة"]);
+        }
 
+        // // تجميع المنتجات وحساب الكميات
+        $itemsData = $cartItems->groupBy('carts_itemsID')->map(function ($group) {
+            $item       = $group->first();
+            $unitPrice  = $item->item->items_price_discount; 
+            $count      = $group->count();
+            
             return [
                 'item'             => $item->item,
-                'count_items'      => $countItems,
+                'count_items'      => $count,
                 'item_price'       => $unitPrice,
-                'total_item_price' => $totalItemPrice, 
+                'total_item_price' => $count * $unitPrice, 
             ];
         })->values();
 
-        $totalPriceAll = $cartAll->sum(function($cart) {
-            return $cart->item->discounted_price;
-        });
-
-        $totalCount = $cartAll->count();
-
-        $address = 0;
-        if ($request->addressid != "0") {
-            $address = Address::where("addresses_id", $request->addressid)->first();
-        }
-
-        if ($itemsData->isEmpty()) {
-            return response()->json([
-                "status"  => "failure",
-                "message" => "No Data"
-            ]);
-        }
+        // // جلب بيانات الطلب لمعرفة العنوان المرتبط به
+        $order = Order::find($id);
 
         return response()->json([
             "status"     => "success",
             "data"       => $itemsData,
-            "totalprice" => $totalPriceAll,
-            "address"    => $address, 
-            "countall"   => $totalCount
+            "order_info" => $order,
+            "address"    => $order->address // // بفرض وجود علاقة address في موديل Order
         ]);
     }
 }
