@@ -27,7 +27,7 @@ class Order extends Model
 
     public function address()
     {
-        return $this->belongsTo(Coupon::class, "orders_addressesID", "addresses_id");
+        return $this->belongsTo(Address::class, "orders_addressesID", "addresses_id");
     }
     
 }

@@ -8,20 +8,15 @@ use App\Models\Items;
 
 class ItemsController extends Controller
 {
-    /**
-     * جلب منتجات قسم محدد
-     * GET /api/items/category/{id}
-     */
     public function index(Request $request, $id)
     {
-        // // جلب المنتجات التابعة للقسم مع دمج حالة المفضلة للمستخدم الحالي
         $user = $request->user();
-        
-        $items = Items::where("items_categories", $id)->get();
 
-        if ($items->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "لا توجد منتجات في هذا القسم"]);
-        }
+        $items = Items::with(['favorites' => function($query) use ($user) {
+                $query->where('favorites_usersID', $user->users_id);
+            }])
+            ->where("items_categories", $id)
+            ->get();
 
         return response()->json([
             "status" => "success",
@@ -29,19 +24,21 @@ class ItemsController extends Controller
         ]);
     }
 
-    /**
-     * البحث عن المنتجات
-     * POST /api/items/search
-     */
     public function search(Request $request)
     {
         $request->validate(["search" => "required"]);
-        
         $search = $request->search;
-        
-        $items = Items::where("items_name", "LIKE", "%$search%")
-                    ->orWhere("items_name_ar", "LIKE", "%$search%")
-                    ->get();
+
+        $items = Items::where(function($query) use ($search) {
+                    $query->where("items_name", "LIKE", "%$search%")
+                        ->orWhere("items_name_ar", "LIKE", "%$search%");
+                })
+                ->selectRaw("*, (items_price - (items_price * items_discount / 100)) as discounted_price")
+                ->get();
+
+        if ($items->isEmpty()) {
+            return response()->json(["status" => "failure", "message" => "No items found"]);
+        }
 
         return response()->json([
             "status" => "success",

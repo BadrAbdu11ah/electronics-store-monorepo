@@ -91,7 +91,7 @@ class OrderController extends Controller
 
     /**
      * عرض جميع طلبات المستخدم
-     * GET /api/order
+     * GET /api/order/pending
      */
     public function index(Request $request)
     {
@@ -133,7 +133,20 @@ class OrderController extends Controller
             return response()->json(["status" => "failure", "message" => "تفاصيل الطلب غير موجودة"]);
         }
 
-        // // تجميع المنتجات وحساب الكميات
+        // تجميع المنتجات وحساب الكميات والأسعار
+        $itemsData = $cartItems->groupBy('carts_itemsID')->map(function ($group) {
+            $item       = $group->first()->item; 
+            $unitPrice  = $item->discounted_price; 
+            $count      = $group->count();
+            
+            return [
+                'item'             => $item,
+                'count_items'      => $count,
+                'item_price'       => $unitPrice,
+                'total_item_price' => $count * $unitPrice, 
+            ];
+        })->values();
+
         $itemsData = $cartItems->groupBy('carts_itemsID')->map(function ($group) {
             $item       = $group->first();
             $unitPrice  = $item->item->items_price_discount; 
@@ -147,14 +160,14 @@ class OrderController extends Controller
             ];
         })->values();
 
-        // // جلب بيانات الطلب لمعرفة العنوان المرتبط به
+        // جلب بيانات الطلب لمعرفة العنوان المرتبط به
         $order = Order::find($id);
 
         return response()->json([
             "status"     => "success",
             "data"       => $itemsData,
             "order_info" => $order,
-            "address"    => $order->address // // بفرض وجود علاقة address في موديل Order
+            "address"    => $order->address 
         ]);
     }
 }

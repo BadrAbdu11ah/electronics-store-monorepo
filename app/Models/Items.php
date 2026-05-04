@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute; 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Auth;
 
 class Items extends Model
 {
@@ -13,39 +14,44 @@ class Items extends Model
         'items_image', 'items_categoriesID'
     ];
 
-    protected $appends = ['discounted_price'];
+    protected $appends = ['discounted_price', 'favorite'];
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'favorites_itemsID', 'items_id');
+    }
+
+    protected function favorite(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                // التأكد من وجود مستخدم مسجل دخول
+                $userId = auth('sanctum')->id(); 
+                if (!$userId) return 0;
+
+                // التحقق إذا كان المنتج موجوداً في مفضلة هذا المستخدم
+                return $this->favorites->where('favorites_usersID', $userId)->isNotEmpty() ? 1 : 0;
+            },
+        );
+    }
+
+    
     protected function discountedPrice(): Attribute
     {
         return Attribute::make(
             get: function () {
                 $originalPrice = $this->items_price; 
                 $discountPercentage = $this->items_discount;
-
                 $discountAmount = $originalPrice * ($discountPercentage / 100);
-                $finalPrice = $originalPrice - $discountAmount;
-
-                return $finalPrice; 
+                return $originalPrice - $discountAmount; 
             },
         );
-    }
-
-
-    public function scopeSearch($query, $val)
-    {
-        return $query->where("items_name", "LIKE", "%$val%")
-                     ->orWhere("items_desc", "LIKE", "%$val%");
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Categories::class, "items_categoriesID", "categories_id");
     }
 
     protected function itemsImage(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => asset("upload/items/" . $value), // http://192.168.1.6:8000/api
+            get: fn ($value) => asset("upload/items/" . $value),
         );
     }
 }

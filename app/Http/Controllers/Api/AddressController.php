@@ -36,6 +36,7 @@ class AddressController extends Controller
             'street' => "required",
             'lat' => "required",
             'long' => "required",
+            'phone' => "required",
         ]);
 
         $user = $request->user();
@@ -47,9 +48,10 @@ class AddressController extends Controller
             "addresses_street"  => $request->street,
             "addresses_lat"     => $request->lat,
             "addresses_long"    => $request->long,
+            "addresses_phone"   => $request->phone,
         ]);
 
-        return response()->json(["status" => "success", "message" => "تمت الإضافة بنجاح"]);
+        return response()->json(["status" => "success", "message" => "تمت إضافة العنوان بنجاح"]);
     }
 
     /**
@@ -58,14 +60,20 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        // // التأكد أن العنوان يخص المستخدم المسجل حالياً (حماية أمنية)
         if ($address->addresses_usersID !== $request->user()->users_id) {
             return response()->json(["status" => "failure", "message" => "غير مصرح لك"], 403);
         }
 
-        $address->update($request->all());
+        $address->update([
+            "addresses_name"   => $request->name,
+            "addresses_city"   => $request->city,
+            "addresses_street" => $request->street,
+            "addresses_lat"    => $request->lat,
+            "addresses_long"   => $request->long,
+            "addresses_phone"  => $request->phone,
+        ]);
 
-        return response()->json(["status" => "success", "message" => "تم التحديث بنجاح"]);
+        return response()->json(["status" => "success", "message" => "تم تعديل العنوان بنجاح"]);
     }
 
     /**

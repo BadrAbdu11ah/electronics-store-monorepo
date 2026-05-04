@@ -15,14 +15,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // // 1. جلب الأقسام
+        // 1. جلب الأقسام
         $categories = Categories::all();
 
-        // // 2. جلب المنتجات التي تحتوي على خصم (العروض)
-        // // أضفنا latest() لترتيب أحدث العروض أولاً
+        // 2. جلب المنتجات التي تحتوي على خصم (العروض)
+        // latest() لترتيب أحدث العروض أولاً
         $items = Items::where("items_discount", ">", 0)->latest()->get();
 
-        // // 3. التحقق (Early Return)
+        // 3. التحقق من وجود بيانات
         if ($categories->isEmpty() && $items->isEmpty()) {
             return response()->json([
                 "status" => "failure", 

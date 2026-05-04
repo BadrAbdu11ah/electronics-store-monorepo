@@ -112,7 +112,16 @@ class AuthController extends Controller
 
         $user->update(['users_approve' => 1, 'users_verfiycode' => 0]);
 
-        return response()->json(["status" => "success"]);
+        // توليد التوكن وحفظه مشفراً في قاعدة البيانات
+        $plainToken = Str::random(60);
+        $user->api_token = hash('sha256', $plainToken);
+        $user->save();
+
+        return response()->json([
+            "status" => "success",
+            "token"  => $plainToken, 
+            "data"   => $user
+        ]); 
     }
 
     // --- [ 5. إعادة تعيين كلمة المرور - Reset Password ] ---
