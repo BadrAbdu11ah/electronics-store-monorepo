@@ -1,7 +1,7 @@
 import 'package:electronics_store/features/orders/controller/details_controller.dart';
 import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/orders/widgets/details/card_orders_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class OrdersDetails extends GetView<OrdersDetailsControllerImp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(MyText.orderDetailsTitle.tr)),
+      appBar: AppBar(title: Text(AppText.orderDetailsTitle.tr)),
       body: GetBuilder<OrdersDetailsControllerImp>(
         builder: (controller) => HandlingDataView(
           state: controller.stateRequest,
@@ -26,7 +26,7 @@ class OrdersDetails extends GetView<OrdersDetailsControllerImp> {
                   Card(
                     child: ListTile(
                       title: Text(
-                        MyText.shippingAddress.tr,
+                        AppText.shippingAddress.tr,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class OrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(MyText.mapLater.tr),
+                          Text(AppText.mapLater.tr),
                           SizedBox(height: 10),
                           if (controller.position == null)
                             MaterialButton(
@@ -56,7 +56,7 @@ class OrdersDetails extends GetView<OrdersDetailsControllerImp> {
                               onPressed: () {
                                 controller.getCurrentPositionApp();
                               },
-                              child: Text(MyText.getCurrentLocation.tr),
+                              child: Text(AppText.getCurrentLocation.tr),
                             ),
                           if (controller.position != null)
                             Text(

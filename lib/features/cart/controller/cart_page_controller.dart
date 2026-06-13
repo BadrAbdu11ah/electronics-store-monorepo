@@ -1,6 +1,6 @@
 import 'package:electronics_store/features/cart/controller/cart_helper_controller.dart';
 import 'package:electronics_store/core/class/state_request.dart';
-import 'package:electronics_store/core/constant/my_pages.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/data/model/cart_model.dart';
 import 'package:electronics_store/data/model/items_model.dart';
 import 'package:flutter/material.dart';

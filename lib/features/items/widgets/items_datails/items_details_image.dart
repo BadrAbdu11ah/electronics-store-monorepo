@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:flutter/Material.dart';
 
 class ItemsDetailsImage extends StatelessWidget {

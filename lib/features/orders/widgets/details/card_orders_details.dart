@@ -1,7 +1,7 @@
 import 'package:electronics_store/features/orders/controller/details_controller.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +20,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                 TableRow(
                   children: [
                     Text(
-                      MyText.item.tr,
+                      AppText.item.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: MyColor.themeBlackColor,
@@ -28,7 +28,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       ),
                     ),
                     Text(
-                      MyText.qty.tr,
+                      AppText.qty.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: MyColor.themeBlackColor,
@@ -36,7 +36,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       ),
                     ),
                     Text(
-                      MyText.price.tr,
+                      AppText.price.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: MyColor.themeBlackColor,
@@ -76,32 +76,32 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
             Divider(),
             controller.lang == 'ar'
                 ? Text(
-                    "${MyText.orderPrice.tr}: \$ ${controller.ordersModel.ordersPrice}",
+                    "${AppText.orderPrice.tr}: \$ ${controller.ordersModel.ordersPrice}",
                   )
                 : Text(
-                    "${MyText.orderPrice.tr}: ${controller.ordersModel.ordersPrice} \$",
+                    "${AppText.orderPrice.tr}: ${controller.ordersModel.ordersPrice} \$",
                   ),
             controller.lang == 'ar'
                 ? Text(
-                    "${MyText.deliveryPrice.tr}: "
+                    "${AppText.deliveryPrice.tr}: "
                     "\$ ${controller.ordersModel.ordersPriceDelivery}",
                   )
                 : Text(
-                    "${MyText.deliveryPrice.tr}: "
+                    "${AppText.deliveryPrice.tr}: "
                     "${controller.ordersModel.ordersPriceDelivery} \$",
                   ),
 
             controller.ordersModel.ordersCouponIDDiscount != 0
                 ? controller.lang == 'ar'
                       ? Text(
-                          "${MyText.coupon.tr}: "
+                          "${AppText.coupon.tr}: "
                           "% ${controller.ordersModel.ordersCouponIDDiscount}",
                         )
                       : Text(
-                          "${MyText.coupon.tr}: "
+                          "${AppText.coupon.tr}: "
                           "${controller.ordersModel.ordersCouponIDDiscount} %",
                         )
-                : Text("${MyText.coupon.tr}: ${MyText.noCoupon.tr}"),
+                : Text("${AppText.coupon.tr}: ${AppText.noCoupon.tr}"),
 
             Divider(),
             Padding(
@@ -110,7 +110,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${MyText.totalPrice.tr}: ",
+                    "${AppText.totalPrice.tr}: ",
                     style: TextStyle(
                       color: MyColor.themeBlackColor,
                       fontWeight: FontWeight.bold,

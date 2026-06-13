@@ -1,4 +1,4 @@
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/data/model/address_model.dart';
 import 'package:flutter/material.dart';
 

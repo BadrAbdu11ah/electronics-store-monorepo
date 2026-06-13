@@ -1,6 +1,6 @@
 import 'package:electronics_store/features/home/controller/settings_controller.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
-import 'package:electronics_store/core/constant/my_image_asset.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
+import 'package:electronics_store/core/constant/app_image_asset.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

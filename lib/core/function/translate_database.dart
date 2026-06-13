@@ -1,9 +1,8 @@
-import 'package:electronics_store/core/services/my_service.dart';
-import 'package:get/get.dart';
+import 'package:electronics_store/core/services/app_service.dart';
 
 dynamic translateDatabase(String columnen, String columnar) {
-  MyService myService = Get.find();
-  if (myService.sharedPreferences.getString("lang") == "ar") {
+  AppService appService = AppService();
+  if (appService.sharedPreferences.getString("lang") == "ar") {
     return columnar;
   }
   return columnen;

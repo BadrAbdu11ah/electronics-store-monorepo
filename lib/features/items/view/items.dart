@@ -1,6 +1,6 @@
 import 'package:electronics_store/features/items/controller/items_controller.dart';
 import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/widgets/custom_app_bar.dart';
 import 'package:electronics_store/features/home/widgets/list_items_search.dart';
 import 'package:electronics_store/features/items/widgets/items/custom_card_items.dart';
@@ -21,7 +21,7 @@ class Items extends GetView<ItemsControllerImp> {
             child: ListView(
               children: [
                 CustomAppBar(
-                  title: MyText.findProduct.tr,
+                  title: AppText.findProduct.tr,
                   product: controller.product,
                   onOrder: () {
                     controller.goToOrdersPanding();

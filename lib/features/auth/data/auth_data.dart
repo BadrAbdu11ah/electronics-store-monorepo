@@ -1,68 +1,117 @@
-import 'package:dartz/dartz.dart';
 import 'package:electronics_store/api_endpoints.dart';
-import 'package:electronics_store/core/class/state_request.dart';
+import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/services/api_service.dart';
+import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/core/services/auth_service.dart'; // كلاس الخدمة المعدل أعلاه
+import 'package:fpdart/fpdart.dart';
 
 class AuthData {
   final ApiService apiService;
+  final AppService appService = AppService();
+  final AuthService authService = AuthService();
+
   AuthData(this.apiService);
 
-  // طلب تسجيل الدخول
-  Future<Either<StateRequest, Map<dynamic, dynamic>>> login(
+  // 1. طلب تسجيل الدخول
+  Future<Either<Failure, Map<String, dynamic>>> login(
     String email,
     String password,
   ) async {
-    return await apiService.post(ApiEndpoints.login, {
-      "email": email,
+    final response = await apiService.post(ApiEndpoints.login, {
+      "email": email.trim(),
       "password": password,
+    }, auth: false);
+
+    // استخدام fold لمعالجة البيانات تلقائياً وحفظها محلياً فور النجاح
+    return response.fold((failure) => Left(failure), (data) async {
+      if (data['status'] == "failure") return Right(data);
+
+      // 1. حفظ البيانات والتوكن مركزياً
+      await authService.saveAuthData(data);
+
+      // 2. حفظ معرّف المستخدم في SharedPreferences
+      final userData = data['data'];
+      if (userData is Map<String, dynamic>) {
+        int? userId =
+            userData['users_id'] ?? userData['user_id'] ?? userData['id'];
+        if (userId != null) {
+          await appService.sharedPreferences.setInt('userId', userId);
+        }
+      }
+
+      // 3. تحديث الـ Step للميدل وير (Middleware)
+      await appService.sharedPreferences.setString('step', "2");
+      return Right(data);
     });
   }
 
-  // طلب إعادة إرسال رمز التحقق
-  Future<Either<StateRequest, Map<dynamic, dynamic>>> resetVerifyCode(
-    String email,
-  ) async {
-    return await apiService.post(ApiEndpoints.checkEmail, {"email": email});
-  }
-
-  Future<Either<StateRequest, Map>> signup({
+  // 2. طلب إنشاء حساب جديد
+  Future<Either<Failure, Map<String, dynamic>>> signup({
     required String username,
     required String email,
     required String password,
     required String phone,
   }) async {
-    return await apiService.post(ApiEndpoints.signup, {
-      "username": username,
-      "email": email,
+    final response = await apiService.post(ApiEndpoints.signup, {
+      "username": username.trim(),
+      "email": email.trim(),
       "password": password,
-      "phone": phone,
+      "phone": phone.trim(),
+    }, auth: false);
+
+    return response.fold((failure) => Left(failure), (data) async {
+      await authService.saveAuthData(data);
+      return Right(data);
     });
   }
 
-  // تفعيل الحساب عن طريق كود التحقق
-  Future<Either<StateRequest, Map>> verifyCode(
+  // 3. تفعيل الحساب عن طريق كود التحقق
+  Future<Either<Failure, Map<String, dynamic>>> verifyCode(
     String email,
     String verifyCode,
   ) async {
-    return await apiService.post(ApiEndpoints.verifyCode, {
-      "email": email,
+    final response = await apiService.post(ApiEndpoints.verifyCode, {
+      "email": email.trim(),
       "verifycode": verifyCode,
+    }, auth: false);
+
+    return response.fold((failure) => Left(failure), (data) async {
+      await authService.saveAuthData(data);
+
+      return Right(data);
     });
   }
 
-  // المرحلة الأولى: التأكد من وجود البريد الإلكتروني لإرسال رمز التحقق
-  Future<Either<StateRequest, Map>> checkEmail(String email) async {
-    return await apiService.post(ApiEndpoints.checkEmail, {"email": email});
+  // 4. المرحلة الأولى: التأكد من وجود البريد الإلكتروني لإرسال رمز التحقق (نسيان كلمة المرور)
+  Future<Either<Failure, Map<String, dynamic>>> checkEmail(String email) async {
+    final response = await apiService.post(ApiEndpoints.checkEmail, {
+      "email": email.trim(),
+    }, auth: false);
+
+    return response.fold((failure) => Left(failure), (data) => Right(data));
   }
 
-  //  تعيين كلمة المرور الجديدة
-  Future<Either<StateRequest, Map>> resetPassword(
+  // 5. طلب إعادة إرسال رمز التحقق
+  Future<Either<Failure, Map<String, dynamic>>> resetVerifyCode(
+    String email,
+  ) async {
+    final response = await apiService.post(ApiEndpoints.checkEmail, {
+      "email": email.trim(),
+    }, auth: false);
+
+    return response.fold((failure) => Left(failure), (data) => Right(data));
+  }
+
+  // 6. تعيين كلمة المرور الجديدة
+  Future<Either<Failure, Map<String, dynamic>>> resetPassword(
     String email,
     String password,
   ) async {
-    return await apiService.post(ApiEndpoints.resetPassword, {
-      "email": email,
+    final response = await apiService.post(ApiEndpoints.resetPassword, {
+      "email": email.trim(),
       "password": password,
-    });
+    }, auth: false);
+
+    return response.fold((failure) => Left(failure), (data) => Right(data));
   }
 }

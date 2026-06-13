@@ -1,16 +1,25 @@
-import 'package:electronics_store/binding/init_binding.dart';
-import 'package:electronics_store/core/localization/change_local.dart';
-import 'package:electronics_store/my_translations.dart';
-import 'package:electronics_store/core/services/my_service.dart';
-import 'package:electronics_store/my_pages.dart';
+import 'package:electronics_store/app_router.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
+import 'package:electronics_store/core/localization/bloc/localization_bloc.dart';
+import 'package:electronics_store/core/services/app_service.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // تهيئة الخدمات الشاملة مثل SharedPreferences و Firebase
   await initialService();
-  Get.put(LocaleController(), permanent: true);
-  runApp(const MyApp());
+
+  runApp(
+    BlocProvider(
+      create: (context) =>
+          LocalizationBloc()..add(LocalizationEvent.loadSavedLocalization()),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,12 +27,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      translations: MyTranslations(),
-      debugShowCheckedModeBanner: false,
-      title: 'Electronics Store',
-      initialBinding: InitBinding(),
-      getPages: pages,
+    return BlocBuilder<LocalizationBloc, LocalizationState>(
+      builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Electronics Store',
+
+          // تطبيق اللغة والثيم القادمة من الـ State الخاص بالـ Bloc
+          locale: state.locale,
+          theme: state.themeData,
+
+          // إعدادات الـ Localizations الافتراضية في فلاتر لدعم التوجه (RTL / LTR)
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('ar', ''), Locale('en', '')],
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          initialRoute: AppRoute.onBoarding,
+        );
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:electronics_store/features/items/controller/items_details_controller.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

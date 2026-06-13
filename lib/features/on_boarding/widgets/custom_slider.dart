@@ -1,47 +1,59 @@
-import 'package:electronics_store/features/on_boarding/controller/on_boarding_controller.dart';
-import 'package:electronics_store/data/static/my_text/on_boarding_slider.dart';
+import 'package:electronics_store/features/on_boarding/bloc/on_boarding_bloc.dart';
+import 'package:electronics_store/data/static/app_text/on_boarding_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomSliderOnBoarding extends GetView<OnBoardingControllerImp> {
-  const CustomSliderOnBoarding({super.key});
+class CustomSliderOnBoarding extends StatelessWidget {
+  final PageController pageController;
+  const CustomSliderOnBoarding({super.key, required this.pageController});
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: controller.pageController,
-      onPageChanged: (value) => controller.getOnPageChanged(value),
-      itemCount: onBoardingList.length,
-      itemBuilder: (context, index) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center, // التوسيط العمودي
-          children: [
-            Image.asset(
-              onBoardingList[index].image,
-              height: Get.width * 0.7, // جعل حجم الصورة متناسب مع عرض الشاشة
-              fit: BoxFit.contain,
-            ),
-            const SizedBox(height: 40), // مسافة أكبر بين الصورة والنص
-            Text(
-              onBoardingList[index].title,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            const SizedBox(height: 20),
-            Container(
-              // تغليف النص لتحديد العرض (Margin)
-              width: double.infinity,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                onBoardingList[index].body,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5, // تحسين المسافة بين السطور للقراءة
+    final onBoardingBloc = context.read<OnBoardingBloc>();
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final list = onBoardingList(context);
+
+    return BlocBuilder<OnBoardingBloc, OnBoardingState>(
+      buildWhen: (previous, current) =>
+          previous.currentPage != current.currentPage,
+      builder: (context, state) {
+        return PageView.builder(
+          // الوصول للمتحكم من الـ Bloc مباشرة وليس من الـ State
+          controller: pageController,
+          onPageChanged: (value) =>
+              onBoardingBloc.add(OnBoardingEvent.pageChanged(index: value)),
+          itemCount: list.length,
+          itemBuilder: (context, index) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center, // التوسيط العمودي
+              children: [
+                Image.asset(
+                  onBoardingList(context)[index].image,
+                  height: screenWidth * 0.7,
+                  fit: BoxFit.contain,
                 ),
-              ),
-            ),
-          ],
+                const SizedBox(height: 40),
+                Text(
+                  onBoardingList(context)[index].title,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    list[index].body,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(height: 1.5),
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );

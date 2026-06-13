@@ -1,8 +1,8 @@
 import 'package:electronics_store/features/check_out/controller/check_out_controller.dart';
 import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
-import 'package:electronics_store/core/constant/my_image_asset.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
+import 'package:electronics_store/core/constant/app_image_asset.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/check_out/widgets/bottom_checkout.dart';
 import 'package:electronics_store/features/check_out/widgets/card_address_checkout.dart';
 import 'package:electronics_store/features/check_out/widgets/card_delivery_type.dart';
@@ -16,9 +16,9 @@ class CheckOut extends GetView<CheckOutControllerImp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(MyText.checkoutButton.tr)),
+      appBar: AppBar(title: Text(AppText.checkoutButton.tr)),
       bottomNavigationBar: BottomCheckout(
-        textButton: MyText.checkoutButton.tr,
+        textButton: AppText.checkoutButton.tr,
         onCheckout: () {
           controller.checkout();
         },
@@ -33,7 +33,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
               child: ListView(
                 children: [
                   Text(
-                    MyText.choosePaymentMethod.tr,
+                    AppText.choosePaymentMethod.tr,
                     style: TextStyle(
                       color: MyColor.themeBlackColor,
                       fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                     onCard: () {
                       controller.choosePymentMethod("0"); // 0 => cash
                     },
-                    title: MyText.cash.tr,
+                    title: AppText.cash.tr,
                     active: controller.paymentMethod == "0" ? true : false,
                   ),
                   SizedBox(height: 10),
@@ -53,12 +53,12 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                     onCard: () {
                       controller.choosePymentMethod("1"); // 1 => payment card
                     },
-                    title: MyText.paymentCards.tr,
+                    title: AppText.paymentCards.tr,
                     active: controller.paymentMethod == "1" ? true : false,
                   ),
                   SizedBox(height: 20),
                   Text(
-                    MyText.chooseDeliveryType.tr,
+                    AppText.chooseDeliveryType.tr,
                     style: TextStyle(
                       color: MyColor.themeBlackColor,
                       fontWeight: FontWeight.bold,
@@ -73,7 +73,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                           controller.chooseDeliveryType("0"); // 0 => Delivery
                         },
                         imageName: MyImageAsset.man,
-                        title: MyText.delivery.tr,
+                        title: AppText.delivery.tr,
                         active: controller.deliveryType == "0" ? true : false,
                       ),
                       SizedBox(width: 10),
@@ -82,7 +82,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                           controller.chooseDeliveryType("1"); // Drive Thru
                         },
                         imageName: MyImageAsset.man,
-                        title: MyText.driveThru.tr,
+                        title: AppText.driveThru.tr,
                         active: controller.deliveryType == "1" ? true : false,
                       ),
                     ],
@@ -93,7 +93,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          MyText.shippingAddress.tr,
+                          AppText.shippingAddress.tr,
                           style: TextStyle(
                             color: MyColor.themeBlackColor,
                             fontWeight: FontWeight.bold,

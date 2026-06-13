@@ -1,6 +1,6 @@
 import 'package:electronics_store/features/orders/controller/pending_controller.dart';
 import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/orders/widgets/pending/card_orders_pending.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class OrdersPending extends GetView<OrdersPendingControllerImp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(MyText.ordersTitle.tr)),
+      appBar: AppBar(title: Text(AppText.ordersTitle.tr)),
       body: GetBuilder<OrdersPendingControllerImp>(
         builder: (controller) => HandlingDataView(
           state: controller.stateRequest,
@@ -27,18 +27,18 @@ class OrdersPending extends GetView<OrdersPendingControllerImp> {
                   pattern: "yyyy-MM-dd",
                 ).fromNow(),
                 pymentMethod:
-                    "${MyText.paymentMethod.tr} ${controller.printPaymentMethod(controller.ordersModel[i].ordersPaymentMethod.toString()).tr}",
+                    "${AppText.paymentMethod.tr} ${controller.printPaymentMethod(controller.ordersModel[i].ordersPaymentMethod.toString()).tr}",
                 orderType:
-                    "${MyText.orderType.tr} ${controller.printDeliveryType(controller.ordersModel[i].ordersType.toString()).tr}",
+                    "${AppText.orderType.tr} ${controller.printDeliveryType(controller.ordersModel[i].ordersType.toString()).tr}",
                 orderStatus:
-                    "${MyText.orderStatus.tr} ${controller.printOrderStatus(controller.ordersModel[i].ordersStatus.toString()).tr}",
-                totalPrice: "${MyText.totalPrice.tr}: ",
+                    "${AppText.orderStatus.tr} ${controller.printOrderStatus(controller.ordersModel[i].ordersStatus.toString()).tr}",
+                totalPrice: "${AppText.totalPrice.tr}: ",
                 ordersTotalPrice:
                     "${controller.ordersModel[i].ordersTotalPrice} \$",
                 onDetails: () {
                   controller.goToOrdersDetails(controller.ordersModel[i]);
                 },
-                details: MyText.details.tr,
+                details: AppText.details.tr,
               ),
             ),
           ),

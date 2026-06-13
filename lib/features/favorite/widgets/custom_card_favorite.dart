@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:electronics_store/features/favorite/controller/favorite_page_controller.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/data/model/items_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,7 +67,7 @@ class CustomCardFavorite extends GetView<FavoritePageControllerImp> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    MyText.rating.tr,
+                    AppText.rating.tr,
                     style: TextStyle(
                       fontSize: controller.lang == "ar" ? 12 : 15,
                       color: MyColor.bodyColor,

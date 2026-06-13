@@ -1,6 +1,6 @@
-import 'package:electronics_store/core/constant/my_pages.dart';
-import 'package:electronics_store/core/services/my_service.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
+import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,29 +22,29 @@ class SettingsControllerImp extends SettingsController {
   void onInit() {
     options = [
       {
-        "title": MyText.disableNotification.tr,
+        "title": AppText.disableNotification.tr,
         "icon": Switch(value: notification, onChanged: (bool val) {}),
         "onTap": () {},
       },
       {
-        "title": MyText.address.tr,
+        "title": AppText.address.tr,
         "icon": Icon(Icons.location_on_outlined),
         "onTap": () {
           goToAddressView();
         },
       },
       {
-        "title": MyText.aboutUs.tr,
+        "title": AppText.aboutUs.tr,
         "icon": Icon(Icons.info_outlined),
         "onTap": () {},
       },
       {
-        "title": MyText.contactUs.tr,
+        "title": AppText.contactUs.tr,
         "icon": Icon(Icons.phone_callback_outlined),
         "onTap": () {},
       },
       {
-        "title": MyText.logout.tr,
+        "title": AppText.logout.tr,
         "icon": Icon(Icons.logout_outlined),
         "onTap": () {
           logout();

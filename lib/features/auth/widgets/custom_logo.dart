@@ -1,4 +1,4 @@
-import 'package:electronics_store/core/constant/my_image_asset.dart';
+import 'package:electronics_store/core/constant/app_image_asset.dart';
 import 'package:flutter/material.dart';
 
 class CustomLogo extends StatelessWidget {
@@ -6,6 +6,6 @@ class CustomLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(MyImageAsset.logo, height: 150);
+    return Image.asset(AppImageAsset.logo, height: 150);
   }
 }

@@ -1,8 +1,8 @@
 import 'package:electronics_store/core/class/state_request.dart';
-import 'package:electronics_store/core/constant/my_pages.dart';
-import 'package:electronics_store/core/services/my_service.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
+import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/features/orders/data/orders_data.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/data/model/orders_model.dart';
 import 'package:get/get.dart';
 
@@ -19,19 +19,19 @@ abstract class OrdersPendingController extends GetxController {
 
   // Helper Methods (Formatting & Display)
   String printPaymentMethod(String val) {
-    if (val == "0") return MyText.ordersPaymentCash;
-    return MyText.paymentCards;
+    if (val == "0") return AppText.ordersPaymentCash;
+    return AppText.paymentCards;
   }
 
   String printDeliveryType(String val) {
-    if (val == "0") return MyText.ordersDelivery;
-    return MyText.ordersDriveThru;
+    if (val == "0") return AppText.ordersDelivery;
+    return AppText.ordersDriveThru;
   }
 
   String printOrderStatus(String val) {
-    if (val == "0") return MyText.ordersWaiting;
-    if (val == "1") return MyText.ordersPreparing;
-    return MyText.ordersArchived;
+    if (val == "0") return AppText.ordersWaiting;
+    if (val == "1") return AppText.ordersPreparing;
+    return AppText.ordersArchived;
   }
 
   // Core Methods

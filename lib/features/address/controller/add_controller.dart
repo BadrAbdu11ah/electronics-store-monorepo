@@ -1,5 +1,5 @@
 import 'package:electronics_store/core/class/state_request.dart';
-import 'package:electronics_store/core/constant/my_pages.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 

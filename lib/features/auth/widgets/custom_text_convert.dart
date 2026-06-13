@@ -1,4 +1,4 @@
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextConvert extends StatelessWidget {
@@ -23,7 +23,7 @@ class CustomTextConvert extends StatelessWidget {
           child: Text(
             texttow,
             style: TextStyle(
-              color: MyColor.themeColor,
+              color: AppColor.themeColor,
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),

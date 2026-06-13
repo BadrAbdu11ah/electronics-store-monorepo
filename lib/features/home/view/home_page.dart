@@ -1,6 +1,6 @@
 import 'package:electronics_store/features/home/controller/home_page_controller.dart';
 import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/home/widgets/list_categories_home.dart';
 import 'package:electronics_store/features/home/widgets/custom_card_home.dart';
 import 'package:electronics_store/features/home/widgets/list_items_home.dart';
@@ -22,7 +22,7 @@ class HomePage extends GetView<HomePageControllerImp> {
           child: ListView(
             children: [
               CustomAppBar(
-                title: MyText.findProduct.tr,
+                title: AppText.findProduct.tr,
                 product: controller.product,
                 onOrder: () {
                   controller.goToOrdersPanding();
@@ -45,20 +45,20 @@ class HomePage extends GetView<HomePageControllerImp> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomCardHome(
-                            title: MyText.summerOffers.tr,
-                            subtitle: MyText.discount20.tr,
+                            title: AppText.summerOffers.tr,
+                            subtitle: AppText.discount20.tr,
                           ),
-                          CustomTitleHome(title: MyText.categories.tr),
+                          CustomTitleHome(title: AppText.categories.tr),
                           ListCategoriesHome(),
                           if (controller.items.isNotEmpty)
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomTitleHome(
-                                  title: MyText.productsForYou.tr,
+                                  title: AppText.productsForYou.tr,
                                 ),
                                 ListItemsHome(),
-                                CustomTitleHome(title: MyText.discount.tr),
+                                CustomTitleHome(title: AppText.discount.tr),
                                 ListItemsHome(),
                               ],
                             ),

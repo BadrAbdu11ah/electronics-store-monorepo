@@ -1,4 +1,4 @@
-import 'package:electronics_store/core/constant/my_color.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
 
 class BottonCoupon extends StatelessWidget {
@@ -8,7 +8,7 @@ class BottonCoupon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
 
       child: MaterialButton(

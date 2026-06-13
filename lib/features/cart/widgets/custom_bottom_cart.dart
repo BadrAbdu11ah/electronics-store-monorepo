@@ -1,7 +1,7 @@
 import 'package:electronics_store/features/cart/controller/cart_page_controller.dart';
 import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/core/constant/my_color.dart';
-import 'package:electronics_store/data/static/my_text.dart';
+import 'package:electronics_store/core/constant/app_color.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/cart/widgets/botton_cart.dart';
 import 'package:electronics_store/features/cart/widgets/botton_coupon.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                               vertical: 8,
                             ),
                             border: OutlineInputBorder(),
-                            hintText: MyText.couponCode.tr,
+                            hintText: AppText.couponCode.tr,
                           ),
                         ),
                       ),
@@ -57,7 +57,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                       Expanded(
                         flex: 1,
                         child: BottonCoupon(
-                          title: MyText.apply.tr,
+                          title: AppText.apply.tr,
                           onButton: onCoupon,
                         ),
                       ),
@@ -65,7 +65,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                   ),
                 )
               : Text(
-                  "${MyText.usedCoupon.tr} ${controller.couponsName}",
+                  "${AppText.usedCoupon.tr} ${controller.couponsName}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -85,7 +85,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        MyText.price.tr,
+                        AppText.price.tr,
                         style: TextStyle(color: MyColor.themeBlackColor),
                       ),
                     ),
@@ -104,7 +104,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        MyText.discountCart.tr,
+                        AppText.discountCart.tr,
                         style: TextStyle(color: MyColor.themeBlackColor),
                       ),
                     ),
@@ -123,7 +123,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        MyText.shipping.tr,
+                        AppText.shipping.tr,
                         style: TextStyle(color: MyColor.themeBlackColor),
                       ),
                     ),
@@ -146,7 +146,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        MyText.totalPrice.tr,
+                        AppText.totalPrice.tr,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: MyColor.themeBlackColor,
@@ -165,7 +165,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
               ],
             ),
           ),
-          BottonCart(title: MyText.order.tr, onButton: onOrder),
+          BottonCart(title: AppText.order.tr, onButton: onOrder),
         ],
       ),
     );

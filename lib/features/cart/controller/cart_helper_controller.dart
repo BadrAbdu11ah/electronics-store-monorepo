@@ -1,5 +1,5 @@
 import 'package:electronics_store/core/class/state_request.dart';
-import 'package:electronics_store/core/services/my_service.dart';
+import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/coupon_model.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
 import 'package:electronics_store/data/model/cart_model.dart';
