@@ -14,8 +14,8 @@ class AddressAdd extends GetView<AddressAddControllerImp> {
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
         child: MaterialButton(
           height: 50,
-          textColor: MyColor.bgColorOnBoarding,
-          color: MyColor.themeColor,
+          textColor: AppColor.bgColorOnBoarding,
+          color: AppColor.themeColor,
           onPressed: () {
             controller.goToAddressAddDetails();
           },

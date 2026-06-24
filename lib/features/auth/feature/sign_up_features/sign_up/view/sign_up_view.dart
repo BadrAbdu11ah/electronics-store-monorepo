@@ -47,7 +47,7 @@ class _SignUpViewState extends State<SignUpView> {
             success: (email) => Navigator.pushReplacementNamed(
               context,
               AppRoute.verifyCodeSignUp,
-              arguments: {'email': email},
+              arguments: {'email': email, 'password': password.text},
             ),
             failure: (errorKey) => ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

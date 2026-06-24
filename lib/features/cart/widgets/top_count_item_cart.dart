@@ -11,13 +11,13 @@ class TopCountItemCart extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: MyColor.themeWhiteColor,
+        color: AppColor.themeWhiteColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         message,
         textAlign: TextAlign.center,
-        style: TextStyle(color: MyColor.themeBlackColor),
+        style: TextStyle(color: AppColor.themeBlackColor),
       ),
     );
   }

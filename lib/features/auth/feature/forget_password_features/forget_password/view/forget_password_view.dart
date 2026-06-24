@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ForgetPasswordView extends StatefulWidget {
-  final String email;
-  const ForgetPasswordView({super.key, required this.email});
+  const ForgetPasswordView({super.key});
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -21,7 +20,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController(text: widget.email);
+    emailController = TextEditingController();
   }
 
   @override
@@ -56,7 +55,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             success: () {
               Navigator.of(context).pushReplacementNamed(
                 AppRoute.verifyCodePassword,
-                arguments: {'email': widget.email},
+                arguments: {'email': emailController.text},
               );
             },
             failure: (errorKey) {

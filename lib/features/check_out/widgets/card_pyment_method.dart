@@ -20,15 +20,17 @@ class CardPymentMethod extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 5),
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
         decoration: BoxDecoration(
-          color: active ? MyColor.themeBlackColor : null,
+          color: active ? AppColor.themeBlackColor : null,
 
-          border: Border.all(color: MyColor.themeBlackColor!, width: 2),
+          border: Border.all(color: AppColor.themeBlackColor!, width: 2),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           title,
           style: TextStyle(
-            color: active ? MyColor.bgColorOnBoarding : MyColor.themeBlackColor,
+            color: active
+                ? AppColor.bgColorOnBoarding
+                : AppColor.themeBlackColor,
             fontWeight: active ? FontWeight.bold : null,
           ),
         ),

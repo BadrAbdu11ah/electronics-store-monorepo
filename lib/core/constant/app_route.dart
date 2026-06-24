@@ -1,6 +1,8 @@
 class AppRoute {
   static const String chooseLanguage = "/chooselanguage";
   static const String homeScreen = "/homescreen";
+  static const String homePage = "/homepage";
+  static const String settings = "/settings";
   static const String items = "/items";
   static const String itemsDetails = "/itemsdetails";
   static const String login = "/login";

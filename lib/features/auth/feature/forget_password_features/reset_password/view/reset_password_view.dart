@@ -56,6 +56,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               context,
               AppRoute.successResetPassword,
               (route) => false,
+              arguments: {'email': widget.email, 'password': password.text},
             ),
             failure: (errorKey) {
               ScaffoldMessenger.of(context).showSnackBar(

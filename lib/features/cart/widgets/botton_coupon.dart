@@ -13,7 +13,7 @@ class BottonCoupon extends StatelessWidget {
 
       child: MaterialButton(
         onPressed: onButton,
-        color: MyColor.themeBlackColor,
+        color: AppColor.themeBlackColor,
         child: Text(title, style: TextStyle(color: Colors.white, fontSize: 18)),
       ),
     );

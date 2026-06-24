@@ -30,7 +30,7 @@ class OrdersDetails extends GetView<OrdersDetailsControllerImp> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: MyColor.themeBlackColor,
+                          color: AppColor.themeBlackColor,
                         ),
                       ),
                       subtitle: Text(
@@ -51,8 +51,8 @@ class OrdersDetails extends GetView<OrdersDetailsControllerImp> {
                           SizedBox(height: 10),
                           if (controller.position == null)
                             MaterialButton(
-                              color: MyColor.themeColor,
-                              textColor: MyColor.bgColorOnBoarding,
+                              color: AppColor.themeColor,
+                              textColor: AppColor.bgColorOnBoarding,
                               onPressed: () {
                                 controller.getCurrentPositionApp();
                               },

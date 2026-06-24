@@ -11,7 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  final String? email;
+  final String? password;
+  const LoginView({super.key, this.email, this.password});
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -47,21 +49,21 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  late TextEditingController email;
-  late TextEditingController password;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
 
   @override
   void initState() {
-    email = TextEditingController();
-    password = TextEditingController();
+    emailController = TextEditingController(text: widget.email);
+    passwordController = TextEditingController(text: widget.password);
     initFirebaseStuff();
     super.initState();
   }
 
   @override
   void dispose() {
-    email.dispose();
-    password.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -94,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               btnOkOnPress: () {
                 context.read<LoginBloc>().add(
-                  LoginEvent.resendCode(email: email.text),
+                  LoginEvent.resendCode(email: emailController.text),
                 );
               },
               btnOkText: AppTranslations.translate(
@@ -105,7 +107,7 @@ class _LoginViewState extends State<LoginView> {
             successResendCode: () => Navigator.pushNamed(
               context,
               AppRoute.verifyCodeSignUp,
-              arguments: {"email": email.text},
+              arguments: {"email": emailController.text},
             ),
             success: () => Navigator.pushNamedAndRemoveUntil(
               context,
@@ -145,8 +147,8 @@ class _LoginViewState extends State<LoginView> {
             ),
             orElse: () => LoginForm(
               isLoading: isLoading,
-              email: email,
-              password: password,
+              email: emailController,
+              password: passwordController,
             ),
           );
         },

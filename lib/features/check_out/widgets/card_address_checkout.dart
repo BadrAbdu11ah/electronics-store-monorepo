@@ -20,7 +20,7 @@ class CardAddressCheckout extends StatelessWidget {
       onTap: onCard,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: active ? MyColor.themeBlackColor : null,
+        color: active ? AppColor.themeBlackColor : null,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: ListTile(
@@ -28,8 +28,8 @@ class CardAddressCheckout extends StatelessWidget {
               title,
               style: TextStyle(
                 color: active
-                    ? MyColor.bgColorOnBoarding
-                    : MyColor.themeBlackColor,
+                    ? AppColor.bgColorOnBoarding
+                    : AppColor.themeBlackColor,
                 fontWeight: active ? FontWeight.bold : null,
               ),
             ),
@@ -37,8 +37,8 @@ class CardAddressCheckout extends StatelessWidget {
               body,
               style: TextStyle(
                 color: active
-                    ? MyColor.bgColorOnBoarding
-                    : MyColor.themeBlackColor,
+                    ? AppColor.bgColorOnBoarding
+                    : AppColor.themeBlackColor,
                 fontWeight: active ? FontWeight.bold : null,
               ),
             ),

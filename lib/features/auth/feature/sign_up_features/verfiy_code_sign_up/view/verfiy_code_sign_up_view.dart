@@ -9,8 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerfiyCodeSignUpView extends StatefulWidget {
   final String email;
-
-  const VerfiyCodeSignUpView({super.key, required this.email});
+  final String password;
+  const VerfiyCodeSignUpView({
+    super.key,
+    required this.email,
+    required this.password,
+  });
 
   @override
   State<VerfiyCodeSignUpView> createState() => _VerfiyCodeSignUpViewState();
@@ -38,6 +42,7 @@ class _VerfiyCodeSignUpViewState extends State<VerfiyCodeSignUpView> {
               context,
               AppRoute.successSignUp,
               (route) => false,
+              arguments: {'email': widget.email, 'password': widget.password},
             ),
             failure: (errorKey) => ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

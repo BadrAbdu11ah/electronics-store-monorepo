@@ -35,7 +35,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                   Text(
                     AppText.choosePaymentMethod.tr,
                     style: TextStyle(
-                      color: MyColor.themeBlackColor,
+                      color: AppColor.themeBlackColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
@@ -60,7 +60,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                   Text(
                     AppText.chooseDeliveryType.tr,
                     style: TextStyle(
-                      color: MyColor.themeBlackColor,
+                      color: AppColor.themeBlackColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
@@ -95,7 +95,7 @@ class CheckOut extends GetView<CheckOutControllerImp> {
                         Text(
                           AppText.shippingAddress.tr,
                           style: TextStyle(
-                            color: MyColor.themeBlackColor,
+                            color: AppColor.themeBlackColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),

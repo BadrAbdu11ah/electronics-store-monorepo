@@ -56,7 +56,7 @@ class CustomCardCart extends StatelessWidget {
                 title: Text(itemsName, style: TextStyle(fontSize: 16)),
                 subtitle: Text(
                   "$price \$",
-                  style: TextStyle(color: MyColor.priceColor, fontSize: 16),
+                  style: TextStyle(color: AppColor.priceColor, fontSize: 16),
                 ),
               ),
             ),

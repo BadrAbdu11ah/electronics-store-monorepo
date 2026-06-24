@@ -16,8 +16,8 @@ class BottomCheckout extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
       child: MaterialButton(
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 100),
-        color: MyColor.themeBlackColor,
-        textColor: MyColor.bgColorOnBoarding,
+        color: AppColor.themeBlackColor,
+        textColor: AppColor.bgColorOnBoarding,
         onPressed: onCheckout,
         child: Text(textButton, style: TextStyle(fontSize: 20)),
       ),

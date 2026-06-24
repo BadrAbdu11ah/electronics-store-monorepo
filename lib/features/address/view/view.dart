@@ -20,7 +20,7 @@ class AddressView extends GetView<AddressViewControllerImp> {
             controller.goToAddressAdd();
           },
           shape: const CircleBorder(),
-          child: Icon(Icons.add, color: MyColor.bgColorOnBoarding, size: 35),
+          child: Icon(Icons.add, color: AppColor.bgColorOnBoarding, size: 35),
         ),
       ),
       appBar: AppBar(title: Text("العناوين")),

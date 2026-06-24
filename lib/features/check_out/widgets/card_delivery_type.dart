@@ -22,8 +22,8 @@ class CardDeliveryType extends StatelessWidget {
         height: 150,
         width: 150,
         decoration: BoxDecoration(
-          color: active ? MyColor.themeBlackColor : null,
-          border: active ? null : Border.all(color: MyColor.themeBlackColor!),
+          color: active ? AppColor.themeBlackColor : null,
+          border: active ? null : Border.all(color: AppColor.themeBlackColor!),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -32,14 +32,14 @@ class CardDeliveryType extends StatelessWidget {
             Image.asset(
               imageName,
               width: 100,
-              color: active ? MyColor.bgColorOnBoarding : null,
+              color: active ? AppColor.bgColorOnBoarding : null,
             ),
             Text(
               title,
               style: TextStyle(
                 color: active
-                    ? MyColor.bgColorOnBoarding
-                    : MyColor.themeBlackColor,
+                    ? AppColor.bgColorOnBoarding
+                    : AppColor.themeBlackColor,
                 fontWeight: active ? FontWeight.bold : null,
               ),
             ),

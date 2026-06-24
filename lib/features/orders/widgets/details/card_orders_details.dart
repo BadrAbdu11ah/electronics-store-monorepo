@@ -23,7 +23,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       AppText.item.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: MyColor.themeBlackColor,
+                        color: AppColor.themeBlackColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -31,7 +31,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       AppText.qty.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: MyColor.themeBlackColor,
+                        color: AppColor.themeBlackColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -39,7 +39,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       AppText.price.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: MyColor.themeBlackColor,
+                        color: AppColor.themeBlackColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -112,7 +112,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                   Text(
                     "${AppText.totalPrice.tr}: ",
                     style: TextStyle(
-                      color: MyColor.themeBlackColor,
+                      color: AppColor.themeBlackColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -120,12 +120,12 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       ? Text(
                           "\$ ${controller.ordersModel.ordersTotalPrice}",
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: MyColor.priceColor),
+                          style: TextStyle(color: AppColor.priceColor),
                         )
                       : Text(
                           "${controller.ordersModel.ordersTotalPrice} \$",
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: MyColor.priceColor),
+                          style: TextStyle(color: AppColor.priceColor),
                         ),
                 ],
               ),

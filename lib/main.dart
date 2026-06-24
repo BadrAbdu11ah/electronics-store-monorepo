@@ -1,7 +1,9 @@
 import 'package:electronics_store/app_router.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
+import 'package:electronics_store/core/id/injection.dart';
 import 'package:electronics_store/core/localization/bloc/localization_bloc.dart';
 import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/features/search/bloc/search_bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +16,15 @@ void main() async {
   await initialService();
 
   runApp(
-    BlocProvider(
-      create: (context) =>
-          LocalizationBloc()..add(LocalizationEvent.loadSavedLocalization()),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              LocalizationBloc()
+                ..add(LocalizationEvent.loadSavedLocalization()),
+        ),
+        BlocProvider(create: (context) => sl<SearchBloc>()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -45,7 +53,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: const [Locale('ar', ''), Locale('en', '')],
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: AppRoute.onBoarding,
+          initialRoute: AppRoute.chooseLanguage,
         );
       },
     );

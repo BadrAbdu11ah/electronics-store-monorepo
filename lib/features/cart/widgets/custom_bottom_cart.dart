@@ -73,7 +73,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
             margin: EdgeInsets.all(15),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              border: Border.all(width: 1, color: MyColor.themeColor!),
+              border: Border.all(width: 1, color: AppColor.themeColor!),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -86,14 +86,14 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         AppText.price.tr,
-                        style: TextStyle(color: MyColor.themeBlackColor),
+                        style: TextStyle(color: AppColor.themeBlackColor),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         price,
-                        style: TextStyle(color: MyColor.themeBlackColor),
+                        style: TextStyle(color: AppColor.themeBlackColor),
                       ),
                     ),
                   ],
@@ -105,14 +105,14 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         AppText.discountCart.tr,
-                        style: TextStyle(color: MyColor.themeBlackColor),
+                        style: TextStyle(color: AppColor.themeBlackColor),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         discount,
-                        style: TextStyle(color: MyColor.priceColor),
+                        style: TextStyle(color: AppColor.priceColor),
                       ),
                     ),
                   ],
@@ -124,14 +124,14 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         AppText.shipping.tr,
-                        style: TextStyle(color: MyColor.themeBlackColor),
+                        style: TextStyle(color: AppColor.themeBlackColor),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         shipping,
-                        style: TextStyle(color: MyColor.themeBlackColor),
+                        style: TextStyle(color: AppColor.themeBlackColor),
                       ),
                     ),
                   ],
@@ -149,7 +149,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                         AppText.totalPrice.tr,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: MyColor.themeBlackColor,
+                          color: AppColor.themeBlackColor,
                         ),
                       ),
                     ),
@@ -157,7 +157,7 @@ class CustomBottomCart extends GetView<CartPageControllerImp> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         totalPrice,
-                        style: TextStyle(color: MyColor.priceColor),
+                        style: TextStyle(color: AppColor.priceColor),
                       ),
                     ),
                   ],

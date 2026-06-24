@@ -3,21 +3,17 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final void Function() onSearch;
-  final TextEditingController product;
   final void Function() onOrder;
   final void Function()? onFavorite;
   final bool isFavorite;
-  final void Function(String) onChanged;
 
   const CustomAppBar({
     super.key,
-    required this.product,
     required this.onOrder,
     required this.onSearch,
     required this.title,
     this.onFavorite,
     this.isFavorite = true,
-    required this.onChanged,
   });
 
   @override
@@ -28,10 +24,9 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
-              controller: product,
-              onChanged: onChanged,
-              textInputAction: TextInputAction.search,
-              onFieldSubmitted: (value) => onSearch(),
+              // جعل الحقل للقراءة فقط ليعمل كـ زر ينتقل بنا لشاشة البحث
+              readOnly: true,
+              onTap: onSearch, // عند الضغط على أي مكان في الحقل تفتح الشاشة
               decoration: InputDecoration(
                 hintText: title,
                 hintStyle: const TextStyle(fontSize: 18),

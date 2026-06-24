@@ -55,21 +55,21 @@ class CardOrdersPending extends GetView<OrdersPendingControllerImp> {
                 Text(
                   totalPrice,
                   style: TextStyle(
-                    color: MyColor.themeBlackColor,
+                    color: AppColor.themeBlackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   ordersTotalPrice,
                   style: TextStyle(
-                    color: MyColor.priceColor,
+                    color: AppColor.priceColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Spacer(),
                 MaterialButton(
-                  color: MyColor.themeColor,
-                  textColor: MyColor.bgColorOnBoarding,
+                  color: AppColor.themeColor,
+                  textColor: AppColor.bgColorOnBoarding,
                   textTheme: ButtonTextTheme.primary,
                   onPressed: onDetails,
                   child: Text(details, style: TextStyle(fontSize: 16)),

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:electronics_store/core/constant/app_theme.dart';
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -62,6 +62,7 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
   ) {
     final locale = Locale(event.langCode);
     _appService.sharedPreferences.setString("lang", event.langCode);
+    _appService.sharedPreferences.setString("step", "0");
 
     emit(
       LocalizationState(

@@ -25,11 +25,14 @@ class CardAddress extends StatelessWidget {
           ),
           trailing: IconButton(
             onPressed: onDelete,
-            icon: Icon(Icons.delete_outline_rounded, color: MyColor.priceColor),
+            icon: Icon(
+              Icons.delete_outline_rounded,
+              color: AppColor.priceColor,
+            ),
           ),
           leading: IconButton(
             onPressed: onEdit,
-            icon: Icon(Icons.edit_outlined, color: MyColor.themeColor),
+            icon: Icon(Icons.edit_outlined, color: AppColor.themeColor),
           ),
         ),
       ),
