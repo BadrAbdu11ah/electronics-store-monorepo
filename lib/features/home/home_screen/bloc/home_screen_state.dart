@@ -9,7 +9,7 @@ class HomeScreenStatus with _$HomeScreenStatus {
 }
 
 @freezed
-class HomeScreenState with _$HomeScreenState {
+abstract class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     @Default(HomeScreenStatus.initial()) HomeScreenStatus status,
     @Default(0) int currentPage,

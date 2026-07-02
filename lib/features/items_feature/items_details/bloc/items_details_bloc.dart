@@ -1,5 +1,5 @@
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,11 +27,11 @@ class ItemsDetailsBloc extends Bloc<ItemsDetailsEvent, ItemsDetailsState> {
     emit(
       state.copyWith(
         status: ItemsDetailsStatus.initial(),
-        itemsModel: event.itemsModel,
+        itemModel: event.itemModel,
       ),
     );
 
-    add(_LoadCountCart(state.itemsModel!.itemsId!));
+    add(_LoadCountCart(state.itemModel!.id!));
   }
 
   Future<void> _onLoadCountCart(
@@ -67,7 +67,7 @@ class ItemsDetailsBloc extends Bloc<ItemsDetailsEvent, ItemsDetailsState> {
     if (state.isUpdating) return;
     emit(state.copyWith(count: state.count + 1, isUpdating: true));
 
-    var response = await cartData.addCart(state.itemsModel!.itemsId!);
+    var response = await cartData.addCart(state.itemModel!.id!);
 
     response.fold(
       (failure) {
@@ -98,7 +98,7 @@ class ItemsDetailsBloc extends Bloc<ItemsDetailsEvent, ItemsDetailsState> {
 
     emit(state.copyWith(count: state.count - 1, isUpdating: true));
 
-    var response = await cartData.removeCart(state.itemsModel!.itemsId!);
+    var response = await cartData.removeCart(state.itemModel!.id!);
 
     response.fold(
       (failure) {

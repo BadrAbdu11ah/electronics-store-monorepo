@@ -10,9 +10,9 @@ class SearchStatus with _$SearchStatus {
 }
 
 @freezed
-class SearchState with _$SearchState {
+abstract class SearchState with _$SearchState {
   const factory SearchState({
     @Default(SearchStatus.initial()) SearchStatus status,
-    @Default([]) List<ItemsModel> searchResults,
+    @Default([]) List<ItemModel> searchResults,
   }) = _SearchState;
 }

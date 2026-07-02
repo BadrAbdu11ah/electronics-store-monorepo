@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:flutter/material.dart';
 
 class ListItemsSearch extends StatelessWidget {
-  final List<ItemsModel> listDataModel;
+  final List<ItemModel> listDataModel;
   const ListItemsSearch({super.key, required this.listDataModel});
 
   @override
@@ -37,7 +37,7 @@ class ListItemsSearch extends StatelessWidget {
                     height: 90,
                     padding: const EdgeInsets.all(8),
                     child: CachedNetworkImage(
-                      imageUrl: listDataModel[i].itemsImage!,
+                      imageUrl: listDataModel[i].image!,
                       fit: BoxFit.contain,
                       placeholder: (context, url) => const Center(
                         child: CircularProgressIndicator(strokeWidth: 2),
@@ -52,17 +52,17 @@ class ListItemsSearch extends StatelessWidget {
                   flex: 2,
                   child: ListTile(
                     title: Text(
-                      listDataModel[i].itemsName!,
+                      listDataModel[i].name!,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("${listDataModel[i].category?.categoriesName}"),
+                        Text("${listDataModel[i].category?.name}"),
                         const SizedBox(height: 5),
                         // عرض السعر بعد الخصم إذا وجد
                         Text(
-                          "${listDataModel[i].discountedPrice ?? listDataModel[i].itemsPrice} ر.س",
+                          "${listDataModel[i].discountedPrice ?? listDataModel[i].price} ر.س",
                           style: const TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,

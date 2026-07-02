@@ -18,14 +18,14 @@ class FavoriteStatus with _$FavoriteStatus {
 }
 
 @freezed
-class ItemsState with _$ItemsState {
+abstract class ItemsState with _$ItemsState {
   const factory ItemsState({
     @Default(ItemsStatus.initial()) ItemsStatus status,
     @Default(FavoriteStatus.initial()) FavoriteStatus favoriteStatus,
-    @Default([]) List<ItemsModel> items,
-    @Default([]) List<CategoriesModel> categories,
+    @Default([]) List<ItemModel> items,
+    @Default([]) List<CategoryModel> categories,
     @Default(0) int categoryId,
-    @Default({}) Map<int, int> isFavorite,
+    @Default({}) Map<int, bool> isFavorite,
     String? lang,
   }) = _ItemsState;
 }

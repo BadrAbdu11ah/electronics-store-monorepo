@@ -5,13 +5,13 @@ import 'package:electronics_store/core/constant/app_image_asset.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
 import 'package:electronics_store/data/static/app_text.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomCardItems extends StatelessWidget {
-  final ItemsModel itemsModel;
+  final ItemModel itemsModel;
   final String lang;
   const CustomCardItems(this.itemsModel, {super.key, required this.lang});
 
@@ -45,9 +45,9 @@ class CustomCardItems extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Hero(
-                      tag: "${itemsModel.itemsId}",
+                      tag: "${itemsModel.id}",
                       child: CachedNetworkImage(
-                        imageUrl: itemsModel.itemsImage!,
+                        imageUrl: itemsModel.image!,
                         fit: BoxFit.contain,
                         placeholder: (context, url) =>
                             Center(child: CircularProgressIndicator()),
@@ -58,10 +58,7 @@ class CustomCardItems extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    translateDatabase(
-                      itemsModel.itemsName!,
-                      itemsModel.itemsNameAr!,
-                    ),
+                    translateDatabase(itemsModel.name!, itemsModel.nameAr!),
                     style: TextStyle(
                       fontSize: lang == "ar" ? 15 : 16,
                       color: AppColor.titleColor,
@@ -93,12 +90,12 @@ class CustomCardItems extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      itemsModel.itemsDiscount! > 0
+                      itemsModel.discount! > 0
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${itemsModel.itemsPrice} ر.س",
+                                  "${itemsModel.price} ر.س",
                                   style: TextStyle(
                                     fontSize: lang == "ar" ? 10 : 12,
                                     color: AppColor.priceColor,
@@ -116,7 +113,7 @@ class CustomCardItems extends StatelessWidget {
                               ],
                             )
                           : Text(
-                              "${itemsModel.itemsPrice} ر.س)",
+                              "${itemsModel.price} ر.س)",
                               style: TextStyle(
                                 fontSize: lang == "ar" ? 12 : 15,
                                 color: AppColor.priceColor,
@@ -130,20 +127,18 @@ class CustomCardItems extends StatelessWidget {
                           return IconButton(
                             onPressed: () {
                               // إذا كان 1 احذفه، وإذا كان 0 أضفه
-                              if (state.isFavorite[itemsModel.itemsId] == 1) {
+                              if (state.isFavorite[itemsModel.id]!) {
                                 context.read<ItemsBloc>().add(
-                                  ItemsEvent.removeFavorite(
-                                    itemsModel.itemsId!,
-                                  ),
+                                  ItemsEvent.removeFavorite(itemsModel.id!),
                                 );
                               } else {
                                 context.read<ItemsBloc>().add(
-                                  ItemsEvent.addFavorite(itemsModel.itemsId!),
+                                  ItemsEvent.addFavorite(itemsModel.id!),
                                 );
                               }
                             },
                             icon: Icon(
-                              state.isFavorite[itemsModel.itemsId] == 1
+                              state.isFavorite[itemsModel.id]!
                                   ? Icons.favorite
                                   : Icons.favorite_outline,
                               color: AppColor.themeBlackColor,
@@ -156,7 +151,7 @@ class CustomCardItems extends StatelessWidget {
                 ],
               ),
             ),
-            if (itemsModel.itemsDiscount! > 0)
+            if (itemsModel.discount! > 0)
               Image.asset(AppImageAsset.sale, width: 50),
           ],
         ),

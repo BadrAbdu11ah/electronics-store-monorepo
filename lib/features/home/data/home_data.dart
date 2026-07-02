@@ -1,27 +1,29 @@
 import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/services/api_service.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeData {
   final ApiService api;
   HomeData(this.api);
 
-  // جلب بيانات الصفحة الرئيسية
-  Future<Either<Failure, Map<String, List>>> getData() async {
-    var response = await api.get(ApiEndpoints.home);
+  /*
+   * جلب بيانات الصفحة الرئيسية (الأقسام وأحدث العروض)
+   */
+  Future<Either<Failure, Map<String, List<dynamic>>>> getData() async {
+    final response = await api.get(ApiEndpoints.home);
 
     return response.fold((failure) => Left(failure), (data) {
-      List rawCategories = data['categories'] ?? [];
-      List<CategoriesModel> categoriesList = rawCategories
-          .map((e) => CategoriesModel.fromJson(e))
+      final List rawCategories = data['categories'] ?? [];
+      final List<CategoryModel> categoriesList = rawCategories
+          .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList();
 
-      List rawItems = data['items'] ?? [];
-      List<ItemsModel> itemsList = rawItems
-          .map((e) => ItemsModel.fromJson(e))
+      final List rawItems = data['items'] ?? [];
+      final List<ItemModel> itemsList = rawItems
+          .map((e) => ItemModel.fromJson(e as Map<String, dynamic>))
           .toList();
 
       return Right({"categories": categoriesList, "items": itemsList});

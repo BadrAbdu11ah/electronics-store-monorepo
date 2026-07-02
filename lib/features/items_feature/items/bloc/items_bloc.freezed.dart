@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,2126 +9,1461 @@ part of 'items_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$ItemsEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int categoryId, List<CategoriesModel> categories)
-    started,
-    required TResult Function(int categoryId) loadItems,
-    required TResult Function(int itemsId) addFavorite,
-    required TResult Function(int itemsId) removeFavorite,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int categoryId, List<CategoriesModel> categories)?
-    started,
-    TResult? Function(int categoryId)? loadItems,
-    TResult? Function(int itemsId)? addFavorite,
-    TResult? Function(int itemsId)? removeFavorite,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int categoryId, List<CategoriesModel> categories)? started,
-    TResult Function(int categoryId)? loadItems,
-    TResult Function(int itemsId)? addFavorite,
-    TResult Function(int itemsId)? removeFavorite,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadItems value) loadItems,
-    required TResult Function(_AddFavorite value) addFavorite,
-    required TResult Function(_RemoveFavorite value) removeFavorite,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadItems value)? loadItems,
-    TResult? Function(_AddFavorite value)? addFavorite,
-    TResult? Function(_RemoveFavorite value)? removeFavorite,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadItems value)? loadItems,
-    TResult Function(_AddFavorite value)? addFavorite,
-    TResult Function(_RemoveFavorite value)? removeFavorite,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ItemsEventCopyWith<$Res> {
-  factory $ItemsEventCopyWith(
-    ItemsEvent value,
-    $Res Function(ItemsEvent) then,
-  ) = _$ItemsEventCopyWithImpl<$Res, ItemsEvent>;
+class $ItemsEventCopyWith<$Res>  {
+$ItemsEventCopyWith(ItemsEvent _, $Res Function(ItemsEvent) __);
 }
 
-/// @nodoc
-class _$ItemsEventCopyWithImpl<$Res, $Val extends ItemsEvent>
-    implements $ItemsEventCopyWith<$Res> {
-  _$ItemsEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [ItemsEvent].
+extension ItemsEventPatterns on ItemsEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadItems value)?  loadItems,TResult Function( _AddFavorite value)?  addFavorite,TResult Function( _RemoveFavorite value)?  removeFavorite,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that);case _LoadItems() when loadItems != null:
+return loadItems(_that);case _AddFavorite() when addFavorite != null:
+return addFavorite(_that);case _RemoveFavorite() when removeFavorite != null:
+return removeFavorite(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadItems value)  loadItems,required TResult Function( _AddFavorite value)  addFavorite,required TResult Function( _RemoveFavorite value)  removeFavorite,}){
+final _that = this;
+switch (_that) {
+case _Started():
+return started(_that);case _LoadItems():
+return loadItems(_that);case _AddFavorite():
+return addFavorite(_that);case _RemoveFavorite():
+return removeFavorite(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadItems value)?  loadItems,TResult? Function( _AddFavorite value)?  addFavorite,TResult? Function( _RemoveFavorite value)?  removeFavorite,}){
+final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that);case _LoadItems() when loadItems != null:
+return loadItems(_that);case _AddFavorite() when addFavorite != null:
+return addFavorite(_that);case _RemoveFavorite() when removeFavorite != null:
+return removeFavorite(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int categoryId,  List<CategoryModel> categories)?  started,TResult Function( int categoryId)?  loadItems,TResult Function( int itemsId)?  addFavorite,TResult Function( int itemsId)?  removeFavorite,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that.categoryId,_that.categories);case _LoadItems() when loadItems != null:
+return loadItems(_that.categoryId);case _AddFavorite() when addFavorite != null:
+return addFavorite(_that.itemsId);case _RemoveFavorite() when removeFavorite != null:
+return removeFavorite(_that.itemsId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int categoryId,  List<CategoryModel> categories)  started,required TResult Function( int categoryId)  loadItems,required TResult Function( int itemsId)  addFavorite,required TResult Function( int itemsId)  removeFavorite,}) {final _that = this;
+switch (_that) {
+case _Started():
+return started(_that.categoryId,_that.categories);case _LoadItems():
+return loadItems(_that.categoryId);case _AddFavorite():
+return addFavorite(_that.itemsId);case _RemoveFavorite():
+return removeFavorite(_that.itemsId);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int categoryId,  List<CategoryModel> categories)?  started,TResult? Function( int categoryId)?  loadItems,TResult? Function( int itemsId)?  addFavorite,TResult? Function( int itemsId)?  removeFavorite,}) {final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that.categoryId,_that.categories);case _LoadItems() when loadItems != null:
+return loadItems(_that.categoryId);case _AddFavorite() when addFavorite != null:
+return addFavorite(_that.itemsId);case _RemoveFavorite() when removeFavorite != null:
+return removeFavorite(_that.itemsId);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-    _$StartedImpl value,
-    $Res Function(_$StartedImpl) then,
-  ) = __$$StartedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int categoryId, List<CategoriesModel> categories});
-}
-
-/// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$ItemsEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-    _$StartedImpl _value,
-    $Res Function(_$StartedImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? categoryId = null, Object? categories = null}) {
-    return _then(
-      _$StartedImpl(
-        categoryId: null == categoryId
-            ? _value.categoryId
-            : categoryId // ignore: cast_nullable_to_non_nullable
-                  as int,
-        categories: null == categories
-            ? _value._categories
-            : categories // ignore: cast_nullable_to_non_nullable
-                  as List<CategoriesModel>,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$StartedImpl implements _Started {
-  const _$StartedImpl({
-    required this.categoryId,
-    required final List<CategoriesModel> categories,
-  }) : _categories = categories;
-
-  @override
-  final int categoryId;
-  final List<CategoriesModel> _categories;
-  @override
-  List<CategoriesModel> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
-
-  @override
-  String toString() {
-    return 'ItemsEvent.started(categoryId: $categoryId, categories: $categories)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StartedImpl &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            const DeepCollectionEquality().equals(
-              other._categories,
-              _categories,
-            ));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    categoryId,
-    const DeepCollectionEquality().hash(_categories),
-  );
-
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
-      __$$StartedImplCopyWithImpl<_$StartedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int categoryId, List<CategoriesModel> categories)
-    started,
-    required TResult Function(int categoryId) loadItems,
-    required TResult Function(int itemsId) addFavorite,
-    required TResult Function(int itemsId) removeFavorite,
-  }) {
-    return started(categoryId, categories);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int categoryId, List<CategoriesModel> categories)?
-    started,
-    TResult? Function(int categoryId)? loadItems,
-    TResult? Function(int itemsId)? addFavorite,
-    TResult? Function(int itemsId)? removeFavorite,
-  }) {
-    return started?.call(categoryId, categories);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int categoryId, List<CategoriesModel> categories)? started,
-    TResult Function(int categoryId)? loadItems,
-    TResult Function(int itemsId)? addFavorite,
-    TResult Function(int itemsId)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(categoryId, categories);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadItems value) loadItems,
-    required TResult Function(_AddFavorite value) addFavorite,
-    required TResult Function(_RemoveFavorite value) removeFavorite,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadItems value)? loadItems,
-    TResult? Function(_AddFavorite value)? addFavorite,
-    TResult? Function(_RemoveFavorite value)? removeFavorite,
-  }) {
-    return started?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadItems value)? loadItems,
-    TResult Function(_AddFavorite value)? addFavorite,
-    TResult Function(_RemoveFavorite value)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements ItemsEvent {
-  const factory _Started({
-    required final int categoryId,
-    required final List<CategoriesModel> categories,
-  }) = _$StartedImpl;
-
-  int get categoryId;
-  List<CategoriesModel> get categories;
-
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LoadItemsImplCopyWith<$Res> {
-  factory _$$LoadItemsImplCopyWith(
-    _$LoadItemsImpl value,
-    $Res Function(_$LoadItemsImpl) then,
-  ) = __$$LoadItemsImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int categoryId});
-}
-
-/// @nodoc
-class __$$LoadItemsImplCopyWithImpl<$Res>
-    extends _$ItemsEventCopyWithImpl<$Res, _$LoadItemsImpl>
-    implements _$$LoadItemsImplCopyWith<$Res> {
-  __$$LoadItemsImplCopyWithImpl(
-    _$LoadItemsImpl _value,
-    $Res Function(_$LoadItemsImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? categoryId = null}) {
-    return _then(
-      _$LoadItemsImpl(
-        categoryId: null == categoryId
-            ? _value.categoryId
-            : categoryId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$LoadItemsImpl implements _LoadItems {
-  const _$LoadItemsImpl({required this.categoryId});
 
-  @override
-  final int categoryId;
+class _Started implements ItemsEvent {
+  const _Started({required this.categoryId, required final  List<CategoryModel> categories}): _categories = categories;
+  
 
-  @override
-  String toString() {
-    return 'ItemsEvent.loadItems(categoryId: $categoryId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadItemsImpl &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, categoryId);
-
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadItemsImplCopyWith<_$LoadItemsImpl> get copyWith =>
-      __$$LoadItemsImplCopyWithImpl<_$LoadItemsImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int categoryId, List<CategoriesModel> categories)
-    started,
-    required TResult Function(int categoryId) loadItems,
-    required TResult Function(int itemsId) addFavorite,
-    required TResult Function(int itemsId) removeFavorite,
-  }) {
-    return loadItems(categoryId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int categoryId, List<CategoriesModel> categories)?
-    started,
-    TResult? Function(int categoryId)? loadItems,
-    TResult? Function(int itemsId)? addFavorite,
-    TResult? Function(int itemsId)? removeFavorite,
-  }) {
-    return loadItems?.call(categoryId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int categoryId, List<CategoriesModel> categories)? started,
-    TResult Function(int categoryId)? loadItems,
-    TResult Function(int itemsId)? addFavorite,
-    TResult Function(int itemsId)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (loadItems != null) {
-      return loadItems(categoryId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadItems value) loadItems,
-    required TResult Function(_AddFavorite value) addFavorite,
-    required TResult Function(_RemoveFavorite value) removeFavorite,
-  }) {
-    return loadItems(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadItems value)? loadItems,
-    TResult? Function(_AddFavorite value)? addFavorite,
-    TResult? Function(_RemoveFavorite value)? removeFavorite,
-  }) {
-    return loadItems?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadItems value)? loadItems,
-    TResult Function(_AddFavorite value)? addFavorite,
-    TResult Function(_RemoveFavorite value)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (loadItems != null) {
-      return loadItems(this);
-    }
-    return orElse();
-  }
+ final  int categoryId;
+ final  List<CategoryModel> _categories;
+ List<CategoryModel> get categories {
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categories);
 }
 
-abstract class _LoadItems implements ItemsEvent {
-  const factory _LoadItems({required final int categoryId}) = _$LoadItemsImpl;
 
-  int get categoryId;
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StartedCopyWith<_Started> get copyWith => __$StartedCopyWithImpl<_Started>(this, _$identity);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadItemsImplCopyWith<_$LoadItemsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&const DeepCollectionEquality().equals(other._categories, _categories));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,categoryId,const DeepCollectionEquality().hash(_categories));
+
+@override
+String toString() {
+  return 'ItemsEvent.started(categoryId: $categoryId, categories: $categories)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$AddFavoriteImplCopyWith<$Res> {
-  factory _$$AddFavoriteImplCopyWith(
-    _$AddFavoriteImpl value,
-    $Res Function(_$AddFavoriteImpl) then,
-  ) = __$$AddFavoriteImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int itemsId});
+abstract mixin class _$StartedCopyWith<$Res> implements $ItemsEventCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) _then) = __$StartedCopyWithImpl;
+@useResult
+$Res call({
+ int categoryId, List<CategoryModel> categories
+});
+
+
+
+
+}
+/// @nodoc
+class __$StartedCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(this._self, this._then);
+
+  final _Started _self;
+  final $Res Function(_Started) _then;
+
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? categoryId = null,Object? categories = null,}) {
+  return _then(_Started(
+categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoryModel>,
+  ));
 }
 
-/// @nodoc
-class __$$AddFavoriteImplCopyWithImpl<$Res>
-    extends _$ItemsEventCopyWithImpl<$Res, _$AddFavoriteImpl>
-    implements _$$AddFavoriteImplCopyWith<$Res> {
-  __$$AddFavoriteImplCopyWithImpl(
-    _$AddFavoriteImpl _value,
-    $Res Function(_$AddFavoriteImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? itemsId = null}) {
-    return _then(
-      _$AddFavoriteImpl(
-        null == itemsId
-            ? _value.itemsId
-            : itemsId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$AddFavoriteImpl implements _AddFavorite {
-  const _$AddFavoriteImpl(this.itemsId);
 
-  @override
-  final int itemsId;
+class _LoadItems implements ItemsEvent {
+  const _LoadItems({required this.categoryId});
+  
 
-  @override
-  String toString() {
-    return 'ItemsEvent.addFavorite(itemsId: $itemsId)';
-  }
+ final  int categoryId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddFavoriteImpl &&
-            (identical(other.itemsId, itemsId) || other.itemsId == itemsId));
-  }
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadItemsCopyWith<_LoadItems> get copyWith => __$LoadItemsCopyWithImpl<_LoadItems>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, itemsId);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddFavoriteImplCopyWith<_$AddFavoriteImpl> get copyWith =>
-      __$$AddFavoriteImplCopyWithImpl<_$AddFavoriteImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int categoryId, List<CategoriesModel> categories)
-    started,
-    required TResult Function(int categoryId) loadItems,
-    required TResult Function(int itemsId) addFavorite,
-    required TResult Function(int itemsId) removeFavorite,
-  }) {
-    return addFavorite(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int categoryId, List<CategoriesModel> categories)?
-    started,
-    TResult? Function(int categoryId)? loadItems,
-    TResult? Function(int itemsId)? addFavorite,
-    TResult? Function(int itemsId)? removeFavorite,
-  }) {
-    return addFavorite?.call(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int categoryId, List<CategoriesModel> categories)? started,
-    TResult Function(int categoryId)? loadItems,
-    TResult Function(int itemsId)? addFavorite,
-    TResult Function(int itemsId)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (addFavorite != null) {
-      return addFavorite(itemsId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadItems value) loadItems,
-    required TResult Function(_AddFavorite value) addFavorite,
-    required TResult Function(_RemoveFavorite value) removeFavorite,
-  }) {
-    return addFavorite(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadItems value)? loadItems,
-    TResult? Function(_AddFavorite value)? addFavorite,
-    TResult? Function(_RemoveFavorite value)? removeFavorite,
-  }) {
-    return addFavorite?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadItems value)? loadItems,
-    TResult Function(_AddFavorite value)? addFavorite,
-    TResult Function(_RemoveFavorite value)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (addFavorite != null) {
-      return addFavorite(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadItems&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId));
 }
 
-abstract class _AddFavorite implements ItemsEvent {
-  const factory _AddFavorite(final int itemsId) = _$AddFavoriteImpl;
 
-  int get itemsId;
+@override
+int get hashCode => Object.hash(runtimeType,categoryId);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddFavoriteImplCopyWith<_$AddFavoriteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsEvent.loadItems(categoryId: $categoryId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$RemoveFavoriteImplCopyWith<$Res> {
-  factory _$$RemoveFavoriteImplCopyWith(
-    _$RemoveFavoriteImpl value,
-    $Res Function(_$RemoveFavoriteImpl) then,
-  ) = __$$RemoveFavoriteImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int itemsId});
+abstract mixin class _$LoadItemsCopyWith<$Res> implements $ItemsEventCopyWith<$Res> {
+  factory _$LoadItemsCopyWith(_LoadItems value, $Res Function(_LoadItems) _then) = __$LoadItemsCopyWithImpl;
+@useResult
+$Res call({
+ int categoryId
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadItemsCopyWithImpl<$Res>
+    implements _$LoadItemsCopyWith<$Res> {
+  __$LoadItemsCopyWithImpl(this._self, this._then);
+
+  final _LoadItems _self;
+  final $Res Function(_LoadItems) _then;
+
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? categoryId = null,}) {
+  return _then(_LoadItems(
+categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-class __$$RemoveFavoriteImplCopyWithImpl<$Res>
-    extends _$ItemsEventCopyWithImpl<$Res, _$RemoveFavoriteImpl>
-    implements _$$RemoveFavoriteImplCopyWith<$Res> {
-  __$$RemoveFavoriteImplCopyWithImpl(
-    _$RemoveFavoriteImpl _value,
-    $Res Function(_$RemoveFavoriteImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? itemsId = null}) {
-    return _then(
-      _$RemoveFavoriteImpl(
-        null == itemsId
-            ? _value.itemsId
-            : itemsId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$RemoveFavoriteImpl implements _RemoveFavorite {
-  const _$RemoveFavoriteImpl(this.itemsId);
 
-  @override
-  final int itemsId;
+class _AddFavorite implements ItemsEvent {
+  const _AddFavorite(this.itemsId);
+  
 
-  @override
-  String toString() {
-    return 'ItemsEvent.removeFavorite(itemsId: $itemsId)';
-  }
+ final  int itemsId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RemoveFavoriteImpl &&
-            (identical(other.itemsId, itemsId) || other.itemsId == itemsId));
-  }
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AddFavoriteCopyWith<_AddFavorite> get copyWith => __$AddFavoriteCopyWithImpl<_AddFavorite>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, itemsId);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoveFavoriteImplCopyWith<_$RemoveFavoriteImpl> get copyWith =>
-      __$$RemoveFavoriteImplCopyWithImpl<_$RemoveFavoriteImpl>(
-        this,
-        _$identity,
-      );
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int categoryId, List<CategoriesModel> categories)
-    started,
-    required TResult Function(int categoryId) loadItems,
-    required TResult Function(int itemsId) addFavorite,
-    required TResult Function(int itemsId) removeFavorite,
-  }) {
-    return removeFavorite(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int categoryId, List<CategoriesModel> categories)?
-    started,
-    TResult? Function(int categoryId)? loadItems,
-    TResult? Function(int itemsId)? addFavorite,
-    TResult? Function(int itemsId)? removeFavorite,
-  }) {
-    return removeFavorite?.call(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int categoryId, List<CategoriesModel> categories)? started,
-    TResult Function(int categoryId)? loadItems,
-    TResult Function(int itemsId)? addFavorite,
-    TResult Function(int itemsId)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (removeFavorite != null) {
-      return removeFavorite(itemsId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadItems value) loadItems,
-    required TResult Function(_AddFavorite value) addFavorite,
-    required TResult Function(_RemoveFavorite value) removeFavorite,
-  }) {
-    return removeFavorite(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadItems value)? loadItems,
-    TResult? Function(_AddFavorite value)? addFavorite,
-    TResult? Function(_RemoveFavorite value)? removeFavorite,
-  }) {
-    return removeFavorite?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadItems value)? loadItems,
-    TResult Function(_AddFavorite value)? addFavorite,
-    TResult Function(_RemoveFavorite value)? removeFavorite,
-    required TResult orElse(),
-  }) {
-    if (removeFavorite != null) {
-      return removeFavorite(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddFavorite&&(identical(other.itemsId, itemsId) || other.itemsId == itemsId));
 }
 
-abstract class _RemoveFavorite implements ItemsEvent {
-  const factory _RemoveFavorite(final int itemsId) = _$RemoveFavoriteImpl;
 
-  int get itemsId;
+@override
+int get hashCode => Object.hash(runtimeType,itemsId);
 
-  /// Create a copy of ItemsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RemoveFavoriteImplCopyWith<_$RemoveFavoriteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsEvent.addFavorite(itemsId: $itemsId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AddFavoriteCopyWith<$Res> implements $ItemsEventCopyWith<$Res> {
+  factory _$AddFavoriteCopyWith(_AddFavorite value, $Res Function(_AddFavorite) _then) = __$AddFavoriteCopyWithImpl;
+@useResult
+$Res call({
+ int itemsId
+});
+
+
+
+
+}
+/// @nodoc
+class __$AddFavoriteCopyWithImpl<$Res>
+    implements _$AddFavoriteCopyWith<$Res> {
+  __$AddFavoriteCopyWithImpl(this._self, this._then);
+
+  final _AddFavorite _self;
+  final $Res Function(_AddFavorite) _then;
+
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? itemsId = null,}) {
+  return _then(_AddFavorite(
+null == itemsId ? _self.itemsId : itemsId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _RemoveFavorite implements ItemsEvent {
+  const _RemoveFavorite(this.itemsId);
+  
+
+ final  int itemsId;
+
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RemoveFavoriteCopyWith<_RemoveFavorite> get copyWith => __$RemoveFavoriteCopyWithImpl<_RemoveFavorite>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RemoveFavorite&&(identical(other.itemsId, itemsId) || other.itemsId == itemsId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,itemsId);
+
+@override
+String toString() {
+  return 'ItemsEvent.removeFavorite(itemsId: $itemsId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RemoveFavoriteCopyWith<$Res> implements $ItemsEventCopyWith<$Res> {
+  factory _$RemoveFavoriteCopyWith(_RemoveFavorite value, $Res Function(_RemoveFavorite) _then) = __$RemoveFavoriteCopyWithImpl;
+@useResult
+$Res call({
+ int itemsId
+});
+
+
+
+
+}
+/// @nodoc
+class __$RemoveFavoriteCopyWithImpl<$Res>
+    implements _$RemoveFavoriteCopyWith<$Res> {
+  __$RemoveFavoriteCopyWithImpl(this._self, this._then);
+
+  final _RemoveFavorite _self;
+  final $Res Function(_RemoveFavorite) _then;
+
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? itemsId = null,}) {
+  return _then(_RemoveFavorite(
+null == itemsId ? _self.itemsId : itemsId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$ItemsStatus {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsStatus);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsStatus()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ItemsStatusCopyWith<$Res> {
-  factory $ItemsStatusCopyWith(
-    ItemsStatus value,
-    $Res Function(ItemsStatus) then,
-  ) = _$ItemsStatusCopyWithImpl<$Res, ItemsStatus>;
+class $ItemsStatusCopyWith<$Res>  {
+$ItemsStatusCopyWith(ItemsStatus _, $Res Function(ItemsStatus) __);
 }
 
-/// @nodoc
-class _$ItemsStatusCopyWithImpl<$Res, $Val extends ItemsStatus>
-    implements $ItemsStatusCopyWith<$Res> {
-  _$ItemsStatusCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [ItemsStatus].
+extension ItemsStatusPatterns on ItemsStatus {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _ServerFailure value)?  serverFailure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _ServerFailure value)  serverFailure,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _ServerFailure():
+return serverFailure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _ServerFailure value)?  serverFailure,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  loaded,TResult Function( String errorMessage)?  serverFailure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.errorMessage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  loaded,required TResult Function( String errorMessage)  serverFailure,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _Loading():
+return loading();case _Loaded():
+return loaded();case _ServerFailure():
+return serverFailure(_that.errorMessage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  loaded,TResult? Function( String errorMessage)?  serverFailure,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.errorMessage);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-    _$InitialImpl value,
-    $Res Function(_$InitialImpl) then,
-  ) = __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ItemsStatusCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-    _$InitialImpl _value,
-    $Res Function(_$InitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'ItemsStatus.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements ItemsStatus {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-    _$LoadingImpl value,
-    $Res Function(_$LoadingImpl) then,
-  ) = __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ItemsStatusCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-    _$LoadingImpl _value,
-    $Res Function(_$LoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
 
-  @override
-  String toString() {
-    return 'ItemsStatus.loading()';
-  }
+class _Initial implements ItemsStatus {
+  const _Initial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-abstract class _Loading implements ItemsStatus {
-  const factory _Loading() = _$LoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsStatus.initial()';
 }
 
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-    _$LoadedImpl value,
-    $Res Function(_$LoadedImpl) then,
-  ) = __$$LoadedImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ItemsStatusCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-    _$LoadedImpl _value,
-    $Res Function(_$LoadedImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
+
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl();
 
-  @override
-  String toString() {
-    return 'ItemsStatus.loaded()';
-  }
+class _Loading implements ItemsStatus {
+  const _Loading();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadedImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return loaded();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return loaded?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
-abstract class _Loaded implements ItemsStatus {
-  const factory _Loaded() = _$LoadedImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsStatus.loading()';
 }
 
-/// @nodoc
-abstract class _$$ServerFailureImplCopyWith<$Res> {
-  factory _$$ServerFailureImplCopyWith(
-    _$ServerFailureImpl value,
-    $Res Function(_$ServerFailureImpl) then,
-  ) = __$$ServerFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorMessage});
+
 }
 
-/// @nodoc
-class __$$ServerFailureImplCopyWithImpl<$Res>
-    extends _$ItemsStatusCopyWithImpl<$Res, _$ServerFailureImpl>
-    implements _$$ServerFailureImplCopyWith<$Res> {
-  __$$ServerFailureImplCopyWithImpl(
-    _$ServerFailureImpl _value,
-    $Res Function(_$ServerFailureImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? errorMessage = null}) {
-    return _then(
-      _$ServerFailureImpl(
-        null == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
-}
+
 
 /// @nodoc
 
-class _$ServerFailureImpl implements _ServerFailure {
-  const _$ServerFailureImpl(this.errorMessage);
 
-  @override
-  final String errorMessage;
+class _Loaded implements ItemsStatus {
+  const _Loaded();
+  
 
-  @override
-  String toString() {
-    return 'ItemsStatus.serverFailure(errorMessage: $errorMessage)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServerFailureImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
-      __$$ServerFailureImplCopyWithImpl<_$ServerFailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return serverFailure(errorMessage);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return serverFailure?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (serverFailure != null) {
-      return serverFailure(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return serverFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return serverFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (serverFailure != null) {
-      return serverFailure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded);
 }
 
-abstract class _ServerFailure implements ItemsStatus {
-  const factory _ServerFailure(final String errorMessage) = _$ServerFailureImpl;
 
-  String get errorMessage;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of ItemsStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsStatus.loaded()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _ServerFailure implements ItemsStatus {
+  const _ServerFailure(this.errorMessage);
+  
+
+ final  String errorMessage;
+
+/// Create a copy of ItemsStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServerFailureCopyWith<_ServerFailure> get copyWith => __$ServerFailureCopyWithImpl<_ServerFailure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerFailure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,errorMessage);
+
+@override
+String toString() {
+  return 'ItemsStatus.serverFailure(errorMessage: $errorMessage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServerFailureCopyWith<$Res> implements $ItemsStatusCopyWith<$Res> {
+  factory _$ServerFailureCopyWith(_ServerFailure value, $Res Function(_ServerFailure) _then) = __$ServerFailureCopyWithImpl;
+@useResult
+$Res call({
+ String errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class __$ServerFailureCopyWithImpl<$Res>
+    implements _$ServerFailureCopyWith<$Res> {
+  __$ServerFailureCopyWithImpl(this._self, this._then);
+
+  final _ServerFailure _self;
+  final $Res Function(_ServerFailure) _then;
+
+/// Create a copy of ItemsStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
+  return _then(_ServerFailure(
+null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$FavoriteStatus {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String message) success,
-    required TResult Function(String errorMessage) failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String message)? success,
-    TResult? Function(String errorMessage)? failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String message)? success,
-    TResult Function(String errorMessage)? failure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FavInitial value) initial,
-    required TResult Function(_FavSuccess value) success,
-    required TResult Function(_FavFailure value) failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FavInitial value)? initial,
-    TResult? Function(_FavSuccess value)? success,
-    TResult? Function(_FavFailure value)? failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FavInitial value)? initial,
-    TResult Function(_FavSuccess value)? success,
-    TResult Function(_FavFailure value)? failure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FavoriteStatus);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'FavoriteStatus()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $FavoriteStatusCopyWith<$Res> {
-  factory $FavoriteStatusCopyWith(
-    FavoriteStatus value,
-    $Res Function(FavoriteStatus) then,
-  ) = _$FavoriteStatusCopyWithImpl<$Res, FavoriteStatus>;
+class $FavoriteStatusCopyWith<$Res>  {
+$FavoriteStatusCopyWith(FavoriteStatus _, $Res Function(FavoriteStatus) __);
 }
 
-/// @nodoc
-class _$FavoriteStatusCopyWithImpl<$Res, $Val extends FavoriteStatus>
-    implements $FavoriteStatusCopyWith<$Res> {
-  _$FavoriteStatusCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [FavoriteStatus].
+extension FavoriteStatusPatterns on FavoriteStatus {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FavInitial value)?  initial,TResult Function( _FavSuccess value)?  success,TResult Function( _FavFailure value)?  failure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _FavInitial() when initial != null:
+return initial(_that);case _FavSuccess() when success != null:
+return success(_that);case _FavFailure() when failure != null:
+return failure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FavInitial value)  initial,required TResult Function( _FavSuccess value)  success,required TResult Function( _FavFailure value)  failure,}){
+final _that = this;
+switch (_that) {
+case _FavInitial():
+return initial(_that);case _FavSuccess():
+return success(_that);case _FavFailure():
+return failure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FavInitial value)?  initial,TResult? Function( _FavSuccess value)?  success,TResult? Function( _FavFailure value)?  failure,}){
+final _that = this;
+switch (_that) {
+case _FavInitial() when initial != null:
+return initial(_that);case _FavSuccess() when success != null:
+return success(_that);case _FavFailure() when failure != null:
+return failure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String message)?  success,TResult Function( String errorMessage)?  failure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _FavInitial() when initial != null:
+return initial();case _FavSuccess() when success != null:
+return success(_that.message);case _FavFailure() when failure != null:
+return failure(_that.errorMessage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String message)  success,required TResult Function( String errorMessage)  failure,}) {final _that = this;
+switch (_that) {
+case _FavInitial():
+return initial();case _FavSuccess():
+return success(_that.message);case _FavFailure():
+return failure(_that.errorMessage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String message)?  success,TResult? Function( String errorMessage)?  failure,}) {final _that = this;
+switch (_that) {
+case _FavInitial() when initial != null:
+return initial();case _FavSuccess() when success != null:
+return success(_that.message);case _FavFailure() when failure != null:
+return failure(_that.errorMessage);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$FavInitialImplCopyWith<$Res> {
-  factory _$$FavInitialImplCopyWith(
-    _$FavInitialImpl value,
-    $Res Function(_$FavInitialImpl) then,
-  ) = __$$FavInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FavInitialImplCopyWithImpl<$Res>
-    extends _$FavoriteStatusCopyWithImpl<$Res, _$FavInitialImpl>
-    implements _$$FavInitialImplCopyWith<$Res> {
-  __$$FavInitialImplCopyWithImpl(
-    _$FavInitialImpl _value,
-    $Res Function(_$FavInitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FavInitialImpl implements _FavInitial {
-  const _$FavInitialImpl();
-
-  @override
-  String toString() {
-    return 'FavoriteStatus.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FavInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String message) success,
-    required TResult Function(String errorMessage) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String message)? success,
-    TResult? Function(String errorMessage)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String message)? success,
-    TResult Function(String errorMessage)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FavInitial value) initial,
-    required TResult Function(_FavSuccess value) success,
-    required TResult Function(_FavFailure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FavInitial value)? initial,
-    TResult? Function(_FavSuccess value)? success,
-    TResult? Function(_FavFailure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FavInitial value)? initial,
-    TResult Function(_FavSuccess value)? success,
-    TResult Function(_FavFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FavInitial implements FavoriteStatus {
-  const factory _FavInitial() = _$FavInitialImpl;
-}
-
-/// @nodoc
-abstract class _$$FavSuccessImplCopyWith<$Res> {
-  factory _$$FavSuccessImplCopyWith(
-    _$FavSuccessImpl value,
-    $Res Function(_$FavSuccessImpl) then,
-  ) = __$$FavSuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$FavSuccessImplCopyWithImpl<$Res>
-    extends _$FavoriteStatusCopyWithImpl<$Res, _$FavSuccessImpl>
-    implements _$$FavSuccessImplCopyWith<$Res> {
-  __$$FavSuccessImplCopyWithImpl(
-    _$FavSuccessImpl _value,
-    $Res Function(_$FavSuccessImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$FavSuccessImpl(
-        null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$FavSuccessImpl implements _FavSuccess {
-  const _$FavSuccessImpl(this.message);
 
-  @override
-  final String message;
+class _FavInitial implements FavoriteStatus {
+  const _FavInitial();
+  
 
-  @override
-  String toString() {
-    return 'FavoriteStatus.success(message: $message)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FavSuccessImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FavSuccessImplCopyWith<_$FavSuccessImpl> get copyWith =>
-      __$$FavSuccessImplCopyWithImpl<_$FavSuccessImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String message) success,
-    required TResult Function(String errorMessage) failure,
-  }) {
-    return success(message);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String message)? success,
-    TResult? Function(String errorMessage)? failure,
-  }) {
-    return success?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String message)? success,
-    TResult Function(String errorMessage)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FavInitial value) initial,
-    required TResult Function(_FavSuccess value) success,
-    required TResult Function(_FavFailure value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FavInitial value)? initial,
-    TResult? Function(_FavSuccess value)? success,
-    TResult? Function(_FavFailure value)? failure,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FavInitial value)? initial,
-    TResult Function(_FavSuccess value)? success,
-    TResult Function(_FavFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FavInitial);
 }
 
-abstract class _FavSuccess implements FavoriteStatus {
-  const factory _FavSuccess(final String message) = _$FavSuccessImpl;
 
-  String get message;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FavSuccessImplCopyWith<_$FavSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'FavoriteStatus.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _FavSuccess implements FavoriteStatus {
+  const _FavSuccess(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of FavoriteStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FavSuccessCopyWith<_FavSuccess> get copyWith => __$FavSuccessCopyWithImpl<_FavSuccess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FavSuccess&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'FavoriteStatus.success(message: $message)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$FavFailureImplCopyWith<$Res> {
-  factory _$$FavFailureImplCopyWith(
-    _$FavFailureImpl value,
-    $Res Function(_$FavFailureImpl) then,
-  ) = __$$FavFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorMessage});
+abstract mixin class _$FavSuccessCopyWith<$Res> implements $FavoriteStatusCopyWith<$Res> {
+  factory _$FavSuccessCopyWith(_FavSuccess value, $Res Function(_FavSuccess) _then) = __$FavSuccessCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class __$FavSuccessCopyWithImpl<$Res>
+    implements _$FavSuccessCopyWith<$Res> {
+  __$FavSuccessCopyWithImpl(this._self, this._then);
+
+  final _FavSuccess _self;
+  final $Res Function(_FavSuccess) _then;
+
+/// Create a copy of FavoriteStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(_FavSuccess(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-class __$$FavFailureImplCopyWithImpl<$Res>
-    extends _$FavoriteStatusCopyWithImpl<$Res, _$FavFailureImpl>
-    implements _$$FavFailureImplCopyWith<$Res> {
-  __$$FavFailureImplCopyWithImpl(
-    _$FavFailureImpl _value,
-    $Res Function(_$FavFailureImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? errorMessage = null}) {
-    return _then(
-      _$FavFailureImpl(
-        null == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$FavFailureImpl implements _FavFailure {
-  const _$FavFailureImpl(this.errorMessage);
 
-  @override
-  final String errorMessage;
+class _FavFailure implements FavoriteStatus {
+  const _FavFailure(this.errorMessage);
+  
 
-  @override
-  String toString() {
-    return 'FavoriteStatus.failure(errorMessage: $errorMessage)';
-  }
+ final  String errorMessage;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FavFailureImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
+/// Create a copy of FavoriteStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FavFailureCopyWith<_FavFailure> get copyWith => __$FavFailureCopyWithImpl<_FavFailure>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FavFailureImplCopyWith<_$FavFailureImpl> get copyWith =>
-      __$$FavFailureImplCopyWithImpl<_$FavFailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String message) success,
-    required TResult Function(String errorMessage) failure,
-  }) {
-    return failure(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String message)? success,
-    TResult? Function(String errorMessage)? failure,
-  }) {
-    return failure?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String message)? success,
-    TResult Function(String errorMessage)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FavInitial value) initial,
-    required TResult Function(_FavSuccess value) success,
-    required TResult Function(_FavFailure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FavInitial value)? initial,
-    TResult? Function(_FavSuccess value)? success,
-    TResult? Function(_FavFailure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FavInitial value)? initial,
-    TResult Function(_FavSuccess value)? success,
-    TResult Function(_FavFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FavFailure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
-abstract class _FavFailure implements FavoriteStatus {
-  const factory _FavFailure(final String errorMessage) = _$FavFailureImpl;
 
-  String get errorMessage;
+@override
+int get hashCode => Object.hash(runtimeType,errorMessage);
 
-  /// Create a copy of FavoriteStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FavFailureImplCopyWith<_$FavFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'FavoriteStatus.failure(errorMessage: $errorMessage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FavFailureCopyWith<$Res> implements $FavoriteStatusCopyWith<$Res> {
+  factory _$FavFailureCopyWith(_FavFailure value, $Res Function(_FavFailure) _then) = __$FavFailureCopyWithImpl;
+@useResult
+$Res call({
+ String errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class __$FavFailureCopyWithImpl<$Res>
+    implements _$FavFailureCopyWith<$Res> {
+  __$FavFailureCopyWithImpl(this._self, this._then);
+
+  final _FavFailure _self;
+  final $Res Function(_FavFailure) _then;
+
+/// Create a copy of FavoriteStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
+  return _then(_FavFailure(
+null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$ItemsState {
-  ItemsStatus get status => throw _privateConstructorUsedError;
-  FavoriteStatus get favoriteStatus => throw _privateConstructorUsedError;
-  List<ItemsModel> get items => throw _privateConstructorUsedError;
-  List<CategoriesModel> get categories => throw _privateConstructorUsedError;
-  int get categoryId => throw _privateConstructorUsedError;
-  Map<int, int> get isFavorite => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
 
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ItemsStateCopyWith<ItemsState> get copyWith =>
-      throw _privateConstructorUsedError;
+ ItemsStatus get status; FavoriteStatus get favoriteStatus; List<ItemModel> get items; List<CategoryModel> get categories; int get categoryId; Map<int, bool> get isFavorite; String? get lang;
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ItemsStateCopyWith<ItemsState> get copyWith => _$ItemsStateCopyWithImpl<ItemsState>(this as ItemsState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsState&&(identical(other.status, status) || other.status == status)&&(identical(other.favoriteStatus, favoriteStatus) || other.favoriteStatus == favoriteStatus)&&const DeepCollectionEquality().equals(other.items, items)&&const DeepCollectionEquality().equals(other.categories, categories)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&const DeepCollectionEquality().equals(other.isFavorite, isFavorite)&&(identical(other.lang, lang) || other.lang == lang));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status,favoriteStatus,const DeepCollectionEquality().hash(items),const DeepCollectionEquality().hash(categories),categoryId,const DeepCollectionEquality().hash(isFavorite),lang);
+
+@override
+String toString() {
+  return 'ItemsState(status: $status, favoriteStatus: $favoriteStatus, items: $items, categories: $categories, categoryId: $categoryId, isFavorite: $isFavorite, lang: $lang)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ItemsStateCopyWith<$Res> {
-  factory $ItemsStateCopyWith(
-    ItemsState value,
-    $Res Function(ItemsState) then,
-  ) = _$ItemsStateCopyWithImpl<$Res, ItemsState>;
-  @useResult
-  $Res call({
-    ItemsStatus status,
-    FavoriteStatus favoriteStatus,
-    List<ItemsModel> items,
-    List<CategoriesModel> categories,
-    int categoryId,
-    Map<int, int> isFavorite,
-    String? lang,
-  });
+abstract mixin class $ItemsStateCopyWith<$Res>  {
+  factory $ItemsStateCopyWith(ItemsState value, $Res Function(ItemsState) _then) = _$ItemsStateCopyWithImpl;
+@useResult
+$Res call({
+ ItemsStatus status, FavoriteStatus favoriteStatus, List<ItemModel> items, List<CategoryModel> categories, int categoryId, Map<int, bool> isFavorite, String? lang
+});
 
-  $ItemsStatusCopyWith<$Res> get status;
-  $FavoriteStatusCopyWith<$Res> get favoriteStatus;
+
+$ItemsStatusCopyWith<$Res> get status;$FavoriteStatusCopyWith<$Res> get favoriteStatus;
+
 }
-
 /// @nodoc
-class _$ItemsStateCopyWithImpl<$Res, $Val extends ItemsState>
+class _$ItemsStateCopyWithImpl<$Res>
     implements $ItemsStateCopyWith<$Res> {
-  _$ItemsStateCopyWithImpl(this._value, this._then);
+  _$ItemsStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ItemsState _self;
+  final $Res Function(ItemsState) _then;
 
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? favoriteStatus = null,
-    Object? items = null,
-    Object? categories = null,
-    Object? categoryId = null,
-    Object? isFavorite = null,
-    Object? lang = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as ItemsStatus,
-            favoriteStatus: null == favoriteStatus
-                ? _value.favoriteStatus
-                : favoriteStatus // ignore: cast_nullable_to_non_nullable
-                      as FavoriteStatus,
-            items: null == items
-                ? _value.items
-                : items // ignore: cast_nullable_to_non_nullable
-                      as List<ItemsModel>,
-            categories: null == categories
-                ? _value.categories
-                : categories // ignore: cast_nullable_to_non_nullable
-                      as List<CategoriesModel>,
-            categoryId: null == categoryId
-                ? _value.categoryId
-                : categoryId // ignore: cast_nullable_to_non_nullable
-                      as int,
-            isFavorite: null == isFavorite
-                ? _value.isFavorite
-                : isFavorite // ignore: cast_nullable_to_non_nullable
-                      as Map<int, int>,
-            lang: freezed == lang
-                ? _value.lang
-                : lang // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ItemsStatusCopyWith<$Res> get status {
-    return $ItemsStatusCopyWith<$Res>(_value.status, (value) {
-      return _then(_value.copyWith(status: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FavoriteStatusCopyWith<$Res> get favoriteStatus {
-    return $FavoriteStatusCopyWith<$Res>(_value.favoriteStatus, (value) {
-      return _then(_value.copyWith(favoriteStatus: value) as $Val);
-    });
-  }
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? favoriteStatus = null,Object? items = null,Object? categories = null,Object? categoryId = null,Object? isFavorite = null,Object? lang = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as ItemsStatus,favoriteStatus: null == favoriteStatus ? _self.favoriteStatus : favoriteStatus // ignore: cast_nullable_to_non_nullable
+as FavoriteStatus,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemModel>,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoryModel>,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+as Map<int, bool>,lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
-
-/// @nodoc
-abstract class _$$ItemsStateImplCopyWith<$Res>
-    implements $ItemsStateCopyWith<$Res> {
-  factory _$$ItemsStateImplCopyWith(
-    _$ItemsStateImpl value,
-    $Res Function(_$ItemsStateImpl) then,
-  ) = __$$ItemsStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    ItemsStatus status,
-    FavoriteStatus favoriteStatus,
-    List<ItemsModel> items,
-    List<CategoriesModel> categories,
-    int categoryId,
-    Map<int, int> isFavorite,
-    String? lang,
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemsStatusCopyWith<$Res> get status {
+  
+  return $ItemsStatusCopyWith<$Res>(_self.status, (value) {
+    return _then(_self.copyWith(status: value));
   });
+}/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FavoriteStatusCopyWith<$Res> get favoriteStatus {
+  
+  return $FavoriteStatusCopyWith<$Res>(_self.favoriteStatus, (value) {
+    return _then(_self.copyWith(favoriteStatus: value));
+  });
+}
+}
 
-  @override
-  $ItemsStatusCopyWith<$Res> get status;
-  @override
-  $FavoriteStatusCopyWith<$Res> get favoriteStatus;
+
+/// Adds pattern-matching-related methods to [ItemsState].
+extension ItemsStatePatterns on ItemsState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ItemsState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ItemsState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ItemsState value)  $default,){
+final _that = this;
+switch (_that) {
+case _ItemsState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ItemsState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ItemsState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ItemsStatus status,  FavoriteStatus favoriteStatus,  List<ItemModel> items,  List<CategoryModel> categories,  int categoryId,  Map<int, bool> isFavorite,  String? lang)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ItemsState() when $default != null:
+return $default(_that.status,_that.favoriteStatus,_that.items,_that.categories,_that.categoryId,_that.isFavorite,_that.lang);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ItemsStatus status,  FavoriteStatus favoriteStatus,  List<ItemModel> items,  List<CategoryModel> categories,  int categoryId,  Map<int, bool> isFavorite,  String? lang)  $default,) {final _that = this;
+switch (_that) {
+case _ItemsState():
+return $default(_that.status,_that.favoriteStatus,_that.items,_that.categories,_that.categoryId,_that.isFavorite,_that.lang);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ItemsStatus status,  FavoriteStatus favoriteStatus,  List<ItemModel> items,  List<CategoryModel> categories,  int categoryId,  Map<int, bool> isFavorite,  String? lang)?  $default,) {final _that = this;
+switch (_that) {
+case _ItemsState() when $default != null:
+return $default(_that.status,_that.favoriteStatus,_that.items,_that.categories,_that.categoryId,_that.isFavorite,_that.lang);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-class __$$ItemsStateImplCopyWithImpl<$Res>
-    extends _$ItemsStateCopyWithImpl<$Res, _$ItemsStateImpl>
-    implements _$$ItemsStateImplCopyWith<$Res> {
-  __$$ItemsStateImplCopyWithImpl(
-    _$ItemsStateImpl _value,
-    $Res Function(_$ItemsStateImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? favoriteStatus = null,
-    Object? items = null,
-    Object? categories = null,
-    Object? categoryId = null,
-    Object? isFavorite = null,
-    Object? lang = freezed,
-  }) {
-    return _then(
-      _$ItemsStateImpl(
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as ItemsStatus,
-        favoriteStatus: null == favoriteStatus
-            ? _value.favoriteStatus
-            : favoriteStatus // ignore: cast_nullable_to_non_nullable
-                  as FavoriteStatus,
-        items: null == items
-            ? _value._items
-            : items // ignore: cast_nullable_to_non_nullable
-                  as List<ItemsModel>,
-        categories: null == categories
-            ? _value._categories
-            : categories // ignore: cast_nullable_to_non_nullable
-                  as List<CategoriesModel>,
-        categoryId: null == categoryId
-            ? _value.categoryId
-            : categoryId // ignore: cast_nullable_to_non_nullable
-                  as int,
-        isFavorite: null == isFavorite
-            ? _value._isFavorite
-            : isFavorite // ignore: cast_nullable_to_non_nullable
-                  as Map<int, int>,
-        lang: freezed == lang
-            ? _value.lang
-            : lang // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
+
+class _ItemsState implements ItemsState {
+  const _ItemsState({this.status = const ItemsStatus.initial(), this.favoriteStatus = const FavoriteStatus.initial(), final  List<ItemModel> items = const [], final  List<CategoryModel> categories = const [], this.categoryId = 0, final  Map<int, bool> isFavorite = const {}, this.lang}): _items = items,_categories = categories,_isFavorite = isFavorite;
+  
+
+@override@JsonKey() final  ItemsStatus status;
+@override@JsonKey() final  FavoriteStatus favoriteStatus;
+ final  List<ItemModel> _items;
+@override@JsonKey() List<ItemModel> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
+
+ final  List<CategoryModel> _categories;
+@override@JsonKey() List<CategoryModel> get categories {
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categories);
+}
+
+@override@JsonKey() final  int categoryId;
+ final  Map<int, bool> _isFavorite;
+@override@JsonKey() Map<int, bool> get isFavorite {
+  if (_isFavorite is EqualUnmodifiableMapView) return _isFavorite;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_isFavorite);
+}
+
+@override final  String? lang;
+
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ItemsStateCopyWith<_ItemsState> get copyWith => __$ItemsStateCopyWithImpl<_ItemsState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ItemsState&&(identical(other.status, status) || other.status == status)&&(identical(other.favoriteStatus, favoriteStatus) || other.favoriteStatus == favoriteStatus)&&const DeepCollectionEquality().equals(other._items, _items)&&const DeepCollectionEquality().equals(other._categories, _categories)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&const DeepCollectionEquality().equals(other._isFavorite, _isFavorite)&&(identical(other.lang, lang) || other.lang == lang));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status,favoriteStatus,const DeepCollectionEquality().hash(_items),const DeepCollectionEquality().hash(_categories),categoryId,const DeepCollectionEquality().hash(_isFavorite),lang);
+
+@override
+String toString() {
+  return 'ItemsState(status: $status, favoriteStatus: $favoriteStatus, items: $items, categories: $categories, categoryId: $categoryId, isFavorite: $isFavorite, lang: $lang)';
+}
+
+
 }
 
 /// @nodoc
+abstract mixin class _$ItemsStateCopyWith<$Res> implements $ItemsStateCopyWith<$Res> {
+  factory _$ItemsStateCopyWith(_ItemsState value, $Res Function(_ItemsState) _then) = __$ItemsStateCopyWithImpl;
+@override @useResult
+$Res call({
+ ItemsStatus status, FavoriteStatus favoriteStatus, List<ItemModel> items, List<CategoryModel> categories, int categoryId, Map<int, bool> isFavorite, String? lang
+});
 
-class _$ItemsStateImpl implements _ItemsState {
-  const _$ItemsStateImpl({
-    this.status = const ItemsStatus.initial(),
-    this.favoriteStatus = const FavoriteStatus.initial(),
-    final List<ItemsModel> items = const [],
-    final List<CategoriesModel> categories = const [],
-    this.categoryId = 0,
-    final Map<int, int> isFavorite = const {},
-    this.lang,
-  }) : _items = items,
-       _categories = categories,
-       _isFavorite = isFavorite;
 
-  @override
-  @JsonKey()
-  final ItemsStatus status;
-  @override
-  @JsonKey()
-  final FavoriteStatus favoriteStatus;
-  final List<ItemsModel> _items;
-  @override
-  @JsonKey()
-  List<ItemsModel> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
+@override $ItemsStatusCopyWith<$Res> get status;@override $FavoriteStatusCopyWith<$Res> get favoriteStatus;
 
-  final List<CategoriesModel> _categories;
-  @override
-  @JsonKey()
-  List<CategoriesModel> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
+}
+/// @nodoc
+class __$ItemsStateCopyWithImpl<$Res>
+    implements _$ItemsStateCopyWith<$Res> {
+  __$ItemsStateCopyWithImpl(this._self, this._then);
 
-  @override
-  @JsonKey()
-  final int categoryId;
-  final Map<int, int> _isFavorite;
-  @override
-  @JsonKey()
-  Map<int, int> get isFavorite {
-    if (_isFavorite is EqualUnmodifiableMapView) return _isFavorite;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_isFavorite);
-  }
+  final _ItemsState _self;
+  final $Res Function(_ItemsState) _then;
 
-  @override
-  final String? lang;
-
-  @override
-  String toString() {
-    return 'ItemsState(status: $status, favoriteStatus: $favoriteStatus, items: $items, categories: $categories, categoryId: $categoryId, isFavorite: $isFavorite, lang: $lang)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ItemsStateImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.favoriteStatus, favoriteStatus) ||
-                other.favoriteStatus == favoriteStatus) &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
-            const DeepCollectionEquality().equals(
-              other._categories,
-              _categories,
-            ) &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            const DeepCollectionEquality().equals(
-              other._isFavorite,
-              _isFavorite,
-            ) &&
-            (identical(other.lang, lang) || other.lang == lang));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    status,
-    favoriteStatus,
-    const DeepCollectionEquality().hash(_items),
-    const DeepCollectionEquality().hash(_categories),
-    categoryId,
-    const DeepCollectionEquality().hash(_isFavorite),
-    lang,
-  );
-
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ItemsStateImplCopyWith<_$ItemsStateImpl> get copyWith =>
-      __$$ItemsStateImplCopyWithImpl<_$ItemsStateImpl>(this, _$identity);
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? favoriteStatus = null,Object? items = null,Object? categories = null,Object? categoryId = null,Object? isFavorite = null,Object? lang = freezed,}) {
+  return _then(_ItemsState(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as ItemsStatus,favoriteStatus: null == favoriteStatus ? _self.favoriteStatus : favoriteStatus // ignore: cast_nullable_to_non_nullable
+as FavoriteStatus,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemModel>,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoryModel>,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int,isFavorite: null == isFavorite ? _self._isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+as Map<int, bool>,lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-abstract class _ItemsState implements ItemsState {
-  const factory _ItemsState({
-    final ItemsStatus status,
-    final FavoriteStatus favoriteStatus,
-    final List<ItemsModel> items,
-    final List<CategoriesModel> categories,
-    final int categoryId,
-    final Map<int, int> isFavorite,
-    final String? lang,
-  }) = _$ItemsStateImpl;
-
-  @override
-  ItemsStatus get status;
-  @override
-  FavoriteStatus get favoriteStatus;
-  @override
-  List<ItemsModel> get items;
-  @override
-  List<CategoriesModel> get categories;
-  @override
-  int get categoryId;
-  @override
-  Map<int, int> get isFavorite;
-  @override
-  String? get lang;
-
-  /// Create a copy of ItemsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ItemsStateImplCopyWith<_$ItemsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemsStatusCopyWith<$Res> get status {
+  
+  return $ItemsStatusCopyWith<$Res>(_self.status, (value) {
+    return _then(_self.copyWith(status: value));
+  });
+}/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FavoriteStatusCopyWith<$Res> get favoriteStatus {
+  
+  return $FavoriteStatusCopyWith<$Res>(_self.favoriteStatus, (value) {
+    return _then(_self.copyWith(favoriteStatus: value));
+  });
 }
+}
+
+// dart format on

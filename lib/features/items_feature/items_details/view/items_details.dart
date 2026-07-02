@@ -1,7 +1,7 @@
 import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/items_feature/items_details/bloc/items_details_bloc.dart';
 import 'package:electronics_store/features/items_feature/items_details/components/custom_bottom_item.dart';
@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemsDetails extends StatelessWidget {
-  final ItemsModel itemsModel;
-  const ItemsDetails({super.key, required this.itemsModel});
+  final ItemModel itemModel;
+  const ItemsDetails({super.key, required this.itemModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ItemsDetails extends StatelessWidget {
               ),
               onAdd: () {
                 context.read<ItemsDetailsBloc>().add(
-                  ItemsDetailsEvent.addCart(itemsModel.itemsId!),
+                  ItemsDetailsEvent.addCart(itemModel.id!),
                 );
                 // controller.addCart();
               },
@@ -74,7 +74,7 @@ class ItemsDetails extends StatelessWidget {
             serverFailure: (errorMessage) => AppErrorWidget(
               message: errorMessage,
               onRetry: () => context.read<ItemsDetailsBloc>().add(
-                ItemsDetailsEvent.started(itemsModel),
+                ItemsDetailsEvent.started(itemModel),
               ),
             ),
             loaded: () => ItemsDetailsView(state: state),

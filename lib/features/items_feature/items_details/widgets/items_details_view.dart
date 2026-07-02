@@ -17,32 +17,32 @@ class ItemsDetailsView extends StatelessWidget {
       child: ListView(
         children: [
           ItemsDetailsImage(
-            tagHero: "${state.itemsModel!.itemsId}",
-            imageLink: "${state.itemsModel!.itemsImage}",
+            tagHero: "${state.itemModel!.id}",
+            imageLink: "${state.itemModel!.image}",
           ),
           PriceAndCount(
             onAdd: () {
               context.read<ItemsDetailsBloc>().add(
-                ItemsDetailsEvent.addCart(state.itemsModel!.itemsId!),
+                ItemsDetailsEvent.addCart(state.itemModel!.id!),
               );
             },
             onRemove: () {
               context.read<ItemsDetailsBloc>().add(
-                ItemsDetailsEvent.removeCart(state.itemsModel!.itemsId!),
+                ItemsDetailsEvent.removeCart(state.itemModel!.id!),
               );
             },
             count: '${state.count}',
-            price: '${state.itemsModel!.itemsPrice}',
-            discountedPrice: '${state.itemsModel!.discountedPrice}',
-            discount: state.itemsModel!.itemsDiscount ?? 0,
+            price: '${state.itemModel!.price}',
+            discountedPrice: '${state.itemModel!.discountedPrice}',
+            discount: state.itemModel!.discount ?? 0,
           ),
           CustomTitleDecColor(
             title: translateDatabase(
-              state.itemsModel!.itemsName!,
-              state.itemsModel!.itemsNameAr!,
+              state.itemModel!.name!,
+              state.itemModel!.nameAr!,
             ),
             dec:
-                "${state.itemsModel!.itemsDesc} ${state.itemsModel!.itemsDesc} ${state.itemsModel!.itemsDesc} ${state.itemsModel!.itemsDesc} ${state.itemsModel!.itemsDesc} ",
+                "${state.itemModel!.desc} ${state.itemModel!.desc} ${state.itemModel!.desc} ${state.itemModel!.desc} ${state.itemModel!.desc} ",
             subItems: state.subItems,
           ),
         ],

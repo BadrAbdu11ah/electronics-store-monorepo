@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1723 +9,1058 @@ part of 'home_page_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$HomePageEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() loadData,
-    required TResult Function(String query) searchData,
-    required TResult Function() searchEmpty,
-    required TResult Function() logout,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? loadData,
-    TResult? Function(String query)? searchData,
-    TResult? Function()? searchEmpty,
-    TResult? Function()? logout,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? loadData,
-    TResult Function(String query)? searchData,
-    TResult Function()? searchEmpty,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadData value) loadData,
-    required TResult Function(_SearchData value) searchData,
-    required TResult Function(_SearchEmpty value) searchEmpty,
-    required TResult Function(_Logout value) logout,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadData value)? loadData,
-    TResult? Function(_SearchData value)? searchData,
-    TResult? Function(_SearchEmpty value)? searchEmpty,
-    TResult? Function(_Logout value)? logout,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadData value)? loadData,
-    TResult Function(_SearchData value)? searchData,
-    TResult Function(_SearchEmpty value)? searchEmpty,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HomePageEventCopyWith<$Res> {
-  factory $HomePageEventCopyWith(
-    HomePageEvent value,
-    $Res Function(HomePageEvent) then,
-  ) = _$HomePageEventCopyWithImpl<$Res, HomePageEvent>;
+class $HomePageEventCopyWith<$Res>  {
+$HomePageEventCopyWith(HomePageEvent _, $Res Function(HomePageEvent) __);
 }
 
-/// @nodoc
-class _$HomePageEventCopyWithImpl<$Res, $Val extends HomePageEvent>
-    implements $HomePageEventCopyWith<$Res> {
-  _$HomePageEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [HomePageEvent].
+extension HomePageEventPatterns on HomePageEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadData value)?  loadData,TResult Function( _SearchData value)?  searchData,TResult Function( _SearchEmpty value)?  searchEmpty,TResult Function( _Logout value)?  logout,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that);case _LoadData() when loadData != null:
+return loadData(_that);case _SearchData() when searchData != null:
+return searchData(_that);case _SearchEmpty() when searchEmpty != null:
+return searchEmpty(_that);case _Logout() when logout != null:
+return logout(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadData value)  loadData,required TResult Function( _SearchData value)  searchData,required TResult Function( _SearchEmpty value)  searchEmpty,required TResult Function( _Logout value)  logout,}){
+final _that = this;
+switch (_that) {
+case _Started():
+return started(_that);case _LoadData():
+return loadData(_that);case _SearchData():
+return searchData(_that);case _SearchEmpty():
+return searchEmpty(_that);case _Logout():
+return logout(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadData value)?  loadData,TResult? Function( _SearchData value)?  searchData,TResult? Function( _SearchEmpty value)?  searchEmpty,TResult? Function( _Logout value)?  logout,}){
+final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that);case _LoadData() when loadData != null:
+return loadData(_that);case _SearchData() when searchData != null:
+return searchData(_that);case _SearchEmpty() when searchEmpty != null:
+return searchEmpty(_that);case _Logout() when logout != null:
+return logout(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadData,TResult Function( String query)?  searchData,TResult Function()?  searchEmpty,TResult Function()?  logout,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started();case _LoadData() when loadData != null:
+return loadData();case _SearchData() when searchData != null:
+return searchData(_that.query);case _SearchEmpty() when searchEmpty != null:
+return searchEmpty();case _Logout() when logout != null:
+return logout();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadData,required TResult Function( String query)  searchData,required TResult Function()  searchEmpty,required TResult Function()  logout,}) {final _that = this;
+switch (_that) {
+case _Started():
+return started();case _LoadData():
+return loadData();case _SearchData():
+return searchData(_that.query);case _SearchEmpty():
+return searchEmpty();case _Logout():
+return logout();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadData,TResult? Function( String query)?  searchData,TResult? Function()?  searchEmpty,TResult? Function()?  logout,}) {final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started();case _LoadData() when loadData != null:
+return loadData();case _SearchData() when searchData != null:
+return searchData(_that.query);case _SearchEmpty() when searchEmpty != null:
+return searchEmpty();case _Logout() when logout != null:
+return logout();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-    _$StartedImpl value,
-    $Res Function(_$StartedImpl) then,
-  ) = __$$StartedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$HomePageEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-    _$StartedImpl _value,
-    $Res Function(_$StartedImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
-
-  @override
-  String toString() {
-    return 'HomePageEvent.started()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() loadData,
-    required TResult Function(String query) searchData,
-    required TResult Function() searchEmpty,
-    required TResult Function() logout,
-  }) {
-    return started();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? loadData,
-    TResult? Function(String query)? searchData,
-    TResult? Function()? searchEmpty,
-    TResult? Function()? logout,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? loadData,
-    TResult Function(String query)? searchData,
-    TResult Function()? searchEmpty,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadData value) loadData,
-    required TResult Function(_SearchData value) searchData,
-    required TResult Function(_SearchEmpty value) searchEmpty,
-    required TResult Function(_Logout value) logout,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadData value)? loadData,
-    TResult? Function(_SearchData value)? searchData,
-    TResult? Function(_SearchEmpty value)? searchEmpty,
-    TResult? Function(_Logout value)? logout,
-  }) {
-    return started?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadData value)? loadData,
-    TResult Function(_SearchData value)? searchData,
-    TResult Function(_SearchEmpty value)? searchEmpty,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements HomePageEvent {
-  const factory _Started() = _$StartedImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadDataImplCopyWith<$Res> {
-  factory _$$LoadDataImplCopyWith(
-    _$LoadDataImpl value,
-    $Res Function(_$LoadDataImpl) then,
-  ) = __$$LoadDataImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadDataImplCopyWithImpl<$Res>
-    extends _$HomePageEventCopyWithImpl<$Res, _$LoadDataImpl>
-    implements _$$LoadDataImplCopyWith<$Res> {
-  __$$LoadDataImplCopyWithImpl(
-    _$LoadDataImpl _value,
-    $Res Function(_$LoadDataImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$LoadDataImpl implements _LoadData {
-  const _$LoadDataImpl();
 
-  @override
-  String toString() {
-    return 'HomePageEvent.loadData()';
-  }
+class _Started implements HomePageEvent {
+  const _Started();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadDataImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() loadData,
-    required TResult Function(String query) searchData,
-    required TResult Function() searchEmpty,
-    required TResult Function() logout,
-  }) {
-    return loadData();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? loadData,
-    TResult? Function(String query)? searchData,
-    TResult? Function()? searchEmpty,
-    TResult? Function()? logout,
-  }) {
-    return loadData?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? loadData,
-    TResult Function(String query)? searchData,
-    TResult Function()? searchEmpty,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) {
-    if (loadData != null) {
-      return loadData();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadData value) loadData,
-    required TResult Function(_SearchData value) searchData,
-    required TResult Function(_SearchEmpty value) searchEmpty,
-    required TResult Function(_Logout value) logout,
-  }) {
-    return loadData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadData value)? loadData,
-    TResult? Function(_SearchData value)? searchData,
-    TResult? Function(_SearchEmpty value)? searchEmpty,
-    TResult? Function(_Logout value)? logout,
-  }) {
-    return loadData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadData value)? loadData,
-    TResult Function(_SearchData value)? searchData,
-    TResult Function(_SearchEmpty value)? searchEmpty,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) {
-    if (loadData != null) {
-      return loadData(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started);
 }
 
-abstract class _LoadData implements HomePageEvent {
-  const factory _LoadData() = _$LoadDataImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageEvent.started()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _LoadData implements HomePageEvent {
+  const _LoadData();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadData);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageEvent.loadData()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _SearchData implements HomePageEvent {
+  const _SearchData(this.query);
+  
+
+ final  String query;
+
+/// Create a copy of HomePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SearchDataCopyWith<_SearchData> get copyWith => __$SearchDataCopyWithImpl<_SearchData>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchData&&(identical(other.query, query) || other.query == query));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,query);
+
+@override
+String toString() {
+  return 'HomePageEvent.searchData(query: $query)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$SearchDataImplCopyWith<$Res> {
-  factory _$$SearchDataImplCopyWith(
-    _$SearchDataImpl value,
-    $Res Function(_$SearchDataImpl) then,
-  ) = __$$SearchDataImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String query});
+abstract mixin class _$SearchDataCopyWith<$Res> implements $HomePageEventCopyWith<$Res> {
+  factory _$SearchDataCopyWith(_SearchData value, $Res Function(_SearchData) _then) = __$SearchDataCopyWithImpl;
+@useResult
+$Res call({
+ String query
+});
+
+
+
+
+}
+/// @nodoc
+class __$SearchDataCopyWithImpl<$Res>
+    implements _$SearchDataCopyWith<$Res> {
+  __$SearchDataCopyWithImpl(this._self, this._then);
+
+  final _SearchData _self;
+  final $Res Function(_SearchData) _then;
+
+/// Create a copy of HomePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? query = null,}) {
+  return _then(_SearchData(
+null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-class __$$SearchDataImplCopyWithImpl<$Res>
-    extends _$HomePageEventCopyWithImpl<$Res, _$SearchDataImpl>
-    implements _$$SearchDataImplCopyWith<$Res> {
-  __$$SearchDataImplCopyWithImpl(
-    _$SearchDataImpl _value,
-    $Res Function(_$SearchDataImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? query = null}) {
-    return _then(
-      _$SearchDataImpl(
-        null == query
-            ? _value.query
-            : query // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$SearchDataImpl implements _SearchData {
-  const _$SearchDataImpl(this.query);
 
-  @override
-  final String query;
+class _SearchEmpty implements HomePageEvent {
+  const _SearchEmpty();
+  
 
-  @override
-  String toString() {
-    return 'HomePageEvent.searchData(query: $query)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchDataImpl &&
-            (identical(other.query, query) || other.query == query));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, query);
 
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SearchDataImplCopyWith<_$SearchDataImpl> get copyWith =>
-      __$$SearchDataImplCopyWithImpl<_$SearchDataImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() loadData,
-    required TResult Function(String query) searchData,
-    required TResult Function() searchEmpty,
-    required TResult Function() logout,
-  }) {
-    return searchData(query);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? loadData,
-    TResult? Function(String query)? searchData,
-    TResult? Function()? searchEmpty,
-    TResult? Function()? logout,
-  }) {
-    return searchData?.call(query);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? loadData,
-    TResult Function(String query)? searchData,
-    TResult Function()? searchEmpty,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) {
-    if (searchData != null) {
-      return searchData(query);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadData value) loadData,
-    required TResult Function(_SearchData value) searchData,
-    required TResult Function(_SearchEmpty value) searchEmpty,
-    required TResult Function(_Logout value) logout,
-  }) {
-    return searchData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadData value)? loadData,
-    TResult? Function(_SearchData value)? searchData,
-    TResult? Function(_SearchEmpty value)? searchEmpty,
-    TResult? Function(_Logout value)? logout,
-  }) {
-    return searchData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadData value)? loadData,
-    TResult Function(_SearchData value)? searchData,
-    TResult Function(_SearchEmpty value)? searchEmpty,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) {
-    if (searchData != null) {
-      return searchData(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchEmpty);
 }
 
-abstract class _SearchData implements HomePageEvent {
-  const factory _SearchData(final String query) = _$SearchDataImpl;
 
-  String get query;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchDataImplCopyWith<_$SearchDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HomePageEvent.searchEmpty()';
 }
 
-/// @nodoc
-abstract class _$$SearchEmptyImplCopyWith<$Res> {
-  factory _$$SearchEmptyImplCopyWith(
-    _$SearchEmptyImpl value,
-    $Res Function(_$SearchEmptyImpl) then,
-  ) = __$$SearchEmptyImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$SearchEmptyImplCopyWithImpl<$Res>
-    extends _$HomePageEventCopyWithImpl<$Res, _$SearchEmptyImpl>
-    implements _$$SearchEmptyImplCopyWith<$Res> {
-  __$$SearchEmptyImplCopyWithImpl(
-    _$SearchEmptyImpl _value,
-    $Res Function(_$SearchEmptyImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
+
 
 /// @nodoc
 
-class _$SearchEmptyImpl implements _SearchEmpty {
-  const _$SearchEmptyImpl();
 
-  @override
-  String toString() {
-    return 'HomePageEvent.searchEmpty()';
-  }
+class _Logout implements HomePageEvent {
+  const _Logout();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchEmptyImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() loadData,
-    required TResult Function(String query) searchData,
-    required TResult Function() searchEmpty,
-    required TResult Function() logout,
-  }) {
-    return searchEmpty();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? loadData,
-    TResult? Function(String query)? searchData,
-    TResult? Function()? searchEmpty,
-    TResult? Function()? logout,
-  }) {
-    return searchEmpty?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? loadData,
-    TResult Function(String query)? searchData,
-    TResult Function()? searchEmpty,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) {
-    if (searchEmpty != null) {
-      return searchEmpty();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadData value) loadData,
-    required TResult Function(_SearchData value) searchData,
-    required TResult Function(_SearchEmpty value) searchEmpty,
-    required TResult Function(_Logout value) logout,
-  }) {
-    return searchEmpty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadData value)? loadData,
-    TResult? Function(_SearchData value)? searchData,
-    TResult? Function(_SearchEmpty value)? searchEmpty,
-    TResult? Function(_Logout value)? logout,
-  }) {
-    return searchEmpty?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadData value)? loadData,
-    TResult Function(_SearchData value)? searchData,
-    TResult Function(_SearchEmpty value)? searchEmpty,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) {
-    if (searchEmpty != null) {
-      return searchEmpty(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Logout);
 }
 
-abstract class _SearchEmpty implements HomePageEvent {
-  const factory _SearchEmpty() = _$SearchEmptyImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageEvent.logout()';
 }
 
-/// @nodoc
-abstract class _$$LogoutImplCopyWith<$Res> {
-  factory _$$LogoutImplCopyWith(
-    _$LogoutImpl value,
-    $Res Function(_$LogoutImpl) then,
-  ) = __$$LogoutImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$LogoutImplCopyWithImpl<$Res>
-    extends _$HomePageEventCopyWithImpl<$Res, _$LogoutImpl>
-    implements _$$LogoutImplCopyWith<$Res> {
-  __$$LogoutImplCopyWithImpl(
-    _$LogoutImpl _value,
-    $Res Function(_$LogoutImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
 
-/// @nodoc
-
-class _$LogoutImpl implements _Logout {
-  const _$LogoutImpl();
-
-  @override
-  String toString() {
-    return 'HomePageEvent.logout()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LogoutImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() loadData,
-    required TResult Function(String query) searchData,
-    required TResult Function() searchEmpty,
-    required TResult Function() logout,
-  }) {
-    return logout();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? loadData,
-    TResult? Function(String query)? searchData,
-    TResult? Function()? searchEmpty,
-    TResult? Function()? logout,
-  }) {
-    return logout?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? loadData,
-    TResult Function(String query)? searchData,
-    TResult Function()? searchEmpty,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) {
-    if (logout != null) {
-      return logout();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadData value) loadData,
-    required TResult Function(_SearchData value) searchData,
-    required TResult Function(_SearchEmpty value) searchEmpty,
-    required TResult Function(_Logout value) logout,
-  }) {
-    return logout(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadData value)? loadData,
-    TResult? Function(_SearchData value)? searchData,
-    TResult? Function(_SearchEmpty value)? searchEmpty,
-    TResult? Function(_Logout value)? logout,
-  }) {
-    return logout?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadData value)? loadData,
-    TResult Function(_SearchData value)? searchData,
-    TResult Function(_SearchEmpty value)? searchEmpty,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) {
-    if (logout != null) {
-      return logout(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Logout implements HomePageEvent {
-  const factory _Logout() = _$LogoutImpl;
-}
 
 /// @nodoc
 mixin _$HomePageStatus {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() loggedOut,
-    required TResult Function(String message) serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? loggedOut,
-    TResult? Function(String message)? serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? loggedOut,
-    TResult Function(String message)? serverFailure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LoggedOut value)? loggedOut,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageStatus);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageStatus()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HomePageStatusCopyWith<$Res> {
-  factory $HomePageStatusCopyWith(
-    HomePageStatus value,
-    $Res Function(HomePageStatus) then,
-  ) = _$HomePageStatusCopyWithImpl<$Res, HomePageStatus>;
+class $HomePageStatusCopyWith<$Res>  {
+$HomePageStatusCopyWith(HomePageStatus _, $Res Function(HomePageStatus) __);
 }
 
-/// @nodoc
-class _$HomePageStatusCopyWithImpl<$Res, $Val extends HomePageStatus>
-    implements $HomePageStatusCopyWith<$Res> {
-  _$HomePageStatusCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [HomePageStatus].
+extension HomePageStatusPatterns on HomePageStatus {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _LoggedOut value)?  loggedOut,TResult Function( _ServerFailure value)?  serverFailure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _LoggedOut() when loggedOut != null:
+return loggedOut(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _LoggedOut value)  loggedOut,required TResult Function( _ServerFailure value)  serverFailure,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _LoggedOut():
+return loggedOut(_that);case _ServerFailure():
+return serverFailure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _LoggedOut value)?  loggedOut,TResult? Function( _ServerFailure value)?  serverFailure,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _LoggedOut() when loggedOut != null:
+return loggedOut(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  loaded,TResult Function()?  loggedOut,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _LoggedOut() when loggedOut != null:
+return loggedOut();case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.message);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  loaded,required TResult Function()  loggedOut,required TResult Function( String message)  serverFailure,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _Loading():
+return loading();case _Loaded():
+return loaded();case _LoggedOut():
+return loggedOut();case _ServerFailure():
+return serverFailure(_that.message);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  loaded,TResult? Function()?  loggedOut,TResult? Function( String message)?  serverFailure,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _LoggedOut() when loggedOut != null:
+return loggedOut();case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.message);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-    _$InitialImpl value,
-    $Res Function(_$InitialImpl) then,
-  ) = __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$HomePageStatusCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-    _$InitialImpl _value,
-    $Res Function(_$InitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'HomePageStatus.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() loggedOut,
-    required TResult Function(String message) serverFailure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? loggedOut,
-    TResult? Function(String message)? serverFailure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? loggedOut,
-    TResult Function(String message)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LoggedOut value)? loggedOut,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements HomePageStatus {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-    _$LoadingImpl value,
-    $Res Function(_$LoadingImpl) then,
-  ) = __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$HomePageStatusCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-    _$LoadingImpl _value,
-    $Res Function(_$LoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
 
-  @override
-  String toString() {
-    return 'HomePageStatus.loading()';
-  }
+class _Initial implements HomePageStatus {
+  const _Initial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() loggedOut,
-    required TResult Function(String message) serverFailure,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? loggedOut,
-    TResult? Function(String message)? serverFailure,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? loggedOut,
-    TResult Function(String message)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LoggedOut value)? loggedOut,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-abstract class _Loading implements HomePageStatus {
-  const factory _Loading() = _$LoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageStatus.initial()';
 }
 
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-    _$LoadedImpl value,
-    $Res Function(_$LoadedImpl) then,
-  ) = __$$LoadedImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$HomePageStatusCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-    _$LoadedImpl _value,
-    $Res Function(_$LoadedImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
+
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl();
 
-  @override
-  String toString() {
-    return 'HomePageStatus.loaded()';
-  }
+class _Loading implements HomePageStatus {
+  const _Loading();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadedImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() loggedOut,
-    required TResult Function(String message) serverFailure,
-  }) {
-    return loaded();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? loggedOut,
-    TResult? Function(String message)? serverFailure,
-  }) {
-    return loaded?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? loggedOut,
-    TResult Function(String message)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LoggedOut value)? loggedOut,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
-abstract class _Loaded implements HomePageStatus {
-  const factory _Loaded() = _$LoadedImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageStatus.loading()';
 }
 
-/// @nodoc
-abstract class _$$LoggedOutImplCopyWith<$Res> {
-  factory _$$LoggedOutImplCopyWith(
-    _$LoggedOutImpl value,
-    $Res Function(_$LoggedOutImpl) then,
-  ) = __$$LoggedOutImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$LoggedOutImplCopyWithImpl<$Res>
-    extends _$HomePageStatusCopyWithImpl<$Res, _$LoggedOutImpl>
-    implements _$$LoggedOutImplCopyWith<$Res> {
-  __$$LoggedOutImplCopyWithImpl(
-    _$LoggedOutImpl _value,
-    $Res Function(_$LoggedOutImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
+
 
 /// @nodoc
 
-class _$LoggedOutImpl implements _LoggedOut {
-  const _$LoggedOutImpl();
 
-  @override
-  String toString() {
-    return 'HomePageStatus.loggedOut()';
-  }
+class _Loaded implements HomePageStatus {
+  const _Loaded();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoggedOutImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() loggedOut,
-    required TResult Function(String message) serverFailure,
-  }) {
-    return loggedOut();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? loggedOut,
-    TResult? Function(String message)? serverFailure,
-  }) {
-    return loggedOut?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? loggedOut,
-    TResult Function(String message)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loggedOut != null) {
-      return loggedOut();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loggedOut(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LoggedOut value)? loggedOut,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loggedOut?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loggedOut != null) {
-      return loggedOut(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded);
 }
 
-abstract class _LoggedOut implements HomePageStatus {
-  const factory _LoggedOut() = _$LoggedOutImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomePageStatus.loaded()';
 }
 
-/// @nodoc
-abstract class _$$ServerFailureImplCopyWith<$Res> {
-  factory _$$ServerFailureImplCopyWith(
-    _$ServerFailureImpl value,
-    $Res Function(_$ServerFailureImpl) then,
-  ) = __$$ServerFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
+
 }
 
-/// @nodoc
-class __$$ServerFailureImplCopyWithImpl<$Res>
-    extends _$HomePageStatusCopyWithImpl<$Res, _$ServerFailureImpl>
-    implements _$$ServerFailureImplCopyWith<$Res> {
-  __$$ServerFailureImplCopyWithImpl(
-    _$ServerFailureImpl _value,
-    $Res Function(_$ServerFailureImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$ServerFailureImpl(
-        null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
-}
+
 
 /// @nodoc
 
-class _$ServerFailureImpl implements _ServerFailure {
-  const _$ServerFailureImpl(this.message);
 
-  @override
-  final String message;
+class _LoggedOut implements HomePageStatus {
+  const _LoggedOut();
+  
 
-  @override
-  String toString() {
-    return 'HomePageStatus.serverFailure(message: $message)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServerFailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
-      __$$ServerFailureImplCopyWithImpl<_$ServerFailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() loggedOut,
-    required TResult Function(String message) serverFailure,
-  }) {
-    return serverFailure(message);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? loggedOut,
-    TResult? Function(String message)? serverFailure,
-  }) {
-    return serverFailure?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? loggedOut,
-    TResult Function(String message)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (serverFailure != null) {
-      return serverFailure(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return serverFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LoggedOut value)? loggedOut,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return serverFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (serverFailure != null) {
-      return serverFailure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoggedOut);
 }
 
-abstract class _ServerFailure implements HomePageStatus {
-  const factory _ServerFailure(final String message) = _$ServerFailureImpl;
 
-  String get message;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of HomePageStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HomePageStatus.loggedOut()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _ServerFailure implements HomePageStatus {
+  const _ServerFailure(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of HomePageStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServerFailureCopyWith<_ServerFailure> get copyWith => __$ServerFailureCopyWithImpl<_ServerFailure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerFailure&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'HomePageStatus.serverFailure(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServerFailureCopyWith<$Res> implements $HomePageStatusCopyWith<$Res> {
+  factory _$ServerFailureCopyWith(_ServerFailure value, $Res Function(_ServerFailure) _then) = __$ServerFailureCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class __$ServerFailureCopyWithImpl<$Res>
+    implements _$ServerFailureCopyWith<$Res> {
+  __$ServerFailureCopyWithImpl(this._self, this._then);
+
+  final _ServerFailure _self;
+  final $Res Function(_ServerFailure) _then;
+
+/// Create a copy of HomePageStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(_ServerFailure(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$HomePageState {
-  HomePageStatus get status => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
-  List<CategoriesModel> get categories => throw _privateConstructorUsedError;
-  List<ItemsModel> get items => throw _privateConstructorUsedError;
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $HomePageStateCopyWith<HomePageState> get copyWith =>
-      throw _privateConstructorUsedError;
+ HomePageStatus get status; String? get lang; List<CategoryModel> get categories; List<ItemModel> get items;
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HomePageStateCopyWith<HomePageState> get copyWith => _$HomePageStateCopyWithImpl<HomePageState>(this as HomePageState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageState&&(identical(other.status, status) || other.status == status)&&(identical(other.lang, lang) || other.lang == lang)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.items, items));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status,lang,const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(items));
+
+@override
+String toString() {
+  return 'HomePageState(status: $status, lang: $lang, categories: $categories, items: $items)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HomePageStateCopyWith<$Res> {
-  factory $HomePageStateCopyWith(
-    HomePageState value,
-    $Res Function(HomePageState) then,
-  ) = _$HomePageStateCopyWithImpl<$Res, HomePageState>;
-  @useResult
-  $Res call({
-    HomePageStatus status,
-    String? lang,
-    List<CategoriesModel> categories,
-    List<ItemsModel> items,
-  });
+abstract mixin class $HomePageStateCopyWith<$Res>  {
+  factory $HomePageStateCopyWith(HomePageState value, $Res Function(HomePageState) _then) = _$HomePageStateCopyWithImpl;
+@useResult
+$Res call({
+ HomePageStatus status, String? lang, List<CategoryModel> categories, List<ItemModel> items
+});
 
-  $HomePageStatusCopyWith<$Res> get status;
+
+$HomePageStatusCopyWith<$Res> get status;
+
 }
-
 /// @nodoc
-class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
+class _$HomePageStateCopyWithImpl<$Res>
     implements $HomePageStateCopyWith<$Res> {
-  _$HomePageStateCopyWithImpl(this._value, this._then);
+  _$HomePageStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final HomePageState _self;
+  final $Res Function(HomePageState) _then;
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? lang = freezed,
-    Object? categories = null,
-    Object? items = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as HomePageStatus,
-            lang: freezed == lang
-                ? _value.lang
-                : lang // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            categories: null == categories
-                ? _value.categories
-                : categories // ignore: cast_nullable_to_non_nullable
-                      as List<CategoriesModel>,
-            items: null == items
-                ? _value.items
-                : items // ignore: cast_nullable_to_non_nullable
-                      as List<ItemsModel>,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $HomePageStatusCopyWith<$Res> get status {
-    return $HomePageStatusCopyWith<$Res>(_value.status, (value) {
-      return _then(_value.copyWith(status: value) as $Val);
-    });
-  }
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? lang = freezed,Object? categories = null,Object? items = null,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as HomePageStatus,lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String?,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoryModel>,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemModel>,
+  ));
 }
-
-/// @nodoc
-abstract class _$$HomePageStateImplCopyWith<$Res>
-    implements $HomePageStateCopyWith<$Res> {
-  factory _$$HomePageStateImplCopyWith(
-    _$HomePageStateImpl value,
-    $Res Function(_$HomePageStateImpl) then,
-  ) = __$$HomePageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    HomePageStatus status,
-    String? lang,
-    List<CategoriesModel> categories,
-    List<ItemsModel> items,
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HomePageStatusCopyWith<$Res> get status {
+  
+  return $HomePageStatusCopyWith<$Res>(_self.status, (value) {
+    return _then(_self.copyWith(status: value));
   });
+}
+}
 
-  @override
-  $HomePageStatusCopyWith<$Res> get status;
+
+/// Adds pattern-matching-related methods to [HomePageState].
+extension HomePageStatePatterns on HomePageState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HomePageState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _HomePageState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HomePageState value)  $default,){
+final _that = this;
+switch (_that) {
+case _HomePageState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HomePageState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _HomePageState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( HomePageStatus status,  String? lang,  List<CategoryModel> categories,  List<ItemModel> items)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _HomePageState() when $default != null:
+return $default(_that.status,_that.lang,_that.categories,_that.items);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( HomePageStatus status,  String? lang,  List<CategoryModel> categories,  List<ItemModel> items)  $default,) {final _that = this;
+switch (_that) {
+case _HomePageState():
+return $default(_that.status,_that.lang,_that.categories,_that.items);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( HomePageStatus status,  String? lang,  List<CategoryModel> categories,  List<ItemModel> items)?  $default,) {final _that = this;
+switch (_that) {
+case _HomePageState() when $default != null:
+return $default(_that.status,_that.lang,_that.categories,_that.items);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-class __$$HomePageStateImplCopyWithImpl<$Res>
-    extends _$HomePageStateCopyWithImpl<$Res, _$HomePageStateImpl>
-    implements _$$HomePageStateImplCopyWith<$Res> {
-  __$$HomePageStateImplCopyWithImpl(
-    _$HomePageStateImpl _value,
-    $Res Function(_$HomePageStateImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? lang = freezed,
-    Object? categories = null,
-    Object? items = null,
-  }) {
-    return _then(
-      _$HomePageStateImpl(
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as HomePageStatus,
-        lang: freezed == lang
-            ? _value.lang
-            : lang // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        categories: null == categories
-            ? _value._categories
-            : categories // ignore: cast_nullable_to_non_nullable
-                  as List<CategoriesModel>,
-        items: null == items
-            ? _value._items
-            : items // ignore: cast_nullable_to_non_nullable
-                  as List<ItemsModel>,
-      ),
-    );
-  }
+
+class _HomePageState implements HomePageState {
+  const _HomePageState({this.status = const HomePageStatus.initial(), this.lang, final  List<CategoryModel> categories = const [], final  List<ItemModel> items = const []}): _categories = categories,_items = items;
+  
+
+@override@JsonKey() final  HomePageStatus status;
+@override final  String? lang;
+ final  List<CategoryModel> _categories;
+@override@JsonKey() List<CategoryModel> get categories {
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categories);
+}
+
+ final  List<ItemModel> _items;
+@override@JsonKey() List<ItemModel> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
+
+
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$HomePageStateCopyWith<_HomePageState> get copyWith => __$HomePageStateCopyWithImpl<_HomePageState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomePageState&&(identical(other.status, status) || other.status == status)&&(identical(other.lang, lang) || other.lang == lang)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._items, _items));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status,lang,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_items));
+
+@override
+String toString() {
+  return 'HomePageState(status: $status, lang: $lang, categories: $categories, items: $items)';
+}
+
+
 }
 
 /// @nodoc
+abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
+  factory _$HomePageStateCopyWith(_HomePageState value, $Res Function(_HomePageState) _then) = __$HomePageStateCopyWithImpl;
+@override @useResult
+$Res call({
+ HomePageStatus status, String? lang, List<CategoryModel> categories, List<ItemModel> items
+});
 
-class _$HomePageStateImpl implements _HomePageState {
-  const _$HomePageStateImpl({
-    this.status = const HomePageStatus.initial(),
-    this.lang,
-    final List<CategoriesModel> categories = const [],
-    final List<ItemsModel> items = const [],
-  }) : _categories = categories,
-       _items = items;
 
-  @override
-  @JsonKey()
-  final HomePageStatus status;
-  @override
-  final String? lang;
-  final List<CategoriesModel> _categories;
-  @override
-  @JsonKey()
-  List<CategoriesModel> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
+@override $HomePageStatusCopyWith<$Res> get status;
 
-  final List<ItemsModel> _items;
-  @override
-  @JsonKey()
-  List<ItemsModel> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
+}
+/// @nodoc
+class __$HomePageStateCopyWithImpl<$Res>
+    implements _$HomePageStateCopyWith<$Res> {
+  __$HomePageStateCopyWithImpl(this._self, this._then);
 
-  @override
-  String toString() {
-    return 'HomePageState(status: $status, lang: $lang, categories: $categories, items: $items)';
-  }
+  final _HomePageState _self;
+  final $Res Function(_HomePageState) _then;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HomePageStateImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.lang, lang) || other.lang == lang) &&
-            const DeepCollectionEquality().equals(
-              other._categories,
-              _categories,
-            ) &&
-            const DeepCollectionEquality().equals(other._items, _items));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    status,
-    lang,
-    const DeepCollectionEquality().hash(_categories),
-    const DeepCollectionEquality().hash(_items),
-  );
-
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>
-      __$$HomePageStateImplCopyWithImpl<_$HomePageStateImpl>(this, _$identity);
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? lang = freezed,Object? categories = null,Object? items = null,}) {
+  return _then(_HomePageState(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as HomePageStatus,lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String?,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoryModel>,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemModel>,
+  ));
 }
 
-abstract class _HomePageState implements HomePageState {
-  const factory _HomePageState({
-    final HomePageStatus status,
-    final String? lang,
-    final List<CategoriesModel> categories,
-    final List<ItemsModel> items,
-  }) = _$HomePageStateImpl;
-
-  @override
-  HomePageStatus get status;
-  @override
-  String? get lang;
-  @override
-  List<CategoriesModel> get categories;
-  @override
-  List<ItemsModel> get items;
-
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HomePageStatusCopyWith<$Res> get status {
+  
+  return $HomePageStatusCopyWith<$Res>(_self.status, (value) {
+    return _then(_self.copyWith(status: value));
+  });
 }
+}
+
+// dart format on

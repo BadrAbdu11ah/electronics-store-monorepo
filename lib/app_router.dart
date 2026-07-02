@@ -1,7 +1,7 @@
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/id/injection.dart';
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/bloc/forget_password_bloc.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/view/forget_password_view.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/reset_password/bloc/reset_password_bloc.dart';
@@ -18,6 +18,8 @@ import 'package:electronics_store/features/auth/feature/sign_up_features/success
 import 'package:electronics_store/features/auth/feature/sign_up_features/success_sign_up/view/success_sign_up_view.dart';
 import 'package:electronics_store/features/auth/feature/sign_up_features/verfiy_code_sign_up/bloc/verfiy_code_sign_up_bloc.dart';
 import 'package:electronics_store/features/auth/feature/sign_up_features/verfiy_code_sign_up/view/verfiy_code_sign_up_view.dart';
+import 'package:electronics_store/features/cart/bloc/cart_bloc.dart';
+import 'package:electronics_store/features/cart/view/cart_view.dart';
 import 'package:electronics_store/features/choose_language/view/choose_language.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 import 'package:electronics_store/features/home/home_page/view/home_page_view.dart';
@@ -181,11 +183,18 @@ class AppRouter {
           ),
         );
       case AppRoute.itemsDetails:
-        final itemsModel = settings.arguments as ItemsModel;
+        final itemsModel = settings.arguments as ItemModel;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => sl<ItemsDetailsBloc>(),
-            child: ItemsDetails(itemsModel: itemsModel),
+            child: ItemsDetails(itemModel: itemsModel),
+          ),
+        );
+      case AppRoute.cart:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => sl<CartBloc>(),
+            child: CartView(),
           ),
         );
       default:

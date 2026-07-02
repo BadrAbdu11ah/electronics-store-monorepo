@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/favorite/data/favorite_data.dart';
-import 'package:electronics_store/features/items_feature/data/items_data.dart';
+import 'package:electronics_store/features/items_feature/data/item_data.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MockAppService extends Mock implements AppService {}
 
-class MockItemsData extends Mock implements ItemsData {}
+class MockItemsData extends Mock implements ItemData {}
 
 class MockFavoriteData extends Mock implements FavoriteData {}
 
@@ -30,21 +30,16 @@ void main() {
     final mockCategoryId = 1;
     final mockItemsId = 12;
 
-    final categories = [
-      CategoriesModel(categoriesId: 1, categoriesName: "Elctronics"),
-    ];
+    final categories = [CategoryModel(id: 1, name: "Elctronics")];
     final mockItemsList = [
-      ItemsModel(
-        itemsId: 12,
-        category: Category(
-          categoriesId: mockCategoryId,
-          categoriesName: "Elctronics",
-        ),
-        itemsName: 'Iphone 17 pro',
-        favorite: "1",
+      ItemModel(
+        id: 12,
+        category: CategoryModel(id: mockCategoryId, name: "Elctronics"),
+        name: 'Iphone 17 pro',
+        isFavorite: true,
       ),
     ];
-    final mockFavorite = {12: 1};
+    final mockFavorite = {12: true};
 
     setUp(() {
       mockItemsData = MockItemsData();
@@ -147,12 +142,12 @@ void main() {
       act: (bloc) => bloc.add(ItemsEvent.addFavorite(mockItemsId)),
       expect: () => <ItemsState>[
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 1},
+          isFavorite: {...mockFavorite, mockItemsId: true},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.initial(),
         ),
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 1},
+          isFavorite: {...mockFavorite, mockItemsId: true},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.success('تمت الإضافة'),
         ),
@@ -170,12 +165,12 @@ void main() {
       act: (bloc) => bloc.add(ItemsEvent.removeFavorite(mockItemsId)),
       expect: () => <ItemsState>[
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 0},
+          isFavorite: {...mockFavorite, mockItemsId: false},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.initial(),
         ),
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 0},
+          isFavorite: {...mockFavorite, mockItemsId: false},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.success("تم الحذف"),
         ),
@@ -193,12 +188,12 @@ void main() {
       act: (bloc) => bloc.add(ItemsEvent.addFavorite(mockItemsId)),
       expect: () => <ItemsState>[
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 1},
+          isFavorite: {...mockFavorite, mockItemsId: true},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.initial(),
         ),
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 0},
+          isFavorite: {...mockFavorite, mockItemsId: false},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.failure(
             'خطأ في الاتصال بالسرفر',
@@ -218,12 +213,12 @@ void main() {
       act: (bloc) => bloc.add(ItemsEvent.removeFavorite(mockItemsId)),
       expect: () => <ItemsState>[
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 0},
+          isFavorite: {...mockFavorite, mockItemsId: false},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.initial(),
         ),
         ItemsState(
-          isFavorite: {...mockFavorite, mockItemsId: 1},
+          isFavorite: {...mockFavorite, mockItemsId: true},
           status: const ItemsStatus.initial(),
           favoriteStatus: const FavoriteStatus.failure(
             'خطأ في الاتصال بالسرفر',

@@ -8,7 +8,7 @@ class OnBoardingStatus with _$OnBoardingStatus {
 }
 
 @freezed
-class OnBoardingState with _$OnBoardingState {
+abstract class OnBoardingState with _$OnBoardingState {
   const factory OnBoardingState({
     @Default(OnBoardingStatus.initial()) OnBoardingStatus status,
     @Default(0) int currentPage,

@@ -2,7 +2,7 @@ import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/class/state_request.dart';
 import 'package:electronics_store/core/services/api_service.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:fpdart/fpdart.dart';
 
 class FavoriteData {

@@ -3,7 +3,7 @@ import 'package:electronics_store/core/class/state_request.dart';
 import 'package:electronics_store/core/constant/my_pages.dart';
 import 'package:electronics_store/core/services/my_service.dart';
 import 'package:electronics_store/features/favorite/data/favorite_data.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

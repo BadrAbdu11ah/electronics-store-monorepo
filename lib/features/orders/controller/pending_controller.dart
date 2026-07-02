@@ -3,7 +3,7 @@ import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/features/orders/data/orders_data.dart';
 import 'package:electronics_store/data/static/app_text.dart';
-import 'package:electronics_store/data/model/orders_model.dart';
+import 'package:electronics_store/data/model/order/order_model.dart';
 import 'package:get/get.dart';
 
 abstract class OrdersPendingController extends GetxController {

@@ -17,11 +17,11 @@ class CartStatus with _$CartStatus {
 }
 
 @freezed
-class ItemsDetailsState with _$ItemsDetailsState {
+abstract class ItemsDetailsState with _$ItemsDetailsState {
   const factory ItemsDetailsState({
     @Default(ItemsDetailsStatus.initial()) ItemsDetailsStatus status,
     @Default(CartStatus.initial()) CartStatus cartStatus,
-    ItemsModel? itemsModel,
+    ItemModel? itemModel,
     @Default(0) int count,
     @Default([]) List<String> selectedColors,
     @Default([

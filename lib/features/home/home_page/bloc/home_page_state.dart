@@ -10,11 +10,11 @@ class HomePageStatus with _$HomePageStatus {
 }
 
 @freezed
-class HomePageState with _$HomePageState {
+abstract class HomePageState with _$HomePageState {
   const factory HomePageState({
     @Default(HomePageStatus.initial()) HomePageStatus status,
     String? lang,
-    @Default([]) List<CategoriesModel> categories,
-    @Default([]) List<ItemsModel> items,
+    @Default([]) List<CategoryModel> categories,
+    @Default([]) List<ItemModel> items,
   }) = _HomePageState;
 }

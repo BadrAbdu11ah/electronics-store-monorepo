@@ -10,13 +10,14 @@ import 'package:electronics_store/features/auth/feature/login/bloc/login_bloc.da
 import 'package:electronics_store/features/auth/feature/sign_up_features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:electronics_store/features/auth/feature/sign_up_features/success_sign_up/bloc/success_sign_up_bloc.dart';
 import 'package:electronics_store/features/auth/feature/sign_up_features/verfiy_code_sign_up/bloc/verfiy_code_sign_up_bloc.dart';
+import 'package:electronics_store/features/cart/bloc/cart_bloc.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
 import 'package:electronics_store/features/favorite/data/favorite_data.dart';
 import 'package:electronics_store/features/home/data/home_data.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 import 'package:electronics_store/features/home/home_screen/bloc/home_screen_bloc.dart';
 import 'package:electronics_store/features/home/settings_page/bloc/settings_page_bloc.dart';
-import 'package:electronics_store/features/items_feature/data/items_data.dart';
+import 'package:electronics_store/features/items_feature/data/item_data.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:electronics_store/features/items_feature/items_details/bloc/items_details_bloc.dart';
 import 'package:electronics_store/features/on_boarding/bloc/on_boarding_bloc.dart';
@@ -34,7 +35,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AuthData(sl<ApiService>()));
   sl.registerLazySingleton(() => HomeData(sl<ApiService>()));
   sl.registerLazySingleton(() => SearchData(sl<ApiService>()));
-  sl.registerLazySingleton(() => ItemsData(sl<ApiService>()));
+  sl.registerLazySingleton(() => ItemData(sl<ApiService>()));
   sl.registerLazySingleton(() => FavoriteData(sl<ApiService>()));
   sl.registerLazySingleton(() => CartData(sl<ApiService>()));
 
@@ -63,7 +64,7 @@ Future<void> init() async {
   // Items
   sl.registerFactory(
     () => ItemsBloc(
-      itemsData: sl<ItemsData>(),
+      itemsData: sl<ItemData>(),
       favoriteData: sl<FavoriteData>(),
       appService: sl<AppService>(),
     ),
@@ -73,5 +74,8 @@ Future<void> init() async {
       appService: sl<AppService>(),
       cartData: sl<CartData>(),
     ),
+  );
+  sl.registerFactory(
+    () => CartBloc(appService: sl<AppService>(), cartData: sl<CartData>()),
   );
 }

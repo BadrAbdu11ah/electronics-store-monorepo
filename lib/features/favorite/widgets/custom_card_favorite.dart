@@ -3,7 +3,7 @@ import 'package:electronics_store/features/favorite/controller/favorite_page_con
 import 'package:electronics_store/core/constant/my_color.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
 import 'package:electronics_store/data/static/my_text.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

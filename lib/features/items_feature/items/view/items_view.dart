@@ -1,5 +1,5 @@
 import 'package:electronics_store/core/shared/handling_data_view.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:electronics_store/features/items_feature/items/widgets/items_grid.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemsView extends StatelessWidget {
   final int categoryId;
-  final List<CategoriesModel> categories;
+  final List<CategoryModel> categories;
   const ItemsView({
     super.key,
     required this.categoryId,

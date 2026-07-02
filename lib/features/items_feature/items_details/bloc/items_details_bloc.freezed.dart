@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,2277 +9,1552 @@ part of 'items_details_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$ItemsDetailsEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ItemsModel itemsModel) started,
-    required TResult Function(int itemsId) loadCountCart,
-    required TResult Function(int itemsId) addCart,
-    required TResult Function(int itemsId) removeCart,
-    required TResult Function(int index) selectedColor,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ItemsModel itemsModel)? started,
-    TResult? Function(int itemsId)? loadCountCart,
-    TResult? Function(int itemsId)? addCart,
-    TResult? Function(int itemsId)? removeCart,
-    TResult? Function(int index)? selectedColor,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ItemsModel itemsModel)? started,
-    TResult Function(int itemsId)? loadCountCart,
-    TResult Function(int itemsId)? addCart,
-    TResult Function(int itemsId)? removeCart,
-    TResult Function(int index)? selectedColor,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadCountCart value) loadCountCart,
-    required TResult Function(_AddCart value) addCart,
-    required TResult Function(_RemoveCart value) removeCart,
-    required TResult Function(_SelelctedColor value) selectedColor,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadCountCart value)? loadCountCart,
-    TResult? Function(_AddCart value)? addCart,
-    TResult? Function(_RemoveCart value)? removeCart,
-    TResult? Function(_SelelctedColor value)? selectedColor,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadCountCart value)? loadCountCart,
-    TResult Function(_AddCart value)? addCart,
-    TResult Function(_RemoveCart value)? removeCart,
-    TResult Function(_SelelctedColor value)? selectedColor,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsDetailsEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsDetailsEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ItemsDetailsEventCopyWith<$Res> {
-  factory $ItemsDetailsEventCopyWith(
-    ItemsDetailsEvent value,
-    $Res Function(ItemsDetailsEvent) then,
-  ) = _$ItemsDetailsEventCopyWithImpl<$Res, ItemsDetailsEvent>;
+class $ItemsDetailsEventCopyWith<$Res>  {
+$ItemsDetailsEventCopyWith(ItemsDetailsEvent _, $Res Function(ItemsDetailsEvent) __);
 }
 
-/// @nodoc
-class _$ItemsDetailsEventCopyWithImpl<$Res, $Val extends ItemsDetailsEvent>
-    implements $ItemsDetailsEventCopyWith<$Res> {
-  _$ItemsDetailsEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [ItemsDetailsEvent].
+extension ItemsDetailsEventPatterns on ItemsDetailsEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadCountCart value)?  loadCountCart,TResult Function( _AddCart value)?  addCart,TResult Function( _RemoveCart value)?  removeCart,TResult Function( _SelelctedColor value)?  selectedColor,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that);case _LoadCountCart() when loadCountCart != null:
+return loadCountCart(_that);case _AddCart() when addCart != null:
+return addCart(_that);case _RemoveCart() when removeCart != null:
+return removeCart(_that);case _SelelctedColor() when selectedColor != null:
+return selectedColor(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadCountCart value)  loadCountCart,required TResult Function( _AddCart value)  addCart,required TResult Function( _RemoveCart value)  removeCart,required TResult Function( _SelelctedColor value)  selectedColor,}){
+final _that = this;
+switch (_that) {
+case _Started():
+return started(_that);case _LoadCountCart():
+return loadCountCart(_that);case _AddCart():
+return addCart(_that);case _RemoveCart():
+return removeCart(_that);case _SelelctedColor():
+return selectedColor(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadCountCart value)?  loadCountCart,TResult? Function( _AddCart value)?  addCart,TResult? Function( _RemoveCart value)?  removeCart,TResult? Function( _SelelctedColor value)?  selectedColor,}){
+final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that);case _LoadCountCart() when loadCountCart != null:
+return loadCountCart(_that);case _AddCart() when addCart != null:
+return addCart(_that);case _RemoveCart() when removeCart != null:
+return removeCart(_that);case _SelelctedColor() when selectedColor != null:
+return selectedColor(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ItemModel itemModel)?  started,TResult Function( int itemsId)?  loadCountCart,TResult Function( int itemsId)?  addCart,TResult Function( int itemsId)?  removeCart,TResult Function( int index)?  selectedColor,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that.itemModel);case _LoadCountCart() when loadCountCart != null:
+return loadCountCart(_that.itemsId);case _AddCart() when addCart != null:
+return addCart(_that.itemsId);case _RemoveCart() when removeCart != null:
+return removeCart(_that.itemsId);case _SelelctedColor() when selectedColor != null:
+return selectedColor(_that.index);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ItemModel itemModel)  started,required TResult Function( int itemsId)  loadCountCart,required TResult Function( int itemsId)  addCart,required TResult Function( int itemsId)  removeCart,required TResult Function( int index)  selectedColor,}) {final _that = this;
+switch (_that) {
+case _Started():
+return started(_that.itemModel);case _LoadCountCart():
+return loadCountCart(_that.itemsId);case _AddCart():
+return addCart(_that.itemsId);case _RemoveCart():
+return removeCart(_that.itemsId);case _SelelctedColor():
+return selectedColor(_that.index);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ItemModel itemModel)?  started,TResult? Function( int itemsId)?  loadCountCart,TResult? Function( int itemsId)?  addCart,TResult? Function( int itemsId)?  removeCart,TResult? Function( int index)?  selectedColor,}) {final _that = this;
+switch (_that) {
+case _Started() when started != null:
+return started(_that.itemModel);case _LoadCountCart() when loadCountCart != null:
+return loadCountCart(_that.itemsId);case _AddCart() when addCart != null:
+return addCart(_that.itemsId);case _RemoveCart() when removeCart != null:
+return removeCart(_that.itemsId);case _SelelctedColor() when selectedColor != null:
+return selectedColor(_that.index);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-    _$StartedImpl value,
-    $Res Function(_$StartedImpl) then,
-  ) = __$$StartedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ItemsModel itemsModel});
-}
-
-/// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-    _$StartedImpl _value,
-    $Res Function(_$StartedImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? itemsModel = null}) {
-    return _then(
-      _$StartedImpl(
-        null == itemsModel
-            ? _value.itemsModel
-            : itemsModel // ignore: cast_nullable_to_non_nullable
-                  as ItemsModel,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$StartedImpl implements _Started {
-  const _$StartedImpl(this.itemsModel);
-
-  @override
-  final ItemsModel itemsModel;
-
-  @override
-  String toString() {
-    return 'ItemsDetailsEvent.started(itemsModel: $itemsModel)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StartedImpl &&
-            (identical(other.itemsModel, itemsModel) ||
-                other.itemsModel == itemsModel));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, itemsModel);
-
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
-      __$$StartedImplCopyWithImpl<_$StartedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ItemsModel itemsModel) started,
-    required TResult Function(int itemsId) loadCountCart,
-    required TResult Function(int itemsId) addCart,
-    required TResult Function(int itemsId) removeCart,
-    required TResult Function(int index) selectedColor,
-  }) {
-    return started(itemsModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ItemsModel itemsModel)? started,
-    TResult? Function(int itemsId)? loadCountCart,
-    TResult? Function(int itemsId)? addCart,
-    TResult? Function(int itemsId)? removeCart,
-    TResult? Function(int index)? selectedColor,
-  }) {
-    return started?.call(itemsModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ItemsModel itemsModel)? started,
-    TResult Function(int itemsId)? loadCountCart,
-    TResult Function(int itemsId)? addCart,
-    TResult Function(int itemsId)? removeCart,
-    TResult Function(int index)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(itemsModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadCountCart value) loadCountCart,
-    required TResult Function(_AddCart value) addCart,
-    required TResult Function(_RemoveCart value) removeCart,
-    required TResult Function(_SelelctedColor value) selectedColor,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadCountCart value)? loadCountCart,
-    TResult? Function(_AddCart value)? addCart,
-    TResult? Function(_RemoveCart value)? removeCart,
-    TResult? Function(_SelelctedColor value)? selectedColor,
-  }) {
-    return started?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadCountCart value)? loadCountCart,
-    TResult Function(_AddCart value)? addCart,
-    TResult Function(_RemoveCart value)? removeCart,
-    TResult Function(_SelelctedColor value)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements ItemsDetailsEvent {
-  const factory _Started(final ItemsModel itemsModel) = _$StartedImpl;
-
-  ItemsModel get itemsModel;
-
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LoadCountCartImplCopyWith<$Res> {
-  factory _$$LoadCountCartImplCopyWith(
-    _$LoadCountCartImpl value,
-    $Res Function(_$LoadCountCartImpl) then,
-  ) = __$$LoadCountCartImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int itemsId});
-}
-
-/// @nodoc
-class __$$LoadCountCartImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsEventCopyWithImpl<$Res, _$LoadCountCartImpl>
-    implements _$$LoadCountCartImplCopyWith<$Res> {
-  __$$LoadCountCartImplCopyWithImpl(
-    _$LoadCountCartImpl _value,
-    $Res Function(_$LoadCountCartImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? itemsId = null}) {
-    return _then(
-      _$LoadCountCartImpl(
-        null == itemsId
-            ? _value.itemsId
-            : itemsId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$LoadCountCartImpl implements _LoadCountCart {
-  const _$LoadCountCartImpl(this.itemsId);
 
-  @override
-  final int itemsId;
+class _Started implements ItemsDetailsEvent {
+  const _Started(this.itemModel);
+  
 
-  @override
-  String toString() {
-    return 'ItemsDetailsEvent.loadCountCart(itemsId: $itemsId)';
-  }
+ final  ItemModel itemModel;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadCountCartImpl &&
-            (identical(other.itemsId, itemsId) || other.itemsId == itemsId));
-  }
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StartedCopyWith<_Started> get copyWith => __$StartedCopyWithImpl<_Started>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, itemsId);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadCountCartImplCopyWith<_$LoadCountCartImpl> get copyWith =>
-      __$$LoadCountCartImplCopyWithImpl<_$LoadCountCartImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ItemsModel itemsModel) started,
-    required TResult Function(int itemsId) loadCountCart,
-    required TResult Function(int itemsId) addCart,
-    required TResult Function(int itemsId) removeCart,
-    required TResult Function(int index) selectedColor,
-  }) {
-    return loadCountCart(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ItemsModel itemsModel)? started,
-    TResult? Function(int itemsId)? loadCountCart,
-    TResult? Function(int itemsId)? addCart,
-    TResult? Function(int itemsId)? removeCart,
-    TResult? Function(int index)? selectedColor,
-  }) {
-    return loadCountCart?.call(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ItemsModel itemsModel)? started,
-    TResult Function(int itemsId)? loadCountCart,
-    TResult Function(int itemsId)? addCart,
-    TResult Function(int itemsId)? removeCart,
-    TResult Function(int index)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (loadCountCart != null) {
-      return loadCountCart(itemsId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadCountCart value) loadCountCart,
-    required TResult Function(_AddCart value) addCart,
-    required TResult Function(_RemoveCart value) removeCart,
-    required TResult Function(_SelelctedColor value) selectedColor,
-  }) {
-    return loadCountCart(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadCountCart value)? loadCountCart,
-    TResult? Function(_AddCart value)? addCart,
-    TResult? Function(_RemoveCart value)? removeCart,
-    TResult? Function(_SelelctedColor value)? selectedColor,
-  }) {
-    return loadCountCart?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadCountCart value)? loadCountCart,
-    TResult Function(_AddCart value)? addCart,
-    TResult Function(_RemoveCart value)? removeCart,
-    TResult Function(_SelelctedColor value)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (loadCountCart != null) {
-      return loadCountCart(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started&&(identical(other.itemModel, itemModel) || other.itemModel == itemModel));
 }
 
-abstract class _LoadCountCart implements ItemsDetailsEvent {
-  const factory _LoadCountCart(final int itemsId) = _$LoadCountCartImpl;
 
-  int get itemsId;
+@override
+int get hashCode => Object.hash(runtimeType,itemModel);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadCountCartImplCopyWith<_$LoadCountCartImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsDetailsEvent.started(itemModel: $itemModel)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$AddCartImplCopyWith<$Res> {
-  factory _$$AddCartImplCopyWith(
-    _$AddCartImpl value,
-    $Res Function(_$AddCartImpl) then,
-  ) = __$$AddCartImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int itemsId});
+abstract mixin class _$StartedCopyWith<$Res> implements $ItemsDetailsEventCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) _then) = __$StartedCopyWithImpl;
+@useResult
+$Res call({
+ ItemModel itemModel
+});
+
+
+$ItemModelCopyWith<$Res> get itemModel;
+
+}
+/// @nodoc
+class __$StartedCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(this._self, this._then);
+
+  final _Started _self;
+  final $Res Function(_Started) _then;
+
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? itemModel = null,}) {
+  return _then(_Started(
+null == itemModel ? _self.itemModel : itemModel // ignore: cast_nullable_to_non_nullable
+as ItemModel,
+  ));
 }
 
-/// @nodoc
-class __$$AddCartImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsEventCopyWithImpl<$Res, _$AddCartImpl>
-    implements _$$AddCartImplCopyWith<$Res> {
-  __$$AddCartImplCopyWithImpl(
-    _$AddCartImpl _value,
-    $Res Function(_$AddCartImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? itemsId = null}) {
-    return _then(
-      _$AddCartImpl(
-        null == itemsId
-            ? _value.itemsId
-            : itemsId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemModelCopyWith<$Res> get itemModel {
+  
+  return $ItemModelCopyWith<$Res>(_self.itemModel, (value) {
+    return _then(_self.copyWith(itemModel: value));
+  });
+}
 }
 
 /// @nodoc
 
-class _$AddCartImpl implements _AddCart {
-  const _$AddCartImpl(this.itemsId);
 
-  @override
-  final int itemsId;
+class _LoadCountCart implements ItemsDetailsEvent {
+  const _LoadCountCart(this.itemsId);
+  
 
-  @override
-  String toString() {
-    return 'ItemsDetailsEvent.addCart(itemsId: $itemsId)';
-  }
+ final  int itemsId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddCartImpl &&
-            (identical(other.itemsId, itemsId) || other.itemsId == itemsId));
-  }
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadCountCartCopyWith<_LoadCountCart> get copyWith => __$LoadCountCartCopyWithImpl<_LoadCountCart>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, itemsId);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddCartImplCopyWith<_$AddCartImpl> get copyWith =>
-      __$$AddCartImplCopyWithImpl<_$AddCartImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ItemsModel itemsModel) started,
-    required TResult Function(int itemsId) loadCountCart,
-    required TResult Function(int itemsId) addCart,
-    required TResult Function(int itemsId) removeCart,
-    required TResult Function(int index) selectedColor,
-  }) {
-    return addCart(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ItemsModel itemsModel)? started,
-    TResult? Function(int itemsId)? loadCountCart,
-    TResult? Function(int itemsId)? addCart,
-    TResult? Function(int itemsId)? removeCart,
-    TResult? Function(int index)? selectedColor,
-  }) {
-    return addCart?.call(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ItemsModel itemsModel)? started,
-    TResult Function(int itemsId)? loadCountCart,
-    TResult Function(int itemsId)? addCart,
-    TResult Function(int itemsId)? removeCart,
-    TResult Function(int index)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (addCart != null) {
-      return addCart(itemsId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadCountCart value) loadCountCart,
-    required TResult Function(_AddCart value) addCart,
-    required TResult Function(_RemoveCart value) removeCart,
-    required TResult Function(_SelelctedColor value) selectedColor,
-  }) {
-    return addCart(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadCountCart value)? loadCountCart,
-    TResult? Function(_AddCart value)? addCart,
-    TResult? Function(_RemoveCart value)? removeCart,
-    TResult? Function(_SelelctedColor value)? selectedColor,
-  }) {
-    return addCart?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadCountCart value)? loadCountCart,
-    TResult Function(_AddCart value)? addCart,
-    TResult Function(_RemoveCart value)? removeCart,
-    TResult Function(_SelelctedColor value)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (addCart != null) {
-      return addCart(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadCountCart&&(identical(other.itemsId, itemsId) || other.itemsId == itemsId));
 }
 
-abstract class _AddCart implements ItemsDetailsEvent {
-  const factory _AddCart(final int itemsId) = _$AddCartImpl;
 
-  int get itemsId;
+@override
+int get hashCode => Object.hash(runtimeType,itemsId);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddCartImplCopyWith<_$AddCartImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsDetailsEvent.loadCountCart(itemsId: $itemsId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$RemoveCartImplCopyWith<$Res> {
-  factory _$$RemoveCartImplCopyWith(
-    _$RemoveCartImpl value,
-    $Res Function(_$RemoveCartImpl) then,
-  ) = __$$RemoveCartImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int itemsId});
+abstract mixin class _$LoadCountCartCopyWith<$Res> implements $ItemsDetailsEventCopyWith<$Res> {
+  factory _$LoadCountCartCopyWith(_LoadCountCart value, $Res Function(_LoadCountCart) _then) = __$LoadCountCartCopyWithImpl;
+@useResult
+$Res call({
+ int itemsId
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadCountCartCopyWithImpl<$Res>
+    implements _$LoadCountCartCopyWith<$Res> {
+  __$LoadCountCartCopyWithImpl(this._self, this._then);
+
+  final _LoadCountCart _self;
+  final $Res Function(_LoadCountCart) _then;
+
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? itemsId = null,}) {
+  return _then(_LoadCountCart(
+null == itemsId ? _self.itemsId : itemsId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-class __$$RemoveCartImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsEventCopyWithImpl<$Res, _$RemoveCartImpl>
-    implements _$$RemoveCartImplCopyWith<$Res> {
-  __$$RemoveCartImplCopyWithImpl(
-    _$RemoveCartImpl _value,
-    $Res Function(_$RemoveCartImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? itemsId = null}) {
-    return _then(
-      _$RemoveCartImpl(
-        null == itemsId
-            ? _value.itemsId
-            : itemsId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$RemoveCartImpl implements _RemoveCart {
-  const _$RemoveCartImpl(this.itemsId);
 
-  @override
-  final int itemsId;
+class _AddCart implements ItemsDetailsEvent {
+  const _AddCart(this.itemsId);
+  
 
-  @override
-  String toString() {
-    return 'ItemsDetailsEvent.removeCart(itemsId: $itemsId)';
-  }
+ final  int itemsId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RemoveCartImpl &&
-            (identical(other.itemsId, itemsId) || other.itemsId == itemsId));
-  }
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AddCartCopyWith<_AddCart> get copyWith => __$AddCartCopyWithImpl<_AddCart>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, itemsId);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoveCartImplCopyWith<_$RemoveCartImpl> get copyWith =>
-      __$$RemoveCartImplCopyWithImpl<_$RemoveCartImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ItemsModel itemsModel) started,
-    required TResult Function(int itemsId) loadCountCart,
-    required TResult Function(int itemsId) addCart,
-    required TResult Function(int itemsId) removeCart,
-    required TResult Function(int index) selectedColor,
-  }) {
-    return removeCart(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ItemsModel itemsModel)? started,
-    TResult? Function(int itemsId)? loadCountCart,
-    TResult? Function(int itemsId)? addCart,
-    TResult? Function(int itemsId)? removeCart,
-    TResult? Function(int index)? selectedColor,
-  }) {
-    return removeCart?.call(itemsId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ItemsModel itemsModel)? started,
-    TResult Function(int itemsId)? loadCountCart,
-    TResult Function(int itemsId)? addCart,
-    TResult Function(int itemsId)? removeCart,
-    TResult Function(int index)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (removeCart != null) {
-      return removeCart(itemsId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadCountCart value) loadCountCart,
-    required TResult Function(_AddCart value) addCart,
-    required TResult Function(_RemoveCart value) removeCart,
-    required TResult Function(_SelelctedColor value) selectedColor,
-  }) {
-    return removeCart(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadCountCart value)? loadCountCart,
-    TResult? Function(_AddCart value)? addCart,
-    TResult? Function(_RemoveCart value)? removeCart,
-    TResult? Function(_SelelctedColor value)? selectedColor,
-  }) {
-    return removeCart?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadCountCart value)? loadCountCart,
-    TResult Function(_AddCart value)? addCart,
-    TResult Function(_RemoveCart value)? removeCart,
-    TResult Function(_SelelctedColor value)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (removeCart != null) {
-      return removeCart(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddCart&&(identical(other.itemsId, itemsId) || other.itemsId == itemsId));
 }
 
-abstract class _RemoveCart implements ItemsDetailsEvent {
-  const factory _RemoveCart(final int itemsId) = _$RemoveCartImpl;
 
-  int get itemsId;
+@override
+int get hashCode => Object.hash(runtimeType,itemsId);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RemoveCartImplCopyWith<_$RemoveCartImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsDetailsEvent.addCart(itemsId: $itemsId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$SelelctedColorImplCopyWith<$Res> {
-  factory _$$SelelctedColorImplCopyWith(
-    _$SelelctedColorImpl value,
-    $Res Function(_$SelelctedColorImpl) then,
-  ) = __$$SelelctedColorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int index});
+abstract mixin class _$AddCartCopyWith<$Res> implements $ItemsDetailsEventCopyWith<$Res> {
+  factory _$AddCartCopyWith(_AddCart value, $Res Function(_AddCart) _then) = __$AddCartCopyWithImpl;
+@useResult
+$Res call({
+ int itemsId
+});
+
+
+
+
+}
+/// @nodoc
+class __$AddCartCopyWithImpl<$Res>
+    implements _$AddCartCopyWith<$Res> {
+  __$AddCartCopyWithImpl(this._self, this._then);
+
+  final _AddCart _self;
+  final $Res Function(_AddCart) _then;
+
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? itemsId = null,}) {
+  return _then(_AddCart(
+null == itemsId ? _self.itemsId : itemsId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-class __$$SelelctedColorImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsEventCopyWithImpl<$Res, _$SelelctedColorImpl>
-    implements _$$SelelctedColorImplCopyWith<$Res> {
-  __$$SelelctedColorImplCopyWithImpl(
-    _$SelelctedColorImpl _value,
-    $Res Function(_$SelelctedColorImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? index = null}) {
-    return _then(
-      _$SelelctedColorImpl(
-        null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$SelelctedColorImpl implements _SelelctedColor {
-  const _$SelelctedColorImpl(this.index);
 
-  @override
-  final int index;
+class _RemoveCart implements ItemsDetailsEvent {
+  const _RemoveCart(this.itemsId);
+  
 
-  @override
-  String toString() {
-    return 'ItemsDetailsEvent.selectedColor(index: $index)';
-  }
+ final  int itemsId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelelctedColorImpl &&
-            (identical(other.index, index) || other.index == index));
-  }
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RemoveCartCopyWith<_RemoveCart> get copyWith => __$RemoveCartCopyWithImpl<_RemoveCart>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, index);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelelctedColorImplCopyWith<_$SelelctedColorImpl> get copyWith =>
-      __$$SelelctedColorImplCopyWithImpl<_$SelelctedColorImpl>(
-        this,
-        _$identity,
-      );
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ItemsModel itemsModel) started,
-    required TResult Function(int itemsId) loadCountCart,
-    required TResult Function(int itemsId) addCart,
-    required TResult Function(int itemsId) removeCart,
-    required TResult Function(int index) selectedColor,
-  }) {
-    return selectedColor(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ItemsModel itemsModel)? started,
-    TResult? Function(int itemsId)? loadCountCart,
-    TResult? Function(int itemsId)? addCart,
-    TResult? Function(int itemsId)? removeCart,
-    TResult? Function(int index)? selectedColor,
-  }) {
-    return selectedColor?.call(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ItemsModel itemsModel)? started,
-    TResult Function(int itemsId)? loadCountCart,
-    TResult Function(int itemsId)? addCart,
-    TResult Function(int itemsId)? removeCart,
-    TResult Function(int index)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (selectedColor != null) {
-      return selectedColor(index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_LoadCountCart value) loadCountCart,
-    required TResult Function(_AddCart value) addCart,
-    required TResult Function(_RemoveCart value) removeCart,
-    required TResult Function(_SelelctedColor value) selectedColor,
-  }) {
-    return selectedColor(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_LoadCountCart value)? loadCountCart,
-    TResult? Function(_AddCart value)? addCart,
-    TResult? Function(_RemoveCart value)? removeCart,
-    TResult? Function(_SelelctedColor value)? selectedColor,
-  }) {
-    return selectedColor?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_LoadCountCart value)? loadCountCart,
-    TResult Function(_AddCart value)? addCart,
-    TResult Function(_RemoveCart value)? removeCart,
-    TResult Function(_SelelctedColor value)? selectedColor,
-    required TResult orElse(),
-  }) {
-    if (selectedColor != null) {
-      return selectedColor(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RemoveCart&&(identical(other.itemsId, itemsId) || other.itemsId == itemsId));
 }
 
-abstract class _SelelctedColor implements ItemsDetailsEvent {
-  const factory _SelelctedColor(final int index) = _$SelelctedColorImpl;
 
-  int get index;
+@override
+int get hashCode => Object.hash(runtimeType,itemsId);
 
-  /// Create a copy of ItemsDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelelctedColorImplCopyWith<_$SelelctedColorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsDetailsEvent.removeCart(itemsId: $itemsId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RemoveCartCopyWith<$Res> implements $ItemsDetailsEventCopyWith<$Res> {
+  factory _$RemoveCartCopyWith(_RemoveCart value, $Res Function(_RemoveCart) _then) = __$RemoveCartCopyWithImpl;
+@useResult
+$Res call({
+ int itemsId
+});
+
+
+
+
+}
+/// @nodoc
+class __$RemoveCartCopyWithImpl<$Res>
+    implements _$RemoveCartCopyWith<$Res> {
+  __$RemoveCartCopyWithImpl(this._self, this._then);
+
+  final _RemoveCart _self;
+  final $Res Function(_RemoveCart) _then;
+
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? itemsId = null,}) {
+  return _then(_RemoveCart(
+null == itemsId ? _self.itemsId : itemsId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _SelelctedColor implements ItemsDetailsEvent {
+  const _SelelctedColor(this.index);
+  
+
+ final  int index;
+
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SelelctedColorCopyWith<_SelelctedColor> get copyWith => __$SelelctedColorCopyWithImpl<_SelelctedColor>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelelctedColor&&(identical(other.index, index) || other.index == index));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,index);
+
+@override
+String toString() {
+  return 'ItemsDetailsEvent.selectedColor(index: $index)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SelelctedColorCopyWith<$Res> implements $ItemsDetailsEventCopyWith<$Res> {
+  factory _$SelelctedColorCopyWith(_SelelctedColor value, $Res Function(_SelelctedColor) _then) = __$SelelctedColorCopyWithImpl;
+@useResult
+$Res call({
+ int index
+});
+
+
+
+
+}
+/// @nodoc
+class __$SelelctedColorCopyWithImpl<$Res>
+    implements _$SelelctedColorCopyWith<$Res> {
+  __$SelelctedColorCopyWithImpl(this._self, this._then);
+
+  final _SelelctedColor _self;
+  final $Res Function(_SelelctedColor) _then;
+
+/// Create a copy of ItemsDetailsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? index = null,}) {
+  return _then(_SelelctedColor(
+null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$ItemsDetailsStatus {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsDetailsStatus);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsDetailsStatus()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ItemsDetailsStatusCopyWith<$Res> {
-  factory $ItemsDetailsStatusCopyWith(
-    ItemsDetailsStatus value,
-    $Res Function(ItemsDetailsStatus) then,
-  ) = _$ItemsDetailsStatusCopyWithImpl<$Res, ItemsDetailsStatus>;
+class $ItemsDetailsStatusCopyWith<$Res>  {
+$ItemsDetailsStatusCopyWith(ItemsDetailsStatus _, $Res Function(ItemsDetailsStatus) __);
 }
 
-/// @nodoc
-class _$ItemsDetailsStatusCopyWithImpl<$Res, $Val extends ItemsDetailsStatus>
-    implements $ItemsDetailsStatusCopyWith<$Res> {
-  _$ItemsDetailsStatusCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [ItemsDetailsStatus].
+extension ItemsDetailsStatusPatterns on ItemsDetailsStatus {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _ServerFailure value)?  serverFailure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _ServerFailure value)  serverFailure,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _ServerFailure():
+return serverFailure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _ServerFailure value)?  serverFailure,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  loaded,TResult Function( String errorMessage)?  serverFailure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.errorMessage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  loaded,required TResult Function( String errorMessage)  serverFailure,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _Loading():
+return loading();case _Loaded():
+return loaded();case _ServerFailure():
+return serverFailure(_that.errorMessage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  loaded,TResult? Function( String errorMessage)?  serverFailure,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.errorMessage);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-    _$InitialImpl value,
-    $Res Function(_$InitialImpl) then,
-  ) = __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsStatusCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-    _$InitialImpl _value,
-    $Res Function(_$InitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'ItemsDetailsStatus.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements ItemsDetailsStatus {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-    _$LoadingImpl value,
-    $Res Function(_$LoadingImpl) then,
-  ) = __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsStatusCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-    _$LoadingImpl _value,
-    $Res Function(_$LoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
 
-  @override
-  String toString() {
-    return 'ItemsDetailsStatus.loading()';
-  }
+class _Initial implements ItemsDetailsStatus {
+  const _Initial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-abstract class _Loading implements ItemsDetailsStatus {
-  const factory _Loading() = _$LoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsDetailsStatus.initial()';
 }
 
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-    _$LoadedImpl value,
-    $Res Function(_$LoadedImpl) then,
-  ) = __$$LoadedImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsStatusCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-    _$LoadedImpl _value,
-    $Res Function(_$LoadedImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
+
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl();
 
-  @override
-  String toString() {
-    return 'ItemsDetailsStatus.loaded()';
-  }
+class _Loading implements ItemsDetailsStatus {
+  const _Loading();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadedImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return loaded();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return loaded?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
-abstract class _Loaded implements ItemsDetailsStatus {
-  const factory _Loaded() = _$LoadedImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsDetailsStatus.loading()';
 }
 
-/// @nodoc
-abstract class _$$ServerFailureImplCopyWith<$Res> {
-  factory _$$ServerFailureImplCopyWith(
-    _$ServerFailureImpl value,
-    $Res Function(_$ServerFailureImpl) then,
-  ) = __$$ServerFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorMessage});
+
 }
 
-/// @nodoc
-class __$$ServerFailureImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsStatusCopyWithImpl<$Res, _$ServerFailureImpl>
-    implements _$$ServerFailureImplCopyWith<$Res> {
-  __$$ServerFailureImplCopyWithImpl(
-    _$ServerFailureImpl _value,
-    $Res Function(_$ServerFailureImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? errorMessage = null}) {
-    return _then(
-      _$ServerFailureImpl(
-        null == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
-}
+
 
 /// @nodoc
 
-class _$ServerFailureImpl implements _ServerFailure {
-  const _$ServerFailureImpl(this.errorMessage);
 
-  @override
-  final String errorMessage;
+class _Loaded implements ItemsDetailsStatus {
+  const _Loaded();
+  
 
-  @override
-  String toString() {
-    return 'ItemsDetailsStatus.serverFailure(errorMessage: $errorMessage)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServerFailureImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
-      __$$ServerFailureImplCopyWithImpl<_$ServerFailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function(String errorMessage) serverFailure,
-  }) {
-    return serverFailure(errorMessage);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function(String errorMessage)? serverFailure,
-  }) {
-    return serverFailure?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String errorMessage)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (serverFailure != null) {
-      return serverFailure(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ServerFailure value) serverFailure,
-  }) {
-    return serverFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ServerFailure value)? serverFailure,
-  }) {
-    return serverFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (serverFailure != null) {
-      return serverFailure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded);
 }
 
-abstract class _ServerFailure implements ItemsDetailsStatus {
-  const factory _ServerFailure(final String errorMessage) = _$ServerFailureImpl;
 
-  String get errorMessage;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of ItemsDetailsStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ItemsDetailsStatus.loaded()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _ServerFailure implements ItemsDetailsStatus {
+  const _ServerFailure(this.errorMessage);
+  
+
+ final  String errorMessage;
+
+/// Create a copy of ItemsDetailsStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServerFailureCopyWith<_ServerFailure> get copyWith => __$ServerFailureCopyWithImpl<_ServerFailure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerFailure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,errorMessage);
+
+@override
+String toString() {
+  return 'ItemsDetailsStatus.serverFailure(errorMessage: $errorMessage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServerFailureCopyWith<$Res> implements $ItemsDetailsStatusCopyWith<$Res> {
+  factory _$ServerFailureCopyWith(_ServerFailure value, $Res Function(_ServerFailure) _then) = __$ServerFailureCopyWithImpl;
+@useResult
+$Res call({
+ String errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class __$ServerFailureCopyWithImpl<$Res>
+    implements _$ServerFailureCopyWith<$Res> {
+  __$ServerFailureCopyWithImpl(this._self, this._then);
+
+  final _ServerFailure _self;
+  final $Res Function(_ServerFailure) _then;
+
+/// Create a copy of ItemsDetailsStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
+  return _then(_ServerFailure(
+null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$CartStatus {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function(String message) success,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function(String message)? success,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String errorMessage)? failure,
-    TResult Function(String message)? success,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CartInitial value) initial,
-    required TResult Function(_failure value) failure,
-    required TResult Function(_Success value) success,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CartInitial value)? initial,
-    TResult? Function(_failure value)? failure,
-    TResult? Function(_Success value)? success,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CartInitial value)? initial,
-    TResult Function(_failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartStatus);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CartStatus()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CartStatusCopyWith<$Res> {
-  factory $CartStatusCopyWith(
-    CartStatus value,
-    $Res Function(CartStatus) then,
-  ) = _$CartStatusCopyWithImpl<$Res, CartStatus>;
+class $CartStatusCopyWith<$Res>  {
+$CartStatusCopyWith(CartStatus _, $Res Function(CartStatus) __);
 }
 
-/// @nodoc
-class _$CartStatusCopyWithImpl<$Res, $Val extends CartStatus>
-    implements $CartStatusCopyWith<$Res> {
-  _$CartStatusCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [CartStatus].
+extension CartStatusPatterns on CartStatus {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _CartInitial value)?  initial,TResult Function( _failure value)?  failure,TResult Function( _Success value)?  success,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CartInitial() when initial != null:
+return initial(_that);case _failure() when failure != null:
+return failure(_that);case _Success() when success != null:
+return success(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _CartInitial value)  initial,required TResult Function( _failure value)  failure,required TResult Function( _Success value)  success,}){
+final _that = this;
+switch (_that) {
+case _CartInitial():
+return initial(_that);case _failure():
+return failure(_that);case _Success():
+return success(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _CartInitial value)?  initial,TResult? Function( _failure value)?  failure,TResult? Function( _Success value)?  success,}){
+final _that = this;
+switch (_that) {
+case _CartInitial() when initial != null:
+return initial(_that);case _failure() when failure != null:
+return failure(_that);case _Success() when success != null:
+return success(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String errorMessage)?  failure,TResult Function( String message)?  success,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CartInitial() when initial != null:
+return initial();case _failure() when failure != null:
+return failure(_that.errorMessage);case _Success() when success != null:
+return success(_that.message);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String errorMessage)  failure,required TResult Function( String message)  success,}) {final _that = this;
+switch (_that) {
+case _CartInitial():
+return initial();case _failure():
+return failure(_that.errorMessage);case _Success():
+return success(_that.message);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String errorMessage)?  failure,TResult? Function( String message)?  success,}) {final _that = this;
+switch (_that) {
+case _CartInitial() when initial != null:
+return initial();case _failure() when failure != null:
+return failure(_that.errorMessage);case _Success() when success != null:
+return success(_that.message);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$CartInitialImplCopyWith<$Res> {
-  factory _$$CartInitialImplCopyWith(
-    _$CartInitialImpl value,
-    $Res Function(_$CartInitialImpl) then,
-  ) = __$$CartInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CartInitialImplCopyWithImpl<$Res>
-    extends _$CartStatusCopyWithImpl<$Res, _$CartInitialImpl>
-    implements _$$CartInitialImplCopyWith<$Res> {
-  __$$CartInitialImplCopyWithImpl(
-    _$CartInitialImpl _value,
-    $Res Function(_$CartInitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$CartInitialImpl implements _CartInitial {
-  const _$CartInitialImpl();
-
-  @override
-  String toString() {
-    return 'CartStatus.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CartInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function(String message) success,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function(String message)? success,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String errorMessage)? failure,
-    TResult Function(String message)? success,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CartInitial value) initial,
-    required TResult Function(_failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CartInitial value)? initial,
-    TResult? Function(_failure value)? failure,
-    TResult? Function(_Success value)? success,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CartInitial value)? initial,
-    TResult Function(_failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CartInitial implements CartStatus {
-  const factory _CartInitial() = _$CartInitialImpl;
-}
-
-/// @nodoc
-abstract class _$$failureImplCopyWith<$Res> {
-  factory _$$failureImplCopyWith(
-    _$failureImpl value,
-    $Res Function(_$failureImpl) then,
-  ) = __$$failureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorMessage});
-}
-
-/// @nodoc
-class __$$failureImplCopyWithImpl<$Res>
-    extends _$CartStatusCopyWithImpl<$Res, _$failureImpl>
-    implements _$$failureImplCopyWith<$Res> {
-  __$$failureImplCopyWithImpl(
-    _$failureImpl _value,
-    $Res Function(_$failureImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? errorMessage = null}) {
-    return _then(
-      _$failureImpl(
-        null == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$failureImpl implements _failure {
-  const _$failureImpl(this.errorMessage);
 
-  @override
-  final String errorMessage;
+class _CartInitial implements CartStatus {
+  const _CartInitial();
+  
 
-  @override
-  String toString() {
-    return 'CartStatus.failure(errorMessage: $errorMessage)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$failureImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$failureImplCopyWith<_$failureImpl> get copyWith =>
-      __$$failureImplCopyWithImpl<_$failureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function(String message) success,
-  }) {
-    return failure(errorMessage);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function(String message)? success,
-  }) {
-    return failure?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String errorMessage)? failure,
-    TResult Function(String message)? success,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CartInitial value) initial,
-    required TResult Function(_failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CartInitial value)? initial,
-    TResult? Function(_failure value)? failure,
-    TResult? Function(_Success value)? success,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CartInitial value)? initial,
-    TResult Function(_failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartInitial);
 }
 
-abstract class _failure implements CartStatus {
-  const factory _failure(final String errorMessage) = _$failureImpl;
 
-  String get errorMessage;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$failureImplCopyWith<_$failureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'CartStatus.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _failure implements CartStatus {
+  const _failure(this.errorMessage);
+  
+
+ final  String errorMessage;
+
+/// Create a copy of CartStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$failureCopyWith<_failure> get copyWith => __$failureCopyWithImpl<_failure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,errorMessage);
+
+@override
+String toString() {
+  return 'CartStatus.failure(errorMessage: $errorMessage)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-    _$SuccessImpl value,
-    $Res Function(_$SuccessImpl) then,
-  ) = __$$SuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
+abstract mixin class _$failureCopyWith<$Res> implements $CartStatusCopyWith<$Res> {
+  factory _$failureCopyWith(_failure value, $Res Function(_failure) _then) = __$failureCopyWithImpl;
+@useResult
+$Res call({
+ String errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class __$failureCopyWithImpl<$Res>
+    implements _$failureCopyWith<$Res> {
+  __$failureCopyWithImpl(this._self, this._then);
+
+  final _failure _self;
+  final $Res Function(_failure) _then;
+
+/// Create a copy of CartStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
+  return _then(_failure(
+null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$CartStatusCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-    _$SuccessImpl _value,
-    $Res Function(_$SuccessImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$SuccessImpl(
-        null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.message);
 
-  @override
-  final String message;
+class _Success implements CartStatus {
+  const _Success(this.message);
+  
 
-  @override
-  String toString() {
-    return 'CartStatus.success(message: $message)';
-  }
+ final  String message;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
+/// Create a copy of CartStatus
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SuccessCopyWith<_Success> get copyWith => __$SuccessCopyWithImpl<_Success>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function(String message) success,
-  }) {
-    return success(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function(String message)? success,
-  }) {
-    return success?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String errorMessage)? failure,
-    TResult Function(String message)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CartInitial value) initial,
-    required TResult Function(_failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CartInitial value)? initial,
-    TResult? Function(_failure value)? failure,
-    TResult? Function(_Success value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CartInitial value)? initial,
-    TResult Function(_failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success&&(identical(other.message, message) || other.message == message));
 }
 
-abstract class _Success implements CartStatus {
-  const factory _Success(final String message) = _$SuccessImpl;
 
-  String get message;
+@override
+int get hashCode => Object.hash(runtimeType,message);
 
-  /// Create a copy of CartStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'CartStatus.success(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SuccessCopyWith<$Res> implements $CartStatusCopyWith<$Res> {
+  factory _$SuccessCopyWith(_Success value, $Res Function(_Success) _then) = __$SuccessCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class __$SuccessCopyWithImpl<$Res>
+    implements _$SuccessCopyWith<$Res> {
+  __$SuccessCopyWithImpl(this._self, this._then);
+
+  final _Success _self;
+  final $Res Function(_Success) _then;
+
+/// Create a copy of CartStatus
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(_Success(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$ItemsDetailsState {
-  ItemsDetailsStatus get status => throw _privateConstructorUsedError;
-  CartStatus get cartStatus => throw _privateConstructorUsedError;
-  ItemsModel? get itemsModel => throw _privateConstructorUsedError;
-  int get count => throw _privateConstructorUsedError;
-  List<String> get selectedColors => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get subItems => throw _privateConstructorUsedError;
-  bool get isUpdating => throw _privateConstructorUsedError;
 
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ItemsDetailsStateCopyWith<ItemsDetailsState> get copyWith =>
-      throw _privateConstructorUsedError;
+ ItemsDetailsStatus get status; CartStatus get cartStatus; ItemModel? get itemModel; int get count; List<String> get selectedColors; List<Map<String, dynamic>> get subItems; bool get isUpdating;
+/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ItemsDetailsStateCopyWith<ItemsDetailsState> get copyWith => _$ItemsDetailsStateCopyWithImpl<ItemsDetailsState>(this as ItemsDetailsState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsDetailsState&&(identical(other.status, status) || other.status == status)&&(identical(other.cartStatus, cartStatus) || other.cartStatus == cartStatus)&&(identical(other.itemModel, itemModel) || other.itemModel == itemModel)&&(identical(other.count, count) || other.count == count)&&const DeepCollectionEquality().equals(other.selectedColors, selectedColors)&&const DeepCollectionEquality().equals(other.subItems, subItems)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status,cartStatus,itemModel,count,const DeepCollectionEquality().hash(selectedColors),const DeepCollectionEquality().hash(subItems),isUpdating);
+
+@override
+String toString() {
+  return 'ItemsDetailsState(status: $status, cartStatus: $cartStatus, itemModel: $itemModel, count: $count, selectedColors: $selectedColors, subItems: $subItems, isUpdating: $isUpdating)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ItemsDetailsStateCopyWith<$Res> {
-  factory $ItemsDetailsStateCopyWith(
-    ItemsDetailsState value,
-    $Res Function(ItemsDetailsState) then,
-  ) = _$ItemsDetailsStateCopyWithImpl<$Res, ItemsDetailsState>;
-  @useResult
-  $Res call({
-    ItemsDetailsStatus status,
-    CartStatus cartStatus,
-    ItemsModel? itemsModel,
-    int count,
-    List<String> selectedColors,
-    List<Map<String, dynamic>> subItems,
-    bool isUpdating,
-  });
+abstract mixin class $ItemsDetailsStateCopyWith<$Res>  {
+  factory $ItemsDetailsStateCopyWith(ItemsDetailsState value, $Res Function(ItemsDetailsState) _then) = _$ItemsDetailsStateCopyWithImpl;
+@useResult
+$Res call({
+ ItemsDetailsStatus status, CartStatus cartStatus, ItemModel? itemModel, int count, List<String> selectedColors, List<Map<String, dynamic>> subItems, bool isUpdating
+});
 
-  $ItemsDetailsStatusCopyWith<$Res> get status;
-  $CartStatusCopyWith<$Res> get cartStatus;
+
+$ItemsDetailsStatusCopyWith<$Res> get status;$CartStatusCopyWith<$Res> get cartStatus;$ItemModelCopyWith<$Res>? get itemModel;
+
 }
-
 /// @nodoc
-class _$ItemsDetailsStateCopyWithImpl<$Res, $Val extends ItemsDetailsState>
+class _$ItemsDetailsStateCopyWithImpl<$Res>
     implements $ItemsDetailsStateCopyWith<$Res> {
-  _$ItemsDetailsStateCopyWithImpl(this._value, this._then);
+  _$ItemsDetailsStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ItemsDetailsState _self;
+  final $Res Function(ItemsDetailsState) _then;
 
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? cartStatus = null,
-    Object? itemsModel = freezed,
-    Object? count = null,
-    Object? selectedColors = null,
-    Object? subItems = null,
-    Object? isUpdating = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as ItemsDetailsStatus,
-            cartStatus: null == cartStatus
-                ? _value.cartStatus
-                : cartStatus // ignore: cast_nullable_to_non_nullable
-                      as CartStatus,
-            itemsModel: freezed == itemsModel
-                ? _value.itemsModel
-                : itemsModel // ignore: cast_nullable_to_non_nullable
-                      as ItemsModel?,
-            count: null == count
-                ? _value.count
-                : count // ignore: cast_nullable_to_non_nullable
-                      as int,
-            selectedColors: null == selectedColors
-                ? _value.selectedColors
-                : selectedColors // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            subItems: null == subItems
-                ? _value.subItems
-                : subItems // ignore: cast_nullable_to_non_nullable
-                      as List<Map<String, dynamic>>,
-            isUpdating: null == isUpdating
-                ? _value.isUpdating
-                : isUpdating // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ItemsDetailsStatusCopyWith<$Res> get status {
-    return $ItemsDetailsStatusCopyWith<$Res>(_value.status, (value) {
-      return _then(_value.copyWith(status: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CartStatusCopyWith<$Res> get cartStatus {
-    return $CartStatusCopyWith<$Res>(_value.cartStatus, (value) {
-      return _then(_value.copyWith(cartStatus: value) as $Val);
-    });
-  }
+/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? cartStatus = null,Object? itemModel = freezed,Object? count = null,Object? selectedColors = null,Object? subItems = null,Object? isUpdating = null,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as ItemsDetailsStatus,cartStatus: null == cartStatus ? _self.cartStatus : cartStatus // ignore: cast_nullable_to_non_nullable
+as CartStatus,itemModel: freezed == itemModel ? _self.itemModel : itemModel // ignore: cast_nullable_to_non_nullable
+as ItemModel?,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
+as int,selectedColors: null == selectedColors ? _self.selectedColors : selectedColors // ignore: cast_nullable_to_non_nullable
+as List<String>,subItems: null == subItems ? _self.subItems : subItems // ignore: cast_nullable_to_non_nullable
+as List<Map<String, dynamic>>,isUpdating: null == isUpdating ? _self.isUpdating : isUpdating // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
-
-/// @nodoc
-abstract class _$$ItemsDetailsStateImplCopyWith<$Res>
-    implements $ItemsDetailsStateCopyWith<$Res> {
-  factory _$$ItemsDetailsStateImplCopyWith(
-    _$ItemsDetailsStateImpl value,
-    $Res Function(_$ItemsDetailsStateImpl) then,
-  ) = __$$ItemsDetailsStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    ItemsDetailsStatus status,
-    CartStatus cartStatus,
-    ItemsModel? itemsModel,
-    int count,
-    List<String> selectedColors,
-    List<Map<String, dynamic>> subItems,
-    bool isUpdating,
+/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemsDetailsStatusCopyWith<$Res> get status {
+  
+  return $ItemsDetailsStatusCopyWith<$Res>(_self.status, (value) {
+    return _then(_self.copyWith(status: value));
   });
+}/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CartStatusCopyWith<$Res> get cartStatus {
+  
+  return $CartStatusCopyWith<$Res>(_self.cartStatus, (value) {
+    return _then(_self.copyWith(cartStatus: value));
+  });
+}/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemModelCopyWith<$Res>? get itemModel {
+    if (_self.itemModel == null) {
+    return null;
+  }
 
-  @override
-  $ItemsDetailsStatusCopyWith<$Res> get status;
-  @override
-  $CartStatusCopyWith<$Res> get cartStatus;
+  return $ItemModelCopyWith<$Res>(_self.itemModel!, (value) {
+    return _then(_self.copyWith(itemModel: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [ItemsDetailsState].
+extension ItemsDetailsStatePatterns on ItemsDetailsState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ItemsDetailsState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ItemsDetailsState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ItemsDetailsState value)  $default,){
+final _that = this;
+switch (_that) {
+case _ItemsDetailsState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ItemsDetailsState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ItemsDetailsState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ItemsDetailsStatus status,  CartStatus cartStatus,  ItemModel? itemModel,  int count,  List<String> selectedColors,  List<Map<String, dynamic>> subItems,  bool isUpdating)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ItemsDetailsState() when $default != null:
+return $default(_that.status,_that.cartStatus,_that.itemModel,_that.count,_that.selectedColors,_that.subItems,_that.isUpdating);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ItemsDetailsStatus status,  CartStatus cartStatus,  ItemModel? itemModel,  int count,  List<String> selectedColors,  List<Map<String, dynamic>> subItems,  bool isUpdating)  $default,) {final _that = this;
+switch (_that) {
+case _ItemsDetailsState():
+return $default(_that.status,_that.cartStatus,_that.itemModel,_that.count,_that.selectedColors,_that.subItems,_that.isUpdating);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ItemsDetailsStatus status,  CartStatus cartStatus,  ItemModel? itemModel,  int count,  List<String> selectedColors,  List<Map<String, dynamic>> subItems,  bool isUpdating)?  $default,) {final _that = this;
+switch (_that) {
+case _ItemsDetailsState() when $default != null:
+return $default(_that.status,_that.cartStatus,_that.itemModel,_that.count,_that.selectedColors,_that.subItems,_that.isUpdating);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-class __$$ItemsDetailsStateImplCopyWithImpl<$Res>
-    extends _$ItemsDetailsStateCopyWithImpl<$Res, _$ItemsDetailsStateImpl>
-    implements _$$ItemsDetailsStateImplCopyWith<$Res> {
-  __$$ItemsDetailsStateImplCopyWithImpl(
-    _$ItemsDetailsStateImpl _value,
-    $Res Function(_$ItemsDetailsStateImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? cartStatus = null,
-    Object? itemsModel = freezed,
-    Object? count = null,
-    Object? selectedColors = null,
-    Object? subItems = null,
-    Object? isUpdating = null,
-  }) {
-    return _then(
-      _$ItemsDetailsStateImpl(
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as ItemsDetailsStatus,
-        cartStatus: null == cartStatus
-            ? _value.cartStatus
-            : cartStatus // ignore: cast_nullable_to_non_nullable
-                  as CartStatus,
-        itemsModel: freezed == itemsModel
-            ? _value.itemsModel
-            : itemsModel // ignore: cast_nullable_to_non_nullable
-                  as ItemsModel?,
-        count: null == count
-            ? _value.count
-            : count // ignore: cast_nullable_to_non_nullable
-                  as int,
-        selectedColors: null == selectedColors
-            ? _value._selectedColors
-            : selectedColors // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
-        subItems: null == subItems
-            ? _value._subItems
-            : subItems // ignore: cast_nullable_to_non_nullable
-                  as List<Map<String, dynamic>>,
-        isUpdating: null == isUpdating
-            ? _value.isUpdating
-            : isUpdating // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
-  }
+
+class _ItemsDetailsState implements ItemsDetailsState {
+  const _ItemsDetailsState({this.status = const ItemsDetailsStatus.initial(), this.cartStatus = const CartStatus.initial(), this.itemModel, this.count = 0, final  List<String> selectedColors = const [], final  List<Map<String, dynamic>> subItems = const [{"id" : "1", "name" : "red", "active" : false}, {"id" : "2", "name" : "black", "active" : false}, {"id" : "3", "name" : "grey", "active" : false}], this.isUpdating = false}): _selectedColors = selectedColors,_subItems = subItems;
+  
+
+@override@JsonKey() final  ItemsDetailsStatus status;
+@override@JsonKey() final  CartStatus cartStatus;
+@override final  ItemModel? itemModel;
+@override@JsonKey() final  int count;
+ final  List<String> _selectedColors;
+@override@JsonKey() List<String> get selectedColors {
+  if (_selectedColors is EqualUnmodifiableListView) return _selectedColors;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_selectedColors);
+}
+
+ final  List<Map<String, dynamic>> _subItems;
+@override@JsonKey() List<Map<String, dynamic>> get subItems {
+  if (_subItems is EqualUnmodifiableListView) return _subItems;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_subItems);
+}
+
+@override@JsonKey() final  bool isUpdating;
+
+/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ItemsDetailsStateCopyWith<_ItemsDetailsState> get copyWith => __$ItemsDetailsStateCopyWithImpl<_ItemsDetailsState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ItemsDetailsState&&(identical(other.status, status) || other.status == status)&&(identical(other.cartStatus, cartStatus) || other.cartStatus == cartStatus)&&(identical(other.itemModel, itemModel) || other.itemModel == itemModel)&&(identical(other.count, count) || other.count == count)&&const DeepCollectionEquality().equals(other._selectedColors, _selectedColors)&&const DeepCollectionEquality().equals(other._subItems, _subItems)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status,cartStatus,itemModel,count,const DeepCollectionEquality().hash(_selectedColors),const DeepCollectionEquality().hash(_subItems),isUpdating);
+
+@override
+String toString() {
+  return 'ItemsDetailsState(status: $status, cartStatus: $cartStatus, itemModel: $itemModel, count: $count, selectedColors: $selectedColors, subItems: $subItems, isUpdating: $isUpdating)';
+}
+
+
 }
 
 /// @nodoc
+abstract mixin class _$ItemsDetailsStateCopyWith<$Res> implements $ItemsDetailsStateCopyWith<$Res> {
+  factory _$ItemsDetailsStateCopyWith(_ItemsDetailsState value, $Res Function(_ItemsDetailsState) _then) = __$ItemsDetailsStateCopyWithImpl;
+@override @useResult
+$Res call({
+ ItemsDetailsStatus status, CartStatus cartStatus, ItemModel? itemModel, int count, List<String> selectedColors, List<Map<String, dynamic>> subItems, bool isUpdating
+});
 
-class _$ItemsDetailsStateImpl implements _ItemsDetailsState {
-  const _$ItemsDetailsStateImpl({
-    this.status = const ItemsDetailsStatus.initial(),
-    this.cartStatus = const CartStatus.initial(),
-    this.itemsModel,
-    this.count = 0,
-    final List<String> selectedColors = const [],
-    final List<Map<String, dynamic>> subItems = const [
-      {"id": "1", "name": "red", "active": false},
-      {"id": "2", "name": "black", "active": false},
-      {"id": "3", "name": "grey", "active": false},
-    ],
-    this.isUpdating = false,
-  }) : _selectedColors = selectedColors,
-       _subItems = subItems;
 
-  @override
-  @JsonKey()
-  final ItemsDetailsStatus status;
-  @override
-  @JsonKey()
-  final CartStatus cartStatus;
-  @override
-  final ItemsModel? itemsModel;
-  @override
-  @JsonKey()
-  final int count;
-  final List<String> _selectedColors;
-  @override
-  @JsonKey()
-  List<String> get selectedColors {
-    if (_selectedColors is EqualUnmodifiableListView) return _selectedColors;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_selectedColors);
-  }
+@override $ItemsDetailsStatusCopyWith<$Res> get status;@override $CartStatusCopyWith<$Res> get cartStatus;@override $ItemModelCopyWith<$Res>? get itemModel;
 
-  final List<Map<String, dynamic>> _subItems;
-  @override
-  @JsonKey()
-  List<Map<String, dynamic>> get subItems {
-    if (_subItems is EqualUnmodifiableListView) return _subItems;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_subItems);
-  }
+}
+/// @nodoc
+class __$ItemsDetailsStateCopyWithImpl<$Res>
+    implements _$ItemsDetailsStateCopyWith<$Res> {
+  __$ItemsDetailsStateCopyWithImpl(this._self, this._then);
 
-  @override
-  @JsonKey()
-  final bool isUpdating;
+  final _ItemsDetailsState _self;
+  final $Res Function(_ItemsDetailsState) _then;
 
-  @override
-  String toString() {
-    return 'ItemsDetailsState(status: $status, cartStatus: $cartStatus, itemsModel: $itemsModel, count: $count, selectedColors: $selectedColors, subItems: $subItems, isUpdating: $isUpdating)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ItemsDetailsStateImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.cartStatus, cartStatus) ||
-                other.cartStatus == cartStatus) &&
-            (identical(other.itemsModel, itemsModel) ||
-                other.itemsModel == itemsModel) &&
-            (identical(other.count, count) || other.count == count) &&
-            const DeepCollectionEquality().equals(
-              other._selectedColors,
-              _selectedColors,
-            ) &&
-            const DeepCollectionEquality().equals(other._subItems, _subItems) &&
-            (identical(other.isUpdating, isUpdating) ||
-                other.isUpdating == isUpdating));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    status,
-    cartStatus,
-    itemsModel,
-    count,
-    const DeepCollectionEquality().hash(_selectedColors),
-    const DeepCollectionEquality().hash(_subItems),
-    isUpdating,
-  );
-
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ItemsDetailsStateImplCopyWith<_$ItemsDetailsStateImpl> get copyWith =>
-      __$$ItemsDetailsStateImplCopyWithImpl<_$ItemsDetailsStateImpl>(
-        this,
-        _$identity,
-      );
+/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? cartStatus = null,Object? itemModel = freezed,Object? count = null,Object? selectedColors = null,Object? subItems = null,Object? isUpdating = null,}) {
+  return _then(_ItemsDetailsState(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as ItemsDetailsStatus,cartStatus: null == cartStatus ? _self.cartStatus : cartStatus // ignore: cast_nullable_to_non_nullable
+as CartStatus,itemModel: freezed == itemModel ? _self.itemModel : itemModel // ignore: cast_nullable_to_non_nullable
+as ItemModel?,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
+as int,selectedColors: null == selectedColors ? _self._selectedColors : selectedColors // ignore: cast_nullable_to_non_nullable
+as List<String>,subItems: null == subItems ? _self._subItems : subItems // ignore: cast_nullable_to_non_nullable
+as List<Map<String, dynamic>>,isUpdating: null == isUpdating ? _self.isUpdating : isUpdating // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-abstract class _ItemsDetailsState implements ItemsDetailsState {
-  const factory _ItemsDetailsState({
-    final ItemsDetailsStatus status,
-    final CartStatus cartStatus,
-    final ItemsModel? itemsModel,
-    final int count,
-    final List<String> selectedColors,
-    final List<Map<String, dynamic>> subItems,
-    final bool isUpdating,
-  }) = _$ItemsDetailsStateImpl;
+/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemsDetailsStatusCopyWith<$Res> get status {
+  
+  return $ItemsDetailsStatusCopyWith<$Res>(_self.status, (value) {
+    return _then(_self.copyWith(status: value));
+  });
+}/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CartStatusCopyWith<$Res> get cartStatus {
+  
+  return $CartStatusCopyWith<$Res>(_self.cartStatus, (value) {
+    return _then(_self.copyWith(cartStatus: value));
+  });
+}/// Create a copy of ItemsDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemModelCopyWith<$Res>? get itemModel {
+    if (_self.itemModel == null) {
+    return null;
+  }
 
-  @override
-  ItemsDetailsStatus get status;
-  @override
-  CartStatus get cartStatus;
-  @override
-  ItemsModel? get itemsModel;
-  @override
-  int get count;
-  @override
-  List<String> get selectedColors;
-  @override
-  List<Map<String, dynamic>> get subItems;
-  @override
-  bool get isUpdating;
-
-  /// Create a copy of ItemsDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ItemsDetailsStateImplCopyWith<_$ItemsDetailsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  return $ItemModelCopyWith<$Res>(_self.itemModel!, (value) {
+    return _then(_self.copyWith(itemModel: value));
+  });
 }
+}
+
+// dart format on

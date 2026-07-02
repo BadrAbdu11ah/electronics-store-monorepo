@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/class/state_request.dart';
 import 'package:electronics_store/core/services/api_service.dart';
-import 'package:electronics_store/data/model/address_model.dart';
+import 'package:electronics_store/data/model/address/address_model.dart';
 
 class AddressData {
   final ApiService api;

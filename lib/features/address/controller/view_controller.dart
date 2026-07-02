@@ -2,7 +2,7 @@ import 'package:electronics_store/core/class/state_request.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/features/address/data/address_data.dart';
-import 'package:electronics_store/data/model/address_model.dart';
+import 'package:electronics_store/data/model/address/address_model.dart';
 import 'package:get/get.dart';
 
 abstract class AddressViewController extends GetxController {

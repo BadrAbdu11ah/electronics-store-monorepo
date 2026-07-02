@@ -1,12 +1,12 @@
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListCategoriesItems extends StatelessWidget {
-  final List<CategoriesModel> categories;
+  final List<CategoryModel> categories;
   final int categoryId;
   const ListCategoriesItems({
     super.key,
@@ -47,8 +47,8 @@ class ListCategoriesItems extends StatelessWidget {
                       : null,
                   child: Text(
                     translateDatabase(
-                      categories[index].categoriesName!,
-                      categories[index].categoriesNameAr!,
+                      categories[index].name!,
+                      categories[index].nameAr!,
                     ),
                     style: TextStyle(fontSize: 20),
                   ),

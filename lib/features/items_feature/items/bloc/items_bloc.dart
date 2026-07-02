@@ -1,8 +1,8 @@
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/favorite/data/favorite_data.dart';
-import 'package:electronics_store/features/items_feature/data/items_data.dart';
+import 'package:electronics_store/features/items_feature/data/item_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,7 +12,7 @@ part 'items_bloc.freezed.dart';
 
 class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
   final AppService appService;
-  final ItemsData itemsData;
+  final ItemData itemsData;
   final FavoriteData favoriteData;
 
   ItemsBloc({
@@ -50,7 +50,7 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
       ),
     );
 
-    final Map<int, int> favorite = {};
+    final Map<int, bool> favoriteMap = {};
 
     var response = await itemsData.getItems(state.categoryId);
 
@@ -65,15 +65,16 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
       },
       (itemsList) {
         for (var item in itemsList) {
-          if (item.itemsId != null) {
-            favorite[item.itemsId!] = int.parse(item.favorite!);
+          if (item.id != null) {
+            favoriteMap[item.id!] = item.isFavorite ?? false;
           }
         }
+
         emit(
           state.copyWith(
             status: const ItemsStatus.loaded(),
             items: itemsList,
-            isFavorite: favorite,
+            isFavorite: favoriteMap,
           ),
         );
       },
@@ -84,7 +85,9 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
     _AddFavorite event,
     Emitter<ItemsState> emit,
   ) async {
-    emit(state.copyWith(isFavorite: {...state.isFavorite, event.itemsId: 1}));
+    emit(
+      state.copyWith(isFavorite: {...state.isFavorite, event.itemsId: true}),
+    );
 
     var response = await favoriteData.addFavorite(event.itemsId);
 
@@ -93,7 +96,7 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
         emit(
           state.copyWith(
             favoriteStatus: FavoriteStatus.failure(failure.message),
-            isFavorite: {...state.isFavorite, event.itemsId: 0},
+            isFavorite: {...state.isFavorite, event.itemsId: false},
           ),
         );
       },
@@ -107,7 +110,9 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
     _RemoveFavorite event,
     Emitter<ItemsState> emit,
   ) async {
-    emit(state.copyWith(isFavorite: {...state.isFavorite, event.itemsId: 0}));
+    emit(
+      state.copyWith(isFavorite: {...state.isFavorite, event.itemsId: false}),
+    );
 
     var response = await favoriteData.removeFavorite(event.itemsId);
 
@@ -116,7 +121,7 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
         emit(
           state.copyWith(
             favoriteStatus: FavoriteStatus.failure(failure.message),
-            isFavorite: {...state.isFavorite, event.itemsId: 1},
+            isFavorite: {...state.isFavorite, event.itemsId: true},
           ),
         );
       },

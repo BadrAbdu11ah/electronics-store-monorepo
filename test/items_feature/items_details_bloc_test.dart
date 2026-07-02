@@ -3,7 +3,7 @@ import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/features/items_feature/items_details/bloc/items_details_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,7 +18,7 @@ void main() {
     late MockCartData mockCartData;
     late MockAppService mockAppService;
 
-    final mockItemsModel = ItemsModel(itemsId: 12, itemsName: 'Test Item');
+    final mockitemModel = ItemModel(id: 12, name: 'Test Item');
     const mockItemsId = 12;
 
     setUp(() {
@@ -42,19 +42,19 @@ void main() {
         ).thenAnswer((_) async => const Right(3));
         return itemsDetailsBloc;
       },
-      act: (bloc) => bloc.add(ItemsDetailsEvent.started(mockItemsModel)),
+      act: (bloc) => bloc.add(ItemsDetailsEvent.started(mockitemModel)),
       expect: () => <ItemsDetailsState>[
         ItemsDetailsState(
           status: ItemsDetailsStatus.initial(),
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
         ),
         ItemsDetailsState(
           status: ItemsDetailsStatus.loading(),
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
         ),
         ItemsDetailsState(
           status: ItemsDetailsStatus.loaded(),
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
           count: 3,
         ),
       ],
@@ -68,19 +68,19 @@ void main() {
         ).thenAnswer((_) async => Left(ServerFailure('خطأ في الشبكة')));
         return itemsDetailsBloc;
       },
-      act: (bloc) => bloc.add(ItemsDetailsEvent.started(mockItemsModel)),
+      act: (bloc) => bloc.add(ItemsDetailsEvent.started(mockitemModel)),
       expect: () => <ItemsDetailsState>[
         ItemsDetailsState(
           status: ItemsDetailsStatus.initial(),
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
         ),
         ItemsDetailsState(
           status: ItemsDetailsStatus.loading(),
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
         ),
         ItemsDetailsState(
           status: ItemsDetailsStatus.serverFailure('خطأ في الشبكة'),
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
         ),
       ],
     );
@@ -88,7 +88,7 @@ void main() {
     // اختبار الإضافة الناجحة للسلة (Optimistic UI)
     blocTest<ItemsDetailsBloc, ItemsDetailsState>(
       'يجب زيادة العداد لحظياً ثم إطلاق نجاح السيرفر عند استدعاء _onAddCart',
-      seed: () => ItemsDetailsState(itemsModel: mockItemsModel, count: 2),
+      seed: () => ItemsDetailsState(itemModel: mockitemModel, count: 2),
       build: () {
         when(
           () => mockCartData.addCart(mockItemsId),
@@ -97,13 +97,9 @@ void main() {
       },
       act: (bloc) => bloc.add(const ItemsDetailsEvent.addCart(mockItemsId)),
       expect: () => <ItemsDetailsState>[
+        ItemsDetailsState(itemModel: mockitemModel, count: 3, isUpdating: true),
         ItemsDetailsState(
-          itemsModel: mockItemsModel,
-          count: 3,
-          isUpdating: true,
-        ),
-        ItemsDetailsState(
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
           count: 3,
           isUpdating: false,
           cartStatus: const CartStatus.success('تمت الإضافة بنجاح'),
@@ -114,7 +110,7 @@ void main() {
     // اختبار فشل الإضافة والتراجع التلقائي
     blocTest<ItemsDetailsBloc, ItemsDetailsState>(
       'يجب التراجع وإنقاص العداد وإرجاع قيمة isUpdating لـ false عند فشل السيرفر في الإضافة',
-      seed: () => ItemsDetailsState(itemsModel: mockItemsModel, count: 2),
+      seed: () => ItemsDetailsState(itemModel: mockitemModel, count: 2),
       build: () {
         when(
           () => mockCartData.addCart(mockItemsId),
@@ -123,14 +119,10 @@ void main() {
       },
       act: (bloc) => bloc.add(const ItemsDetailsEvent.addCart(mockItemsId)),
       expect: () => <ItemsDetailsState>[
-        ItemsDetailsState(
-          itemsModel: mockItemsModel,
-          count: 3,
-          isUpdating: true,
-        ),
+        ItemsDetailsState(itemModel: mockitemModel, count: 3, isUpdating: true),
         // التراجع الفعلي: العداد عاد 2، والـ status مسجل فيه الفشل
         ItemsDetailsState(
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
           count: 2,
           isUpdating: false,
           cartStatus: const CartStatus.failure('خطأ في الشبكة'),
@@ -141,7 +133,7 @@ void main() {
     // اختبار الحذف الناجح من السلة
     blocTest<ItemsDetailsBloc, ItemsDetailsState>(
       'يجب إنقاص العداد لحظياً ثم إطلاق نجاح السيرفر عند استدعاء _onRemoveCart',
-      seed: () => ItemsDetailsState(itemsModel: mockItemsModel, count: 5),
+      seed: () => ItemsDetailsState(itemModel: mockitemModel, count: 5),
       build: () {
         when(
           () => mockCartData.removeCart(mockItemsId),
@@ -150,13 +142,9 @@ void main() {
       },
       act: (bloc) => bloc.add(const ItemsDetailsEvent.removeCart(mockItemsId)),
       expect: () => <ItemsDetailsState>[
+        ItemsDetailsState(itemModel: mockitemModel, count: 4, isUpdating: true),
         ItemsDetailsState(
-          itemsModel: mockItemsModel,
-          count: 4,
-          isUpdating: true,
-        ),
-        ItemsDetailsState(
-          itemsModel: mockItemsModel,
+          itemModel: mockitemModel,
           count: 4,
           isUpdating: false,
           cartStatus: const CartStatus.success('تم الحذف بنجاح'),
@@ -167,7 +155,7 @@ void main() {
     // اختبار صد طلبات الحذف إذا كان العداد صفراً
     blocTest<ItemsDetailsBloc, ItemsDetailsState>(
       'يجب عدم إطلاق أي حالة وعدم إرسال طلب للسيرفر إذا كان العداد أصلاً صفر',
-      seed: () => ItemsDetailsState(itemsModel: mockItemsModel, count: 0),
+      seed: () => ItemsDetailsState(itemModel: mockitemModel, count: 0),
       build: () => itemsDetailsBloc,
       act: (bloc) => bloc.add(const ItemsDetailsEvent.removeCart(mockItemsId)),
       expect: () =>
@@ -183,7 +171,7 @@ void main() {
     blocTest<ItemsDetailsBloc, ItemsDetailsState>(
       'يجب عدم إطلاق أي حالة وعدم إرسال طلب للسيرفر isUpdating يساوي true',
       seed: () => ItemsDetailsState(
-        itemsModel: mockItemsModel,
+        itemModel: mockitemModel,
         count: 6,
         isUpdating: true,
       ),

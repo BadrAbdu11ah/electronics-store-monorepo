@@ -1,6 +1,6 @@
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/home/data/home_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -40,8 +40,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
         emit(
           state.copyWith(
             status: HomePageStatus.loaded(),
-            categories: data['categories'] as List<CategoriesModel>,
-            items: data['items'] as List<ItemsModel>,
+            categories: data['categories'] as List<CategoryModel>,
+            items: data['items'] as List<ItemModel>,
           ),
         );
       },

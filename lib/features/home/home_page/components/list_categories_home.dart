@@ -1,12 +1,12 @@
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ListCategoriesHome extends StatelessWidget {
-  final List<CategoriesModel> categories;
+  final List<CategoryModel> categories;
 
   const ListCategoriesHome({super.key, required this.categories});
 
@@ -20,14 +20,14 @@ class ListCategoriesHome extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (BuildContext context, int index) {
-          final categoriesModel = categories[index];
+          final category = categories[index];
           return InkWell(
             onTap: () {
               Navigator.pushNamed(
                 context,
                 AppRoute.items,
                 arguments: {
-                  'categoryId': categoriesModel.categoriesId,
+                  'categoryId': category.id,
                   'categories': categories,
                 },
               );
@@ -44,7 +44,7 @@ class ListCategoriesHome extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20), // الاستدارة
                   ),
                   child: SvgPicture.network(
-                    "${categoriesModel.categoriesImage}",
+                    "${category.image}",
                     colorFilter: ColorFilter.mode(
                       AppColor.themeBlackColor!,
                       BlendMode.srcIn,
@@ -53,9 +53,7 @@ class ListCategoriesHome extends StatelessWidget {
                         Icon(Icons.broken_image),
                   ),
                 ),
-                Text(
-                  "${translateDatabase(categoriesModel.categoriesName!, categoriesModel.categoriesNameAr!)}",
-                ),
+                Text("${translateDatabase(category.name!, category.nameAr!)}"),
               ],
             ),
           );

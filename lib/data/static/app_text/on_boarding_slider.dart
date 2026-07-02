@@ -1,6 +1,6 @@
 import 'package:electronics_store/core/constant/app_image_asset.dart';
 import 'package:electronics_store/data/static/app_text.dart';
-import 'package:electronics_store/data/model/on_boarding_model.dart';
+import 'package:electronics_store/data/model/on_boarding/on_boarding_model.dart';
 import 'package:electronics_store/app_translations.dart';
 import 'package:flutter/material.dart';
 

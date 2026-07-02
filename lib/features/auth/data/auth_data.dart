@@ -2,7 +2,7 @@ import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/services/api_service.dart';
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/core/services/auth_service.dart'; // كلاس الخدمة المعدل أعلاه
+import 'package:electronics_store/core/services/auth_service.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AuthData {
@@ -22,24 +22,23 @@ class AuthData {
       "password": password,
     }, auth: false);
 
-    // استخدام fold لمعالجة البيانات تلقائياً وحفظها محلياً فور النجاح
+    // معالجة البيانات بشكل سليم بدعم Future الـ async داخل الـ fold عبر Future.all أو إرجاع القيمة مباشرة
     return response.fold((failure) => Left(failure), (data) async {
       if (data['status'] == "failure") return Right(data);
 
       // 1. حفظ البيانات والتوكن مركزياً
       await authService.saveAuthData(data);
 
-      // 2. حفظ معرّف المستخدم في SharedPreferences
+      // 2. حفظ معرّف المستخدم (id) في SharedPreferences
       final userData = data['data'];
       if (userData is Map<String, dynamic>) {
-        int? userId =
-            userData['users_id'] ?? userData['user_id'] ?? userData['id'];
+        int? userId = userData['id'] ?? userData['user_id'];
         if (userId != null) {
           await appService.sharedPreferences.setInt('userId', userId);
         }
       }
 
-      // 3. تحديث الـ Step للميدل وير (Middleware)
+      // 3. تحديث الـ Step للميدل وير (Middleware) فور النجاح
       await appService.sharedPreferences.setString('step', "2");
       return Right(data);
     });
@@ -53,14 +52,16 @@ class AuthData {
     required String phone,
   }) async {
     final response = await apiService.post(ApiEndpoints.signup, {
-      "username": username.trim(),
+      "name": username.trim(),
       "email": email.trim(),
       "password": password,
       "phone": phone.trim(),
     }, auth: false);
 
     return response.fold((failure) => Left(failure), (data) async {
-      await authService.saveAuthData(data);
+      if (data['status'] != "failure") {
+        await authService.saveAuthData(data);
+      }
       return Right(data);
     });
   }
@@ -72,12 +73,13 @@ class AuthData {
   ) async {
     final response = await apiService.post(ApiEndpoints.verifyCode, {
       "email": email.trim(),
-      "verifycode": verifyCode,
+      "verify_code": verifyCode,
     }, auth: false);
 
     return response.fold((failure) => Left(failure), (data) async {
-      await authService.saveAuthData(data);
-
+      if (data['status'] != "failure") {
+        await authService.saveAuthData(data);
+      }
       return Right(data);
     });
   }
@@ -95,9 +97,11 @@ class AuthData {
   Future<Either<Failure, Map<String, dynamic>>> resetVerifyCode(
     String email,
   ) async {
-    final response = await apiService.post(ApiEndpoints.checkEmail, {
-      "email": email.trim(),
-    }, auth: false);
+    final response = await apiService.post(
+      ApiEndpoints.resetVerifyCode,
+      {},
+      auth: false,
+    );
 
     return response.fold((failure) => Left(failure), (data) => Right(data));
   }

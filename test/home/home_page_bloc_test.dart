@@ -1,12 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:electronics_store/core/class/failure.dart';
+import 'package:electronics_store/data/model/category/category_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:electronics_store/core/services/app_service.dart';
-import 'package:electronics_store/data/model/categories_model.dart';
-import 'package:electronics_store/data/model/items_model.dart';
+import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/home/data/home_data.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 
@@ -25,10 +25,8 @@ void main() {
     late MockSharedPreferences mockSharedPreferences;
 
     // تجهيز البيانات الوهمية للفحص
-    final mockCategories = [
-      CategoriesModel(categoriesId: 1, categoriesName: 'Electronics'),
-    ];
-    final mockItems = [ItemsModel(itemsId: 101, itemsName: 'iPhone')];
+    final mockCategories = [CategoryModel(id: 1, name: 'Electronics')];
+    final mockItems = [ItemModel(id: 101, name: 'iPhone')];
     final mockSuccessData = {'categories': mockCategories, 'items': mockItems};
 
     setUp(() {
@@ -119,7 +117,7 @@ void main() {
         const HomePageState(status: HomePageStatus.loggedOut()),
       ],
       verify: (_) {
-        // التحقق الفعلي من أن الدالة تم استدعاؤها في الذاكرة لمنع أي تسريب برمي
+        // التحقق الفعلي من أن الدالة تم استدعاؤها في الذاكرة لمنع أي تسريب برمجي
         verify(() => mockSharedPreferences.setString('step', '1')).called(1);
       },
     );
