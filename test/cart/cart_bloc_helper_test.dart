@@ -12,7 +12,7 @@ void main() {
 
     test("Calculat Discount Amount", () {
       expect(
-        calculatDiscountAmount(
+        calculateDiscountAmount(
           subtotal: mockSubtotal,
           discountPercentage: mockDiscountPercentage,
         ),
@@ -22,7 +22,7 @@ void main() {
 
     test("Calculat Final Total", () {
       expect(
-        calculatFinalTotal(
+        calculateFinalTotal(
           subtotal: mockSubtotal,
           discountAmount: mockDiscountAmount,
           shippingPrice: mockShippingPrice,

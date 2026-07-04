@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CartModel {
 
- ItemModel? get item; int? get countItems; double? get itemPrice; double? get totalItemPrice;
+ int? get id; int? get itemId; int? get countItems; double? get itemPrice; double? get totalItemPrice; ItemModel? get item;
 /// Create a copy of CartModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CartModelCopyWith<CartModel> get copyWith => _$CartModelCopyWithImpl<CartModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartModel&&(identical(other.item, item) || other.item == item)&&(identical(other.countItems, countItems) || other.countItems == countItems)&&(identical(other.itemPrice, itemPrice) || other.itemPrice == itemPrice)&&(identical(other.totalItemPrice, totalItemPrice) || other.totalItemPrice == totalItemPrice));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartModel&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.countItems, countItems) || other.countItems == countItems)&&(identical(other.itemPrice, itemPrice) || other.itemPrice == itemPrice)&&(identical(other.totalItemPrice, totalItemPrice) || other.totalItemPrice == totalItemPrice)&&(identical(other.item, item) || other.item == item));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,item,countItems,itemPrice,totalItemPrice);
+int get hashCode => Object.hash(runtimeType,id,itemId,countItems,itemPrice,totalItemPrice,item);
 
 @override
 String toString() {
-  return 'CartModel(item: $item, countItems: $countItems, itemPrice: $itemPrice, totalItemPrice: $totalItemPrice)';
+  return 'CartModel(id: $id, itemId: $itemId, countItems: $countItems, itemPrice: $itemPrice, totalItemPrice: $totalItemPrice, item: $item)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CartModelCopyWith<$Res>  {
   factory $CartModelCopyWith(CartModel value, $Res Function(CartModel) _then) = _$CartModelCopyWithImpl;
 @useResult
 $Res call({
- ItemModel? item, int? countItems, double? itemPrice, double? totalItemPrice
+ int? id, int? itemId, int? countItems, double? itemPrice, double? totalItemPrice, ItemModel? item
 });
 
 
@@ -65,13 +65,15 @@ class _$CartModelCopyWithImpl<$Res>
 
 /// Create a copy of CartModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? item = freezed,Object? countItems = freezed,Object? itemPrice = freezed,Object? totalItemPrice = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? itemId = freezed,Object? countItems = freezed,Object? itemPrice = freezed,Object? totalItemPrice = freezed,Object? item = freezed,}) {
   return _then(_self.copyWith(
-item: freezed == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as ItemModel?,countItems: freezed == countItems ? _self.countItems : countItems // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,itemId: freezed == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
+as int?,countItems: freezed == countItems ? _self.countItems : countItems // ignore: cast_nullable_to_non_nullable
 as int?,itemPrice: freezed == itemPrice ? _self.itemPrice : itemPrice // ignore: cast_nullable_to_non_nullable
 as double?,totalItemPrice: freezed == totalItemPrice ? _self.totalItemPrice : totalItemPrice // ignore: cast_nullable_to_non_nullable
-as double?,
+as double?,item: freezed == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as ItemModel?,
   ));
 }
 /// Create a copy of CartModel
@@ -168,10 +170,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ItemModel? item,  int? countItems,  double? itemPrice,  double? totalItemPrice)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  int? itemId,  int? countItems,  double? itemPrice,  double? totalItemPrice,  ItemModel? item)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CartModel() when $default != null:
-return $default(_that.item,_that.countItems,_that.itemPrice,_that.totalItemPrice);case _:
+return $default(_that.id,_that.itemId,_that.countItems,_that.itemPrice,_that.totalItemPrice,_that.item);case _:
   return orElse();
 
 }
@@ -189,10 +191,10 @@ return $default(_that.item,_that.countItems,_that.itemPrice,_that.totalItemPrice
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ItemModel? item,  int? countItems,  double? itemPrice,  double? totalItemPrice)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  int? itemId,  int? countItems,  double? itemPrice,  double? totalItemPrice,  ItemModel? item)  $default,) {final _that = this;
 switch (_that) {
 case _CartModel():
-return $default(_that.item,_that.countItems,_that.itemPrice,_that.totalItemPrice);case _:
+return $default(_that.id,_that.itemId,_that.countItems,_that.itemPrice,_that.totalItemPrice,_that.item);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +211,10 @@ return $default(_that.item,_that.countItems,_that.itemPrice,_that.totalItemPrice
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ItemModel? item,  int? countItems,  double? itemPrice,  double? totalItemPrice)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  int? itemId,  int? countItems,  double? itemPrice,  double? totalItemPrice,  ItemModel? item)?  $default,) {final _that = this;
 switch (_that) {
 case _CartModel() when $default != null:
-return $default(_that.item,_that.countItems,_that.itemPrice,_that.totalItemPrice);case _:
+return $default(_that.id,_that.itemId,_that.countItems,_that.itemPrice,_that.totalItemPrice,_that.item);case _:
   return null;
 
 }
@@ -224,13 +226,15 @@ return $default(_that.item,_that.countItems,_that.itemPrice,_that.totalItemPrice
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _CartModel extends CartModel {
-  const _CartModel({this.item, this.countItems, this.itemPrice, this.totalItemPrice}): super._();
+  const _CartModel({this.id, this.itemId, this.countItems, this.itemPrice, this.totalItemPrice, this.item}): super._();
   factory _CartModel.fromJson(Map<String, dynamic> json) => _$CartModelFromJson(json);
 
-@override final  ItemModel? item;
+@override final  int? id;
+@override final  int? itemId;
 @override final  int? countItems;
 @override final  double? itemPrice;
 @override final  double? totalItemPrice;
+@override final  ItemModel? item;
 
 /// Create a copy of CartModel
 /// with the given fields replaced by the non-null parameter values.
@@ -245,16 +249,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartModel&&(identical(other.item, item) || other.item == item)&&(identical(other.countItems, countItems) || other.countItems == countItems)&&(identical(other.itemPrice, itemPrice) || other.itemPrice == itemPrice)&&(identical(other.totalItemPrice, totalItemPrice) || other.totalItemPrice == totalItemPrice));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartModel&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.countItems, countItems) || other.countItems == countItems)&&(identical(other.itemPrice, itemPrice) || other.itemPrice == itemPrice)&&(identical(other.totalItemPrice, totalItemPrice) || other.totalItemPrice == totalItemPrice)&&(identical(other.item, item) || other.item == item));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,item,countItems,itemPrice,totalItemPrice);
+int get hashCode => Object.hash(runtimeType,id,itemId,countItems,itemPrice,totalItemPrice,item);
 
 @override
 String toString() {
-  return 'CartModel(item: $item, countItems: $countItems, itemPrice: $itemPrice, totalItemPrice: $totalItemPrice)';
+  return 'CartModel(id: $id, itemId: $itemId, countItems: $countItems, itemPrice: $itemPrice, totalItemPrice: $totalItemPrice, item: $item)';
 }
 
 
@@ -265,7 +269,7 @@ abstract mixin class _$CartModelCopyWith<$Res> implements $CartModelCopyWith<$Re
   factory _$CartModelCopyWith(_CartModel value, $Res Function(_CartModel) _then) = __$CartModelCopyWithImpl;
 @override @useResult
 $Res call({
- ItemModel? item, int? countItems, double? itemPrice, double? totalItemPrice
+ int? id, int? itemId, int? countItems, double? itemPrice, double? totalItemPrice, ItemModel? item
 });
 
 
@@ -282,13 +286,15 @@ class __$CartModelCopyWithImpl<$Res>
 
 /// Create a copy of CartModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? item = freezed,Object? countItems = freezed,Object? itemPrice = freezed,Object? totalItemPrice = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? itemId = freezed,Object? countItems = freezed,Object? itemPrice = freezed,Object? totalItemPrice = freezed,Object? item = freezed,}) {
   return _then(_CartModel(
-item: freezed == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as ItemModel?,countItems: freezed == countItems ? _self.countItems : countItems // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,itemId: freezed == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
+as int?,countItems: freezed == countItems ? _self.countItems : countItems // ignore: cast_nullable_to_non_nullable
 as int?,itemPrice: freezed == itemPrice ? _self.itemPrice : itemPrice // ignore: cast_nullable_to_non_nullable
 as double?,totalItemPrice: freezed == totalItemPrice ? _self.totalItemPrice : totalItemPrice // ignore: cast_nullable_to_non_nullable
-as double?,
+as double?,item: freezed == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as ItemModel?,
   ));
 }
 
@@ -311,7 +317,7 @@ $ItemModelCopyWith<$Res>? get item {
 /// @nodoc
 mixin _$CartResponseModel {
 
-@JsonKey(name: 'data') List<CartModel> get items; double get totalPrice; int get totalQuantity;
+ List<CartModel> get items; double get totalPrice; int get totalQuantity; dynamic get status;
 /// Create a copy of CartResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -324,16 +330,16 @@ $CartResponseModelCopyWith<CartResponseModel> get copyWith => _$CartResponseMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartResponseModel&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.totalQuantity, totalQuantity) || other.totalQuantity == totalQuantity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartResponseModel&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.totalQuantity, totalQuantity) || other.totalQuantity == totalQuantity)&&const DeepCollectionEquality().equals(other.status, status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),totalPrice,totalQuantity);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),totalPrice,totalQuantity,const DeepCollectionEquality().hash(status));
 
 @override
 String toString() {
-  return 'CartResponseModel(items: $items, totalPrice: $totalPrice, totalQuantity: $totalQuantity)';
+  return 'CartResponseModel(items: $items, totalPrice: $totalPrice, totalQuantity: $totalQuantity, status: $status)';
 }
 
 
@@ -344,7 +350,7 @@ abstract mixin class $CartResponseModelCopyWith<$Res>  {
   factory $CartResponseModelCopyWith(CartResponseModel value, $Res Function(CartResponseModel) _then) = _$CartResponseModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'data') List<CartModel> items, double totalPrice, int totalQuantity
+ List<CartModel> items, double totalPrice, int totalQuantity, dynamic status
 });
 
 
@@ -361,12 +367,13 @@ class _$CartResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of CartResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? totalPrice = null,Object? totalQuantity = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? totalPrice = null,Object? totalQuantity = null,Object? status = freezed,}) {
   return _then(_self.copyWith(
 items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<CartModel>,totalPrice: null == totalPrice ? _self.totalPrice : totalPrice // ignore: cast_nullable_to_non_nullable
 as double,totalQuantity: null == totalQuantity ? _self.totalQuantity : totalQuantity // ignore: cast_nullable_to_non_nullable
-as int,
+as int,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 
@@ -451,10 +458,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'data')  List<CartModel> items,  double totalPrice,  int totalQuantity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CartModel> items,  double totalPrice,  int totalQuantity,  dynamic status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CartResponseModel() when $default != null:
-return $default(_that.items,_that.totalPrice,_that.totalQuantity);case _:
+return $default(_that.items,_that.totalPrice,_that.totalQuantity,_that.status);case _:
   return orElse();
 
 }
@@ -472,10 +479,10 @@ return $default(_that.items,_that.totalPrice,_that.totalQuantity);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'data')  List<CartModel> items,  double totalPrice,  int totalQuantity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CartModel> items,  double totalPrice,  int totalQuantity,  dynamic status)  $default,) {final _that = this;
 switch (_that) {
 case _CartResponseModel():
-return $default(_that.items,_that.totalPrice,_that.totalQuantity);case _:
+return $default(_that.items,_that.totalPrice,_that.totalQuantity,_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -492,10 +499,10 @@ return $default(_that.items,_that.totalPrice,_that.totalQuantity);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'data')  List<CartModel> items,  double totalPrice,  int totalQuantity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CartModel> items,  double totalPrice,  int totalQuantity,  dynamic status)?  $default,) {final _that = this;
 switch (_that) {
 case _CartResponseModel() when $default != null:
-return $default(_that.items,_that.totalPrice,_that.totalQuantity);case _:
+return $default(_that.items,_that.totalPrice,_that.totalQuantity,_that.status);case _:
   return null;
 
 }
@@ -507,11 +514,11 @@ return $default(_that.items,_that.totalPrice,_that.totalQuantity);case _:
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _CartResponseModel extends CartResponseModel {
-  const _CartResponseModel({@JsonKey(name: 'data') required final  List<CartModel> items, required this.totalPrice, required this.totalQuantity}): _items = items,super._();
+  const _CartResponseModel({required final  List<CartModel> items, required this.totalPrice, required this.totalQuantity, this.status}): _items = items,super._();
   factory _CartResponseModel.fromJson(Map<String, dynamic> json) => _$CartResponseModelFromJson(json);
 
  final  List<CartModel> _items;
-@override@JsonKey(name: 'data') List<CartModel> get items {
+@override List<CartModel> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
@@ -519,6 +526,7 @@ class _CartResponseModel extends CartResponseModel {
 
 @override final  double totalPrice;
 @override final  int totalQuantity;
+@override final  dynamic status;
 
 /// Create a copy of CartResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -533,16 +541,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartResponseModel&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.totalQuantity, totalQuantity) || other.totalQuantity == totalQuantity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartResponseModel&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.totalQuantity, totalQuantity) || other.totalQuantity == totalQuantity)&&const DeepCollectionEquality().equals(other.status, status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),totalPrice,totalQuantity);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),totalPrice,totalQuantity,const DeepCollectionEquality().hash(status));
 
 @override
 String toString() {
-  return 'CartResponseModel(items: $items, totalPrice: $totalPrice, totalQuantity: $totalQuantity)';
+  return 'CartResponseModel(items: $items, totalPrice: $totalPrice, totalQuantity: $totalQuantity, status: $status)';
 }
 
 
@@ -553,7 +561,7 @@ abstract mixin class _$CartResponseModelCopyWith<$Res> implements $CartResponseM
   factory _$CartResponseModelCopyWith(_CartResponseModel value, $Res Function(_CartResponseModel) _then) = __$CartResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'data') List<CartModel> items, double totalPrice, int totalQuantity
+ List<CartModel> items, double totalPrice, int totalQuantity, dynamic status
 });
 
 
@@ -570,12 +578,13 @@ class __$CartResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of CartResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? totalPrice = null,Object? totalQuantity = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? totalPrice = null,Object? totalQuantity = null,Object? status = freezed,}) {
   return _then(_CartResponseModel(
 items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<CartModel>,totalPrice: null == totalPrice ? _self.totalPrice : totalPrice // ignore: cast_nullable_to_non_nullable
 as double,totalQuantity: null == totalQuantity ? _self.totalQuantity : totalQuantity // ignore: cast_nullable_to_non_nullable
-as int,
+as int,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 

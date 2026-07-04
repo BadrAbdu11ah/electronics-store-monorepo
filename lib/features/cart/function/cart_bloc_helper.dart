@@ -1,13 +1,13 @@
 import 'package:electronics_store/data/model/cart/cart_model.dart';
 
-double calculatDiscountAmount({
+double calculateDiscountAmount({
   required double subtotal,
   required int discountPercentage,
 }) {
   return subtotal * (discountPercentage / 100);
 }
 
-double calculatFinalTotal({
+double calculateFinalTotal({
   required double subtotal,
   required double discountAmount,
   required double shippingPrice,

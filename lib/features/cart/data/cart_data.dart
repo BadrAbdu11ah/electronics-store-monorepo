@@ -53,12 +53,10 @@ class CartData {
 
   /*
    * 4. حذف منتج من السلة أو إنقاص كميته
-   * POST /api/cart/remove
+   * POST /api/cart/remove/{itemId}
    */
   Future<Either<Failure, String>> removeCart(int itemId) async {
-    final response = await api.post(ApiEndpoints.cartRemove, {
-      "item_id": itemId,
-    });
+    final response = await api.delete(ApiEndpoints.cartRemove(itemId));
 
     return response.fold(
       (failure) => Left(failure),
@@ -68,12 +66,10 @@ class CartData {
 
   /*
    * 4. حذف منتج من السلة أو إنقاص كميته
-   * POST /api/cart/remove
+   * POST /api/cart/delete/{itemId}
    */
   Future<Either<Failure, String>> deleteCart(int itemId) async {
-    final response = await api.post(ApiEndpoints.cartDelete, {
-      "item_id": itemId,
-    });
+    final response = await api.delete(ApiEndpoints.cartDelete(itemId));
 
     return response.fold(
       (failure) => Left(failure),

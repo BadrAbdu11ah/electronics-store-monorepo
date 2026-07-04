@@ -34,37 +34,47 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     var response = await cartData.viewCart();
 
     response.fold(
-      (failure) => emit(
-        state.copyWith(status: CartStatus.serverFailure(failure.message)),
-      ),
+      (failure) {
+        emit(state.copyWith(status: CartStatus.serverFailure(failure.message)));
+      },
       (cartResponse) {
         if (cartResponse.items.isEmpty) {
-          emit(state.copyWith(status: CartStatus.noData("السلة فارغة حالياً")));
-          return;
+          return emit(
+            state.copyWith(
+              status: const CartStatus.noData("السلة فارغة حالياً"),
+              cartItems: [],
+              subtotalPrice: 0.0,
+              totalAppPrice: 0.0,
+              totalQuantity: 0,
+              discountPercentage: 0,
+            ),
+          );
         }
+
         // حساب الإجمالي الخام قبل الخصم والشحن
         final double subtotal = cartResponse.totalPrice;
 
         // حساب قيمة خصم الكوبون بناءً على النسبة المخزنة في الـ State
-        final double discountAmount = calculatDiscountAmount(
+        final double discountAmount = calculateDiscountAmount(
           subtotal: subtotal,
           discountPercentage: state.discountPercentage,
         );
 
         // حساب السعر النهائي الموحد (الإجمالي - الخصم + الشحن الثابت)
-        final double finalTotal = calculatFinalTotal(
+        final double finalTotal = calculateFinalTotal(
           subtotal: subtotal,
           discountAmount: discountAmount,
           shippingPrice: state.shippingPrice,
         );
+
+        final double securedTotal = finalTotal < 0 ? 0.0 : finalTotal;
 
         emit(
           state.copyWith(
             status: const CartStatus.loaded(),
             cartItems: cartResponse.items,
             subtotalPrice: subtotal,
-            // تأمين الحسابات بحيث لا يقل السعر النهائي عن الصفر مطلقاً
-            totalAppPrice: finalTotal < 0 ? 0.0 : finalTotal,
+            totalAppPrice: securedTotal,
             totalQuantity: cartResponse.totalQuantity,
           ),
         );
@@ -101,13 +111,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
 
     // حساب قيمة الخصم بناءً على الكوبون النشط حالياً في الـ State
-    double discountAmount = calculatDiscountAmount(
+    double discountAmount = calculateDiscountAmount(
       subtotal: newSubtotal,
       discountPercentage: state.discountPercentage,
     );
 
     // حساب الفاتورة النهائية بالريال (الإجمالي - الخصم + الشحن الثابت)
-    double newFinalTotal = calculatFinalTotal(
+    double newFinalTotal = calculateFinalTotal(
       subtotal: newSubtotal,
       discountAmount: discountAmount,
       shippingPrice: state.shippingPrice,
@@ -167,12 +177,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       (sum, item) => sum + (item.totalItemPrice ?? 0.0),
     );
 
-    double discountAmount = calculatDiscountAmount(
+    double discountAmount = calculateDiscountAmount(
       subtotal: newSubtotal,
       discountPercentage: state.discountPercentage,
     );
 
-    double newFinalTotal = calculatFinalTotal(
+    double newFinalTotal = calculateFinalTotal(
       subtotal: newSubtotal,
       discountAmount: discountAmount,
       shippingPrice: state.shippingPrice,
@@ -246,12 +256,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
         final int discount = couponModel.discount ?? 0;
 
-        final double discountAmount = calculatDiscountAmount(
+        final double discountAmount = calculateDiscountAmount(
           subtotal: state.subtotalPrice,
           discountPercentage: discount,
         );
 
-        final double finalTotal = calculatFinalTotal(
+        final double finalTotal = calculateFinalTotal(
           subtotal: state.subtotalPrice,
           discountAmount: discountAmount,
           shippingPrice: state.shippingPrice,

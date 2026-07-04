@@ -27,15 +27,15 @@ class ApiEndpoints {
   // -----------------------------------------------------------
   static const String favoriteView = "/favorite/view";
   static const String favoriteAdd = "/favorite/add";
-  static const String favoriteRemove = "/favorite/remove";
+  static String favoriteRemove(int id) => "/favorite/remove/$id";
 
   // -----------------------------------------------------------
   // 4. السلة (Cart)
   // -----------------------------------------------------------
   static const String cartView = "/cart/view";
   static const String cartAdd = "/cart/add";
-  static const String cartRemove = "/cart/remove";
-  static const String cartDelete = "/cart/delete";
+  static String cartRemove(int id) => "/cart/remove/$id";
+  static String cartDelete(int id) => "/cart/delete/$id";
   static String cartCount(int id) => "/cart/count/$id";
 
   // -----------------------------------------------------------

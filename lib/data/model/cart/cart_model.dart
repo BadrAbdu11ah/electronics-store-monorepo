@@ -10,10 +10,12 @@ abstract class CartModel with _$CartModel {
 
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory CartModel({
-    ItemModel? item,
+    int? id,
+    int? itemId,
     int? countItems,
     double? itemPrice,
     double? totalItemPrice,
+    ItemModel? item,
   }) = _CartModel;
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>
@@ -26,9 +28,10 @@ abstract class CartResponseModel with _$CartResponseModel {
 
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory CartResponseModel({
-    @JsonKey(name: 'data') required List<CartModel> items,
+    required List<CartModel> items,
     required double totalPrice,
     required int totalQuantity,
+    status,
   }) = _CartResponseModel;
 
   factory CartResponseModel.fromJson(Map<String, dynamic> json) =>
