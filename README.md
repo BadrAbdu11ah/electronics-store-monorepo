@@ -1,13 +1,61 @@
 # 🛒 Electronics Store Monorepo
 
-مستودع واحد (Monorepo) يجمع تطبيق متجر إلكتروني متكامل لبيع الأجهزة الإلكترونية، ويتكوّن من جزأين رئيسيين:
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)
+![Laravel](https://img.shields.io/badge/Laravel-12-red)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-lightgrey)
 
-- **Backend**: واجهة برمجية (API) مبنية بـ **Laravel 12** (PHP)
-- **Frontend**: تطبيق موبايل مبني بـ **Flutter** (Dart)
+**A production-oriented full-stack e-commerce application built with Flutter and Laravel.** The project demonstrates a modern mobile architecture using **BLoC**, **Freezed**, RESTful APIs, **Laravel Sanctum**, **Firebase Cloud Messaging**, **Google Maps** integration, and a scalable feature-based structure — organized as a single Monorepo containing both the mobile app and its backend API.
+
+📹 [Demo Video](https://youtube.com/shorts/fwH_YK5l2TU?si=tp8RQ-wFWWDCjjTd)
 
 ---
 
-## 📁 هيكل المشروع
+## Table of Contents
+
+- [Highlights](#-highlights)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Architecture](#️-architecture)
+- [Backend (Laravel API)](#️-backend-laravel-api)
+- [Frontend (Flutter App)](#-frontend-flutter-app)
+- [Testing](#-testing)
+- [Screenshots](#-screenshots)
+- [Demo](#-demo)
+- [Installation](#-installation)
+- [Environment Variables](#-environment-variables)
+- [Project Goals](#-project-goals)
+- [Future Improvements](#-future-improvements)
+- [License](#-license)
+- [Author](#-author)
+
+---
+
+## ✨ Highlights
+
+- Full-stack: Flutter + Laravel
+- Feature-based architecture
+- BLoC state management
+- Freezed immutable models & sealed states/events
+- RESTful API
+- Laravel Sanctum (token-based auth)
+- Firebase Cloud Messaging
+- Google Maps & Geolocation
+- Google Sign-In
+- Unit & Bloc tests
+- Monorepo structure
+
+---
+
+## 🧰 Tech Stack
+
+| Frontend | Backend | Database | Services |
+|-----------|----------|----------|----------|
+| Flutter | Laravel 12 | MySQL | Firebase |
+
+---
+
+## 📁 Project Structure
 
 ```
 electronics-store-monorepo/
@@ -17,141 +65,246 @@ electronics-store-monorepo/
 
 ---
 
+## 🏛️ Architecture
+
+```
+                Firebase
+                    │
+      Push Notifications (FCM)
+                    ▼
+Flutter App ── REST API ──▶ Laravel API ──▶ MySQL
+```
+
+### Frontend Layers
+
+```
+Presentation
+      │
+Application (BLoC)
+      │
+  Repository
+   ┌──┴──────┐
+   │         │
+Remote      Local
+Data        Data
+Source      Source
+   │
+REST API
+   │
+Laravel API
+```
+
+---
+
 ## ⚙️ Backend (Laravel API)
 
-مبني باستخدام **Laravel 12** و**PHP 8.2+**، ويوفر واجهة REST API متكاملة للتطبيق مع مصادقة عبر **Laravel Sanctum** (Token-based Auth).
+Built with **Laravel 12** and **PHP 8.2+**, providing a complete REST API for the mobile app, secured with **Laravel Sanctum** (token-based auth).
 
-### الموديلات (Models) الأساسية
-- `User` — المستخدمون
-- `Items` — المنتجات
-- `Categories` — تصنيفات المنتجات
-- `Cart` — سلة المشتريات
-- `Favorite` — المفضلة
-- `Address` — عناوين الشحن
-- `Coupon` — كوبونات الخصم
-- `Order` — الطلبات
+### Core Models
+- `User`
+- `Items`
+- `Categories`
+- `Cart`
+- `Favorite`
+- `Address`
+- `Coupon`
+- `Order`
 
-### أبرز نقاط الـ API (Endpoints)
-| المجموعة | الوظيفة |
+### Main API Endpoints
+| Group | Description |
 |---|---|
-| **Auth** | تسجيل دخول / إنشاء حساب / استعادة كلمة المرور (عبر التحقق بالإيميل والكود) |
-| **Home** | الصفحة الرئيسية للمتجر |
-| **Items** | عرض المنتجات والبحث فيها |
-| **Favorite** | إضافة/حذف/عرض المفضلة |
-| **Cart** | إدارة سلة المشتريات (إضافة، حذف، عرض، عدد العناصر) |
-| **Address** | إدارة عناوين الشحن (CRUD) |
-| **Coupon** | التحقق من صلاحية كوبونات الخصم |
-| **Order** | إتمام الطلب (Checkout)، عرض الطلبات المعلّقة، وتفاصيل كل طلب |
+| **Auth** | Login / Signup / Password recovery (email + code verification) |
+| **Home** | Store home page data |
+| **Items** | Browse and search products |
+| **Favorite** | Add / remove / view favorites |
+| **Cart** | Manage cart (add, remove, view, item count) |
+| **Address** | Manage shipping addresses (CRUD) |
+| **Coupon** | Validate discount coupons |
+| **Order** | Checkout, pending orders, and order details |
 
-جميع المسارات المحمية تتطلب توكن مصادقة عبر `auth:sanctum`.
+All protected routes require a Sanctum auth token (`auth:sanctum`).
 
-### التقنيات المستخدمة
+### Backend Tech
 - Laravel 12 + Sanctum
-- Vite لإدارة الأصول الأمامية للوحة التحكم (إن وجدت)
-- PHPUnit للاختبارات
+- Vite
+- PHPUnit
 
 ---
 
 ## 📱 Frontend (Flutter App)
 
-تطبيق موبايل (Android / iOS) مبني بـ **Flutter**، بمعمارية مقسّمة حسب الميزات (Feature-based architecture).
+A mobile app (Android / iOS) built with **Flutter**, using a **feature-based architecture**.
 
-### 🏗️ إدارة الحالة: BLoC + Freezed
+The app uses **flutter_bloc** for state management and **Freezed** for immutable models and sealed states/events, following a feature-based architecture.
 
-يعتمد التطبيق بشكل أساسي على معمارية **BLoC** (`flutter_bloc`) لإدارة الحالة في كل ميزة تقريباً، بحيث تحتوي كل ميزة على مجلد `bloc/` يضم:
-- `*_bloc.dart` — منطق الـ Bloc
-- `*_event.dart` — الأحداث (Events)
-- `*_state.dart` — الحالات (States)
+### Features
+- `on_boarding`
+- `choose_language` (multi-language support)
+- `auth` (login, signup, password recovery, Google Sign-In)
+- `home`
+- `items` (product listing & details)
+- `search`
+- `favorite`
+- `cart`
+- `address` (Google Maps + location picking)
+- `checkout`
+- `orders` (order history and tracking)
 
-ويتم توليد الـ **Events** والـ **States** باستخدام **Freezed** (`freezed` + `freezed_annotation`) لضمان:
-- كلاسات غير قابلة للتغيير (Immutable) بشكل تلقائي
-- دعم `copyWith` و`==`/`hashCode` جاهز بدون كتابة يدوية
-- أنماط union/sealed classes لتمثيل حالات متعددة بشكل آمن (type-safe)
+### Key Packages
 
-كما يستخدم المشروع `json_serializable` مع `build_runner` لتوليد كود التسلسل (Serialization) للموديلات، و`bloc_test` لاختبار الـ Blocs.
+Main packages used throughout the project:
 
-أمثلة على الميزات المطبَّقة بهذا النمط: `auth` (تسجيل الدخول، التسجيل، استعادة كلمة المرور بكل خطواتها)، `items_feature`، `on_boarding`، وغيرها — كل واحدة منها لها Bloc + Event + State مولّدة عبر Freezed.
+**State Management**
+- `flutter_bloc`
+- `freezed`
 
-لتوليد ملفات Freezed بعد أي تعديل على الموديلات:
-```bash
-flutter pub run build_runner build --delete-conflicting-outputs
-```
+**Networking**
+- `http`
 
-### الميزات (Features)
-- `on_boarding` — شاشات التعريف بالتطبيق
-- `choose_language` — اختيار اللغة (دعم تعدد اللغات)
-- `auth` — تسجيل الدخول وإنشاء الحساب (بما في ذلك تسجيل الدخول عبر Google)
-- `home` — الصفحة الرئيسية
-- `items_feature` — عرض تفاصيل المنتجات
-- `search` — البحث عن المنتجات
-- `favorite` — المفضلة
-- `cart` — سلة المشتريات
-- `address` — إدارة عناوين الشحن (مع دعم خرائط Google وتحديد الموقع)
-- `check_out` — إتمام عملية الشراء
-- `orders` — عرض الطلبات وتتبعها
+**Maps & Location**
+- `google_maps_flutter`
+- `geolocator`
+- `geocoding`
+- `flutter_polyline_points`
 
-### أهم المكتبات المستخدمة
-- **إدارة الحالة**: `flutter_bloc` + `freezed` (راجع القسم أعلاه)
-- **الخرائط والموقع**: `google_maps_flutter`, `geolocator`, `geocoding`, `flutter_polyline_points`
-- **الإشعارات و Firebase**: `firebase_messaging`, `firebase_core`, `cloud_firestore`, `flutter_local_notifications`
-- **التخزين المحلي**: `sqflite`, `shared_preferences`, `flutter_secure_storage`
-- **الصور**: `cached_network_image`, `image_picker`
-- **QR / Barcode**: `qr_flutter`, `mobile_scanner`
-- **تسجيل الدخول عبر Google**: `google_sign_in`
-- دعم تصميم متجاوب (`responsive_builder`) ومعاينة الأجهزة (`device_preview`)
+**Firebase**
+- `firebase_core`
+- `firebase_messaging`
+- `cloud_firestore`
+- `flutter_local_notifications`
+
+**Local Storage**
+- `sqflite`
+- `shared_preferences`
+- `flutter_secure_storage`
+
+**Images**
+- `cached_network_image`
+- `image_picker`
+
+**QR / Barcode**
+- `qr_flutter`
+- `mobile_scanner`
+
+**Auth**
+- `google_sign_in`
+
+**UI Utilities**
+- `responsive_builder`
+- `device_preview`
 
 ---
 
-## 🖼️ لقطات من التطبيق
+## 🧪 Testing
 
-يحتوي المشروع فعلياً على لقطات شاشة حقيقية داخل `frontend/assets/screenshots/`، إليك بعض شاشات التطبيق:
+| Layer | Tool |
+|---|---|
+| Backend | PHPUnit |
+| Bloc / State | `bloc_test` |
+| Mocking | Mocktail |
 
-| تسجيل الدخول | الصفحة الرئيسية | تفاصيل المنتج |
+---
+
+## 🖼️ Screenshots
+
+Real screenshots from the app, available in `frontend/assets/screenshots/`:
+
+| Login | Home | Product Details |
 |---|---|---|
 | ![Login](frontend/assets/screenshots/login.jpg) | ![Home](frontend/assets/screenshots/home.jpg) | ![Product Details](frontend/assets/screenshots/product_details.jpg) |
 
-| البحث | المفضلة | السلة |
+| Search | Favorites | Cart |
 |---|---|---|
 | ![Search](frontend/assets/screenshots/search.jpg) | ![Favorites](frontend/assets/screenshots/favorites.jpg) | ![Cart](frontend/assets/screenshots/cart.jpg) |
 
-| إتمام الشراء | الطلبات | تفاصيل الطلب |
+| Checkout | Orders | Order Details |
 |---|---|---|
 | ![Checkout](frontend/assets/screenshots/checkout.jpg) | ![Orders](frontend/assets/screenshots/orders.jpg) | ![Order Details](frontend/assets/screenshots/order_details.jpg) |
 
-> جميع الصور موجودة في مسار `frontend/assets/screenshots/` داخل المستودع.
+---
 
-## 🎥 فيديو توضيحي
+## 🎥 Demo
 
-
->   [![شاهد الفيديو](https://img.youtube.com/vi/fwH_YK5l2TU/hqdefault.jpg)](https://youtube.com/shorts/fwH_YK5l2TU?si=SSKMFRtKmyKs-clq)
+[![Watch Demo](https://img.youtube.com/vi/fwH_YK5l2TU/hqdefault.jpg)](https://youtube.com/shorts/fwH_YK5l2TU?si=tp8RQ-wFWWDCjjTd)
 
 ---
 
-## 🚀 التشغيل محلياً
+## 🚀 Installation
 
-### الباك اند (Laravel)
+### Backend (Laravel)
 ```bash
 cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
+php artisan storage:link
 php artisan serve
 ```
 
-### الفرونت اند (Flutter)
+### Frontend (Flutter)
 ```bash
 cd frontend
 flutter pub get
 flutter run
 ```
 
-> ملاحظة: يجب ضبط رابط الـ API الخاص بالباك اند داخل إعدادات الفرونت اند، وربط مشروع Firebase الخاص بك للإشعارات إن رغبت باستخدامها.
+> Note: Point the app's API base URL to your backend, and connect your own Firebase project if you want push notifications to work.
 
 ---
 
-## 🧩 ملخص عام
+## 🔑 Environment Variables
 
-المشروع عبارة عن **متجر إلكتروني كامل (E-commerce)** لبيع الأجهزة الإلكترونية، يشمل: تصفح المنتجات والتصنيفات، البحث، المفضلة، سلة المشتريات، الكوبونات، عناوين الشحن مع الخرائط، إتمام الطلبات ومتابعتها، مع نظام مصادقة كامل (تسجيل دخول، تسجيل حساب جديد، استعادة كلمة مرور، وتسجيل دخول عبر Google) وإشعارات فورية عبر Firebase.
+**Backend**
+- `APP_KEY`
+- `DB_DATABASE`
+- `DB_USERNAME`
+- `DB_PASSWORD`
+- `MAIL_*`
 
-من الناحية التقنية، يتميز التطبيق (الفرونت اند) باعتماده الكامل على **BLoC** مع **Freezed** لإدارة الحالة بشكل نظيف، غير قابل للتغيير (Immutable)، وآمن من ناحية الأنواع (Type-safe) في كل ميزة تقريباً.
+**Frontend**
+- API base URL
+- Google Maps API key
+- Firebase configuration (`google-services.json` / `GoogleService-Info.plist`)
+
+---
+
+## 🎯 Project Goals
+
+This project was built to simulate a production-ready e-commerce application while applying modern software architecture and clean development practices.
+
+Main goals:
+- Build a scalable Flutter application
+- Design a secure RESTful API
+- Apply feature-based architecture
+- Separate business logic from presentation
+- Practice full-stack mobile development
+
+---
+
+## 🔮 Future Improvements
+
+- Online payment integration
+- Admin dashboard
+- CI/CD pipeline
+- Docker support
+- Product reviews
+- Dark mode
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👤 Author
+
+**Badr Abdullah Haje**
+Flutter Software Engineer
+
+- GitHub: [@BadrAbdu11ah](https://github.com/BadrAbdu11ah)
+- Portfolio: [@my portfolio](https://tiny-sound-7e91.badrhaje2.workers.dev/)
+- LinkedIn: [@badrhaje](https://www.linkedin.com/in/badr-haje-21073a39b)
+- Email: [EMAIL_ADDRESS](Badrhaje2@gmail.com)
