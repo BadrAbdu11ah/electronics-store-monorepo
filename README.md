@@ -123,7 +123,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 ## 🎥 فيديو توضيحي
 
 
-> [![شاهد الفيديو](frontend/assets/screenshots/home.jpg)](https://youtube.com/shorts/fwH_YK5l2TU?si=SSKMFRtKmyKs-clq)
+>   [![شاهد الفيديو](https://img.youtube.com/vi/fwH_YK5l2TU/hqdefault.jpg)](https://youtube.com/shorts/fwH_YK5l2TU?si=SSKMFRtKmyKs-clq)
 
 ---
 
