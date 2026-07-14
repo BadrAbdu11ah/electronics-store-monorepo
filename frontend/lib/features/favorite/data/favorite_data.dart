@@ -40,9 +40,9 @@ class FavoriteData {
   // 3. حذف منتج (إعادة حالة فقط)
   Future<Either<Failure, String>> removeFavorite(int itemId) async {
     var response = await api.delete(ApiEndpoints.favoriteRemove(itemId));
-    return response.fold((failure) => Left(failure), (data) {
-      if (data['status'] == "success") return Right(data['message']);
-      return Left(ServerFailure(data['message']));
-    });
+    return response.fold(
+      (failure) => Left(failure),
+      (data) => Right(data['message']),
+    );
   }
 }

@@ -15,7 +15,7 @@ class AddressData {
 
     return response.fold((failure) => Left(failure), (data) {
       final List raw = data['data'] ?? [];
-
+      if (raw.isEmpty) return Left(EmptyDataFailure(data['message']));
       final addresses = raw
           .map(
             (address) => AddressModel.fromJson(address as Map<String, dynamic>),
@@ -27,8 +27,13 @@ class AddressData {
   }
 
   // 2. إضافة عنوان جديد
-  Future<Either<Failure, Map>> addAddress(Map<String, dynamic> data) async {
-    return await api.post(ApiEndpoints.addressAdd, data);
+  Future<Either<Failure, String>> addAddress(Map<String, dynamic> data) async {
+    var response = await api.post(ApiEndpoints.addressAdd, data);
+
+    return response.fold(
+      (failure) => Left(failure),
+      (data) => Right(data["message"]),
+    );
   }
 
   // 3. تعديل عنوان موجود
@@ -40,7 +45,11 @@ class AddressData {
   }
 
   // 4. حذف عنوان
-  Future<Either<Failure, Map>> removeAddress(int addressId) async {
-    return await api.delete(ApiEndpoints.addressRemove(addressId));
+  Future<Either<Failure, String>> removeAddress(int addressId) async {
+    var response = await api.delete(ApiEndpoints.addressRemove(addressId));
+    return response.fold(
+      (failure) => Left(failure),
+      (data) => Right(data['message']),
+    );
   }
 }

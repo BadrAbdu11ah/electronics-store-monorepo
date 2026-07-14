@@ -6,5 +6,6 @@ class ForgetPasswordState with _$ForgetPasswordState {
   const factory ForgetPasswordState.loading() = _Loading;
   const factory ForgetPasswordState.success() = _Success;
   const factory ForgetPasswordState.failure(String errorKey) = _Failure;
-  const factory ForgetPasswordState.serverFailure(String errorMessage) = _ServerFailure;
+  const factory ForgetPasswordState.serverFailure(String errorMessage) =
+      _ServerFailure;
 }

@@ -5,6 +5,7 @@ class HomePageStatus with _$HomePageStatus {
   const factory HomePageStatus.initial() = _Initial;
   const factory HomePageStatus.loading() = _Loading;
   const factory HomePageStatus.loaded() = _Loaded;
+  const factory HomePageStatus.noData(String message) = _NoData;
   const factory HomePageStatus.loggedOut() = _LoggedOut;
   const factory HomePageStatus.serverFailure(String message) = _ServerFailure;
 }

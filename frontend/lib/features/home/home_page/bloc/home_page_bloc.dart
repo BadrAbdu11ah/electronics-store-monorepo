@@ -1,3 +1,4 @@
+import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/category/category_model.dart';
 import 'package:electronics_store/data/model/item/item_model.dart';
@@ -32,6 +33,11 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
     response.fold(
       (failure) {
+        if (failure is EmptyDataFailure) {
+          return emit(
+            state.copyWith(status: HomePageStatus.noData(failure.message)),
+          );
+        }
         emit(
           state.copyWith(status: HomePageStatus.serverFailure(failure.message)),
         );

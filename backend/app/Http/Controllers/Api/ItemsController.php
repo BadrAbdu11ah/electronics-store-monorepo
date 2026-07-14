@@ -18,6 +18,14 @@ class ItemsController extends Controller
             ->where("items_categories", $id)
             ->get();
 
+            // 3. التحقق من وجود بيانات
+        if ($items->isEmpty()) {
+            return response()->json([
+                "status" => "failure", 
+                "message" => "لا توجد بيانات حالياً"
+            ], 404);
+        }
+
         return response()->json([
             "status" => "success",
             "data"   => $items

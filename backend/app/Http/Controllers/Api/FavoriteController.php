@@ -14,6 +14,14 @@ class FavoriteController extends Controller
         $favorites = Favorite::with('item')
             ->where("favorites_usersID", $user->users_id)
             ->get();
+        
+        if($favorites->isEmpty()){
+            return response()->json([
+                "status" => "success",
+                "data" => [],
+                'message' => 'لا توجد بيانات في المفضلة'
+            ]);
+        }
 
         return response()->json(["status" => "success", "data" => $favorites]);
     }

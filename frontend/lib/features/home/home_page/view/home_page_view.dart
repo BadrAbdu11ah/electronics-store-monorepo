@@ -29,6 +29,7 @@ class HomePageView extends StatelessWidget {
         initial: () => true,
         loading: () => true,
         loaded: () => true,
+        noData: (_) => true,
         serverFailure: (_) => true,
         orElse: () => false,
       ),
@@ -39,6 +40,7 @@ class HomePageView extends StatelessWidget {
             onRetry: () =>
                 context.read<HomePageBloc>().add(const HomePageEvent.started()),
           ),
+          noData: (message) => AppEmptyWidget(text: message),
           orElse: () => HomeView(state: state),
         );
       },

@@ -22,6 +22,17 @@ class CartController extends Controller
                     ->where("carts_usersID", $user->users_id)
                     ->where("carts_ordersID", 0)
                     ->get();
+                    
+        // // إذا كانت السلة فارغة
+        if($cartAll->isEmpty()){
+            return response()->json([
+                "status"     => "success",
+                "data"       => [],
+                "totalprice" => 0,
+                "countall"   => 0,
+                'message'    => 'لا توجد منتجات في السلة'
+            ]);
+        }
 
         // // معالجة البيانات لحساب الكميات والأسعار باستخدام Collections
         $itemsData = $cartAll->groupBy('carts_itemsID')->map(function ($group) {

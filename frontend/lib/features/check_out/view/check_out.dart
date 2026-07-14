@@ -1,129 +1,95 @@
-import 'package:electronics_store/features/check_out/controller/check_out_controller.dart';
-import 'package:electronics_store/core/class/handling_data_view.dart';
-import 'package:electronics_store/core/constant/app_color.dart';
-import 'package:electronics_store/core/constant/app_image_asset.dart';
+import 'package:electronics_store/app_translations.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
+import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/data/static/app_text.dart';
-import 'package:electronics_store/features/check_out/widgets/bottom_checkout.dart';
-import 'package:electronics_store/features/check_out/widgets/card_address_checkout.dart';
-import 'package:electronics_store/features/check_out/widgets/card_delivery_type.dart';
-import 'package:electronics_store/features/check_out/widgets/card_pyment_method.dart';
+import 'package:electronics_store/features/check_out/bloc/check_out_bloc.dart';
+import 'package:electronics_store/features/check_out/components/bottom_checkout.dart';
+import 'package:electronics_store/features/check_out/widgets/check_out_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CheckOut extends GetView<CheckOutControllerImp> {
-  const CheckOut({super.key});
+class CheckOut extends StatelessWidget {
+  final String couponsID;
+  final String priceOrders;
+  const CheckOut({
+    super.key,
+    required this.couponsID,
+    required this.priceOrders,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppText.checkoutButton.tr)),
+      appBar: AppBar(
+        title: Text(AppTranslations.translate(context, AppText.checkoutButton)),
+      ),
       bottomNavigationBar: BottomCheckout(
-        textButton: AppText.checkoutButton.tr,
+        textButton: AppTranslations.translate(context, AppText.checkoutButton),
         onCheckout: () {
-          controller.checkout();
+          context.read<CheckOutBloc>().add(
+            CheckOutEvent.checkout(
+              priceOrders: priceOrders,
+              couponsID: couponsID,
+            ),
+          );
         },
       ),
 
-      body: GetBuilder<CheckOutControllerImp>(
-        builder: (controller) {
-          return HandlingDataView(
-            state: controller.stateRequest,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: ListView(
-                children: [
-                  Text(
-                    AppText.choosePaymentMethod.tr,
-                    style: TextStyle(
-                      color: AppColor.themeBlackColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  CardPymentMethod(
-                    onCard: () {
-                      controller.choosePymentMethod("0"); // 0 => cash
-                    },
-                    title: AppText.cash.tr,
-                    active: controller.paymentMethod == "0" ? true : false,
-                  ),
-                  SizedBox(height: 10),
-                  CardPymentMethod(
-                    onCard: () {
-                      controller.choosePymentMethod("1"); // 1 => payment card
-                    },
-                    title: AppText.paymentCards.tr,
-                    active: controller.paymentMethod == "1" ? true : false,
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    AppText.chooseDeliveryType.tr,
-                    style: TextStyle(
-                      color: AppColor.themeBlackColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      CardDeliveryType(
-                        onCard: () {
-                          controller.chooseDeliveryType("0"); // 0 => Delivery
-                        },
-                        imageName: MyImageAsset.man,
-                        title: AppText.delivery.tr,
-                        active: controller.deliveryType == "0" ? true : false,
-                      ),
-                      SizedBox(width: 10),
-                      CardDeliveryType(
-                        onCard: () {
-                          controller.chooseDeliveryType("1"); // Drive Thru
-                        },
-                        imageName: MyImageAsset.man,
-                        title: AppText.driveThru.tr,
-                        active: controller.deliveryType == "1" ? true : false,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  if (controller.deliveryType == "0")
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppText.shippingAddress.tr,
-                          style: TextStyle(
-                            color: AppColor.themeBlackColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        ...List.generate(controller.addressModel.length, (i) {
-                          return CardAddressCheckout(
-                            onCard: () {
-                              controller.chooseShippingAddress(
-                                controller.addressModel[i].addressesId
-                                    .toString(),
-                              );
-                            },
-                            title:
-                                "${controller.addressModel[i].addressesName}",
-                            body:
-                                "${controller.addressModel[i].addressesCity}, ${controller.addressModel[i].addressesStreet}",
-                            active:
-                                controller.addressID ==
-                                controller.addressModel[i].addressesId
-                                    .toString(),
-                          );
-                        }),
-                      ],
-                    ),
-                ],
+      body: BlocConsumer<CheckOutBloc, CheckOutState>(
+        listenWhen: (previous, current) {
+          return current.status.maybeWhen(
+            failure: (_) => true,
+            couponeFailure: (_) => true,
+            success: (_) => true,
+            orElse: () => false,
+          );
+        },
+        listener: (context, state) {
+          state.status.whenOrNull(
+            failure: (message) => {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message), backgroundColor: Colors.red),
               ),
+              context.read<CheckOutBloc>().add(
+                const CheckOutEvent.resetStatusToLoaded(),
+              ),
+            },
+            couponeFailure: (message) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message), backgroundColor: Colors.red),
+              );
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoute.cart,
+                (route) => false,
+              );
+            },
+            success: (message) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message), backgroundColor: Colors.green),
+              );
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoute.homeScreen,
+                (route) => false,
+              );
+            },
+          );
+        },
+        buildWhen: (previous, current) => current.status.maybeWhen(
+          loading: () => true,
+          serverFailure: (_) => true,
+          orElse: () => false,
+        ),
+        builder: (context, state) {
+          return state.status.maybeWhen(
+            loading: () => AppLoadingWidget(),
+            serverFailure: (message) => AppErrorWidget(
+              message: message,
+              onRetry: () =>
+                  context.read<CheckOutBloc>().add(CheckOutEvent.started()),
             ),
+            orElse: () => CheckOutView(state: state),
           );
         },
       ),

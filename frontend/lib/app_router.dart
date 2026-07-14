@@ -1,7 +1,15 @@
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/id/injection.dart';
 import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/data/model/address/address_model.dart';
 import 'package:electronics_store/data/model/item/item_model.dart';
+import 'package:electronics_store/features/address/feature/add/bloc/address_add_bloc.dart';
+import 'package:electronics_store/features/address/feature/add/page/adderss_add.dart';
+import 'package:electronics_store/features/address/feature/add_details/bloc/address_add_details_bloc.dart';
+import 'package:electronics_store/features/address/feature/add_details/page/add_details.dart';
+import 'package:electronics_store/features/address/feature/edit/bloc/address_edit_bloc.dart';
+import 'package:electronics_store/features/address/feature/edit/page/address_edit.dart';
+import 'package:electronics_store/features/address/feature/view/bloc/address_view_bloc.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/bloc/forget_password_bloc.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/view/forget_password_view.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/reset_password/bloc/reset_password_bloc.dart';
@@ -20,7 +28,11 @@ import 'package:electronics_store/features/auth/feature/sign_up_features/verfiy_
 import 'package:electronics_store/features/auth/feature/sign_up_features/verfiy_code_sign_up/view/verfiy_code_sign_up_view.dart';
 import 'package:electronics_store/features/cart/bloc/cart_bloc.dart';
 import 'package:electronics_store/features/cart/view/cart_view.dart';
+import 'package:electronics_store/features/check_out/bloc/check_out_bloc.dart';
+import 'package:electronics_store/features/check_out/view/check_out.dart';
 import 'package:electronics_store/features/choose_language/view/choose_language.dart';
+import 'package:electronics_store/features/favorite/bloc/favorite_bloc.dart';
+import 'package:electronics_store/features/favorite/view/favorite.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 import 'package:electronics_store/features/home/home_page/view/home_page_view.dart';
 import 'package:electronics_store/features/home/home_screen/bloc/home_screen_bloc.dart';
@@ -183,18 +195,75 @@ class AppRouter {
           ),
         );
       case AppRoute.itemsDetails:
-        final itemsModel = settings.arguments as ItemModel;
+        final itemModel = settings.arguments as ItemModel;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => sl<ItemsDetailsBloc>(),
-            child: ItemsDetails(itemModel: itemsModel),
+            create: (context) =>
+                sl<ItemsDetailsBloc>()
+                  ..add(ItemsDetailsEvent.started(itemModel)),
+            child: ItemsDetails(itemModel: itemModel),
           ),
         );
       case AppRoute.cart:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => sl<CartBloc>(),
+            create: (context) => sl<CartBloc>()..add(CartEvent.started()),
             child: CartView(),
+          ),
+        );
+      case AppRoute.favorite:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<FavoriteBloc>()..add(FavoriteEvent.started()),
+            child: Favorite(),
+          ),
+        );
+      case AppRoute.addressView:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<AddressViewBloc>()..add(AddressViewEvent.started()),
+            child: AdderssAdd(),
+          ),
+        );
+      case AppRoute.addressAdd:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<AddressAddBloc>()..add(AddressAddEvent.started()),
+            child: AdderssAdd(),
+          ),
+        );
+      case AppRoute.addressAddDetails:
+        final args = settings.arguments as Map<String, dynamic>?;
+
+        final lat = args?['lat'];
+        final long = args?['long'];
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => sl<AddressAddDetailsBloc>(),
+            child: AddDetails(lat: lat, long: long),
+          ),
+        );
+      case AppRoute.addressEdit:
+        final addressModel = settings.arguments as AddressModel;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => sl<AddressEditBloc>(),
+            child: AddressEdit(addressModel: addressModel),
+          ),
+        );
+      case AppRoute.checkOut:
+        final args = settings.arguments as Map<String, dynamic>?;
+
+        final couponsid = args?['couponsid'];
+        final priceOrders = args?['priceorders'];
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<CheckOutBloc>()..add(CheckOutEvent.started()),
+            child: CheckOut(couponsID: couponsid, priceOrders: priceOrders),
           ),
         );
       default:

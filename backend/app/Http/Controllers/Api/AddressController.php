@@ -18,7 +18,11 @@ class AddressController extends Controller
         $addresses = Address::where("addresses_usersID", $user->users_id)->get();
 
         if ($addresses->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "لا توجد عناوين"]);
+            return response()->json([
+                "status" => "success",
+                'data' => [], 
+                "message" => "لا توجد عناوين"
+            ]);
         }
 
         return response()->json(["status" => "success", "data" => $addresses]);

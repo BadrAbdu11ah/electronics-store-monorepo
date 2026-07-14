@@ -38,7 +38,8 @@ class _LoginViewState extends State<LoginView> {
   Future<void> myRequestPermissions() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    NotificationSettings settings = await messaging.requestPermission(
+    // NotificationSettings settings =
+    await messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,

@@ -1,6 +1,11 @@
 import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/services/api_service.dart';
 import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/features/address/data/address_data.dart';
+import 'package:electronics_store/features/address/feature/add/bloc/address_add_bloc.dart';
+import 'package:electronics_store/features/address/feature/add_details/bloc/address_add_details_bloc.dart';
+import 'package:electronics_store/features/address/feature/edit/bloc/address_edit_bloc.dart';
+import 'package:electronics_store/features/address/feature/view/bloc/address_view_bloc.dart';
 import 'package:electronics_store/features/auth/data/auth_data.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/bloc/forget_password_bloc.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/reset_password/bloc/reset_password_bloc.dart';
@@ -12,6 +17,9 @@ import 'package:electronics_store/features/auth/feature/sign_up_features/success
 import 'package:electronics_store/features/auth/feature/sign_up_features/verfiy_code_sign_up/bloc/verfiy_code_sign_up_bloc.dart';
 import 'package:electronics_store/features/cart/bloc/cart_bloc.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
+import 'package:electronics_store/features/check_out/bloc/check_out_bloc.dart';
+import 'package:electronics_store/features/check_out/data/checkout_data.dart';
+import 'package:electronics_store/features/favorite/bloc/favorite_bloc.dart';
 import 'package:electronics_store/features/favorite/data/favorite_data.dart';
 import 'package:electronics_store/features/home/data/home_data.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
@@ -38,6 +46,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ItemData(sl<ApiService>()));
   sl.registerLazySingleton(() => FavoriteData(sl<ApiService>()));
   sl.registerLazySingleton(() => CartData(sl<ApiService>()));
+  sl.registerLazySingleton(() => AddressData(sl<ApiService>()));
+  sl.registerLazySingleton(() => CheckoutData(sl<ApiService>()));
 
   // 3. Blocs
 
@@ -77,5 +87,24 @@ Future<void> init() async {
   );
   sl.registerFactory(
     () => CartBloc(appService: sl<AppService>(), cartData: sl<CartData>()),
+  );
+  sl.registerFactory(
+    () => FavoriteBloc(
+      appService: sl<AppService>(),
+      favoriteData: sl<FavoriteData>(),
+    ),
+  );
+  // address
+  sl.registerFactory(() => AddressViewBloc(sl<AddressData>()));
+  sl.registerFactory(() => AddressAddBloc());
+  sl.registerFactory(() => AddressAddDetailsBloc(sl<AddressData>()));
+  sl.registerFactory(() => AddressEditBloc(sl<AddressData>()));
+
+  //checkout
+  sl.registerFactory(
+    () => CheckOutBloc(
+      addressData: sl<AddressData>(),
+      checkoutData: sl<CheckoutData>(),
+    ),
   );
 }
