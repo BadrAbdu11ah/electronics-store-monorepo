@@ -29,6 +29,9 @@ import 'package:electronics_store/features/items_feature/data/item_data.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:electronics_store/features/items_feature/items_details/bloc/items_details_bloc.dart';
 import 'package:electronics_store/features/on_boarding/bloc/on_boarding_bloc.dart';
+import 'package:electronics_store/features/orders/data/orders_data.dart';
+import 'package:electronics_store/features/orders/feature/details/bloc/order_details_bloc.dart';
+import 'package:electronics_store/features/orders/feature/pending/bloc/pending_bloc.dart';
 import 'package:electronics_store/features/search/data/search_data.dart';
 import 'package:get_it/get_it.dart';
 
@@ -48,6 +51,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CartData(sl<ApiService>()));
   sl.registerLazySingleton(() => AddressData(sl<ApiService>()));
   sl.registerLazySingleton(() => CheckoutData(sl<ApiService>()));
+  sl.registerLazySingleton(() => OrdersData(sl<ApiService>()));
 
   // 3. Blocs
 
@@ -105,6 +109,15 @@ Future<void> init() async {
     () => CheckOutBloc(
       addressData: sl<AddressData>(),
       checkoutData: sl<CheckoutData>(),
+    ),
+  );
+
+  // order
+  sl.registerFactory(() => PendingBloc(sl<OrdersData>()));
+  sl.registerFactory(
+    () => OrderDetailsBloc(
+      appService: sl<AppService>(),
+      ordersData: sl<OrdersData>(),
     ),
   );
 }

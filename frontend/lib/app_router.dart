@@ -3,6 +3,7 @@ import 'package:electronics_store/core/id/injection.dart';
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/address/address_model.dart';
 import 'package:electronics_store/data/model/item/item_model.dart';
+import 'package:electronics_store/data/model/order/order_model.dart';
 import 'package:electronics_store/features/address/feature/add/bloc/address_add_bloc.dart';
 import 'package:electronics_store/features/address/feature/add/page/adderss_add.dart';
 import 'package:electronics_store/features/address/feature/add_details/bloc/address_add_details_bloc.dart';
@@ -45,6 +46,10 @@ import 'package:electronics_store/features/items_feature/items_details/bloc/item
 import 'package:electronics_store/features/items_feature/items_details/view/items_details.dart';
 import 'package:electronics_store/features/on_boarding/bloc/on_boarding_bloc.dart';
 import 'package:electronics_store/features/on_boarding/view/on_boarding_view.dart';
+import 'package:electronics_store/features/orders/feature/details/bloc/order_details_bloc.dart';
+import 'package:electronics_store/features/orders/feature/details/view/details.dart';
+import 'package:electronics_store/features/orders/feature/pending/bloc/pending_bloc.dart';
+import 'package:electronics_store/features/orders/feature/pending/view/pending.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -264,6 +269,24 @@ class AppRouter {
             create: (context) =>
                 sl<CheckOutBloc>()..add(CheckOutEvent.started()),
             child: CheckOut(couponsID: couponsid, priceOrders: priceOrders),
+          ),
+        );
+      case AppRoute.ordersPending:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<PendingBloc>()..add(PendingEvent.fetchOrders()),
+            child: OrdersPending(),
+          ),
+        );
+      case AppRoute.ordersDetails:
+        final orderModel = settings.arguments as OrderModel;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<OrderDetailsBloc>()
+                  ..add(OrderDetailsEvent.started(orderModel: orderModel)),
+            child: OrderDetails(),
           ),
         );
       default:

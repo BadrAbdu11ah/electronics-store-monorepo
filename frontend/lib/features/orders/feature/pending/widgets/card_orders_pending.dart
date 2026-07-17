@@ -1,9 +1,7 @@
-import 'package:electronics_store/features/orders/controller/pending_controller.dart';
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CardOrdersPending extends GetView<OrdersPendingControllerImp> {
+class CardOrdersPending extends StatelessWidget {
   final String orderid;
   final String createdAt;
   final String pymentMethod;

@@ -103,7 +103,11 @@ class OrderController extends Controller
             ->get();
 
         if ($orders->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "لا توجد طلبات سابقة"]);
+            return response()->json([
+                "status" => "success",
+                "data" => [],
+                "message" => "لا توجد طلبات سابقة"
+            ]);
         }
 
         // // تخصيص البيانات للعرض في التطبيق
@@ -130,7 +134,7 @@ class OrderController extends Controller
                     ->get();
 
         if ($cartItems->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "تفاصيل الطلب غير موجودة"]);
+            return response()->json(["status" => "failure", "message" => "تفاصيل الطلب غير موجودة"], 404);
         }
 
         // تجميع المنتجات وحساب الكميات والأسعار
@@ -165,7 +169,7 @@ class OrderController extends Controller
 
         return response()->json([
             "status"     => "success",
-            "data"       => $itemsData,
+            "cartItems"       => $itemsData,
             "order_info" => $order,
             "address"    => $order->address 
         ]);

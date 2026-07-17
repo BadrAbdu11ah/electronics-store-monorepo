@@ -1,12 +1,21 @@
-import 'package:electronics_store/features/orders/controller/details_controller.dart';
+import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
+import 'package:electronics_store/data/model/cart/cart_model.dart';
+import 'package:electronics_store/data/model/order/order_model.dart';
 import 'package:electronics_store/data/static/app_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
-  const CardOrdersDetails({super.key});
+class CardOrdersDetails extends StatelessWidget {
+  final List<CartModel> cartItems;
+  final OrderModel order;
+  final String lang;
+  const CardOrdersDetails({
+    super.key,
+    required this.cartItems,
+    required this.order,
+    required this.lang,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +29,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                 TableRow(
                   children: [
                     Text(
-                      AppText.item.tr,
+                      AppTranslations.translate(context, AppText.item),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColor.themeBlackColor,
@@ -28,7 +37,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       ),
                     ),
                     Text(
-                      AppText.qty.tr,
+                      AppTranslations.translate(context, AppText.qty),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColor.themeBlackColor,
@@ -36,7 +45,7 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                       ),
                     ),
                     Text(
-                      AppText.price.tr,
+                      AppTranslations.translate(context, AppText.price),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColor.themeBlackColor,
@@ -45,27 +54,27 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                     ),
                   ],
                 ),
-                ...List.generate(controller.cartItems.length, (i) {
+                ...List.generate(cartItems.length, (i) {
                   return TableRow(
                     children: [
                       Text(
                         translateDatabase(
-                          controller.cartItems[i].itemsModel!.itemsName!,
-                          controller.cartItems[i].itemsModel!.itemsNameAr!,
+                          cartItems[i].item!.name!,
+                          cartItems[i].item!.name!,
                         ),
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        "${controller.cartItems[i].countItems}",
+                        "${cartItems[i].countItems}",
                         textAlign: TextAlign.center,
                       ),
-                      controller.lang == 'ar'
+                      lang == 'ar'
                           ? Text(
-                              "\$ ${controller.cartItems[i].totalItemPrice}",
+                              "\$ ${cartItems[i].totalItemPrice}",
                               textAlign: TextAlign.center,
                             )
                           : Text(
-                              "${controller.cartItems[i].totalItemPrice} \$",
+                              "${cartItems[i].totalItemPrice} \$",
                               textAlign: TextAlign.center,
                             ),
                     ],
@@ -74,34 +83,36 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
               ],
             ),
             Divider(),
-            controller.lang == 'ar'
+            lang == 'ar'
                 ? Text(
-                    "${AppText.orderPrice.tr}: \$ ${controller.ordersModel.ordersPrice}",
+                    "${AppTranslations.translate(context, AppText.orderPrice)}: \$ ${order.price}",
                   )
                 : Text(
-                    "${AppText.orderPrice.tr}: ${controller.ordersModel.ordersPrice} \$",
+                    "${AppTranslations.translate(context, AppText.orderPrice)}: ${order.price} \$",
                   ),
-            controller.lang == 'ar'
+            lang == 'ar'
                 ? Text(
-                    "${AppText.deliveryPrice.tr}: "
-                    "\$ ${controller.ordersModel.ordersPriceDelivery}",
+                    "${AppTranslations.translate(context, AppText.deliveryPrice)}: "
+                    "\$ ${order.deliveryPrice}",
                   )
                 : Text(
-                    "${AppText.deliveryPrice.tr}: "
-                    "${controller.ordersModel.ordersPriceDelivery} \$",
+                    "${AppTranslations.translate(context, AppText.deliveryPrice)}: "
+                    "${order.deliveryPrice} \$",
                   ),
 
-            controller.ordersModel.ordersCouponIDDiscount != 0
-                ? controller.lang == 'ar'
+            order.couponDiscount != 0
+                ? lang == 'ar'
                       ? Text(
-                          "${AppText.coupon.tr}: "
-                          "% ${controller.ordersModel.ordersCouponIDDiscount}",
+                          "${AppTranslations.translate(context, AppText.coupon)}: "
+                          "% ${order.couponDiscount}",
                         )
                       : Text(
-                          "${AppText.coupon.tr}: "
-                          "${controller.ordersModel.ordersCouponIDDiscount} %",
+                          "${AppTranslations.translate(context, AppText.coupon)}: "
+                          "${order.couponDiscount} %",
                         )
-                : Text("${AppText.coupon.tr}: ${AppText.noCoupon.tr}"),
+                : Text(
+                    "${AppTranslations.translate(context, AppText.coupon)}: ${AppTranslations.translate(context, AppText.noCoupon)}",
+                  ),
 
             Divider(),
             Padding(
@@ -110,20 +121,20 @@ class CardOrdersDetails extends GetView<OrdersDetailsControllerImp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${AppText.totalPrice.tr}: ",
+                    "${AppTranslations.translate(context, AppText.totalPrice)}: ",
                     style: TextStyle(
                       color: AppColor.themeBlackColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  controller.lang == 'ar'
+                  lang == 'ar'
                       ? Text(
-                          "\$ ${controller.ordersModel.ordersTotalPrice}",
+                          "\$ ${order.totalPrice}",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: AppColor.priceColor),
                         )
                       : Text(
-                          "${controller.ordersModel.ordersTotalPrice} \$",
+                          "${order.totalPrice} \$",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: AppColor.priceColor),
                         ),
