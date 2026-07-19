@@ -76,11 +76,6 @@ class CheckOut extends StatelessWidget {
             },
           );
         },
-        buildWhen: (previous, current) => current.status.maybeWhen(
-          loading: () => true,
-          serverFailure: (_) => true,
-          orElse: () => false,
-        ),
         builder: (context, state) {
           return state.status.maybeWhen(
             loading: () => AppLoadingWidget(),

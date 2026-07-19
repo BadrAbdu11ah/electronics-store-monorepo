@@ -47,7 +47,12 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
             ),
           );
         }
-        emit(state.copyWith(status: _ServerFailure(failure.message)));
+        emit(
+          state.copyWith(
+            status: _ServerFailure(failure.message),
+            addressStatus: _AddressInitial(),
+          ),
+        );
       },
       (addresses) => emit(
         state.copyWith(
