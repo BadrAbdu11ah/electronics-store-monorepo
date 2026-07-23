@@ -169,7 +169,7 @@ class OrderController extends Controller
 
         return response()->json([
             "status"     => "success",
-            "cartItems"       => $itemsData,
+            "cartItems"  => $itemsData,
             "order_info" => $order,
             "address"    => $order->address 
         ]);

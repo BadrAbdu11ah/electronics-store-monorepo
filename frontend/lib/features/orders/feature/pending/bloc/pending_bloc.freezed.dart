@@ -320,12 +320,12 @@ return serverFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<OrderModel> orders,  String? paymentMethod,  String? deliveryType,  String? orderStatus)?  loaded,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<OrderModel> orders)?  loaded,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orders,_that.paymentMethod,_that.deliveryType,_that.orderStatus);case _ServerFailure() when serverFailure != null:
+return loaded(_that.orders);case _ServerFailure() when serverFailure != null:
 return serverFailure(_that.message);case _:
   return orElse();
 
@@ -344,12 +344,12 @@ return serverFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<OrderModel> orders,  String? paymentMethod,  String? deliveryType,  String? orderStatus)  loaded,required TResult Function( String message)  serverFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<OrderModel> orders)  loaded,required TResult Function( String message)  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded(_that.orders,_that.paymentMethod,_that.deliveryType,_that.orderStatus);case _ServerFailure():
+return loaded(_that.orders);case _ServerFailure():
 return serverFailure(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -367,12 +367,12 @@ return serverFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<OrderModel> orders,  String? paymentMethod,  String? deliveryType,  String? orderStatus)?  loaded,TResult? Function( String message)?  serverFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<OrderModel> orders)?  loaded,TResult? Function( String message)?  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orders,_that.paymentMethod,_that.deliveryType,_that.orderStatus);case _ServerFailure() when serverFailure != null:
+return loaded(_that.orders);case _ServerFailure() when serverFailure != null:
 return serverFailure(_that.message);case _:
   return null;
 
@@ -449,7 +449,7 @@ String toString() {
 
 
 class _Loaded implements PendingState {
-  const _Loaded({final  List<OrderModel> orders = const [], this.paymentMethod, this.deliveryType, this.orderStatus}): _orders = orders;
+  const _Loaded({final  List<OrderModel> orders = const []}): _orders = orders;
   
 
  final  List<OrderModel> _orders;
@@ -459,9 +459,6 @@ class _Loaded implements PendingState {
   return EqualUnmodifiableListView(_orders);
 }
 
- final  String? paymentMethod;
- final  String? deliveryType;
- final  String? orderStatus;
 
 /// Create a copy of PendingState
 /// with the given fields replaced by the non-null parameter values.
@@ -473,16 +470,16 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.deliveryType, deliveryType) || other.deliveryType == deliveryType)&&(identical(other.orderStatus, orderStatus) || other.orderStatus == orderStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._orders, _orders));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),paymentMethod,deliveryType,orderStatus);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders));
 
 @override
 String toString() {
-  return 'PendingState.loaded(orders: $orders, paymentMethod: $paymentMethod, deliveryType: $deliveryType, orderStatus: $orderStatus)';
+  return 'PendingState.loaded(orders: $orders)';
 }
 
 
@@ -493,7 +490,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $PendingStateCopyWith<$Re
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<OrderModel> orders, String? paymentMethod, String? deliveryType, String? orderStatus
+ List<OrderModel> orders
 });
 
 
@@ -510,13 +507,10 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of PendingState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? orders = null,Object? paymentMethod = freezed,Object? deliveryType = freezed,Object? orderStatus = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? orders = null,}) {
   return _then(_Loaded(
 orders: null == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
-as List<OrderModel>,paymentMethod: freezed == paymentMethod ? _self.paymentMethod : paymentMethod // ignore: cast_nullable_to_non_nullable
-as String?,deliveryType: freezed == deliveryType ? _self.deliveryType : deliveryType // ignore: cast_nullable_to_non_nullable
-as String?,orderStatus: freezed == orderStatus ? _self.orderStatus : orderStatus // ignore: cast_nullable_to_non_nullable
-as String?,
+as List<OrderModel>,
   ));
 }
 

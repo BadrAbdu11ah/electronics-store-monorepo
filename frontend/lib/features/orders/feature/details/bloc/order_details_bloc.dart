@@ -1,4 +1,5 @@
 import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/core/services/location_service.dart';
 import 'package:electronics_store/data/model/address/address_model.dart';
 import 'package:electronics_store/data/model/cart/cart_model.dart';
 import 'package:electronics_store/data/model/order/order_model.dart';
@@ -12,10 +13,14 @@ part 'order_details_state.dart';
 part 'order_details_bloc.freezed.dart';
 
 class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
+  final LocationService locationService;
   final AppService appService;
   final OrdersData ordersData;
-  OrderDetailsBloc({required this.appService, required this.ordersData})
-    : super(OrderDetailsState()) {
+  OrderDetailsBloc({
+    required this.locationService,
+    required this.appService,
+    required this.ordersData,
+  }) : super(OrderDetailsState()) {
     on<_Started>(_onStarted);
 
     on<_LoadOrderDetails>(_onLoadOrderDetails);
@@ -63,44 +68,41 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
   ) async {
     emit(state.copyWith(locationStatus: _LocationLoading()));
 
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    bool serviceEnabled = await locationService.isLocationServiceEnabled();
 
     if (!serviceEnabled) {
-      emit(
+      return emit(
         state.copyWith(
           locationStatus: _LocationServerFailure('الرجاء تشغيل إعدادات الموقع'),
         ),
       );
-      return;
     }
 
     // فحص أذونات الوصول للموقع
-    LocationPermission permission = await Geolocator.checkPermission();
+    LocationPermission permission = await locationService.checkPermission();
 
     if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      permission = await locationService.requestPermission();
       if (permission == LocationPermission.denied) {
-        emit(
+        return emit(
           state.copyWith(
             locationStatus: _LocationServerFailure('تم رفض الوصول للموقع'),
           ),
         );
-        return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      emit(
+      return emit(
         state.copyWith(
           locationStatus: _LocationServerFailure(
             'صلاحيات الموقع مرفوضة بشكل دائم',
           ),
         ),
       );
-      return;
     }
 
-    Position position = await Geolocator.getCurrentPosition();
+    Position position = await locationService.getCurrentPosition();
 
     emit(state.copyWith(position: position, locationStatus: _LocationLoaded()));
   }

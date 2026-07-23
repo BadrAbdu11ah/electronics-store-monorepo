@@ -1,5 +1,4 @@
 import 'package:electronics_store/data/model/order/order_model.dart';
-import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/orders/data/orders_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,30 +26,7 @@ class PendingBloc extends Bloc<PendingEvent, PendingState> {
         emit(_ServerFailure(failure.message));
       },
       (orders) {
-        late String paymentMethod;
-        late String deliveryType;
-        late String orderStatus;
-        for (var order in orders) {
-          order.paymentMethod == 0
-              ? paymentMethod = AppText.ordersPaymentCash
-              : paymentMethod = AppText.paymentCards;
-          order.deliveryPrice == 0
-              ? deliveryType = AppText.ordersDelivery
-              : deliveryType = AppText.ordersDriveThru;
-          order.type == 0
-              ? orderStatus = AppText.ordersWaiting
-              : order.type == 1
-              ? orderStatus = AppText.ordersPreparing
-              : orderStatus = AppText.ordersArchived;
-        }
-        emit(
-          _Loaded(
-            orders: orders,
-            paymentMethod: paymentMethod,
-            deliveryType: deliveryType,
-            orderStatus: orderStatus,
-          ),
-        );
+        emit(_Loaded(orders: orders));
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:electronics_store/core/enums/order_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:electronics_store/data/model/coupon/coupon_model.dart';
 
@@ -7,6 +8,39 @@ part 'order_model.g.dart';
 @freezed
 abstract class OrderModel with _$OrderModel {
   const OrderModel._();
+
+  PaymentMethod get paymentMethodEnum {
+    switch (paymentMethod) {
+      case 0:
+        return PaymentMethod.cash;
+      case 1:
+        return PaymentMethod.card;
+      default:
+        return PaymentMethod.cash;
+    }
+  }
+
+  DeliveryType get deliveryTypeEnum {
+    switch (type) {
+      case 0:
+        return DeliveryType.delivery;
+      case 1:
+        return DeliveryType.driveThru;
+      default:
+        return DeliveryType.delivery;
+    }
+  }
+
+  OrderStatus get orderStatusEnum {
+    switch (status) {
+      case 0:
+        return OrderStatus.waiting;
+      case 1:
+        return OrderStatus.preparing;
+      default:
+        return OrderStatus.archived;
+    }
+  }
 
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory OrderModel({

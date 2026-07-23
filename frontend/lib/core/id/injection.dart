@@ -1,6 +1,7 @@
 import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/services/api_service.dart';
 import 'package:electronics_store/core/services/app_service.dart';
+import 'package:electronics_store/core/services/location_service.dart';
 import 'package:electronics_store/features/address/data/address_data.dart';
 import 'package:electronics_store/features/address/feature/add/bloc/address_add_bloc.dart';
 import 'package:electronics_store/features/address/feature/add_details/bloc/address_add_details_bloc.dart';
@@ -52,6 +53,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AddressData(sl<ApiService>()));
   sl.registerLazySingleton(() => CheckoutData(sl<ApiService>()));
   sl.registerLazySingleton(() => OrdersData(sl<ApiService>()));
+  sl.registerLazySingleton(() => LocationServiceImpl());
 
   // 3. Blocs
 
@@ -116,6 +118,7 @@ Future<void> init() async {
   sl.registerFactory(() => PendingBloc(sl<OrdersData>()));
   sl.registerFactory(
     () => OrderDetailsBloc(
+      locationService: sl<LocationServiceImpl>(),
       appService: sl<AppService>(),
       ordersData: sl<OrdersData>(),
     ),
