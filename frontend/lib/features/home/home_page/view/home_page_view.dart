@@ -2,6 +2,7 @@ import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 import 'package:electronics_store/features/home/home_page/widgets/home_view.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,12 +16,15 @@ class HomePageView extends StatelessWidget {
           current.status.maybeWhen(loggedOut: () => true, orElse: () => false),
       listener: (context, state) {
         state.status.maybeWhen(
-          loggedOut: () {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              AppRoute.login,
-              (route) => false,
-            );
+          loggedOut: () async {
+            FirebaseMessaging messaging = FirebaseMessaging.instance;
+            await messaging.unsubscribeFromTopic("badrAbdullah");
+            if (context.mounted) {
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamedAndRemoveUntil(AppRoute.login, (route) => false);
+            }
           },
           orElse: () {},
         );

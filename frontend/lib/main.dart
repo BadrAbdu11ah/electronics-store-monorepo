@@ -14,6 +14,7 @@ void main() async {
 
   // تهيئة الخدمات الشاملة مثل SharedPreferences و Firebase
   await initialService();
+  await initGetIt();
 
   runApp(
     MultiBlocProvider(

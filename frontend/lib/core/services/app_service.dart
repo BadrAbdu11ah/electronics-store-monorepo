@@ -1,5 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// دالة تعمل في الخلفية عند وصول إشعار والتطبيق مغلق أو بالخلفية
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // تهيئة الفايربيس للـ Background Process
+  await Firebase.initializeApp();
+  print("=================== Background Notification ===================");
+  print(message.notification?.title);
+  print(message.notification?.body);
+  print("=============================================================");
+}
 
 class AppService {
   static final AppService _instance = AppService._internal();
@@ -10,11 +22,12 @@ class AppService {
 
   Future<void> init() async {
     await Firebase.initializeApp();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
     sharedPreferences = await SharedPreferences.getInstance();
   }
 }
 
-// دالة التهيئة التي ستستدعى في الـ main
 Future<void> initialService() async {
   await AppService().init();
 }

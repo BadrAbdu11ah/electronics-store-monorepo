@@ -2,11 +2,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
+import 'package:electronics_store/core/services/notification_service.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/auth/feature/login/bloc/login_bloc.dart';
 import 'package:electronics_store/features/auth/feature/login/widgets/login_form.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,36 +20,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  // خاص بإرسال الإشعارات
-  Future<void> initFirebaseStuff() async {
-    await myRequestPermissions();
-    // await getToken();
-  }
-
-  // أخذ الرمز الخاص بالجهاز لإرسال الرسائل عليه
-  // Future<void> getToken() async {
-  //   String? myToken = await FirebaseMessaging.instance.getToken();
-  //   print("================================");
-  //   print("Token: $myToken");
-  //   print("================================");
-  // }
-
-  // التأكد من أن الجهاز يقبل الإشعارات
-  Future<void> myRequestPermissions() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-    // NotificationSettings settings =
-    await messaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-  }
-
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
@@ -57,7 +27,6 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     emailController = TextEditingController(text: widget.email);
     passwordController = TextEditingController(text: widget.password);
-    initFirebaseStuff();
     super.initState();
   }
 
@@ -110,11 +79,16 @@ class _LoginViewState extends State<LoginView> {
               AppRoute.verifyCodeSignUp,
               arguments: {"email": emailController.text},
             ),
-            success: () => Navigator.pushNamedAndRemoveUntil(
-              context,
-              AppRoute.homeScreen,
-              (route) => false,
-            ),
+            success: () async {
+              if (context.mounted) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoute.homeScreen,
+                  (route) => false,
+                );
+              }
+              await NotificationService.initialize();
+            },
             failure: (errorMessage) =>
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

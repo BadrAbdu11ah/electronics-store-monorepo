@@ -34,11 +34,12 @@ import 'package:electronics_store/features/orders/data/orders_data.dart';
 import 'package:electronics_store/features/orders/feature/details/bloc/order_details_bloc.dart';
 import 'package:electronics_store/features/orders/feature/pending/bloc/pending_bloc.dart';
 import 'package:electronics_store/features/search/data/search_data.dart';
+import 'package:electronics_store/features/search/bloc/search_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance; // sl تعني Service Locator
 
-Future<void> init() async {
+Future<void> initGetIt() async {
   // 1. Services (الأدوات الأساسية)
   sl.registerLazySingleton(() => ApiService(baseUrl: ApiEndpoints.baseUrl));
   sl.registerLazySingleton(() => AppService());
@@ -76,6 +77,7 @@ Future<void> init() async {
     () => HomePageBloc(homeData: sl<HomeData>(), appService: sl<AppService>()),
   );
   sl.registerFactory(() => SettingsPageBloc(appService: sl<AppService>()));
+  sl.registerFactory(() => SearchBloc(searchData: sl<SearchData>()));
 
   // Items
   sl.registerFactory(

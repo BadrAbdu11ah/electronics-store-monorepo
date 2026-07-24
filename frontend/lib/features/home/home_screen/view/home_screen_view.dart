@@ -1,4 +1,5 @@
 import 'package:electronics_store/core/id/injection.dart';
+import 'package:electronics_store/core/services/notification_service.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 import 'package:electronics_store/features/home/home_page/view/home_page_view.dart';
 import 'package:electronics_store/features/home/home_screen/bloc/home_screen_bloc.dart';
@@ -16,6 +17,16 @@ class HomeScreenView extends StatefulWidget {
 }
 
 class _HomeScreenViewState extends State<HomeScreenView> {
+  @override
+  void initState() {
+    super.initState();
+
+    // تفعيل الاستماع للإشعارات وتوجيه الملاحة
+    if (mounted) {
+      NotificationService.setupNotificationInteractions(context);
+    }
+  }
+
   // UI Pages & Content
   List<Widget> get listPage => [
     BlocProvider(
