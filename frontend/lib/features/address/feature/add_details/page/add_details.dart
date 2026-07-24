@@ -32,7 +32,7 @@ class AddDetails extends StatelessWidget {
         builder: (context, state) {
           return state.maybeWhen(
             loading: () => AppLoadingWidget(),
-            serverFilure: (message) => AppErrorWidget(message: message),
+            serverFailure: (message) => AppErrorWidget(message: message),
             orElse: () => AddDetailsForm(lat: lat, long: long),
           );
         },

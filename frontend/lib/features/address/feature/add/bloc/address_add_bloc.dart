@@ -1,13 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:electronics_store/core/services/location_service.dart';
 
 part 'address_add_event.dart';
 part 'address_add_state.dart';
 part 'address_add_bloc.freezed.dart';
 
 class AddressAddBloc extends Bloc<AddressAddEvent, AddressAddState> {
-  AddressAddBloc() : super(AddressAddState()) {
+  final LocationService locationService;
+  AddressAddBloc(this.locationService) : super(AddressAddState()) {
     on<_Started>(_onStarted);
     on<_LoadCurrentPositionApp>(_onLoadCurrentPositionApp);
   }
@@ -22,18 +24,18 @@ class AddressAddBloc extends Bloc<AddressAddEvent, AddressAddState> {
   ) async {
     emit(state.copyWith(status: _Loading()));
 
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    bool serviceEnabled = await locationService.isLocationServiceEnabled();
     if (!serviceEnabled) {
       return emit(
-        state.copyWith(status: _ServerFailure("رجاء تشغيل إعدادات الموقع")),
+        state.copyWith(status: _ServerFailure("الرجاء تشغيل إعدادات الموقع")),
       );
     }
 
     // فحص أذونات الوصول للموقع
-    LocationPermission permission = await Geolocator.checkPermission();
+    LocationPermission permission = await locationService.checkPermission();
 
     if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      permission = await locationService.requestPermission();
       if (permission == LocationPermission.denied) {
         return emit(
           state.copyWith(status: _ServerFailure("تم رفض الوصول للموقع")),
@@ -48,7 +50,7 @@ class AddressAddBloc extends Bloc<AddressAddEvent, AddressAddState> {
         ),
       );
     }
-    Position position = await Geolocator.getCurrentPosition();
+    Position position = await locationService.getCurrentPosition();
 
     emit(state.copyWith(status: _Loaded(), position: position));
   }

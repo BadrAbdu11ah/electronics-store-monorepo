@@ -37,11 +37,15 @@ class AddressData {
   }
 
   // 3. تعديل عنوان موجود
-  Future<Either<Failure, Map>> editAddress(
+  Future<Either<Failure, String>> editAddress(
     int addressId,
     Map<String, dynamic> data,
   ) async {
-    return await api.put(ApiEndpoints.addressEdit(addressId), data);
+    var response = await api.put(ApiEndpoints.addressEdit(addressId), data);
+    return response.fold(
+      (failure) => Left(failure),
+      (data) => Right(data["message"]),
+    );
   }
 
   // 4. حذف عنوان

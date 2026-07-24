@@ -5,5 +5,5 @@ abstract class AddressEditState with _$AddressEditState {
   const factory AddressEditState.initial() = _Initial;
   const factory AddressEditState.loading() = _Loading;
   const factory AddressEditState.success(String message) = _Success;
-  const factory AddressEditState.serverFilure(String message) = _ServerFailure;
+  const factory AddressEditState.serverFailure(String message) = _ServerFailure;
 }

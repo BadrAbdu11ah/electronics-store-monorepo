@@ -102,7 +102,7 @@ Future<void> init() async {
   );
   // address
   sl.registerFactory(() => AddressViewBloc(sl<AddressData>()));
-  sl.registerFactory(() => AddressAddBloc());
+  sl.registerFactory(() => AddressAddBloc(sl<LocationServiceImpl>()));
   sl.registerFactory(() => AddressAddDetailsBloc(sl<AddressData>()));
   sl.registerFactory(() => AddressEditBloc(sl<AddressData>()));
 

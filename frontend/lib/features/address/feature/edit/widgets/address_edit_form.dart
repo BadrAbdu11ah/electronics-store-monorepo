@@ -1,6 +1,6 @@
 import 'package:electronics_store/core/shared/custom_button.dart';
 import 'package:electronics_store/data/model/address/address_model.dart';
-import 'package:electronics_store/features/address/feature/add_details/bloc/address_add_details_bloc.dart';
+import 'package:electronics_store/features/address/feature/edit/bloc/address_edit_bloc.dart';
 import 'package:electronics_store/features/auth/widgets/custom_text_form_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,11 +84,12 @@ class _AddressEditFromState extends State<AddressEditFrom> {
             },
           ),
           CustomButton(
-            text: "Add",
+            text: "Edit",
             onPressed: () {
               FocusScope.of(context).unfocus();
-              context.read<AddressAddDetailsBloc>().add(
-                AddressAddDetailsEvent.submit(
+              context.read<AddressEditBloc>().add(
+                AddressEditEvent.submit(
+                  addressId: widget.addressModel.id,
                   name: nameController.text,
                   city: cityController.text,
                   street: streetController.text,

@@ -15,7 +15,7 @@ class AddressEditBloc extends Bloc<AddressEditEvent, AddressEditState> {
   Future<void> _onSubmit(_Submit event, Emitter<AddressEditState> emit) async {
     emit(_Loading());
 
-    var response = await addressData.addAddress({
+    var response = await addressData.editAddress(event.addressId!, {
       "name": event.name,
       "city": event.city,
       "street": event.street,

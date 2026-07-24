@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AddressEditEvent {
 
- String? get name; String? get city; String? get street; String? get lat; String? get long; String? get phone;
+ int? get addressId; String? get name; String? get city; String? get street; String? get lat; String? get long; String? get phone;
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AddressEditEventCopyWith<AddressEditEvent> get copyWith => _$AddressEditEventCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressEditEvent&&(identical(other.name, name) || other.name == name)&&(identical(other.city, city) || other.city == city)&&(identical(other.street, street) || other.street == street)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long)&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressEditEvent&&(identical(other.addressId, addressId) || other.addressId == addressId)&&(identical(other.name, name) || other.name == name)&&(identical(other.city, city) || other.city == city)&&(identical(other.street, street) || other.street == street)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,city,street,lat,long,phone);
+int get hashCode => Object.hash(runtimeType,addressId,name,city,street,lat,long,phone);
 
 @override
 String toString() {
-  return 'AddressEditEvent(name: $name, city: $city, street: $street, lat: $lat, long: $long, phone: $phone)';
+  return 'AddressEditEvent(addressId: $addressId, name: $name, city: $city, street: $street, lat: $lat, long: $long, phone: $phone)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $AddressEditEventCopyWith<$Res>  {
   factory $AddressEditEventCopyWith(AddressEditEvent value, $Res Function(AddressEditEvent) _then) = _$AddressEditEventCopyWithImpl;
 @useResult
 $Res call({
- String? name, String? city, String? street, String? lat, String? long, String? phone
+ int? addressId, String? name, String? city, String? street, String? lat, String? long, String? phone
 });
 
 
@@ -62,9 +62,10 @@ class _$AddressEditEventCopyWithImpl<$Res>
 
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? city = freezed,Object? street = freezed,Object? lat = freezed,Object? long = freezed,Object? phone = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? addressId = freezed,Object? name = freezed,Object? city = freezed,Object? street = freezed,Object? lat = freezed,Object? long = freezed,Object? phone = freezed,}) {
   return _then(_self.copyWith(
-name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+addressId: freezed == addressId ? _self.addressId : addressId // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String?,street: freezed == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
 as String?,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
@@ -155,10 +156,10 @@ return submit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)?  submit,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int? addressId,  String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)?  submit,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Submit() when submit != null:
-return submit(_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
+return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return submit(_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phon
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)  submit,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int? addressId,  String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)  submit,}) {final _that = this;
 switch (_that) {
 case _Submit():
-return submit(_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
+return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +197,10 @@ return submit(_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phon
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)?  submit,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int? addressId,  String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)?  submit,}) {final _that = this;
 switch (_that) {
 case _Submit() when submit != null:
-return submit(_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
+return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
   return null;
 
 }
@@ -211,9 +212,10 @@ return submit(_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phon
 
 
 class _Submit implements AddressEditEvent {
-  const _Submit({required this.name, required this.city, required this.street, required this.lat, required this.long, required this.phone});
+  const _Submit({required this.addressId, required this.name, required this.city, required this.street, required this.lat, required this.long, required this.phone});
   
 
+@override final  int? addressId;
 @override final  String? name;
 @override final  String? city;
 @override final  String? street;
@@ -231,16 +233,16 @@ _$SubmitCopyWith<_Submit> get copyWith => __$SubmitCopyWithImpl<_Submit>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Submit&&(identical(other.name, name) || other.name == name)&&(identical(other.city, city) || other.city == city)&&(identical(other.street, street) || other.street == street)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long)&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Submit&&(identical(other.addressId, addressId) || other.addressId == addressId)&&(identical(other.name, name) || other.name == name)&&(identical(other.city, city) || other.city == city)&&(identical(other.street, street) || other.street == street)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,city,street,lat,long,phone);
+int get hashCode => Object.hash(runtimeType,addressId,name,city,street,lat,long,phone);
 
 @override
 String toString() {
-  return 'AddressEditEvent.submit(name: $name, city: $city, street: $street, lat: $lat, long: $long, phone: $phone)';
+  return 'AddressEditEvent.submit(addressId: $addressId, name: $name, city: $city, street: $street, lat: $lat, long: $long, phone: $phone)';
 }
 
 
@@ -251,7 +253,7 @@ abstract mixin class _$SubmitCopyWith<$Res> implements $AddressEditEventCopyWith
   factory _$SubmitCopyWith(_Submit value, $Res Function(_Submit) _then) = __$SubmitCopyWithImpl;
 @override @useResult
 $Res call({
- String? name, String? city, String? street, String? lat, String? long, String? phone
+ int? addressId, String? name, String? city, String? street, String? lat, String? long, String? phone
 });
 
 
@@ -268,9 +270,10 @@ class __$SubmitCopyWithImpl<$Res>
 
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? city = freezed,Object? street = freezed,Object? lat = freezed,Object? long = freezed,Object? phone = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? addressId = freezed,Object? name = freezed,Object? city = freezed,Object? street = freezed,Object? lat = freezed,Object? long = freezed,Object? phone = freezed,}) {
   return _then(_Submit(
-name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+addressId: freezed == addressId ? _self.addressId : addressId // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String?,street: freezed == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
 as String?,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
@@ -327,14 +330,14 @@ extension AddressEditStatePatterns on AddressEditState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _ServerFailure value)?  serverFilure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _ServerFailure value)?  serverFailure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
-return success(_that);case _ServerFailure() when serverFilure != null:
-return serverFilure(_that);case _:
+return success(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
   return orElse();
 
 }
@@ -352,14 +355,14 @@ return serverFilure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _ServerFailure value)  serverFilure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _ServerFailure value)  serverFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
 return loading(_that);case _Success():
 return success(_that);case _ServerFailure():
-return serverFilure(_that);case _:
+return serverFailure(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -376,14 +379,14 @@ return serverFilure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _ServerFailure value)?  serverFilure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _ServerFailure value)?  serverFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
-return success(_that);case _ServerFailure() when serverFilure != null:
-return serverFilure(_that);case _:
+return success(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _:
   return null;
 
 }
@@ -400,13 +403,13 @@ return serverFilure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String message)?  success,TResult Function( String message)?  serverFilure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String message)?  success,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success(_that.message);case _ServerFailure() when serverFilure != null:
-return serverFilure(_that.message);case _:
+return success(_that.message);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.message);case _:
   return orElse();
 
 }
@@ -424,13 +427,13 @@ return serverFilure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String message)  success,required TResult Function( String message)  serverFilure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String message)  success,required TResult Function( String message)  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Success():
 return success(_that.message);case _ServerFailure():
-return serverFilure(_that.message);case _:
+return serverFailure(_that.message);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -447,13 +450,13 @@ return serverFilure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String message)?  success,TResult? Function( String message)?  serverFilure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String message)?  success,TResult? Function( String message)?  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success(_that.message);case _ServerFailure() when serverFilure != null:
-return serverFilure(_that.message);case _:
+return success(_that.message);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.message);case _:
   return null;
 
 }
@@ -619,7 +622,7 @@ int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'AddressEditState.serverFilure(message: $message)';
+  return 'AddressEditState.serverFailure(message: $message)';
 }
 
 
