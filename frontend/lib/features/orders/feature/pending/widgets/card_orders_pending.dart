@@ -1,27 +1,20 @@
+import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_color.dart';
+import 'package:electronics_store/core/enums/order_enum.dart';
+import 'package:electronics_store/data/model/order/order_model.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 class CardOrdersPending extends StatelessWidget {
-  final String orderid;
-  final String createdAt;
-  final String pymentMethod;
-  final String orderType;
-  final String orderStatus;
-  final String totalPrice;
-  final String ordersTotalPrice;
+  final OrderModel order;
   final void Function() onDetails;
-  final String details;
+  final void Function() onDelete;
   const CardOrdersPending({
     super.key,
-    required this.orderid,
-    required this.createdAt,
-    required this.pymentMethod,
-    required this.orderType,
-    required this.orderStatus,
-    required this.totalPrice,
-    required this.ordersTotalPrice,
+    required this.order,
     required this.onDetails,
-    required this.details,
+    required this.onDelete,
   });
 
   @override
@@ -35,42 +28,59 @@ class CardOrdersPending extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  orderid,
+                  "# ${order.id}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 Spacer(),
-                Text(createdAt),
+                Text(
+                  Jiffy.parseFromDateTime(
+                    DateTime.parse(order.createdAt!),
+                  ).fromNow(),
+                ),
               ],
             ),
             Divider(),
-            Text(pymentMethod),
-            Text(orderType),
-
-            Text(orderStatus),
+            Text(
+              "${AppTranslations.translate(context, AppText.paymentMethod)} ${order.paymentMethodEnum.text(context)}",
+            ),
+            Text(
+              "${AppTranslations.translate(context, AppText.orderType)} ${order.deliveryTypeEnum.text(context)}",
+            ),
+            Text(
+              "${AppTranslations.translate(context, AppText.orderStatus)} ${order.orderStatusEnum.text(context)}",
+            ),
             Divider(),
             Row(
               children: [
                 Text(
-                  totalPrice,
+                  "${AppTranslations.translate(context, AppText.totalPrice)}: ",
                   style: TextStyle(
                     color: AppColor.themeBlackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  ordersTotalPrice,
+                  "${order.totalPrice} \$",
                   style: TextStyle(
-                    color: AppColor.priceColor,
+                    color: AppColor.redColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Spacer(),
+                if (order.orderStatusEnum == OrderStatus.pending)
+                  IconButton(
+                    onPressed: onDelete,
+                    icon: Icon(Icons.delete, color: AppColor.redColor),
+                  ),
                 MaterialButton(
                   color: AppColor.themeColor,
                   textColor: AppColor.bgColorOnBoarding,
                   textTheme: ButtonTextTheme.primary,
                   onPressed: onDetails,
-                  child: Text(details, style: TextStyle(fontSize: 16)),
+                  child: Text(
+                    AppTranslations.translate(context, AppText.details),
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ],
             ),

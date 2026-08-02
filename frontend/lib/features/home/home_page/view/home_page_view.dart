@@ -13,9 +13,9 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomePageBloc, HomePageState>(
       listenWhen: (previous, current) =>
-          current.status.maybeWhen(loggedOut: () => true, orElse: () => false),
+          current.maybeWhen(loggedOut: () => true, orElse: () => false),
       listener: (context, state) {
-        state.status.maybeWhen(
+        state.maybeWhen(
           loggedOut: () async {
             FirebaseMessaging messaging = FirebaseMessaging.instance;
             await messaging.unsubscribeFromTopic("badrAbdullah");
@@ -29,23 +29,32 @@ class HomePageView extends StatelessWidget {
           orElse: () {},
         );
       },
-      buildWhen: (previous, current) => current.status.maybeWhen(
+      buildWhen: (previous, current) => current.maybeWhen(
         initial: () => true,
         loading: () => true,
-        loaded: () => true,
+        loaded: (_, _, _, _) => true,
         noData: (_) => true,
         serverFailure: (_) => true,
         orElse: () => false,
       ),
       builder: (context, state) {
-        return state.status.maybeWhen(
+        return state.maybeWhen(
+          // // إضافة مؤشر التحميل عند حالة loading أو initial
+          loading: () => const AppLoadingWidget(),
+          initial: () => const AppLoadingWidget(),
           serverFailure: (message) => AppErrorWidget(
             message: message,
             onRetry: () =>
                 context.read<HomePageBloc>().add(const HomePageEvent.started()),
           ),
           noData: (message) => AppEmptyWidget(text: message),
-          orElse: () => HomeView(state: state),
+          loaded: (lang, categories, items, settings) => HomeView(
+            lang: lang,
+            categories: categories,
+            items: items,
+            settings: settings,
+          ),
+          orElse: () => const SizedBox.shrink(),
         );
       },
     );

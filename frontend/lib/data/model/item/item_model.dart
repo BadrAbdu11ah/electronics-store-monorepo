@@ -23,6 +23,7 @@ abstract class ItemModel with _$ItemModel {
     double? price,
     int? discount,
     int? categoryId,
+    int? deliveryTime,
     double? discountedPrice,
     bool? isFavorite,
     String? updatedAt,

@@ -24,6 +24,9 @@ Future<bool?> alertExitApp(BuildContext context) {
           },
           child: Text(AppTranslations.translate(context, AppText.confirm)),
         ),
+
+        const SizedBox(width: 80),
+
         ElevatedButton(
           onPressed: () {
             // إغلاق الدايلوج فقط والرجوع للخلف

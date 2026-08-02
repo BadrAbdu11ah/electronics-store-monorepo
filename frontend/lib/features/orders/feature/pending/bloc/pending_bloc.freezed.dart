@@ -55,11 +55,12 @@ extension PendingEventPatterns on PendingEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FetchOrders value)?  fetchOrders,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FetchOrders value)?  fetchOrders,TResult Function( _DeleteOrder value)?  deleteOrder,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _FetchOrders() when fetchOrders != null:
-return fetchOrders(_that);case _:
+return fetchOrders(_that);case _DeleteOrder() when deleteOrder != null:
+return deleteOrder(_that);case _:
   return orElse();
 
 }
@@ -77,11 +78,12 @@ return fetchOrders(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FetchOrders value)  fetchOrders,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FetchOrders value)  fetchOrders,required TResult Function( _DeleteOrder value)  deleteOrder,}){
 final _that = this;
 switch (_that) {
 case _FetchOrders():
-return fetchOrders(_that);case _:
+return fetchOrders(_that);case _DeleteOrder():
+return deleteOrder(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +100,12 @@ return fetchOrders(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FetchOrders value)?  fetchOrders,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FetchOrders value)?  fetchOrders,TResult? Function( _DeleteOrder value)?  deleteOrder,}){
 final _that = this;
 switch (_that) {
 case _FetchOrders() when fetchOrders != null:
-return fetchOrders(_that);case _:
+return fetchOrders(_that);case _DeleteOrder() when deleteOrder != null:
+return deleteOrder(_that);case _:
   return null;
 
 }
@@ -119,10 +122,11 @@ return fetchOrders(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetchOrders,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetchOrders,TResult Function( int orderId)?  deleteOrder,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FetchOrders() when fetchOrders != null:
-return fetchOrders();case _:
+return fetchOrders();case _DeleteOrder() when deleteOrder != null:
+return deleteOrder(_that.orderId);case _:
   return orElse();
 
 }
@@ -140,10 +144,11 @@ return fetchOrders();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetchOrders,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetchOrders,required TResult Function( int orderId)  deleteOrder,}) {final _that = this;
 switch (_that) {
 case _FetchOrders():
-return fetchOrders();case _:
+return fetchOrders();case _DeleteOrder():
+return deleteOrder(_that.orderId);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +165,11 @@ return fetchOrders();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetchOrders,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetchOrders,TResult? Function( int orderId)?  deleteOrder,}) {final _that = this;
 switch (_that) {
 case _FetchOrders() when fetchOrders != null:
-return fetchOrders();case _:
+return fetchOrders();case _DeleteOrder() when deleteOrder != null:
+return deleteOrder(_that.orderId);case _:
   return null;
 
 }
@@ -202,6 +208,72 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _DeleteOrder implements PendingEvent {
+  const _DeleteOrder({required this.orderId});
+  
+
+ final  int orderId;
+
+/// Create a copy of PendingEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DeleteOrderCopyWith<_DeleteOrder> get copyWith => __$DeleteOrderCopyWithImpl<_DeleteOrder>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteOrder&&(identical(other.orderId, orderId) || other.orderId == orderId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,orderId);
+
+@override
+String toString() {
+  return 'PendingEvent.deleteOrder(orderId: $orderId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DeleteOrderCopyWith<$Res> implements $PendingEventCopyWith<$Res> {
+  factory _$DeleteOrderCopyWith(_DeleteOrder value, $Res Function(_DeleteOrder) _then) = __$DeleteOrderCopyWithImpl;
+@useResult
+$Res call({
+ int orderId
+});
+
+
+
+
+}
+/// @nodoc
+class __$DeleteOrderCopyWithImpl<$Res>
+    implements _$DeleteOrderCopyWith<$Res> {
+  __$DeleteOrderCopyWithImpl(this._self, this._then);
+
+  final _DeleteOrder _self;
+  final $Res Function(_DeleteOrder) _then;
+
+/// Create a copy of PendingEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? orderId = null,}) {
+  return _then(_DeleteOrder(
+orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$PendingState {
@@ -247,13 +319,14 @@ extension PendingStatePatterns on PendingState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _ServerFailure value)?  serverFailure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Empty value)?  empty,TResult Function( _ServerFailure value)?  serverFailure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _ServerFailure() when serverFailure != null:
+return loaded(_that);case _Empty() when empty != null:
+return empty(_that);case _ServerFailure() when serverFailure != null:
 return serverFailure(_that);case _:
   return orElse();
 
@@ -272,13 +345,14 @@ return serverFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _ServerFailure value)  serverFailure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Empty value)  empty,required TResult Function( _ServerFailure value)  serverFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
 return loading(_that);case _Loaded():
-return loaded(_that);case _ServerFailure():
+return loaded(_that);case _Empty():
+return empty(_that);case _ServerFailure():
 return serverFailure(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -296,13 +370,14 @@ return serverFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _ServerFailure value)?  serverFailure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Empty value)?  empty,TResult? Function( _ServerFailure value)?  serverFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _ServerFailure() when serverFailure != null:
+return loaded(_that);case _Empty() when empty != null:
+return empty(_that);case _ServerFailure() when serverFailure != null:
 return serverFailure(_that);case _:
   return null;
 
@@ -320,12 +395,13 @@ return serverFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<OrderModel> orders)?  loaded,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<OrderModel> orders)?  loaded,TResult Function( String message)?  empty,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orders);case _ServerFailure() when serverFailure != null:
+return loaded(_that.orders);case _Empty() when empty != null:
+return empty(_that.message);case _ServerFailure() when serverFailure != null:
 return serverFailure(_that.message);case _:
   return orElse();
 
@@ -344,12 +420,13 @@ return serverFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<OrderModel> orders)  loaded,required TResult Function( String message)  serverFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<OrderModel> orders)  loaded,required TResult Function( String message)  empty,required TResult Function( String message)  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded(_that.orders);case _ServerFailure():
+return loaded(_that.orders);case _Empty():
+return empty(_that.message);case _ServerFailure():
 return serverFailure(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -367,12 +444,13 @@ return serverFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<OrderModel> orders)?  loaded,TResult? Function( String message)?  serverFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<OrderModel> orders)?  loaded,TResult? Function( String message)?  empty,TResult? Function( String message)?  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orders);case _ServerFailure() when serverFailure != null:
+return loaded(_that.orders);case _Empty() when empty != null:
+return empty(_that.message);case _ServerFailure() when serverFailure != null:
 return serverFailure(_that.message);case _:
   return null;
 
@@ -511,6 +589,72 @@ class __$LoadedCopyWithImpl<$Res>
   return _then(_Loaded(
 orders: null == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
 as List<OrderModel>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _Empty implements PendingState {
+  const _Empty(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of PendingState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$EmptyCopyWith<_Empty> get copyWith => __$EmptyCopyWithImpl<_Empty>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Empty&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'PendingState.empty(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$EmptyCopyWith<$Res> implements $PendingStateCopyWith<$Res> {
+  factory _$EmptyCopyWith(_Empty value, $Res Function(_Empty) _then) = __$EmptyCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class __$EmptyCopyWithImpl<$Res>
+    implements _$EmptyCopyWith<$Res> {
+  __$EmptyCopyWithImpl(this._self, this._then);
+
+  final _Empty _self;
+  final $Res Function(_Empty) _then;
+
+/// Create a copy of PendingState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(_Empty(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

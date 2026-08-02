@@ -58,7 +58,7 @@ class Cart extends StatelessWidget {
             Navigator.pushNamed(
               context,
               AppRoute.itemsDetails,
-              arguments: {"itemsmodel": cartItem.item},
+              arguments: cartItem.item,
             );
           },
         );

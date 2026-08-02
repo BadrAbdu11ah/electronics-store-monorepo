@@ -1,6 +1,7 @@
 import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/constant/app_image_asset.dart';
+import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/check_out/bloc/check_out_bloc.dart';
@@ -83,61 +84,57 @@ class CheckOutView extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
-          if (state.deliveryType == "0")
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppTranslations.translate(context, AppText.shippingAddress),
-                  style: TextStyle(
-                    color: AppColor.themeBlackColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(height: 10),
-                if (state.deliveryType == "0") ...[
-                  Text(
-                    AppTranslations.translate(context, AppText.shippingAddress),
-                    style: TextStyle(
-                      color: AppColor.themeBlackColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+          SizedBox(height: 30),
+
+          if (state.deliveryType == "0") ...[
+            state.addressStatus.when(
+              initial: () => SizedBox.shrink(),
+
+              loading: () => AppLoadingWidget(),
+
+              noData: (message) => AppEmptyWidget(
+                text: message,
+                textButton: "إضافة عنوان",
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoute.addressAdd);
+                },
+              ),
+
+              loaded: () {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppTranslations.translate(
+                        context,
+                        AppText.shippingAddress,
+                      ),
+                      style: TextStyle(
+                        color: AppColor.themeBlackColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-
-                  state.addressStatus.when(
-                    initial: () => SizedBox.shrink(),
-
-                    loading: () => AppLoadingWidget(),
-
-                    noData: (message) => AppEmptyWidget(text: message),
-
-                    loaded: () {
-                      return Column(
-                        children: List.generate(state.addresses.length, (i) {
-                          final address = state.addresses[i];
-                          return CardAddressCheckout(
-                            onCard: () {
-                              context.read<CheckOutBloc>().add(
-                                CheckOutEvent.chooseShippingAddress(
-                                  address.id.toString(),
-                                ),
-                              );
-                            },
-                            title: "${address.name}",
-                            body: "${address.city}, ${address.street}",
-                            active: state.addressID == address.id.toString(),
+                    ...List.generate(state.addresses.length, (i) {
+                      final address = state.addresses[i];
+                      return CardAddressCheckout(
+                        onCard: () {
+                          context.read<CheckOutBloc>().add(
+                            CheckOutEvent.chooseShippingAddress(
+                              address.id.toString(),
+                            ),
                           );
-                        }),
+                        },
+                        title: "${address.name}",
+                        body: "${address.city}, ${address.street}",
+                        active: state.addressID == address.id.toString(),
                       );
-                    },
-                  ),
-                ],
-              ],
+                    }),
+                  ],
+                );
+              },
             ),
+          ],
         ],
       ),
     );

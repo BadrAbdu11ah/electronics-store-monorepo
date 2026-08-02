@@ -93,6 +93,7 @@ class AppText {
   static const String activateNow = "activateNow";
   static const String cancel = "cancel";
   static const String confirm = "confirm";
+  static const String delete = "delete";
   static const String noData = "noData";
   static const String exitMessage = "exitMessage";
 
@@ -110,9 +111,12 @@ class AppText {
   static const aboutUs = "aboutUs"; // من نحن
   static const contactUs = "contactUs"; // اتصل بنا
   static const logout = "logout"; // تسجيل الخروج
+  static const whatsapp = "whatsapp"; // واتساب
+  static const myWebsite = "myWebsite"; // موقعي
 
   // -------------- items -------------
   static const rating = "rating";
+  static const deliveryTime = "deliveryTime";
   static const textButtonAddInCart = "textButtonAddInCart";
   static const textGoToCartPage = "textGoToCartPage";
 
@@ -142,10 +146,19 @@ class AppText {
 
   // -------------- order -------------
   static const ordersTitle = "orders_title";
+  static const orderArchiveTitle = "orderArchiveTitle";
   static const paymentMethod = "payment_method";
   static const orderType = "order_type";
   static const orderStatus = "order_status";
   static const details = "details";
+  static const rate = "rate";
+  static const rateOrder = "rateOrder";
+  static const rateOrderMessage = "rateOrderMessage";
+  static const rateOrderSubmitButton = "rateOrderSubmitButton";
+  static const rateOrderCommentHint = "rateOrderCommentHint";
+  static const deleteOrder = "deleteOrder";
+  static const areYouSureYouWantToDeleteThisOrder =
+      "areYouSureYouWantToDeleteThisOrder";
 
   static const ordersPaymentCash = "ordersPaymentCash";
   static const ordersPaymentCards = "ordersPaymentCards";
@@ -154,12 +167,17 @@ class AppText {
   static const ordersDriveThru = "ordersDriveThru";
 
   static const ordersWaiting = "ordersWaiting";
+  static const ordersRejected = "ordersRejected";
+  static const ordersAccepted = "ordersAccepted";
   static const ordersPreparing = "ordersPreparing";
-  static const ordersArchived = "ordersArchived";
+  static const ordersDelivered = "ordersDelivered";
+  static const ordersDone = "ordersDone";
+  static const ordersCancelled = "ordersCancelled";
 
   static const orderDetailsTitle = "order_details_title";
   static const mapLater = "map_later";
   static const getCurrentLocation = "get_current_location";
+  static const currentLocation = "current_location";
 
   static const item = "item";
   static const qty = "qty";

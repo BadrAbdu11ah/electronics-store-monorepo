@@ -60,7 +60,7 @@ class CardOrdersDetails extends StatelessWidget {
                       Text(
                         translateDatabase(
                           cartItems[i].item!.name!,
-                          cartItems[i].item!.name!,
+                          cartItems[i].item!.nameAr!,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -100,7 +100,7 @@ class CardOrdersDetails extends StatelessWidget {
                     "${order.deliveryPrice} \$",
                   ),
 
-            order.couponDiscount != 0
+            order.couponDiscount != null && order.couponDiscount != 0
                 ? lang == 'ar'
                       ? Text(
                           "${AppTranslations.translate(context, AppText.coupon)}: "
@@ -131,12 +131,12 @@ class CardOrdersDetails extends StatelessWidget {
                       ? Text(
                           "\$ ${order.totalPrice}",
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColor.priceColor),
+                          style: TextStyle(color: AppColor.redColor),
                         )
                       : Text(
                           "${order.totalPrice} \$",
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColor.priceColor),
+                          style: TextStyle(color: AppColor.redColor),
                         ),
                 ],
               ),

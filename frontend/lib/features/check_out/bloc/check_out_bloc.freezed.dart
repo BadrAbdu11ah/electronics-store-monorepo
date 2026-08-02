@@ -137,7 +137,7 @@ return resetStatusToLoaded(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadAddresses,TResult Function( String val)?  choosePymentMethod,TResult Function( String val)?  chooseDeliveryType,TResult Function( String val)?  chooseShippingAddress,TResult Function( String priceOrders,  String couponsID)?  checkout,TResult Function()?  resetStatusToLoaded,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadAddresses,TResult Function( String val)?  choosePymentMethod,TResult Function( String val)?  chooseDeliveryType,TResult Function( String val)?  chooseShippingAddress,TResult Function( String priceOrders,  String? couponsID)?  checkout,TResult Function()?  resetStatusToLoaded,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadAddresses() when loadAddresses != null:
@@ -164,7 +164,7 @@ return resetStatusToLoaded();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadAddresses,required TResult Function( String val)  choosePymentMethod,required TResult Function( String val)  chooseDeliveryType,required TResult Function( String val)  chooseShippingAddress,required TResult Function( String priceOrders,  String couponsID)  checkout,required TResult Function()  resetStatusToLoaded,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadAddresses,required TResult Function( String val)  choosePymentMethod,required TResult Function( String val)  chooseDeliveryType,required TResult Function( String val)  chooseShippingAddress,required TResult Function( String priceOrders,  String? couponsID)  checkout,required TResult Function()  resetStatusToLoaded,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _LoadAddresses():
@@ -190,7 +190,7 @@ return resetStatusToLoaded();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadAddresses,TResult? Function( String val)?  choosePymentMethod,TResult? Function( String val)?  chooseDeliveryType,TResult? Function( String val)?  chooseShippingAddress,TResult? Function( String priceOrders,  String couponsID)?  checkout,TResult? Function()?  resetStatusToLoaded,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadAddresses,TResult? Function( String val)?  choosePymentMethod,TResult? Function( String val)?  chooseDeliveryType,TResult? Function( String val)?  chooseShippingAddress,TResult? Function( String priceOrders,  String? couponsID)?  checkout,TResult? Function()?  resetStatusToLoaded,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadAddresses() when loadAddresses != null:
@@ -473,11 +473,11 @@ as String,
 
 
 class _Checkout implements CheckOutEvent {
-  const _Checkout({required this.priceOrders, required this.couponsID});
+  const _Checkout({required this.priceOrders, this.couponsID});
   
 
  final  String priceOrders;
- final  String couponsID;
+ final  String? couponsID;
 
 /// Create a copy of CheckOutEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -509,7 +509,7 @@ abstract mixin class _$CheckoutCopyWith<$Res> implements $CheckOutEventCopyWith<
   factory _$CheckoutCopyWith(_Checkout value, $Res Function(_Checkout) _then) = __$CheckoutCopyWithImpl;
 @useResult
 $Res call({
- String priceOrders, String couponsID
+ String priceOrders, String? couponsID
 });
 
 
@@ -526,11 +526,11 @@ class __$CheckoutCopyWithImpl<$Res>
 
 /// Create a copy of CheckOutEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? priceOrders = null,Object? couponsID = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? priceOrders = null,Object? couponsID = freezed,}) {
   return _then(_Checkout(
 priceOrders: null == priceOrders ? _self.priceOrders : priceOrders // ignore: cast_nullable_to_non_nullable
-as String,couponsID: null == couponsID ? _self.couponsID : couponsID // ignore: cast_nullable_to_non_nullable
-as String,
+as String,couponsID: freezed == couponsID ? _self.couponsID : couponsID // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

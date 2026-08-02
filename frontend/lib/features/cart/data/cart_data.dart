@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:electronics_store/api_endpoints.dart';
 import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/core/services/api_service.dart';
@@ -8,6 +10,12 @@ import 'package:fpdart/fpdart.dart';
 class CartData {
   final ApiService api;
   CartData(this.api);
+
+  final _cartItemsCountController = StreamController<void>.broadcast();
+  Stream<void> get onCartItemsCount => _cartItemsCountController.stream;
+
+  final _viewCartController = StreamController<void>.broadcast();
+  Stream<void> get onViewCart => _viewCartController.stream;
 
   /*
    * 1. استعراض عناصر السلة الحالية بمودل جامع بالريال السعودي
@@ -45,46 +53,47 @@ class CartData {
   Future<Either<Failure, String>> addCart(int itemId) async {
     final response = await api.post(ApiEndpoints.cartAdd, {"item_id": itemId});
 
-    return response.fold(
-      (failure) => Left(failure),
-      (data) => Right(data['message'] ?? "تم إضافة العنصر بنجاح"),
-    );
+    return response.fold((failure) => Left(failure), (data) {
+      _cartItemsCountController.add(null);
+      return Right(data['message'] ?? "تم إضافة العنصر بنجاح");
+    });
   }
 
   /*
    * 4. حذف منتج من السلة أو إنقاص كميته
-   * POST /api/cart/remove/{itemId}
+   * DELETE /api/cart/remove/{itemId}
    */
   Future<Either<Failure, String>> removeCart(int itemId) async {
     final response = await api.delete(ApiEndpoints.cartRemove(itemId));
 
-    return response.fold(
-      (failure) => Left(failure),
-      (data) => Right(data['message'] ?? "تم إزالة العنصر بنجاح"),
-    );
+    return response.fold((failure) => Left(failure), (data) {
+      _cartItemsCountController.add(null);
+      return Right(data['message'] ?? "تم إزالة العنصر بنجاح");
+    });
   }
 
   /*
-   * 4. حذف منتج من السلة أو إنقاص كميته
-   * POST /api/cart/delete/{itemId}
+   * 5. حذف المنتج بالكامل من السلة بصرف النظر عن كميته
+   * DELETE /api/cart/delete/{itemId}
    */
   Future<Either<Failure, String>> deleteCart(int itemId) async {
     final response = await api.delete(ApiEndpoints.cartDelete(itemId));
 
-    return response.fold(
-      (failure) => Left(failure),
-      (data) => Right(data['message'] ?? "تم إزالة العنصر بنجاح"),
-    );
+    return response.fold((failure) => Left(failure), (data) {
+      _cartItemsCountController.add(null);
+      return Right(data['message'] ?? "تم إزالة العنصر بنجاح");
+    });
   }
 
   /*
-   * 5. جلب كمية منتج محدد داخل السلة حالياً لخدمة أزرار التحكم (+ / -)
+   * 6. جلب كمية منتج محدد داخل السلة حالياً لخدمة أزرار التحكم (+ / -)
    * GET /api/cart/count/{item_id}
    */
   Future<Either<Failure, int>> getCountCart(int itemId) async {
     final response = await api.get(ApiEndpoints.cartCount(itemId));
 
     return response.fold((failure) => Left(failure), (data) {
+      _viewCartController.add(null);
       if (data['status'] == "failure") {
         return Left(ServerFailure(data['message'] ?? "فشل في جلب كمية المنتج"));
       }

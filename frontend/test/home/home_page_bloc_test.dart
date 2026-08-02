@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:electronics_store/core/class/failure.dart';
 import 'package:electronics_store/data/model/category/category_model.dart';
+import 'package:electronics_store/data/model/setting/setting_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
@@ -27,7 +28,18 @@ void main() {
     // تجهيز البيانات الوهمية للفحص
     final mockCategories = [CategoryModel(id: 1, name: 'Electronics')];
     final mockItems = [ItemModel(id: 101, name: 'iPhone')];
-    final mockSuccessData = {'categories': mockCategories, 'items': mockItems};
+    final mockSettings = SettingModel(
+      id: 1,
+      titleHomeEn: 'Summer Offers',
+      bodyHomeEn: 'Discount 20%',
+      titleHomeAr: 'عروض الصيف',
+      bodyHomeAr: 'خصم 20%',
+    );
+    final mockSuccessData = {
+      'categories': mockCategories,
+      'items': mockItems,
+      'settings': mockSettings,
+    };
 
     setUp(() {
       mockHomeData = MockHomeData();
@@ -45,7 +57,7 @@ void main() {
         homeData: mockHomeData,
         appService: mockAppService,
       );
-      expect(homePageBloc.state, const HomePageState());
+      expect(homePageBloc.state, const HomePageState.initial());
     });
 
     // 2. اختبار نجاح جلب البيانات من السيرفر عند بدء الصفحة
@@ -63,16 +75,12 @@ void main() {
       },
       act: (bloc) => bloc.add(const HomePageEvent.started()),
       expect: () => [
-        // أُطلقت أولاً لتحديث اللغة
-        const HomePageState(lang: 'ar'),
-        // أُطلقت داخل _onLoadData لتحديث الحالة إلى جاري التحميل
-        const HomePageState(lang: 'ar', status: HomePageStatus.loading()),
-        // أُطلقت في النهاية بعد استقبال البيانات بنجاح
-        HomePageState(
+        const HomePageState.loading(),
+        HomePageState.loaded(
           lang: 'ar',
-          status: const HomePageStatus.loaded(),
           categories: mockCategories,
           items: mockItems,
+          settings: mockSettings,
         ),
       ],
     );
@@ -91,12 +99,8 @@ void main() {
       },
       act: (bloc) => bloc.add(const HomePageEvent.started()),
       expect: () => [
-        const HomePageState(lang: 'en'),
-        const HomePageState(lang: 'en', status: HomePageStatus.loading()),
-        const HomePageState(
-          lang: 'en',
-          status: HomePageStatus.serverFailure('خطأ في الاتصال بالسيرفر'),
-        ),
+        const HomePageState.loading(),
+        HomePageState.serverFailure('خطأ في الاتصال بالسيرفر'),
       ],
     );
 
@@ -112,10 +116,7 @@ void main() {
         return HomePageBloc(homeData: mockHomeData, appService: mockAppService);
       },
       act: (bloc) => bloc.add(const HomePageEvent.logout()),
-      expect: () => [
-        const HomePageState(status: HomePageStatus.loading()),
-        const HomePageState(status: HomePageStatus.loggedOut()),
-      ],
+      expect: () => [HomePageState.loading(), HomePageState.loggedOut()],
       verify: (_) {
         // التحقق الفعلي من أن الدالة تم استدعاؤها في الذاكرة لمنع أي تسريب برمجي
         verify(() => mockSharedPreferences.setString('step', '1')).called(1);

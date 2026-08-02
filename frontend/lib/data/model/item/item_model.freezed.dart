@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ItemModel {
 
- int? get id; String? get name; String? get nameAr; String? get desc; String? get descAr; String? get image; int? get count; int? get active; double? get price; int? get discount; int? get categoryId; double? get discountedPrice; bool? get isFavorite; String? get updatedAt; CategoryModel? get category;
+ int? get id; String? get name; String? get nameAr; String? get desc; String? get descAr; String? get image; int? get count; int? get active; double? get price; int? get discount; int? get categoryId; int? get deliveryTime; double? get discountedPrice; bool? get isFavorite; String? get updatedAt; CategoryModel? get category;
 /// Create a copy of ItemModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ItemModelCopyWith<ItemModel> get copyWith => _$ItemModelCopyWithImpl<ItemModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAr, nameAr) || other.nameAr == nameAr)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.descAr, descAr) || other.descAr == descAr)&&(identical(other.image, image) || other.image == image)&&(identical(other.count, count) || other.count == count)&&(identical(other.active, active) || other.active == active)&&(identical(other.price, price) || other.price == price)&&(identical(other.discount, discount) || other.discount == discount)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.discountedPrice, discountedPrice) || other.discountedPrice == discountedPrice)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAr, nameAr) || other.nameAr == nameAr)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.descAr, descAr) || other.descAr == descAr)&&(identical(other.image, image) || other.image == image)&&(identical(other.count, count) || other.count == count)&&(identical(other.active, active) || other.active == active)&&(identical(other.price, price) || other.price == price)&&(identical(other.discount, discount) || other.discount == discount)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.deliveryTime, deliveryTime) || other.deliveryTime == deliveryTime)&&(identical(other.discountedPrice, discountedPrice) || other.discountedPrice == discountedPrice)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.category, category) || other.category == category));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,nameAr,desc,descAr,image,count,active,price,discount,categoryId,discountedPrice,isFavorite,updatedAt,category);
+int get hashCode => Object.hash(runtimeType,id,name,nameAr,desc,descAr,image,count,active,price,discount,categoryId,deliveryTime,discountedPrice,isFavorite,updatedAt,category);
 
 @override
 String toString() {
-  return 'ItemModel(id: $id, name: $name, nameAr: $nameAr, desc: $desc, descAr: $descAr, image: $image, count: $count, active: $active, price: $price, discount: $discount, categoryId: $categoryId, discountedPrice: $discountedPrice, isFavorite: $isFavorite, updatedAt: $updatedAt, category: $category)';
+  return 'ItemModel(id: $id, name: $name, nameAr: $nameAr, desc: $desc, descAr: $descAr, image: $image, count: $count, active: $active, price: $price, discount: $discount, categoryId: $categoryId, deliveryTime: $deliveryTime, discountedPrice: $discountedPrice, isFavorite: $isFavorite, updatedAt: $updatedAt, category: $category)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ItemModelCopyWith<$Res>  {
   factory $ItemModelCopyWith(ItemModel value, $Res Function(ItemModel) _then) = _$ItemModelCopyWithImpl;
 @useResult
 $Res call({
- int? id, String? name, String? nameAr, String? desc, String? descAr, String? image, int? count, int? active, double? price, int? discount, int? categoryId, double? discountedPrice, bool? isFavorite, String? updatedAt, CategoryModel? category
+ int? id, String? name, String? nameAr, String? desc, String? descAr, String? image, int? count, int? active, double? price, int? discount, int? categoryId, int? deliveryTime, double? discountedPrice, bool? isFavorite, String? updatedAt, CategoryModel? category
 });
 
 
@@ -65,7 +65,7 @@ class _$ItemModelCopyWithImpl<$Res>
 
 /// Create a copy of ItemModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? nameAr = freezed,Object? desc = freezed,Object? descAr = freezed,Object? image = freezed,Object? count = freezed,Object? active = freezed,Object? price = freezed,Object? discount = freezed,Object? categoryId = freezed,Object? discountedPrice = freezed,Object? isFavorite = freezed,Object? updatedAt = freezed,Object? category = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? nameAr = freezed,Object? desc = freezed,Object? descAr = freezed,Object? image = freezed,Object? count = freezed,Object? active = freezed,Object? price = freezed,Object? discount = freezed,Object? categoryId = freezed,Object? deliveryTime = freezed,Object? discountedPrice = freezed,Object? isFavorite = freezed,Object? updatedAt = freezed,Object? category = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -78,6 +78,7 @@ as int?,active: freezed == active ? _self.active : active // ignore: cast_nullab
 as int?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double?,discount: freezed == discount ? _self.discount : discount // ignore: cast_nullable_to_non_nullable
 as int?,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int?,deliveryTime: freezed == deliveryTime ? _self.deliveryTime : deliveryTime // ignore: cast_nullable_to_non_nullable
 as int?,discountedPrice: freezed == discountedPrice ? _self.discountedPrice : discountedPrice // ignore: cast_nullable_to_non_nullable
 as double?,isFavorite: freezed == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -179,10 +180,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? name,  String? nameAr,  String? desc,  String? descAr,  String? image,  int? count,  int? active,  double? price,  int? discount,  int? categoryId,  double? discountedPrice,  bool? isFavorite,  String? updatedAt,  CategoryModel? category)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? name,  String? nameAr,  String? desc,  String? descAr,  String? image,  int? count,  int? active,  double? price,  int? discount,  int? categoryId,  int? deliveryTime,  double? discountedPrice,  bool? isFavorite,  String? updatedAt,  CategoryModel? category)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ItemModel() when $default != null:
-return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.image,_that.count,_that.active,_that.price,_that.discount,_that.categoryId,_that.discountedPrice,_that.isFavorite,_that.updatedAt,_that.category);case _:
+return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.image,_that.count,_that.active,_that.price,_that.discount,_that.categoryId,_that.deliveryTime,_that.discountedPrice,_that.isFavorite,_that.updatedAt,_that.category);case _:
   return orElse();
 
 }
@@ -200,10 +201,10 @@ return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? name,  String? nameAr,  String? desc,  String? descAr,  String? image,  int? count,  int? active,  double? price,  int? discount,  int? categoryId,  double? discountedPrice,  bool? isFavorite,  String? updatedAt,  CategoryModel? category)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? name,  String? nameAr,  String? desc,  String? descAr,  String? image,  int? count,  int? active,  double? price,  int? discount,  int? categoryId,  int? deliveryTime,  double? discountedPrice,  bool? isFavorite,  String? updatedAt,  CategoryModel? category)  $default,) {final _that = this;
 switch (_that) {
 case _ItemModel():
-return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.image,_that.count,_that.active,_that.price,_that.discount,_that.categoryId,_that.discountedPrice,_that.isFavorite,_that.updatedAt,_that.category);case _:
+return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.image,_that.count,_that.active,_that.price,_that.discount,_that.categoryId,_that.deliveryTime,_that.discountedPrice,_that.isFavorite,_that.updatedAt,_that.category);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -220,10 +221,10 @@ return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? name,  String? nameAr,  String? desc,  String? descAr,  String? image,  int? count,  int? active,  double? price,  int? discount,  int? categoryId,  double? discountedPrice,  bool? isFavorite,  String? updatedAt,  CategoryModel? category)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? name,  String? nameAr,  String? desc,  String? descAr,  String? image,  int? count,  int? active,  double? price,  int? discount,  int? categoryId,  int? deliveryTime,  double? discountedPrice,  bool? isFavorite,  String? updatedAt,  CategoryModel? category)?  $default,) {final _that = this;
 switch (_that) {
 case _ItemModel() when $default != null:
-return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.image,_that.count,_that.active,_that.price,_that.discount,_that.categoryId,_that.discountedPrice,_that.isFavorite,_that.updatedAt,_that.category);case _:
+return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.image,_that.count,_that.active,_that.price,_that.discount,_that.categoryId,_that.deliveryTime,_that.discountedPrice,_that.isFavorite,_that.updatedAt,_that.category);case _:
   return null;
 
 }
@@ -235,7 +236,7 @@ return $default(_that.id,_that.name,_that.nameAr,_that.desc,_that.descAr,_that.i
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _ItemModel extends ItemModel {
-  const _ItemModel({this.id, this.name, this.nameAr, this.desc, this.descAr, this.image, this.count, this.active, this.price, this.discount, this.categoryId, this.discountedPrice, this.isFavorite, this.updatedAt, this.category}): super._();
+  const _ItemModel({this.id, this.name, this.nameAr, this.desc, this.descAr, this.image, this.count, this.active, this.price, this.discount, this.categoryId, this.deliveryTime, this.discountedPrice, this.isFavorite, this.updatedAt, this.category}): super._();
   factory _ItemModel.fromJson(Map<String, dynamic> json) => _$ItemModelFromJson(json);
 
 @override final  int? id;
@@ -249,6 +250,7 @@ class _ItemModel extends ItemModel {
 @override final  double? price;
 @override final  int? discount;
 @override final  int? categoryId;
+@override final  int? deliveryTime;
 @override final  double? discountedPrice;
 @override final  bool? isFavorite;
 @override final  String? updatedAt;
@@ -267,16 +269,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAr, nameAr) || other.nameAr == nameAr)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.descAr, descAr) || other.descAr == descAr)&&(identical(other.image, image) || other.image == image)&&(identical(other.count, count) || other.count == count)&&(identical(other.active, active) || other.active == active)&&(identical(other.price, price) || other.price == price)&&(identical(other.discount, discount) || other.discount == discount)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.discountedPrice, discountedPrice) || other.discountedPrice == discountedPrice)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAr, nameAr) || other.nameAr == nameAr)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.descAr, descAr) || other.descAr == descAr)&&(identical(other.image, image) || other.image == image)&&(identical(other.count, count) || other.count == count)&&(identical(other.active, active) || other.active == active)&&(identical(other.price, price) || other.price == price)&&(identical(other.discount, discount) || other.discount == discount)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.deliveryTime, deliveryTime) || other.deliveryTime == deliveryTime)&&(identical(other.discountedPrice, discountedPrice) || other.discountedPrice == discountedPrice)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.category, category) || other.category == category));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,nameAr,desc,descAr,image,count,active,price,discount,categoryId,discountedPrice,isFavorite,updatedAt,category);
+int get hashCode => Object.hash(runtimeType,id,name,nameAr,desc,descAr,image,count,active,price,discount,categoryId,deliveryTime,discountedPrice,isFavorite,updatedAt,category);
 
 @override
 String toString() {
-  return 'ItemModel(id: $id, name: $name, nameAr: $nameAr, desc: $desc, descAr: $descAr, image: $image, count: $count, active: $active, price: $price, discount: $discount, categoryId: $categoryId, discountedPrice: $discountedPrice, isFavorite: $isFavorite, updatedAt: $updatedAt, category: $category)';
+  return 'ItemModel(id: $id, name: $name, nameAr: $nameAr, desc: $desc, descAr: $descAr, image: $image, count: $count, active: $active, price: $price, discount: $discount, categoryId: $categoryId, deliveryTime: $deliveryTime, discountedPrice: $discountedPrice, isFavorite: $isFavorite, updatedAt: $updatedAt, category: $category)';
 }
 
 
@@ -287,7 +289,7 @@ abstract mixin class _$ItemModelCopyWith<$Res> implements $ItemModelCopyWith<$Re
   factory _$ItemModelCopyWith(_ItemModel value, $Res Function(_ItemModel) _then) = __$ItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, String? name, String? nameAr, String? desc, String? descAr, String? image, int? count, int? active, double? price, int? discount, int? categoryId, double? discountedPrice, bool? isFavorite, String? updatedAt, CategoryModel? category
+ int? id, String? name, String? nameAr, String? desc, String? descAr, String? image, int? count, int? active, double? price, int? discount, int? categoryId, int? deliveryTime, double? discountedPrice, bool? isFavorite, String? updatedAt, CategoryModel? category
 });
 
 
@@ -304,7 +306,7 @@ class __$ItemModelCopyWithImpl<$Res>
 
 /// Create a copy of ItemModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? nameAr = freezed,Object? desc = freezed,Object? descAr = freezed,Object? image = freezed,Object? count = freezed,Object? active = freezed,Object? price = freezed,Object? discount = freezed,Object? categoryId = freezed,Object? discountedPrice = freezed,Object? isFavorite = freezed,Object? updatedAt = freezed,Object? category = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? nameAr = freezed,Object? desc = freezed,Object? descAr = freezed,Object? image = freezed,Object? count = freezed,Object? active = freezed,Object? price = freezed,Object? discount = freezed,Object? categoryId = freezed,Object? deliveryTime = freezed,Object? discountedPrice = freezed,Object? isFavorite = freezed,Object? updatedAt = freezed,Object? category = freezed,}) {
   return _then(_ItemModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -317,6 +319,7 @@ as int?,active: freezed == active ? _self.active : active // ignore: cast_nullab
 as int?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double?,discount: freezed == discount ? _self.discount : discount // ignore: cast_nullable_to_non_nullable
 as int?,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int?,deliveryTime: freezed == deliveryTime ? _self.deliveryTime : deliveryTime // ignore: cast_nullable_to_non_nullable
 as int?,discountedPrice: freezed == discountedPrice ? _self.discountedPrice : discountedPrice // ignore: cast_nullable_to_non_nullable
 as double?,isFavorite: freezed == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable

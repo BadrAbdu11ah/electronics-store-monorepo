@@ -12,17 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id('orders_id');
-            $table->foreignId('orders_usersID')->constrained('users', 'users_id')->onDelete('cascade');
-            $table->foreignId('orders_addressesID')->nullable()->constrained('addresses', 'addresses_id')->onDelete('cascade');
-            $table->integer("orders_type")->default(0); // 0 => Delivery, 1 => Drive Thru 
-            $table->double("orders_price_delivery")->default(0);
-            $table->double("orders_price");
-            $table->double("orders_total_price");
-            $table->integer("orders_couponID")->default(0);
-            $table->integer("orders_payment_method")->default(0); // 0 => cash, 1 => payment card
-            $table->integer("orders_status")->default(0); 
+            $table->id(); 
+            
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('address_id')->nullable()->constrained()->onDelete('cascade');
+            
+            $table->integer("type")->default(0); // 0 => Delivery, 1 => Drive Thru 
+            $table->double("delivery_price")->default(0);
+            $table->double("price");
+            $table->double("total_price");
+            
+            $table->foreignId('coupon_id')->nullable()->default(null)->constrained()->onDelete('set null');
+            
+            $table->integer("payment_method")->default(0); // 0 => cash, 1 => payment card
+            $table->integer("status")->default(0); // 0 => pending, 1 => rejected, 2 => accepted, 3 => prepare, 4 => delivered, 5 => done, 6 => cancelled
+            
+            $table->decimal("rating", 2, 1)->nullable();
+            $table->string("review", 255)->nullable();
+            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

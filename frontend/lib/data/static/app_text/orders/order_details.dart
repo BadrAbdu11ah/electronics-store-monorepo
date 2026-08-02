@@ -5,6 +5,7 @@ Map<String, String> orderDetailsAr = {
   AppText.shippingAddress: "عنوان الشحن",
   AppText.mapLater: "سيتم عرض الخريطة لاحقًا",
   AppText.getCurrentLocation: "أخذ موقعك الحالي",
+  AppText.currentLocation: "موقعك الحالي",
   AppText.item: "المنتج",
   AppText.qty: "الكمية",
 
@@ -19,6 +20,7 @@ Map<String, String> orderDetailsEn = {
   AppText.shippingAddress: "Shipping Address",
   AppText.mapLater: "Map will be shown later",
   AppText.getCurrentLocation: "Get current location",
+  AppText.currentLocation: "Current Location",
 
   AppText.item: "Item",
   AppText.qty: "QTY",

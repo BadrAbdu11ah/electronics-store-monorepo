@@ -34,11 +34,21 @@ abstract class OrderModel with _$OrderModel {
   OrderStatus get orderStatusEnum {
     switch (status) {
       case 0:
-        return OrderStatus.waiting;
+        return OrderStatus.pending;
       case 1:
-        return OrderStatus.preparing;
+        return OrderStatus.rejected;
+      case 2:
+        return OrderStatus.accepted;
+      case 3:
+        return OrderStatus.prepare;
+      case 4:
+        return OrderStatus.delivered;
+      case 5:
+        return OrderStatus.done;
+      case 6:
+        return OrderStatus.cancelled;
       default:
-        return OrderStatus.archived;
+        return OrderStatus.pending;
     }
   }
 
@@ -54,7 +64,10 @@ abstract class OrderModel with _$OrderModel {
     int? couponId,
     int? couponDiscount,
     int? paymentMethod, // 0 => Cash, 1 => Card
-    int? status, // حالة الطلب (مثال: 0 => قيد الانتظار)
+    int?
+    status, // 0 => pending, 1 => rejected, 2 => accepted, 3 => prepare, 4 => delivered, 5 => done, 6 => cancelled
+    double? rating,
+    String? review,
     String? createdAt,
     String? updatedAt,
     @JsonKey(name: 'coupon') CouponModel? couponModel,

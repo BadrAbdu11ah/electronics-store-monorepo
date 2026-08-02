@@ -23,7 +23,6 @@ class ItemsGrid extends StatelessWidget {
         children: [
           CustomAppBar(
             title: AppTranslations.translate(context, AppText.findProduct),
-            onOrder: () => Navigator.pushNamed(context, AppRoute.ordersPending),
             onFavorite: () => Navigator.pushNamed(context, AppRoute.favorite),
             onSearch: () {
               showSearch(

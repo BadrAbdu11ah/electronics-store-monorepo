@@ -12,8 +12,6 @@ class AddressAddStatus with _$AddressAddStatus {
 abstract class AddressAddState with _$AddressAddState {
   const factory AddressAddState({
     @Default(AddressAddStatus.initial()) AddressAddStatus status,
-    // Location Data
-    Position? position,
     double? lat,
     double? long,
   }) = _AdderssAddState;

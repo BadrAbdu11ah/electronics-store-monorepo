@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('users_id'); 
+            $table->id(); 
             
-            $table->string('users_name');
-            $table->string('users_email')->unique();
-            $table->string('users_password');
-            $table->string('users_phone'); 
+            $table->string('name');
+            $table->string('email')->unique(); 
+            $table->string('password'); 
+            $table->string('phone'); 
             
-            // // الحقول الجديدة المضافة من مشروع إدارة الطلبات
-            $table->string('role')->default('user'); // // تحديد صلاحية المستخدم (admin, user, etc)
-            $table->string('api_token', 80)->unique()->nullable()->default(null); // // التوكن الخاص بالـ API
+            // // الحقول الخاصة بإدارة الطلبات والصلاحيات
+            $table->string('role')->default('user'); // تحديد صلاحية المستخدم (admin, user, etc)
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
             
-            $table->string('users_verfiycode')->nullable();
-            $table->integer('users_approve')->default(0); 
+            $table->string('verify_code')->nullable(); 
+            $table->integer('approve')->default(0); 
+            
             $table->rememberToken();
             $table->timestamps(); 
         });

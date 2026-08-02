@@ -2,6 +2,7 @@ import 'package:electronics_store/app_router.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/id/injection.dart';
 import 'package:electronics_store/core/localization/bloc/localization_bloc.dart';
+import 'package:electronics_store/core/routes/app_route_observer.dart';
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/features/search/bloc/search_bloc.dart';
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
+          navigatorObservers: [AppRouteObserver()],
           supportedLocales: const [Locale('ar', ''), Locale('en', '')],
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: AppRoute.chooseLanguage,

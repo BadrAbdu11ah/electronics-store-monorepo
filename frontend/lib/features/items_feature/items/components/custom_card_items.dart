@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_color.dart';
 import 'package:electronics_store/core/constant/app_image_asset.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
-import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:flutter/material.dart';
@@ -67,23 +65,21 @@ class CustomCardItems extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Icon(
+                        Icons.watch_later_outlined,
+                        color: AppColor.themeBlackColor,
+                      ),
+                      SizedBox(width: 10),
                       Text(
-                        AppTranslations.translate(context, AppText.rating),
+                        lang == "ar"
+                            ? "${itemsModel.deliveryTime} دقيقة"
+                            : "${itemsModel.deliveryTime} minutes",
                         style: TextStyle(
                           fontSize: lang == "ar" ? 12 : 15,
-                          color: AppColor.bodyColor,
+                          color: AppColor.themeBlackColor,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      Row(
-                        children: [
-                          ...List.generate(
-                            5,
-                            (index) => Icon(Icons.star, size: 15),
-                          ),
-                        ],
                       ),
                     ],
                   ),
@@ -95,28 +91,28 @@ class CustomCardItems extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${itemsModel.price} ر.س",
-                                  style: TextStyle(
-                                    fontSize: lang == "ar" ? 10 : 12,
-                                    color: AppColor.priceColor,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                                Text(
                                   "${itemsModel.discountedPrice} ر.س",
                                   style: TextStyle(
                                     fontSize: lang == "ar" ? 12 : 14,
-                                    color: AppColor.priceColor,
+                                    color: AppColor.redColor,
                                     fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "${itemsModel.price} ر.س",
+                                  style: TextStyle(
+                                    fontSize: lang == "ar" ? 10 : 12,
+                                    color: AppColor.redColor,
+                                    decoration: TextDecoration.lineThrough,
                                   ),
                                 ),
                               ],
                             )
                           : Text(
-                              "${itemsModel.price} ر.س)",
+                              "${itemsModel.price} ر.س",
                               style: TextStyle(
                                 fontSize: lang == "ar" ? 12 : 15,
-                                color: AppColor.priceColor,
+                                color: AppColor.redColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

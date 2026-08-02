@@ -2,172 +2,250 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Services\FcmService;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Coupon;
-use App\Models\Address;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {  
     /**
-     * إتمام عملية الشراء (Checkout)
+     * إتمام عملية الشراء وتحويل السلة إلى طلب حقيقي (Checkout)
      * POST /api/order/checkout
      */
     public function store(Request $request)
     {
         $request->validate([
-            'addressesid'   => "required",
-            'type'          => "required", // 0 => Delivery, 1 => Drive Thru
-            'pricedelivery' => "required",
-            'price'         => "required",
-            'couponsid'     => "required", 
-            'paymentmethod' => "required",
+            'address_id'     => "nullable|integer", 
+            'type'           => "required|in:0,1",  // 0 => Delivery, 1 => Drive Thru
+            'delivery_price' => "required|numeric",
+            'price'          => "required|numeric", 
+            'coupon_id'      => "nullable|integer", 
+            'payment_method' => "required|in:0,1",  // 0 => cash, 1 => payment card
         ]);
 
         $user = $request->user();
 
         try {
+            // استخدام الـ Transaction لضمان سلامة البيانات
             return DB::transaction(function () use ($request, $user) {
                 
-                $totalPrice = $request->price;
-                
-                // // 1. التحقق من الكوبون (بناءً على المعرف الممرر)
-                $coupon = Coupon::where("coupons_id", $request->couponsid)
-                    ->where("coupons_expiredate", ">", now()) 
-                    ->where("coupons_count", ">", 0)
-                    ->first();
+                $priceBase = $request->price; 
+                $couponId  = $request->coupon_id;
 
-                if (!$coupon && $request->couponsid != 0) {
-                    return response()->json([
-                        "status"  => "failure",
-                        "message" => "الكوبون لم يعد صالحاً"
-                    ]);
+                // 1. التحقق من الكوبون إن وجد في الطلب
+                $coupon = null;
+                if ($couponId) {
+                    $coupon = Coupon::where("id", $couponId)->first();
+
+                    if (!$coupon || $coupon->count <= 0 || $coupon->isExpired()) {
+                        return response()->json([
+                            "status"  => "failure",
+                            "message" => "عذراً، الكوبون المستخدم لم يعد صالحاً أو انتهت صلاحيته"
+                        ], 422);
+                    }
                 }
 
-                // // 2. معالجة الخصم
+                // 2. معالجة حسابات الخصم للكوبون الصالح 
                 if ($coupon) {
-                    $totalPrice = $totalPrice - ($totalPrice * ($coupon->coupons_discount / 100));     
-                    $coupon->decrement('coupons_count'); 
+                    $priceBase = $priceBase - ($priceBase * ($coupon->discount / 100));     
+                    $coupon->decrement('count'); 
                 }
 
-                // // 3. حساب سعر التوصيل والعنوان
-                $priceDelivery = ($request->type == "1") ? 0 : $request->pricedelivery;
-                $totalPrice    = $totalPrice + $priceDelivery;
-                $addressID     = ($request->addressesid == "0") ? null : $request->addressesid;
+                // 3. حساب سعر التوصيل بناءً على نوع الاستلام والعنوان
+                $priceDelivery = ($request->type == 1) ? 0 : $request->delivery_price;
+                $totalPrice    = $priceBase + $priceDelivery;
+                $addressId     = ($request->type == 1) ? null : $request->address_id;
 
-                // // 4. إنشاء الطلب
+                // 4. إنشاء سجل الطلب النظيف بالريال السعودي فقط
                 $order = Order::create([
-                    "orders_usersID"        => $user->users_id,
-                    "orders_addressesID"    => $addressID,
-                    "orders_type"           => $request->type,
-                    "orders_price_delivery" => $priceDelivery,
-                    "orders_price"          => $request->price,
-                    "orders_total_price"    => $totalPrice,
-                    "orders_couponID"       => $request->couponsid,
-                    "orders_payment_method" => $request->paymentmethod,
-                    "orders_status"         => 0 // 0 => Pending
+                    "user_id"        => $user->id,
+                    "address_id"     => $addressId,
+                    "type"           => $request->type,
+                    "delivery_price" => round($priceDelivery, 2),
+                    "price"          => round($request->price, 2),
+                    "total_price"    => round($totalPrice, 2),
+                    "coupon_id"      => $couponId,
+                    "payment_method" => $request->payment_method,
+                    "status"         => 0 // 0 => Pending (قيد الانتظار)
                 ]);
 
-                // // 5. تحديث السلة: ربط العناصر المفتوحة بهذا الطلب
-                Cart::where("carts_usersID", $user->users_id)
-                    ->where("carts_ordersID", 0)
-                    ->update(['carts_ordersID' => $order->orders_id]);
+                // 5. تحديث وتصفير السلة: ربط جميع العناصر المفتوحة برقم هذا الطلب
+                Cart::where("user_id", $user->id)
+                    ->whereNull("order_id")
+                    ->update(['order_id' => $order->id]);
 
                 return response()->json([
-                    "status"  => "success",
-                    "message" => "تم تسجيل طلبك بنجاح برقم #{$order->orders_id}"
+                    "status"      => "success",
+                    "message"     => "تم تسجيل طلبك بنجاح برقم #{$order->id}",
+                    "order_id"    => $order->id,
+                    "total_price" => round($totalPrice, 2) 
                 ]);
-            });
-        } catch (\Exception $e) {
+        });
+
+        } catch (\Throwable $e) {
             return response()->json([
                 "status"  => "failure",
-                "message" => "فشل في إتمام الطلب، يرجى المحاولة لاحقاً"
+                "message" => "فشل في إتمام عملية الشراء",
+                "error"   => $e->getMessage(),
+                "line"    => $e->getLine()
             ], 500);
         }
     }
 
     /**
-     * عرض جميع طلبات المستخدم
+     * عرض قائمة الطلبات الخاصة بالمستخدم الحالي
      * GET /api/order/pending
      */
     public function index(Request $request)
     {
         $user = $request->user();
 
-        $orders = Order::with('coupon')
-            ->where("orders_usersID", $user->users_id)
-            ->latest() // // أحدث الطلبات أولاً
-            ->get();
+        // جلب الطلبات مع بيانات الكوبون المرتبط
+        $orders = $user->orders()->with('coupon')->where("status", '!=', 5)->latest()->get();
 
         if ($orders->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "لا توجد طلبات سابقة"]);
+            return response()->json([
+                "status"  => "success", 
+                "message" => "لا توجد طلبات مسجلة حالياً",
+                "data"    => []
+            ]);
         }
 
-        // // تخصيص البيانات للعرض في التطبيق
+        // تجهيز نسبة الخصم للفرونت إند بشكل صريح
         $orders->transform(function($order) {
-            $order->coupon_discount = $order->coupon ? $order->coupon->coupons_discount : 0;
+            $order->coupon_discount = $order->coupon ? $order->coupon->discount : 0;
             return $order;
         });
 
-        return response()->json(["status" => "success", "data" => $orders]);
+        return response()->json([
+            "status" => "success", 
+            "data"   => $orders
+        ]);
+    }
+    /**
+     * عرض قائمة الطلبات الخاصة بالمستخدم الحالي
+     * GET /api/order/archive
+     */
+    public function indexArchive(Request $request)
+    {
+        $user = $request->user();
+
+        // جلب الطلبات مع بيانات الكوبون المرتبط
+        $orders = $user->orders()->with('coupon')->where("status", 5)->latest()->get();
+
+        if ($orders->isEmpty()) {
+            return response()->json([
+                "status"  => "success", 
+                "message" => "لا توجد طلبات مؤرشفة",
+                "data"    => []
+            ]);
+        }
+
+        // تجهيز نسبة الخصم للفرونت إند بشكل صريح
+        $orders->transform(function($order) {
+            $order->coupon_discount = $order->coupon ? $order->coupon->discount : 0;
+            return $order;
+        });
+
+        return response()->json([
+            "status" => "success", 
+            "data"   => $orders
+        ]);
     }
 
     /**
-     * عرض تفاصيل طلب محدد
+     * عرض تفاصيل ومحتويات طلب محدد بأمان
      * GET /api/order/details/{id}
      */
     public function show(Request $request, $id)
     {
         $user = $request->user();
 
-        // // جلب عناصر السلة المرتبطة بهذا الطلب تحديداً
-        $cartItems = Cart::with("item")
-                    ->where("carts_usersID", $user->users_id)
-                    ->where("carts_ordersID", $id)
-                    ->get();
+        $order = $user->orders()->with('address')->find($id);
 
-        if ($cartItems->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "تفاصيل الطلب غير موجودة"]);
+        if (!$order) {
+            return response()->json([
+                "status"  => "failure", 
+                "message" => "الطلب غير موجود أو غير مصرح لك باستعراضه"
+            ], 404);
         }
 
-        // تجميع المنتجات وحساب الكميات والأسعار
-        $itemsData = $cartItems->groupBy('carts_itemsID')->map(function ($group) {
-            $item       = $group->first()->item; 
-            $unitPrice  = $item->discounted_price; 
-            $count      = $group->count();
+        // جلب عناصر السلة المرتبطة بهذا الطلب
+        $cartItems = Cart::with("item")
+                    ->where("order_id", $order->id)
+                    ->get();
+
+        $cartItems = $cartItems->groupBy('item_id')->map(function ($group) {
+            $item      = $group->first()->item;
+            $unitPrice = $item->price - ($item->price * $item->discount / 100);
+            $count     = $group->count();
             
             return [
                 'item'             => $item,
                 'count_items'      => $count,
-                'item_price'       => $unitPrice,
-                'total_item_price' => $count * $unitPrice, 
+                'item_price'       => round($unitPrice, 2), 
+                'total_item_price' => round($count * $unitPrice, 2), 
             ];
         })->values();
-
-        $itemsData = $cartItems->groupBy('carts_itemsID')->map(function ($group) {
-            $item       = $group->first();
-            $unitPrice  = $item->item->items_price_discount; 
-            $count      = $group->count();
-            
-            return [
-                'item'             => $item->item,
-                'count_items'      => $count,
-                'item_price'       => $unitPrice,
-                'total_item_price' => $count * $unitPrice, 
-            ];
-        })->values();
-
-        // جلب بيانات الطلب لمعرفة العنوان المرتبط به
-        $order = Order::find($id);
 
         return response()->json([
-            "status"     => "success",
-            "data"       => $itemsData,
-            "order_info" => $order,
-            "address"    => $order->address 
+            "status"       => "success",
+            "cart_items"   => $cartItems,
+            "order_info"   => $order,
+            "address"      => $order->address 
+        ]);
+    }
+    /**
+     * حذف طلب
+     * DELETE /api/order/delete/{id}
+     */
+    public function destroy(Request $request, $id)
+    {
+        $order = $request->user()->orders()->find($id);
+
+        if (!$order) {
+            return response()->json([
+                "status"  => "failure", 
+                "message" => "الطلب غير موجود أو غير مصرح لك بالحذف"
+            ], 404);
+        }
+
+        $order->delete();
+
+        return response()->json([
+            "status"  => "success", 
+            "message" => "تم حذف الطلب بنجاح"
+        ]);
+    }
+    /**
+     * حذف طلب
+     * PUT /api/order/rate/{id}
+     */
+    public function rate(Request $request, $id)
+    {
+        $order = $request->user()->orders()->find($id);
+
+        if (!$order) {
+            return response()->json([
+                "status"  => "failure", 
+                "message" => "الطلب غير موجود أو غير مصرح لك بالحذف"
+            ], 404);
+        }
+
+        $order->update([
+            "rating" => $request->rating,
+            "review" => $request->review
+        ]);
+        
+        return response()->json([
+            "status"  => "success", 
+            "message" => "شكرا على تقييمك"
         ]);
     }
 }

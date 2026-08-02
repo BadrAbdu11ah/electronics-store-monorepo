@@ -3,31 +3,54 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
+use App\Models\Address;
+use App\Models\Coupon;
 
 class Order extends Model
 {
-    protected $primaryKey = 'orders_id';
-    
+    // تحديد اسم الجدول في قاعدة البيانات
+    protected $table = 'orders';
+
+    /**
+     * الحقول القابلة للتعبئة جماعياً
+     */
     protected $fillable = [
-        'orders_usersID',
-        'orders_addressesID',
-        'orders_type', // 0 => Delivery, 1 => Drive Thru 
-        'orders_price_delivery',
-        'orders_price',
-        'orders_total_price',
-        'orders_couponID',
-        'orders_payment_method', // 0 => cash, 1 => payment card
-        'orders_status', 
+        'user_id',
+        'address_id',
+        'type',             // 0 => Delivery, 1 => Drive Thru 
+        'delivery_price',
+        'price',
+        'total_price',
+        'coupon_id',
+        'payment_method',   // 0 => cash, 1 => payment card
+        'status',           // 0 => pending, 1 => rejected, 2 => accepted, 3 => prepare, 4 => delivered, 5 => done, 6 => cancelled
+        'rating',
+        'review',
     ];
 
-    public function coupon()
+    /**
+     * الطلب ينتمي لمستحدم واحد محدد
+     */
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Coupon::class, "orders_couponID", "coupons_id");
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function address()
+    /**
+     * الطلب ينتمي لعنوان شحن واحد (يكون nullable في حال كان الاستلام من المتجر Drive Thru)
+     */
+    public function address(): BelongsTo
     {
-        return $this->belongsTo(Address::class, "orders_addressesID", "addresses_id");
+        return $this->belongsTo(Address::class, 'address_id', 'id');
     }
-    
+
+    /**
+     * الطلب ينتمي لكوبون خصم واحد (إذا استخدم المستخدم كوبون)
+     */
+    public function coupon(): BelongsTo
+    {
+        return $this->belongsTo(Coupon::class, 'coupon_id', 'id');
+    }
 }

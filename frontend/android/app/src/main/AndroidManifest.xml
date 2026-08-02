@@ -3,6 +3,39 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!-- إعادة جدولة الإشعارات عند إعادة تشغيل الهاتف -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <!-- لحجز مواعيد دقيقة للإشعارات (أندرويد 14) - اختر أحد الخيارين: -->
+    <!-- الخيار الأسهل: يتطلب إعطاء الإذن من المستخدم برمجياً -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    
+    <!-- أو خيار الاستخدام المباشر (تنبيه: يتطلب مراجعة من متجر Google Play للأجهزة الموجهة لأندرويد 13+) -->
+    <!-- <uses-permission android:name="android.permission.USE_EXACT_ALARM" /> -->
+
+    <!-- (اختياري) إذا كنت تشغل إشعارات ملء الشاشة مثل المكالمات -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
+    <!-- (اختياري) لتجاوز وضع "عدم الإزعاج" Do Not Disturb -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <!-- Provide required visibility configuration for API level 30 and above -->
+    <queries>
+    <!-- If your app checks for SMS support -->
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="sms" />
+    </intent>
+    <!-- If your app checks for call support -->
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="tel" />
+    </intent>
+    <!-- If your application checks for inAppBrowserView launch mode support -->
+    <intent>
+        <action android:name="android.support.customtabs.action.CustomTabsService" />
+    </intent>
+    </queries>
 
     <application
         android:label="electronics_store"
@@ -36,6 +69,22 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- مستلم جدولة الإشعارات -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        
+        <!-- مستلم إعادة التشغيل لجدولة الإشعارات من جديد -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- (اختياري) إذا كنت تستخدم أزرار تفاعلية داخل الإشعار Notification Actions -->
+        <!-- <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" /> -->
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

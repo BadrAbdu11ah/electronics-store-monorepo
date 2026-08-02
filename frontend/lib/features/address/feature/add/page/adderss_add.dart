@@ -22,36 +22,38 @@ class AdderssAdd extends StatelessWidget {
                   context.read<AddressAddBloc>().add(AddressAddEvent.started()),
             ),
             loading: () => AppLoadingWidget(),
-            loaded: () => Column(
-              children: [
-                Spacer(),
-                Expanded(
-                  child: Text(
-                    "تم أخذ الموقع الحالي\nسيتم عرض الخريطة لاحقا",
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Spacer(),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-                  child: MaterialButton(
-                    height: 50,
-                    textColor: AppColor.bgColorOnBoarding,
-                    color: AppColor.themeColor,
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        AppRoute.addressAddDetails,
-                        arguments: {"lat": state.lat, "long": state.long},
-                      );
-                    },
+            loaded: () => Center(
+              child: Column(
+                children: [
+                  Spacer(),
+                  Expanded(
                     child: Text(
-                      "تفاصيل العنوان",
-                      style: TextStyle(fontSize: 20),
+                      "تم أخذ الموقع الحالي\nسيتم عرض الخريطة لاحقا",
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-              ],
+                  Spacer(),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                    child: MaterialButton(
+                      height: 50,
+                      textColor: AppColor.bgColorOnBoarding,
+                      color: AppColor.themeColor,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoute.addressAddDetails,
+                          arguments: {"lat": state.lat, "long": state.long},
+                        );
+                      },
+                      child: Text(
+                        "تفاصيل العنوان",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

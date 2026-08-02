@@ -116,7 +116,9 @@ class _CustomBottomCartState extends State<CustomBottomCart> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      "${widget.state.subtotalPrice} ر.س",
+                      widget.state.lang == "ar"
+                          ? "${widget.state.subtotalPrice} ر.س"
+                          : "${widget.state.subtotalPrice} SAR",
                       style: TextStyle(color: AppColor.themeBlackColor),
                     ),
                   ),
@@ -136,7 +138,7 @@ class _CustomBottomCartState extends State<CustomBottomCart> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       "% ${widget.state.discountPercentage}",
-                      style: TextStyle(color: AppColor.priceColor),
+                      style: TextStyle(color: AppColor.redColor),
                     ),
                   ),
                 ],
@@ -154,7 +156,12 @@ class _CustomBottomCartState extends State<CustomBottomCart> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      "${widget.state.shippingPrice} ر.س",
+                      widget.state.subtotalPrice == 0
+                          ? "0"
+                          : widget.state.lang == "ar"
+                          ? "${widget.state.shippingPrice} ر.س"
+                          : "${widget.state.shippingPrice} SAR",
+
                       style: TextStyle(color: AppColor.themeBlackColor),
                     ),
                   ),
@@ -180,9 +187,13 @@ class _CustomBottomCartState extends State<CustomBottomCart> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      "${widget.state.totalAppPrice} ر.س",
+                      widget.state.subtotalPrice == 0
+                          ? "0"
+                          : widget.state.lang == "ar"
+                          ? "${widget.state.totalAppPrice} ر.س"
+                          : "${widget.state.totalAppPrice} SAR",
                       style: TextStyle(
-                        color: AppColor.priceColor,
+                        color: AppColor.redColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

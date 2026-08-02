@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AddressEditEvent {
 
- int? get addressId; String? get name; String? get city; String? get street; String? get lat; String? get long; String? get phone;
+ int get addressId; String get name; String get city; String get street; String get lat; String get long; String get phone;
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $AddressEditEventCopyWith<$Res>  {
   factory $AddressEditEventCopyWith(AddressEditEvent value, $Res Function(AddressEditEvent) _then) = _$AddressEditEventCopyWithImpl;
 @useResult
 $Res call({
- int? addressId, String? name, String? city, String? street, String? lat, String? long, String? phone
+ int addressId, String name, String city, String street, String lat, String long, String phone
 });
 
 
@@ -62,16 +62,16 @@ class _$AddressEditEventCopyWithImpl<$Res>
 
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? addressId = freezed,Object? name = freezed,Object? city = freezed,Object? street = freezed,Object? lat = freezed,Object? long = freezed,Object? phone = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? addressId = null,Object? name = null,Object? city = null,Object? street = null,Object? lat = null,Object? long = null,Object? phone = null,}) {
   return _then(_self.copyWith(
-addressId: freezed == addressId ? _self.addressId : addressId // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String?,street: freezed == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
-as String?,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
-as String?,long: freezed == long ? _self.long : long // ignore: cast_nullable_to_non_nullable
-as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,
+addressId: null == addressId ? _self.addressId : addressId // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+as String,street: null == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
+as String,lat: null == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
+as String,long: null == long ? _self.long : long // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -156,7 +156,7 @@ return submit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int? addressId,  String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)?  submit,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int addressId,  String name,  String city,  String street,  String lat,  String long,  String phone)?  submit,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Submit() when submit != null:
 return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
@@ -177,7 +177,7 @@ return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int? addressId,  String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)  submit,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int addressId,  String name,  String city,  String street,  String lat,  String long,  String phone)  submit,}) {final _that = this;
 switch (_that) {
 case _Submit():
 return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
@@ -197,7 +197,7 @@ return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int? addressId,  String? name,  String? city,  String? street,  String? lat,  String? long,  String? phone)?  submit,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int addressId,  String name,  String city,  String street,  String lat,  String long,  String phone)?  submit,}) {final _that = this;
 switch (_that) {
 case _Submit() when submit != null:
 return submit(_that.addressId,_that.name,_that.city,_that.street,_that.lat,_that.long,_that.phone);case _:
@@ -215,13 +215,13 @@ class _Submit implements AddressEditEvent {
   const _Submit({required this.addressId, required this.name, required this.city, required this.street, required this.lat, required this.long, required this.phone});
   
 
-@override final  int? addressId;
-@override final  String? name;
-@override final  String? city;
-@override final  String? street;
-@override final  String? lat;
-@override final  String? long;
-@override final  String? phone;
+@override final  int addressId;
+@override final  String name;
+@override final  String city;
+@override final  String street;
+@override final  String lat;
+@override final  String long;
+@override final  String phone;
 
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -253,7 +253,7 @@ abstract mixin class _$SubmitCopyWith<$Res> implements $AddressEditEventCopyWith
   factory _$SubmitCopyWith(_Submit value, $Res Function(_Submit) _then) = __$SubmitCopyWithImpl;
 @override @useResult
 $Res call({
- int? addressId, String? name, String? city, String? street, String? lat, String? long, String? phone
+ int addressId, String name, String city, String street, String lat, String long, String phone
 });
 
 
@@ -270,16 +270,16 @@ class __$SubmitCopyWithImpl<$Res>
 
 /// Create a copy of AddressEditEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? addressId = freezed,Object? name = freezed,Object? city = freezed,Object? street = freezed,Object? lat = freezed,Object? long = freezed,Object? phone = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? addressId = null,Object? name = null,Object? city = null,Object? street = null,Object? lat = null,Object? long = null,Object? phone = null,}) {
   return _then(_Submit(
-addressId: freezed == addressId ? _self.addressId : addressId // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String?,street: freezed == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
-as String?,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
-as String?,long: freezed == long ? _self.long : long // ignore: cast_nullable_to_non_nullable
-as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,
+addressId: null == addressId ? _self.addressId : addressId // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+as String,street: null == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
+as String,lat: null == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
+as String,long: null == long ? _self.long : long // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

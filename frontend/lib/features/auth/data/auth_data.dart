@@ -39,7 +39,9 @@ class AuthData {
       }
 
       // 3. تحديث الـ Step للميدل وير (Middleware) فور النجاح
-      await appService.sharedPreferences.setString('step', "2");
+      await appService.sharedPreferences.setString('step', '2');
+      await appService.sharedPreferences.setInt('id', data['user']['id']);
+      await appService.sharedPreferences.setString('email', email.trim());
       return Right(data);
     });
   }
@@ -117,5 +119,17 @@ class AuthData {
     }, auth: false);
 
     return response.fold((failure) => Left(failure), (data) => Right(data));
+  }
+
+  // 7. طلب تسجيل الخروج
+  Future<Either<Failure, Map<String, dynamic>>> logout() async {
+    final response = await apiService.post(ApiEndpoints.logout, {}, auth: true);
+
+    return response.fold((failure) => Left(failure), (data) async {
+      await appService.sharedPreferences.setString('step', "1");
+      await appService.sharedPreferences.remove('id');
+      await appService.sharedPreferences.remove('email');
+      return Right(data);
+    });
   }
 }

@@ -101,7 +101,7 @@ class CustomCardFavorite extends StatelessWidget {
                         "${item.price} ر.س",
                         style: TextStyle(
                           fontSize: 14,
-                          color: AppColor.priceColor,
+                          color: AppColor.redColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

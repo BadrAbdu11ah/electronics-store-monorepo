@@ -9,26 +9,37 @@ use Illuminate\Http\Request;
 class CouponController extends Controller
 {   
     /**
-     * التحقق من صلاحية الكوبون
-     * GET /api/coupon/check/{name}
+     * التحقق من صلاحية الكوبون وجلب تفاصيله
+     * POST /api/coupon/check/{name}
      */
-    public function show($name)
+    public function show(Request $request)
     {
-        // // البحث عن الكوبون مع التحقق من الصلاحية (التاريخ والعدد)
-        // // استخدمنا "now()" للمقارنة مع تاريخ الانتهاء
-        $coupon = Coupon::where("coupons_name", $name)
-            ->where("coupons_expiredate", ">", now()) 
-            ->where("coupons_count", ">", 0) 
-            ->first();
+        $name = $request->input('name');
 
-        // // تطبيق استراتيجية الـ Early Return
+        // 1. البحث عن الكوبون 
+        $coupon = Coupon::where("name", $name)->first();
+
+        // 2. التحقق من وجود الكوبون، عدده، وصلاحية تاريخه 
         if (!$coupon) {
             return response()->json([
                 "status"  => "failure",
-                "message" => "الكوبون غير صالح أو انتهت صلاحيته"
-            ], 404); // // نرسل 404 لأن المورد (الكوبون) غير موجود أو غير متاح
+                "message" => "اسم الكوبون غير صحيح"
+            ], 404);
+        }
+        if ($coupon->count <= 0) {
+            return response()->json([
+                "status"  => "failure",
+                "message" => "الكوبون غير صالح، نفدت كميته"
+            ], 404);
+        }
+        if ($coupon->isExpired()) {
+            return response()->json([
+                "status"  => "failure",
+                "message" => "الكوبون غير صالح، انتهت صلاحيته"
+            ], 404);
         }
 
+        // 3. إرجاع بيانات الكوبون الصالح بنجاح
         return response()->json([
             "status" => "success",
             "data"   => $coupon

@@ -52,6 +52,12 @@ class AddressAddBloc extends Bloc<AddressAddEvent, AddressAddState> {
     }
     Position position = await locationService.getCurrentPosition();
 
-    emit(state.copyWith(status: _Loaded(), position: position));
+    emit(
+      state.copyWith(
+        status: _Loaded(),
+        lat: position.latitude,
+        long: position.longitude,
+      ),
+    );
   }
 }

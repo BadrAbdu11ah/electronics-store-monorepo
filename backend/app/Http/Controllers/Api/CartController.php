@@ -4,107 +4,137 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
-use App\Models\Items;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     /**
-     * عرض محتويات السلة
-     * GET /api/cart
+     * عرض محتويات السلة الحالية لحساب المستخدم
+     * GET /api/cart/view
      */
     public function index(Request $request)
     {
         $user = $request->user();
 
-        // // جلب البيانات مع علاقة المنتجات
+        // // جلب عناصر السلة النشطة مع بيانات المنتج المرتبط
         $cartAll = Cart::with("item")
-                    ->where("carts_usersID", $user->users_id)
-                    ->where("carts_ordersID", 0)
+                    ->where("user_id", $user->id)
+                    ->whereNull("order_id")
                     ->get();
 
-        // // معالجة البيانات لحساب الكميات والأسعار باستخدام Collections
-        $itemsData = $cartAll->groupBy('carts_itemsID')->map(function ($group) {
-            $item       = $group->first();
-            $unitPrice  = $item->item->items_price_discount; 
+        // // معالجة البيانات لحساب الكميات والأسعار 
+        $itemsData = $cartAll->groupBy('item_id')->map(function ($group) {
+            $cartItem   = $group->first();
+            $item       = $cartItem->item;
+            
+            $unitPrice  = $item->discounted_price; 
             $countItems = $group->count();
             
             return [
-                'item'             => $item->item,
+                'id'               => $cartItem->id, 
+                'item_id'          => $item->id,
                 'count_items'      => $countItems,
-                'item_price'       => $unitPrice,
-                'total_item_price' => $countItems * $unitPrice, 
+                'item_price'       => round($unitPrice, 2),
+                'total_item_price' => round($countItems * $unitPrice, 2), 
+                'item'             => $item, 
             ];
         })->values();
 
-        $totalPriceAll = $cartAll->sum(fn($cart) => $cart->item->items_price_discount);
+        // // حساب الإجمالي الكلي لجميع المنتجات في السلة
+        $totalPrice = $itemsData->sum('total_item_price');
 
         return response()->json([
-            "status"     => "success",
-            "data"       => $itemsData,
-            "totalprice" => $totalPriceAll,
-            "countall"   => $cartAll->count()
+            "status"         => "success",
+            "items"          => $itemsData, 
+            "total_price"    => round($totalPrice, 2), 
+            "total_quantity" => $cartAll->count()        
         ]);
     }
 
     /**
-     * إضافة منتج للسلة
-     * POST /api/cart/{items_id}
+     * إضافة منتج للسلة (زيادة الكمية بمقدار قطعة واحدة)
+     * POST /api/cart/add
      */
-    public function store(Request $request, $items_id)
+    public function store(Request $request)
     {
         $user = $request->user();
+        
+        $itemId = $request->input('item_id');
 
-        // // التحقق من وجود المنتج في قاعدة البيانات
-        if (!Items::where('items_id', $items_id)->exists()) {
+        if (!$itemId) {
+            return response()->json(["status" => "failure", "message" => "حقل item_id مطلوب"], 400);
+        }
+
+        if (!Item::where('id', $itemId)->exists()) {
             return response()->json(["status" => "failure", "message" => "المنتج غير موجود"], 404);
         }
 
-        $cart = Cart::create([
-            "carts_usersID"  => $user->users_id,
-            "carts_itemsID"  => $items_id,
-            "carts_ordersID" => 0
+        Cart::create([
+            "user_id"  => $user->id,
+            "item_id"  => $itemId,
+            "order_id" => null 
         ]);
 
-        return response()->json(["status" => "success"]);
+        return response()->json(["status" => "success", "message" => "تم إضافة المنتج للسلة بنجاح"]);
     }
 
     /**
-     * حذف قطعة واحدة من المنتج من السلة
-     * DELETE /api/cart/{items_id}
+     * حذف قطعة واحدة فقط من المنتج من السلة (تقليل الكمية)
+     * DELETE /api/cart/remove/{id}
      */
-    public function destroy(Request $request, $items_id)
+    public function destroy(Request $request, $itemId)
     {
         $user = $request->user();
 
-        // // حذف سجل واحد فقط (لتنفيذ فكرة تقليل الكمية بالواحد)
-        $deleted = Cart::where("carts_usersID", $user->users_id)
-                    ->where("carts_itemsID", $items_id)
-                    ->where("carts_ordersID", 0)
+        // // تم تصحيح المتغير هنا من $id إلى $itemId
+        $deleted = Cart::where("user_id", $user->id)
+                    ->where("item_id", $itemId) 
+                    ->whereNull("order_id")
                     ->limit(1)
                     ->delete();
 
         if (!$deleted) {
-           return response()->json(["status" => "failure", "message" => "العنصر غير موجود بالسلة"]); 
+           return response()->json(["status" => "failure", "message" => "العنصر غير موجود بالسلة"], 404); 
         }
 
-        return response()->json(["status" => "success"]);
+        return response()->json(["status" => "success", "message" => "تم تقليل الكمية بنجاح"]);
     }
 
     /**
-     * الحصول على عدد العناصر لمنتج محدد وتفاصيله
-     * GET /api/cart/count/{items_id}
+     * حذف المنتج كلياً من السلة
+     * DELETE /api/cart/delete/{id}
      */
-    public function getCountItems(Request $request, $items_id)
+    public function delete(Request $request, $itemId)
     {
         $user = $request->user();
 
-        $countCart = Cart::where("carts_usersID", $user->users_id)
-                        ->where("carts_itemsID", $items_id)
-                        ->where("carts_ordersID", 0)
+        $deleted = Cart::where("user_id", $user->id)
+                    ->where("item_id", $itemId)
+                    ->whereNull("order_id")
+                    ->delete(); 
+
+        if (!$deleted) {
+            return response()->json(["status" => "failure", "message" => "العنصر غير موجود بالسلة"], 404); 
+        }
+
+        return response()->json(["status" => "success", "message" => "تم حذف المنتج بنجاح من السلة"]);
+    }
+
+    /**
+     * الحصول على عدد القطع المضافة لمنتج محدد بالسلة وتفاصيله
+     * GET /api/cart/count/{id}
+     */
+    public function getCountItems(Request $request, $itemId)
+    {
+        $user = $request->user();
+
+        $countCart = Cart::where("user_id", $user->id)
+                        ->where("item_id", $itemId)
+                        ->whereNull("order_id")
                         ->count();
 
-        $item = Items::find($items_id);
+        $item = Item::find($itemId);
 
         if (!$item) {
             return response()->json(["status" => "failure", "message" => "المنتج غير موجود"], 404);

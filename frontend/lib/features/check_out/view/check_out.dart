@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CheckOut extends StatelessWidget {
-  final String couponsID;
+  final String? couponsID;
   final String priceOrders;
   const CheckOut({
     super.key,

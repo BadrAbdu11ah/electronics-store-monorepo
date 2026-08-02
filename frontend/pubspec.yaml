@@ -35,7 +35,7 @@ dependencies:
   # Firebase And Notification 
   firebase_messaging: ^16.0.4
   firebase_core: ^4.2.1
-  flutter_local_notifications: ^19.5.0
+  flutter_local_notifications: ^20.1.0
   cloud_firestore: ^6.1.0
   # Local Data Cache
   sqflite: ^2.0.2
@@ -46,7 +46,7 @@ dependencies:
   qr_flutter: ^4.0.0
   mobile_scanner: ^7.1.4
   grouped_list: ^6.0.0
-  url_launcher: ^6.1.2
+  url_launcher: ^6.3.2
   dropdown_search: ^6.0.2
   badges: ^3.1.2
   # Icon 
@@ -70,6 +70,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   awesome_dialog: ^3.3.0
+  rating_dialog: ^2.0.4
 
 
 

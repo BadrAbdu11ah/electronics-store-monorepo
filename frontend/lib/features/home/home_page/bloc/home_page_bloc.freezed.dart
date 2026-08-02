@@ -390,7 +390,7 @@ String toString() {
 
 
 /// @nodoc
-mixin _$HomePageStatus {
+mixin _$HomePageState {
 
 
 
@@ -398,7 +398,7 @@ mixin _$HomePageStatus {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageStatus);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageState);
 }
 
 
@@ -407,20 +407,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomePageStatus()';
+  return 'HomePageState()';
 }
 
 
 }
 
 /// @nodoc
-class $HomePageStatusCopyWith<$Res>  {
-$HomePageStatusCopyWith(HomePageStatus _, $Res Function(HomePageStatus) __);
+class $HomePageStateCopyWith<$Res>  {
+$HomePageStateCopyWith(HomePageState _, $Res Function(HomePageState) __);
 }
 
 
-/// Adds pattern-matching-related methods to [HomePageStatus].
-extension HomePageStatusPatterns on HomePageStatus {
+/// Adds pattern-matching-related methods to [HomePageState].
+extension HomePageStatePatterns on HomePageState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -512,12 +512,12 @@ return serverFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  loaded,TResult Function( String message)?  noData,TResult Function()?  loggedOut,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String lang,  List<CategoryModel> categories,  List<ItemModel> items,  SettingModel settings)?  loaded,TResult Function( String message)?  noData,TResult Function()?  loggedOut,TResult Function( String message)?  serverFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded();case _NoData() when noData != null:
+return loaded(_that.lang,_that.categories,_that.items,_that.settings);case _NoData() when noData != null:
 return noData(_that.message);case _LoggedOut() when loggedOut != null:
 return loggedOut();case _ServerFailure() when serverFailure != null:
 return serverFailure(_that.message);case _:
@@ -538,12 +538,12 @@ return serverFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  loaded,required TResult Function( String message)  noData,required TResult Function()  loggedOut,required TResult Function( String message)  serverFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String lang,  List<CategoryModel> categories,  List<ItemModel> items,  SettingModel settings)  loaded,required TResult Function( String message)  noData,required TResult Function()  loggedOut,required TResult Function( String message)  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded();case _NoData():
+return loaded(_that.lang,_that.categories,_that.items,_that.settings);case _NoData():
 return noData(_that.message);case _LoggedOut():
 return loggedOut();case _ServerFailure():
 return serverFailure(_that.message);case _:
@@ -563,12 +563,12 @@ return serverFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  loaded,TResult? Function( String message)?  noData,TResult? Function()?  loggedOut,TResult? Function( String message)?  serverFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String lang,  List<CategoryModel> categories,  List<ItemModel> items,  SettingModel settings)?  loaded,TResult? Function( String message)?  noData,TResult? Function()?  loggedOut,TResult? Function( String message)?  serverFailure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded();case _NoData() when noData != null:
+return loaded(_that.lang,_that.categories,_that.items,_that.settings);case _NoData() when noData != null:
 return noData(_that.message);case _LoggedOut() when loggedOut != null:
 return loggedOut();case _ServerFailure() when serverFailure != null:
 return serverFailure(_that.message);case _:
@@ -582,7 +582,7 @@ return serverFailure(_that.message);case _:
 /// @nodoc
 
 
-class _Initial implements HomePageStatus {
+class _Initial implements HomePageState {
   const _Initial();
   
 
@@ -602,7 +602,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomePageStatus.initial()';
+  return 'HomePageState.initial()';
 }
 
 
@@ -614,7 +614,7 @@ String toString() {
 /// @nodoc
 
 
-class _Loading implements HomePageStatus {
+class _Loading implements HomePageState {
   const _Loading();
   
 
@@ -634,7 +634,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomePageStatus.loading()';
+  return 'HomePageState.loading()';
 }
 
 
@@ -646,45 +646,106 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements HomePageStatus {
-  const _Loaded();
+class _Loaded implements HomePageState {
+  const _Loaded({required this.lang, required final  List<CategoryModel> categories, required final  List<ItemModel> items, required this.settings}): _categories = categories,_items = items;
   
 
+ final  String lang;
+ final  List<CategoryModel> _categories;
+ List<CategoryModel> get categories {
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categories);
+}
 
+ final  List<ItemModel> _items;
+ List<ItemModel> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
 
+ final  SettingModel settings;
+
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.lang, lang) || other.lang == lang)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.settings, settings) || other.settings == settings));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,lang,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_items),settings);
 
 @override
 String toString() {
-  return 'HomePageStatus.loaded()';
+  return 'HomePageState.loaded(lang: $lang, categories: $categories, items: $items, settings: $settings)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$LoadedCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ String lang, List<CategoryModel> categories, List<ItemModel> items, SettingModel settings
+});
 
 
+$SettingModelCopyWith<$Res> get settings;
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? lang = null,Object? categories = null,Object? items = null,Object? settings = null,}) {
+  return _then(_Loaded(
+lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoryModel>,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemModel>,settings: null == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
+as SettingModel,
+  ));
+}
+
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SettingModelCopyWith<$Res> get settings {
+  
+  return $SettingModelCopyWith<$Res>(_self.settings, (value) {
+    return _then(_self.copyWith(settings: value));
+  });
+}
+}
 
 /// @nodoc
 
 
-class _NoData implements HomePageStatus {
+class _NoData implements HomePageState {
   const _NoData(this.message);
   
 
  final  String message;
 
-/// Create a copy of HomePageStatus
+/// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -703,14 +764,14 @@ int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'HomePageStatus.noData(message: $message)';
+  return 'HomePageState.noData(message: $message)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$NoDataCopyWith<$Res> implements $HomePageStatusCopyWith<$Res> {
+abstract mixin class _$NoDataCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
   factory _$NoDataCopyWith(_NoData value, $Res Function(_NoData) _then) = __$NoDataCopyWithImpl;
 @useResult
 $Res call({
@@ -729,7 +790,7 @@ class __$NoDataCopyWithImpl<$Res>
   final _NoData _self;
   final $Res Function(_NoData) _then;
 
-/// Create a copy of HomePageStatus
+/// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(_NoData(
@@ -744,7 +805,7 @@ as String,
 /// @nodoc
 
 
-class _LoggedOut implements HomePageStatus {
+class _LoggedOut implements HomePageState {
   const _LoggedOut();
   
 
@@ -764,7 +825,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomePageStatus.loggedOut()';
+  return 'HomePageState.loggedOut()';
 }
 
 
@@ -776,13 +837,13 @@ String toString() {
 /// @nodoc
 
 
-class _ServerFailure implements HomePageStatus {
+class _ServerFailure implements HomePageState {
   const _ServerFailure(this.message);
   
 
  final  String message;
 
-/// Create a copy of HomePageStatus
+/// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -801,14 +862,14 @@ int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'HomePageStatus.serverFailure(message: $message)';
+  return 'HomePageState.serverFailure(message: $message)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ServerFailureCopyWith<$Res> implements $HomePageStatusCopyWith<$Res> {
+abstract mixin class _$ServerFailureCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
   factory _$ServerFailureCopyWith(_ServerFailure value, $Res Function(_ServerFailure) _then) = __$ServerFailureCopyWithImpl;
 @useResult
 $Res call({
@@ -827,7 +888,7 @@ class __$ServerFailureCopyWithImpl<$Res>
   final _ServerFailure _self;
   final $Res Function(_ServerFailure) _then;
 
-/// Create a copy of HomePageStatus
+/// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(_ServerFailure(
@@ -837,302 +898,6 @@ as String,
 }
 
 
-}
-
-/// @nodoc
-mixin _$HomePageState {
-
- HomePageStatus get status; String? get lang; List<CategoryModel> get categories; List<ItemModel> get items;
-/// Create a copy of HomePageState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$HomePageStateCopyWith<HomePageState> get copyWith => _$HomePageStateCopyWithImpl<HomePageState>(this as HomePageState, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageState&&(identical(other.status, status) || other.status == status)&&(identical(other.lang, lang) || other.lang == lang)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.items, items));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,status,lang,const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(items));
-
-@override
-String toString() {
-  return 'HomePageState(status: $status, lang: $lang, categories: $categories, items: $items)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $HomePageStateCopyWith<$Res>  {
-  factory $HomePageStateCopyWith(HomePageState value, $Res Function(HomePageState) _then) = _$HomePageStateCopyWithImpl;
-@useResult
-$Res call({
- HomePageStatus status, String? lang, List<CategoryModel> categories, List<ItemModel> items
-});
-
-
-$HomePageStatusCopyWith<$Res> get status;
-
-}
-/// @nodoc
-class _$HomePageStateCopyWithImpl<$Res>
-    implements $HomePageStateCopyWith<$Res> {
-  _$HomePageStateCopyWithImpl(this._self, this._then);
-
-  final HomePageState _self;
-  final $Res Function(HomePageState) _then;
-
-/// Create a copy of HomePageState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? lang = freezed,Object? categories = null,Object? items = null,}) {
-  return _then(_self.copyWith(
-status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as HomePageStatus,lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
-as String?,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
-as List<CategoryModel>,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<ItemModel>,
-  ));
-}
-/// Create a copy of HomePageState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$HomePageStatusCopyWith<$Res> get status {
-  
-  return $HomePageStatusCopyWith<$Res>(_self.status, (value) {
-    return _then(_self.copyWith(status: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [HomePageState].
-extension HomePageStatePatterns on HomePageState {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HomePageState value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _HomePageState() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HomePageState value)  $default,){
-final _that = this;
-switch (_that) {
-case _HomePageState():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HomePageState value)?  $default,){
-final _that = this;
-switch (_that) {
-case _HomePageState() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( HomePageStatus status,  String? lang,  List<CategoryModel> categories,  List<ItemModel> items)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _HomePageState() when $default != null:
-return $default(_that.status,_that.lang,_that.categories,_that.items);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( HomePageStatus status,  String? lang,  List<CategoryModel> categories,  List<ItemModel> items)  $default,) {final _that = this;
-switch (_that) {
-case _HomePageState():
-return $default(_that.status,_that.lang,_that.categories,_that.items);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( HomePageStatus status,  String? lang,  List<CategoryModel> categories,  List<ItemModel> items)?  $default,) {final _that = this;
-switch (_that) {
-case _HomePageState() when $default != null:
-return $default(_that.status,_that.lang,_that.categories,_that.items);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class _HomePageState implements HomePageState {
-  const _HomePageState({this.status = const HomePageStatus.initial(), this.lang, final  List<CategoryModel> categories = const [], final  List<ItemModel> items = const []}): _categories = categories,_items = items;
-  
-
-@override@JsonKey() final  HomePageStatus status;
-@override final  String? lang;
- final  List<CategoryModel> _categories;
-@override@JsonKey() List<CategoryModel> get categories {
-  if (_categories is EqualUnmodifiableListView) return _categories;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_categories);
-}
-
- final  List<ItemModel> _items;
-@override@JsonKey() List<ItemModel> get items {
-  if (_items is EqualUnmodifiableListView) return _items;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_items);
-}
-
-
-/// Create a copy of HomePageState
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$HomePageStateCopyWith<_HomePageState> get copyWith => __$HomePageStateCopyWithImpl<_HomePageState>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomePageState&&(identical(other.status, status) || other.status == status)&&(identical(other.lang, lang) || other.lang == lang)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._items, _items));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,status,lang,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_items));
-
-@override
-String toString() {
-  return 'HomePageState(status: $status, lang: $lang, categories: $categories, items: $items)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
-  factory _$HomePageStateCopyWith(_HomePageState value, $Res Function(_HomePageState) _then) = __$HomePageStateCopyWithImpl;
-@override @useResult
-$Res call({
- HomePageStatus status, String? lang, List<CategoryModel> categories, List<ItemModel> items
-});
-
-
-@override $HomePageStatusCopyWith<$Res> get status;
-
-}
-/// @nodoc
-class __$HomePageStateCopyWithImpl<$Res>
-    implements _$HomePageStateCopyWith<$Res> {
-  __$HomePageStateCopyWithImpl(this._self, this._then);
-
-  final _HomePageState _self;
-  final $Res Function(_HomePageState) _then;
-
-/// Create a copy of HomePageState
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? lang = freezed,Object? categories = null,Object? items = null,}) {
-  return _then(_HomePageState(
-status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as HomePageStatus,lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
-as String?,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
-as List<CategoryModel>,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<ItemModel>,
-  ));
-}
-
-/// Create a copy of HomePageState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$HomePageStatusCopyWith<$Res> get status {
-  
-  return $HomePageStatusCopyWith<$Res>(_self.status, (value) {
-    return _then(_self.copyWith(status: value));
-  });
-}
 }
 
 // dart format on

@@ -89,7 +89,7 @@ class _AddressEditFromState extends State<AddressEditFrom> {
               FocusScope.of(context).unfocus();
               context.read<AddressEditBloc>().add(
                 AddressEditEvent.submit(
-                  addressId: widget.addressModel.id,
+                  addressId: widget.addressModel.id!,
                   name: nameController.text,
                   city: cityController.text,
                   street: streetController.text,

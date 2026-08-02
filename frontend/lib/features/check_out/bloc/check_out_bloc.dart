@@ -59,6 +59,7 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
           status: _Loaded(),
           addressStatus: _AddressLoaded(),
           addresses: addresses,
+          addressID: addresses[0].id.toString(),
         ),
       ),
     );
@@ -86,7 +87,7 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
   }
 
   Future<void> _onCheckout(_Checkout event, Emitter<CheckOutState> emit) async {
-    // التحقق من المدخلات (Validation)
+    // // التحقق من المدخلات (Validation)
     if (state.paymentMethod == null) {
       return emit(state.copyWith(status: _Failure("يرجى اختيار طريقة الدفع")));
     }
@@ -101,13 +102,14 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
 
     emit(state.copyWith(status: _Loading()));
 
+    // // تعديل أسماء المفاتيح لكي تتطابق تماماً مع لارافيل Validation
     var response = await checkoutData.checkout({
-      'addressesid': state.addressID ?? "0",
+      'address_id': state.addressID,
       'type': state.deliveryType,
-      'pricedelivery': "20",
+      'delivery_price': "20",
       'price': event.priceOrders,
-      'couponsid': event.couponsID,
-      'paymentmethod': state.paymentMethod,
+      'coupon_id': event.couponsID,
+      'payment_method': state.paymentMethod,
     });
 
     response.fold(
@@ -115,13 +117,13 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
         emit(state.copyWith(status: _ServerFailure(failure.message)));
       },
       (data) {
-        // حالة فشل الكوبون
+        // // حالة فشل الكوبون
         if (data['status'] == "failure" &&
             data['message'] == "الكوبون لم يعد صالحاً") {
           return emit(state.copyWith(status: _CouponeFailure(data['message'])));
         }
 
-        // حالة النجاح الكامل
+        // // حالة النجاح الكامل
         emit(state.copyWith(status: _Success(data['message'])));
       },
     );

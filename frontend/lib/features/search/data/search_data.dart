@@ -11,10 +11,17 @@ class SearchData {
   // البحث عن المنتجات
   Future<Either<Failure, List<ItemModel>>> searchResults(String search) async {
     var response = await api.post(ApiEndpoints.searchItems, {"search": search});
+
     return response.fold((Failure failure) => Left(failure), (
       Map<String, dynamic> data,
     ) {
-      return Right(data['data']!.map((e) => ItemModel.fromJson(e)).toList());
+      final List rawData = data['data'] ?? [];
+
+      final List<ItemModel> itemsList = rawData
+          .map<ItemModel>((e) => ItemModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+      return Right(itemsList);
     });
   }
 }

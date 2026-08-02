@@ -12,7 +12,7 @@ abstract class CheckOutEvent with _$CheckOutEvent {
       _ChooseShippingAddress;
   const factory CheckOutEvent.checkout({
     required String priceOrders,
-    required String couponsID,
+    String? couponsID,
   }) = _Checkout;
   const factory CheckOutEvent.resetStatusToLoaded() = _ResetStatusToLoaded;
 }

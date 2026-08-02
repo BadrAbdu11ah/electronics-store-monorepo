@@ -9,86 +9,118 @@ use App\Models\Address;
 class AddressController extends Controller
 {
     /**
-     * عرض جميع عناوين المستخدم
-     * GET /api/address
+     * عرض جميع عناوين المستخدم المسجل حالياً
+     * GET /api/address/view
      */
     public function index(Request $request)
     {
-        $user = $request->user();
-        $addresses = Address::where("addresses_usersID", $user->users_id)->get();
+        $addresses = $request->user()->addresses;
 
         if ($addresses->isEmpty()) {
-            return response()->json(["status" => "failure", "message" => "لا توجد عناوين"]);
+            return response()->json([
+                "status"  => "success", 
+                "message" => "لا توجد عناوين مسجلة",
+                "data"    => []
+            ]);
         }
 
-        return response()->json(["status" => "success", "data" => $addresses]);
+        return response()->json([
+            "status" => "success", 
+            "data"   => $addresses
+        ]);
     }
 
     /**
-     * إضافة عنوان جديد
-     * POST /api/address
+     * إضافة عنوان جديد للمستخدم الحالي
+     * POST /api/address/add
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => "required",
-            'city' => "required",
-            'street' => "required",
-            'lat' => "required",
-            'long' => "required",
-            'phone' => "required",
+            'name'   => "required|string|max:255",
+            'city'   => "required|string",
+            'street' => "required|string",
+            'lat'    => "required|numeric",
+            'long'   => "required|numeric",
+            'phone'  => "required|string",
         ]);
 
-        $user = $request->user();
-
-        Address::create([
-            "addresses_usersID" => $user->users_id,
-            "addresses_name"    => $request->name,
-            "addresses_city"    => $request->city,
-            "addresses_street"  => $request->street,
-            "addresses_lat"     => $request->lat,
-            "addresses_long"    => $request->long,
-            "addresses_phone"   => $request->phone,
+        $newAddress = $request->user()->addresses()->create([
+            "name"   => $request->name,
+            "city"   => $request->city,
+            "street" => $request->street,
+            "lat"    => $request->lat,
+            "long"   => $request->long,
+            "phone"  => $request->phone,
         ]);
 
-        return response()->json(["status" => "success", "message" => "تمت إضافة العنوان بنجاح"]);
+        return response()->json([
+            "status"  => "success", 
+            "message" => "تمت إضافة العنوان بنجاح",
+            "data"    => $newAddress 
+        ], 201);
     }
 
     /**
      * تحديث عنوان موجود
-     * PUT /api/address/{address}
+     * PUT /api/address/edit/{id}
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request, $id)
     {
-        if ($address->addresses_usersID !== $request->user()->users_id) {
-            return response()->json(["status" => "failure", "message" => "غير مصرح لك"], 403);
+        $request->validate([
+            'name'   => "required|string|max:255",
+            'city'   => "required|string",
+            'street' => "required|string",
+            'lat'    => "required|numeric",
+            'long'   => "required|numeric",
+            'phone'  => "required|string",
+        ]);
+
+        $address = $request->user()->addresses()->find($id);
+
+        if (!$address) {
+            return response()->json([
+                "status"  => "failure", 
+                "message" => "العنوان غير موجود أو غير مصرح لك بالتعديل"
+            ], 404);
         }
 
         $address->update([
-            "addresses_name"   => $request->name,
-            "addresses_city"   => $request->city,
-            "addresses_street" => $request->street,
-            "addresses_lat"    => $request->lat,
-            "addresses_long"   => $request->long,
-            "addresses_phone"  => $request->phone,
+            "name"   => $request->name,
+            "city"   => $request->city,
+            "street" => $request->street,
+            "lat"    => $request->lat,
+            "long"   => $request->long,
+            "phone"  => $request->phone,
         ]);
 
-        return response()->json(["status" => "success", "message" => "تم تعديل العنوان بنجاح"]);
+        return response()->json([
+            "status"  => "success", 
+            "message" => "تم تعديل العنوان بنجاح",
+            "data"    => $address
+        ]);
     }
 
     /**
      * حذف عنوان
-     * DELETE /api/address/{address}
+     * DELETE /api/address/remove/{id}
      */
-    public function destroy(Request $request, Address $address)
+    public function destroy(Request $request, $id)
     {
-        // // حماية أمنية: لا يمكن حذف عنوان مستخدم آخر
-        if ($address->addresses_usersID !== $request->user()->users_id) {
-            return response()->json(["status" => "failure", "message" => "غير مصرح لك"], 403);
+        $address = $request->user()->addresses()->find($id);
+
+        if (!$address) {
+            return response()->json([
+                "status"  => "failure", 
+                "message" => "العنوان غير موجود أو غير مصرح لك بالحذف"
+            ], 404);
         }
 
         $address->delete();
 
-        return response()->json(["status" => "success", "message" => "تم الحذف بنجاح"]);
+        return response()->json([
+            "status"  => "success", 
+            "message" => "تم حذف العنوان بنجاح"
+        ]);
     }
 }

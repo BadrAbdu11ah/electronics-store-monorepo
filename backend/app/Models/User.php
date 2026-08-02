@@ -5,44 +5,115 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany; 
+use App\Models\Order;
+use App\Models\Address;
+use App\Models\Cart;
+use App\Models\Favorite;
+use App\Models\Item; 
+use App\Models\Notification; 
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     protected $table = 'users'; 
-    protected $primaryKey = 'users_id'; 
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'users_name',
-        'users_email',
-        'users_password',
-        'users_phone',
+        'name',
+        'email',
+        'password',
+        'phone',
         'role',          
         'api_token',     
-        'users_approve',
+        'verify_code',
+        'approve',
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
     protected $hidden = [
-        'users_password',
+        'password',
         'remember_token',
         'api_token',    
     ];
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [
-            'users_password' => 'hashed', 
+            'password' => 'hashed', 
+            'approve'  => 'boolean', 
         ];
     }
 
+    /**
+     * التحقق من صلاحيات ودور المستخدم
+     */
     public function hasRole(string $role): bool
     {
         return $this->role === $role;
     }
 
-    public function orders()
+    /**
+     * علاقة المستخدم بالطلبات (المستخدم لديه طلبات كثيرة)
+     */
+    public function orders(): HasMany
     {
-        return $this->hasMany(Order::class, 'orders_usersid', 'users_id');
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
+    /**
+     * إضافة: علاقة المستخدم بالعناوين (المستخدم لديه عناوين شحن متعددة)
+     */
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class, 'user_id', 'id');
+    }
+
+    /**
+     * إضافة: علاقة المستخدم بعناصر السلة الحالية
+     */
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
+
+    /**
+     * علاقة المنتجات المفضلة للمستخدم مباشرة عبر جدول favorites
+     */
+    public function favoriteItems(): BelongsToMany
+    {
+        return $this->belongsToMany(Item::class, 'favorites', 'user_id', 'item_id')->withTimestamps();
+    }
+
+    /**
+     * علاقة المستخدم بسجلات جدول المفضلة نفسه
+     */
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(Favorite::class, 'user_id', 'id');
+    }
+
+    /**
+     * علاقة المستخدم بسجلات جدول المفضلة نفسه
+     */
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class, 'user_id', 'id');
     }
 }

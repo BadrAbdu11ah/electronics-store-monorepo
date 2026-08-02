@@ -3,18 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Address extends Model
 {
-    protected $primaryKey = 'addresses_id';
-    
+    // اسم الجدول في قاعدة البيانات
+    protected $table = 'addresses';
+
+    /**
+     * الحقول القابلة للتعبئة جماعياً (Mass Assignable)
+     */
     protected $fillable = [
-        'addresses_usersID',
-        'addresses_name',
-        'addresses_city',
-        'addresses_street',
-        'addresses_lat',
-        'addresses_long',
-        'addresses_phone',
+        'user_id',
+        'name',
+        'city',
+        'street',
+        'lat',
+        'long',
+        'phone',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

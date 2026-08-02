@@ -23,10 +23,7 @@ class CardAddress extends StatelessWidget {
           subtitle: Text("${addressModel.street!}, ${addressModel.city!}"),
           trailing: IconButton(
             onPressed: onDelete,
-            icon: Icon(
-              Icons.delete_outline_rounded,
-              color: AppColor.priceColor,
-            ),
+            icon: Icon(Icons.delete_outline_rounded, color: AppColor.redColor),
           ),
           leading: IconButton(
             onPressed: onEdit,

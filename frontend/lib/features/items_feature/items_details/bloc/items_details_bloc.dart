@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
@@ -11,13 +13,26 @@ part 'items_details_bloc.freezed.dart';
 class ItemsDetailsBloc extends Bloc<ItemsDetailsEvent, ItemsDetailsState> {
   final AppService appService;
   final CartData cartData;
+
+  StreamSubscription<void>? _cartSubscription;
   ItemsDetailsBloc({required this.appService, required this.cartData})
     : super(ItemsDetailsState()) {
+    _cartSubscription = cartData.onCartItemsCount.listen((event) {
+      if (!isClosed && state.itemModel?.id != null) {
+        add(_LoadCountCart(state.itemModel!.id!));
+      }
+    });
     on<_Started>(_onStarted);
     on<_LoadCountCart>(_onLoadCountCart);
     on<_AddCart>(_onAddCart);
     on<_RemoveCart>(_onRemoveCart);
     on<_SelelctedColor>(_onSelectedColor);
+  }
+
+  @override
+  Future<void> close() {
+    _cartSubscription?.cancel();
+    return super.close();
   }
 
   Future<void> _onStarted(
@@ -38,7 +53,7 @@ class ItemsDetailsBloc extends Bloc<ItemsDetailsEvent, ItemsDetailsState> {
     _LoadCountCart event,
     Emitter<ItemsDetailsState> emit,
   ) async {
-    emit(state.copyWith(status: ItemsDetailsStatus.loading()));
+    // emit(state.copyWith(status: ItemsDetailsStatus.loading()));
     var response = await cartData.getCountCart(event.itemsId);
 
     response.fold(

@@ -1,3 +1,5 @@
+import 'package:electronics_store/app_translations.dart';
+import 'package:electronics_store/data/static/app_text.dart';
 import 'package:flutter/material.dart';
 
 class AppLoadingWidget extends StatelessWidget {
@@ -49,7 +51,14 @@ class AppErrorWidget extends StatelessWidget {
 
 class AppEmptyWidget extends StatelessWidget {
   final String text;
-  const AppEmptyWidget({super.key, this.text = "لا توجد بيانات لعرضها"});
+  final String? textButton;
+  final VoidCallback? onTap;
+  const AppEmptyWidget({
+    super.key,
+    this.text = "لا توجد بيانات لعرضها",
+    this.onTap,
+    this.textButton,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +69,53 @@ class AppEmptyWidget extends StatelessWidget {
           const Icon(Icons.layers_clear_outlined, color: Colors.grey, size: 48),
           const SizedBox(height: 10),
           Text(text, style: const TextStyle(fontSize: 18, color: Colors.grey)),
+          if (onTap != null) ...[
+            const SizedBox(height: 15),
+            ElevatedButton.icon(
+              onPressed: onTap,
+              icon: const Icon(Icons.add),
+              label: Text(textButton ?? "إضافة"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class AppDialogs {
+  static void dialogDelete({
+    required BuildContext context,
+    required String title,
+    required String content,
+    required VoidCallback onConfirm,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(AppTranslations.translate(context, AppText.cancel)),
+          ),
+          TextButton(
+            onPressed: onConfirm,
+            child: Text(AppTranslations.translate(context, AppText.delete)),
+          ),
         ],
       ),
     );

@@ -9,5 +9,5 @@ class AppColor {
   static Color? titleColor = Colors.black;
   static Color? bgColorOnBoarding = Colors.white;
 
-  static Color? priceColor = Colors.red;
+  static Color? redColor = Colors.red;
 }

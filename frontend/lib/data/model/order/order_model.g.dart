@@ -18,6 +18,8 @@ _OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => _OrderModel(
   couponDiscount: (json['coupon_discount'] as num?)?.toInt(),
   paymentMethod: (json['payment_method'] as num?)?.toInt(),
   status: (json['status'] as num?)?.toInt(),
+  rating: (json['rating'] as num?)?.toDouble(),
+  review: json['review'] as String?,
   createdAt: json['created_at'] as String?,
   updatedAt: json['updated_at'] as String?,
   couponModel: json['coupon'] == null
@@ -38,6 +40,8 @@ Map<String, dynamic> _$OrderModelToJson(_OrderModel instance) =>
       'coupon_discount': instance.couponDiscount,
       'payment_method': instance.paymentMethod,
       'status': instance.status,
+      'rating': instance.rating,
+      'review': instance.review,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'coupon': instance.couponModel,

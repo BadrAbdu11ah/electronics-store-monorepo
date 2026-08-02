@@ -45,7 +45,7 @@ class PriceAndCount extends StatelessWidget {
                     "$price \$",
                     style: TextStyle(
                       fontSize: 13,
-                      color: AppColor.priceColor,
+                      color: AppColor.redColor,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.lineThrough,
                     ),
@@ -55,7 +55,7 @@ class PriceAndCount extends StatelessWidget {
                     "$discountedPrice \$",
                     style: TextStyle(
                       fontSize: 18,
-                      color: AppColor.priceColor,
+                      color: AppColor.redColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -65,7 +65,7 @@ class PriceAndCount extends StatelessWidget {
                 "$price \$",
                 style: TextStyle(
                   fontSize: 18,
-                  color: AppColor.priceColor,
+                  color: AppColor.redColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

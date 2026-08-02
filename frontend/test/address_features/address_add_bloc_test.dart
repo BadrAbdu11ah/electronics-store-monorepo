@@ -55,8 +55,9 @@ void main() {
       expect: () => <AddressAddState>[
         AddressAddState(status: const AddressAddStatus.loading()),
         AddressAddState(
-          position: mockPosition,
           status: const AddressAddStatus.loaded(),
+          lat: mockPosition.latitude,
+          long: mockPosition.longitude,
         ),
       ],
     );

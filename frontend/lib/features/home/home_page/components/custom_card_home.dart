@@ -24,18 +24,29 @@ class CustomCardHome extends StatelessWidget {
               color: AppColor.themeColor,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: ListTile(
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 50,
-                vertical: 20,
-              ),
-              title: Text(
-                title,
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-              subtitle: Text(
-                subtitle,
-                style: TextStyle(color: Colors.white, fontSize: 30),
+            child: Padding(
+              padding: lang == "ar"
+                  ? const EdgeInsets.only(left: 120)
+                  : const EdgeInsets.only(right: 120),
+              child: ListTile(
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 20,
+                ),
+                title: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: lang == 'ar' ? 22 : 20,
+                  ),
+                ),
+                subtitle: Text(
+                  subtitle,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: lang == 'ar' ? 16 : 14,
+                  ),
+                ),
               ),
             ),
           ),

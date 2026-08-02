@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/cart/cart_model.dart';
 import 'package:electronics_store/features/cart/data/cart_data.dart';
@@ -13,13 +15,26 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final AppService appService;
   final CartData cartData;
 
+  StreamSubscription<void>? _cartSubscription;
+
   CartBloc({required this.cartData, required this.appService})
     : super(const CartState()) {
+    _cartSubscription = cartData.onViewCart.listen((event) {
+      if (!isClosed && state.cartItems.isNotEmpty) {
+        add(const CartEvent.loadCart());
+      }
+    });
     on<_Started>(_onStarted);
     on<_LoadCart>(_onLoadCart);
     on<_UpdateQuantity>(_onUpdateQuantity);
     on<_ApplyCoupon>(_onApplyCoupon);
     on<_DeleteItem>(_onDeleteItem);
+  }
+
+  @override
+  Future<void> close() {
+    _cartSubscription?.cancel();
+    return super.close();
   }
 
   Future<void> _onStarted(_Started event, Emitter<CartState> emit) async {
@@ -86,37 +101,30 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _UpdateQuantity event,
     Emitter<CartState> emit,
   ) async {
-    // 1. قفل العنصر الحالي فوراً عن طريق إضافة الـ ID لقائمة الـ updatingItemIds لمنع الضغط المتكرر وتفادي الأخطاء اللحظية
     emit(
       state.copyWith(updatingItemIds: [...state.updatingItemIds, event.itemId]),
     );
 
-    // 2. تحديث قائمة المنتجات محلياً (محاكاة سريعة): البحث عن المنتج المطلوب وتغيير كميته وسعره الإجمالي
     final updatedList = addAndRemoveInCartItems(
       cartItems: state.cartItems,
       itemId: event.itemId,
       delta: event.delta,
     );
 
-    // 3. إعادة حساب الإجماليات اللحظية للسلة لتتطابق مع التغيير المحلي السريع
     int newTotalQuantity = updatedList.fold(
       0,
       (sum, item) => sum + (item.countItems ?? 0),
     );
 
-    // جمع أسعار كافة المنتجات المتبقية في السلة (Subtotal)
     double newSubtotal = updatedList.fold(
       0.0,
       (sum, item) => sum + (item.totalItemPrice ?? 0.0),
     );
-
-    // حساب قيمة الخصم بناءً على الكوبون النشط حالياً في الـ State
     double discountAmount = calculateDiscountAmount(
       subtotal: newSubtotal,
       discountPercentage: state.discountPercentage,
     );
 
-    // حساب الفاتورة النهائية بالريال (الإجمالي - الخصم + الشحن الثابت)
     double newFinalTotal = calculateFinalTotal(
       subtotal: newSubtotal,
       discountAmount: discountAmount,
@@ -128,7 +136,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cartItems: updatedList,
         totalQuantity: newTotalQuantity,
         subtotalPrice: newSubtotal,
-        // حماية السعر النهائي من الهبوط تحت الصفر
         totalAppPrice: newFinalTotal < 0 ? 0.0 : newFinalTotal,
       ),
     );
@@ -139,14 +146,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     response.fold(
       (failure) {
-        emit(
-          state.copyWith(
-            updatingItemIds: state.updatingItemIds
-                .where((id) => id != event.itemId)
-                .toList(),
-          ),
-        );
-        add(const CartEvent.loadCart());
+        emit(state.copyWith(status: CartStatus.serverFailure(failure.message)));
       },
       (_) {
         emit(

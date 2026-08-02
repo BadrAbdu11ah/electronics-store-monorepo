@@ -39,7 +39,7 @@ class CartView extends StatelessWidget {
                   context,
                   AppRoute.checkOut,
                   arguments: {
-                    'couponsid': state.couponId ?? "0",
+                    'couponsid': state.couponId,
                     'priceorders': state.subtotalPrice.toString(),
                   },
                 );

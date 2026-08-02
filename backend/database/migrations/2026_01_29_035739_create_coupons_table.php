@@ -6,14 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->id('coupons_id');
-            $table->string('coupons_name')->unique(); 
-            $table->integer('coupons_count');
-            $table->dateTime('coupons_expiredate'); 
-            $table->integer('coupons_discount'); 
+            $table->id();
+            $table->string('name')->unique(); 
+            $table->integer('count');
+            
+            $table->dateTime('expired_at'); 
+            
+            $table->integer('discount'); 
             $table->timestamps();
         });
     }

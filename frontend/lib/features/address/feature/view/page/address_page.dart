@@ -38,7 +38,6 @@ class AddressPage extends StatelessWidget {
             ),
           );
         },
-        buildWhen: (previous, current) => previous.status != current.status,
         // التعامل مع الحالات المختلفة
         builder: (context, state) {
           return state.status.maybeWhen(

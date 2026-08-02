@@ -11,6 +11,7 @@ import 'package:electronics_store/features/address/feature/add_details/page/add_
 import 'package:electronics_store/features/address/feature/edit/bloc/address_edit_bloc.dart';
 import 'package:electronics_store/features/address/feature/edit/page/address_edit.dart';
 import 'package:electronics_store/features/address/feature/view/bloc/address_view_bloc.dart';
+import 'package:electronics_store/features/address/feature/view/page/address_page.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/bloc/forget_password_bloc.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/forget_password/view/forget_password_view.dart';
 import 'package:electronics_store/features/auth/feature/forget_password_features/reset_password/bloc/reset_password_bloc.dart';
@@ -38,6 +39,10 @@ import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.da
 import 'package:electronics_store/features/home/home_page/view/home_page_view.dart';
 import 'package:electronics_store/features/home/home_screen/bloc/home_screen_bloc.dart';
 import 'package:electronics_store/features/home/home_screen/view/home_screen_view.dart';
+import 'package:electronics_store/features/home/notifications/bloc/notifications_bloc.dart';
+import 'package:electronics_store/features/home/notifications/view/notifications_view.dart';
+import 'package:electronics_store/features/home/offers/bloc/offers_bloc.dart';
+import 'package:electronics_store/features/home/offers/view/offers_view.dart';
 import 'package:electronics_store/features/home/settings_page/bloc/settings_page_bloc.dart';
 import 'package:electronics_store/features/home/settings_page/view/settings_page_view.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
@@ -46,6 +51,8 @@ import 'package:electronics_store/features/items_feature/items_details/bloc/item
 import 'package:electronics_store/features/items_feature/items_details/view/items_details.dart';
 import 'package:electronics_store/features/on_boarding/bloc/on_boarding_bloc.dart';
 import 'package:electronics_store/features/on_boarding/view/on_boarding_view.dart';
+import 'package:electronics_store/features/orders/feature/archive/bloc/archive_bloc.dart';
+import 'package:electronics_store/features/orders/feature/archive/view/archive.dart';
 import 'package:electronics_store/features/orders/feature/details/bloc/order_details_bloc.dart';
 import 'package:electronics_store/features/orders/feature/details/view/details.dart';
 import 'package:electronics_store/features/orders/feature/pending/bloc/pending_bloc.dart';
@@ -163,7 +170,8 @@ class AppRouter {
       case AppRoute.homeScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => sl<HomeScreenBloc>(),
+            create: (context) =>
+                sl<HomeScreenBloc>()..add(const HomeScreenEvent.started()),
             child: HomeScreenView(),
           ),
         );
@@ -180,6 +188,22 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => sl<SettingsPageBloc>(),
             child: SettingsPageView(),
+          ),
+        );
+      case AppRoute.notifications:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<NotificationsBloc>()..add(NotificationsEvent.started()),
+            child: NotificationsView(),
+          ),
+        );
+      case AppRoute.offers:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<OffersBloc>()..add(OffersEvent.loadOffers()),
+            child: const OffersView(),
           ),
         );
       case AppRoute.items:
@@ -229,7 +253,7 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) =>
                 sl<AddressViewBloc>()..add(AddressViewEvent.started()),
-            child: AdderssAdd(),
+            child: AddressPage(),
           ),
         );
       case AppRoute.addressAdd:
@@ -248,7 +272,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => sl<AddressAddDetailsBloc>(),
-            child: AddDetails(lat: lat, long: long),
+            child: AddDetails(lat: lat.toString(), long: long.toString()),
           ),
         );
       case AppRoute.addressEdit:
@@ -279,6 +303,15 @@ class AppRouter {
             child: OrdersPending(),
           ),
         );
+      case AppRoute.ordersArchive:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<ArchiveBloc>()..add(ArchiveEvent.fetchOrders()),
+            child: OrdersArchive(),
+          ),
+        );
+
       case AppRoute.ordersDetails:
         final orderModel = settings.arguments as OrderModel;
         return MaterialPageRoute(
@@ -286,7 +319,7 @@ class AppRouter {
             create: (context) =>
                 sl<OrderDetailsBloc>()
                   ..add(OrderDetailsEvent.started(orderModel: orderModel)),
-            child: OrderDetails(),
+            child: OrderDetails(orderModel: orderModel),
           ),
         );
       default:

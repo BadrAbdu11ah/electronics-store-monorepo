@@ -17,8 +17,8 @@ mixin _$OrderModel {
 
  int? get id; int? get userId; int? get addressId; int? get type;// 0 => Delivery, 1 => Drive Thru
  double? get deliveryPrice; double? get price; double? get totalPrice; int? get couponId; int? get couponDiscount; int? get paymentMethod;// 0 => Cash, 1 => Card
- int? get status;// حالة الطلب (مثال: 0 => قيد الانتظار)
- String? get createdAt; String? get updatedAt;@JsonKey(name: 'coupon') CouponModel? get couponModel;
+ int? get status;// 0 => pending, 1 => rejected, 2 => accepted, 3 => prepare, 4 => delivered, 5 => done, 6 => cancelled
+ double? get rating; String? get review; String? get createdAt; String? get updatedAt;@JsonKey(name: 'coupon') CouponModel? get couponModel;
 /// Create a copy of OrderModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -31,16 +31,16 @@ $OrderModelCopyWith<OrderModel> get copyWith => _$OrderModelCopyWithImpl<OrderMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.addressId, addressId) || other.addressId == addressId)&&(identical(other.type, type) || other.type == type)&&(identical(other.deliveryPrice, deliveryPrice) || other.deliveryPrice == deliveryPrice)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.couponId, couponId) || other.couponId == couponId)&&(identical(other.couponDiscount, couponDiscount) || other.couponDiscount == couponDiscount)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.couponModel, couponModel) || other.couponModel == couponModel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.addressId, addressId) || other.addressId == addressId)&&(identical(other.type, type) || other.type == type)&&(identical(other.deliveryPrice, deliveryPrice) || other.deliveryPrice == deliveryPrice)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.couponId, couponId) || other.couponId == couponId)&&(identical(other.couponDiscount, couponDiscount) || other.couponDiscount == couponDiscount)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.status, status) || other.status == status)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.review, review) || other.review == review)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.couponModel, couponModel) || other.couponModel == couponModel));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,userId,addressId,type,deliveryPrice,price,totalPrice,couponId,couponDiscount,paymentMethod,status,createdAt,updatedAt,couponModel);
+int get hashCode => Object.hash(runtimeType,id,userId,addressId,type,deliveryPrice,price,totalPrice,couponId,couponDiscount,paymentMethod,status,rating,review,createdAt,updatedAt,couponModel);
 
 @override
 String toString() {
-  return 'OrderModel(id: $id, userId: $userId, addressId: $addressId, type: $type, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, couponId: $couponId, couponDiscount: $couponDiscount, paymentMethod: $paymentMethod, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, couponModel: $couponModel)';
+  return 'OrderModel(id: $id, userId: $userId, addressId: $addressId, type: $type, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, couponId: $couponId, couponDiscount: $couponDiscount, paymentMethod: $paymentMethod, status: $status, rating: $rating, review: $review, createdAt: $createdAt, updatedAt: $updatedAt, couponModel: $couponModel)';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $OrderModelCopyWith<$Res>  {
   factory $OrderModelCopyWith(OrderModel value, $Res Function(OrderModel) _then) = _$OrderModelCopyWithImpl;
 @useResult
 $Res call({
- int? id, int? userId, int? addressId, int? type, double? deliveryPrice, double? price, double? totalPrice, int? couponId, int? couponDiscount, int? paymentMethod, int? status, String? createdAt, String? updatedAt,@JsonKey(name: 'coupon') CouponModel? couponModel
+ int? id, int? userId, int? addressId, int? type, double? deliveryPrice, double? price, double? totalPrice, int? couponId, int? couponDiscount, int? paymentMethod, int? status, double? rating, String? review, String? createdAt, String? updatedAt,@JsonKey(name: 'coupon') CouponModel? couponModel
 });
 
 
@@ -68,7 +68,7 @@ class _$OrderModelCopyWithImpl<$Res>
 
 /// Create a copy of OrderModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? userId = freezed,Object? addressId = freezed,Object? type = freezed,Object? deliveryPrice = freezed,Object? price = freezed,Object? totalPrice = freezed,Object? couponId = freezed,Object? couponDiscount = freezed,Object? paymentMethod = freezed,Object? status = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? couponModel = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? userId = freezed,Object? addressId = freezed,Object? type = freezed,Object? deliveryPrice = freezed,Object? price = freezed,Object? totalPrice = freezed,Object? couponId = freezed,Object? couponDiscount = freezed,Object? paymentMethod = freezed,Object? status = freezed,Object? rating = freezed,Object? review = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? couponModel = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,9 @@ as double?,couponId: freezed == couponId ? _self.couponId : couponId // ignore: 
 as int?,couponDiscount: freezed == couponDiscount ? _self.couponDiscount : couponDiscount // ignore: cast_nullable_to_non_nullable
 as int?,paymentMethod: freezed == paymentMethod ? _self.paymentMethod : paymentMethod // ignore: cast_nullable_to_non_nullable
 as int?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as int?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,review: freezed == review ? _self.review : review // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,couponModel: freezed == couponModel ? _self.couponModel : couponModel // ignore: cast_nullable_to_non_nullable
 as CouponModel?,
@@ -181,10 +183,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  int? userId,  int? addressId,  int? type,  double? deliveryPrice,  double? price,  double? totalPrice,  int? couponId,  int? couponDiscount,  int? paymentMethod,  int? status,  String? createdAt,  String? updatedAt, @JsonKey(name: 'coupon')  CouponModel? couponModel)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  int? userId,  int? addressId,  int? type,  double? deliveryPrice,  double? price,  double? totalPrice,  int? couponId,  int? couponDiscount,  int? paymentMethod,  int? status,  double? rating,  String? review,  String? createdAt,  String? updatedAt, @JsonKey(name: 'coupon')  CouponModel? couponModel)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OrderModel() when $default != null:
-return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryPrice,_that.price,_that.totalPrice,_that.couponId,_that.couponDiscount,_that.paymentMethod,_that.status,_that.createdAt,_that.updatedAt,_that.couponModel);case _:
+return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryPrice,_that.price,_that.totalPrice,_that.couponId,_that.couponDiscount,_that.paymentMethod,_that.status,_that.rating,_that.review,_that.createdAt,_that.updatedAt,_that.couponModel);case _:
   return orElse();
 
 }
@@ -202,10 +204,10 @@ return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryP
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  int? userId,  int? addressId,  int? type,  double? deliveryPrice,  double? price,  double? totalPrice,  int? couponId,  int? couponDiscount,  int? paymentMethod,  int? status,  String? createdAt,  String? updatedAt, @JsonKey(name: 'coupon')  CouponModel? couponModel)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  int? userId,  int? addressId,  int? type,  double? deliveryPrice,  double? price,  double? totalPrice,  int? couponId,  int? couponDiscount,  int? paymentMethod,  int? status,  double? rating,  String? review,  String? createdAt,  String? updatedAt, @JsonKey(name: 'coupon')  CouponModel? couponModel)  $default,) {final _that = this;
 switch (_that) {
 case _OrderModel():
-return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryPrice,_that.price,_that.totalPrice,_that.couponId,_that.couponDiscount,_that.paymentMethod,_that.status,_that.createdAt,_that.updatedAt,_that.couponModel);case _:
+return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryPrice,_that.price,_that.totalPrice,_that.couponId,_that.couponDiscount,_that.paymentMethod,_that.status,_that.rating,_that.review,_that.createdAt,_that.updatedAt,_that.couponModel);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -222,10 +224,10 @@ return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryP
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  int? userId,  int? addressId,  int? type,  double? deliveryPrice,  double? price,  double? totalPrice,  int? couponId,  int? couponDiscount,  int? paymentMethod,  int? status,  String? createdAt,  String? updatedAt, @JsonKey(name: 'coupon')  CouponModel? couponModel)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  int? userId,  int? addressId,  int? type,  double? deliveryPrice,  double? price,  double? totalPrice,  int? couponId,  int? couponDiscount,  int? paymentMethod,  int? status,  double? rating,  String? review,  String? createdAt,  String? updatedAt, @JsonKey(name: 'coupon')  CouponModel? couponModel)?  $default,) {final _that = this;
 switch (_that) {
 case _OrderModel() when $default != null:
-return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryPrice,_that.price,_that.totalPrice,_that.couponId,_that.couponDiscount,_that.paymentMethod,_that.status,_that.createdAt,_that.updatedAt,_that.couponModel);case _:
+return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryPrice,_that.price,_that.totalPrice,_that.couponId,_that.couponDiscount,_that.paymentMethod,_that.status,_that.rating,_that.review,_that.createdAt,_that.updatedAt,_that.couponModel);case _:
   return null;
 
 }
@@ -237,7 +239,7 @@ return $default(_that.id,_that.userId,_that.addressId,_that.type,_that.deliveryP
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _OrderModel extends OrderModel {
-  const _OrderModel({this.id, this.userId, this.addressId, this.type, this.deliveryPrice, this.price, this.totalPrice, this.couponId, this.couponDiscount, this.paymentMethod, this.status, this.createdAt, this.updatedAt, @JsonKey(name: 'coupon') this.couponModel}): super._();
+  const _OrderModel({this.id, this.userId, this.addressId, this.type, this.deliveryPrice, this.price, this.totalPrice, this.couponId, this.couponDiscount, this.paymentMethod, this.status, this.rating, this.review, this.createdAt, this.updatedAt, @JsonKey(name: 'coupon') this.couponModel}): super._();
   factory _OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
 
 @override final  int? id;
@@ -253,7 +255,9 @@ class _OrderModel extends OrderModel {
 @override final  int? paymentMethod;
 // 0 => Cash, 1 => Card
 @override final  int? status;
-// حالة الطلب (مثال: 0 => قيد الانتظار)
+// 0 => pending, 1 => rejected, 2 => accepted, 3 => prepare, 4 => delivered, 5 => done, 6 => cancelled
+@override final  double? rating;
+@override final  String? review;
 @override final  String? createdAt;
 @override final  String? updatedAt;
 @override@JsonKey(name: 'coupon') final  CouponModel? couponModel;
@@ -271,16 +275,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.addressId, addressId) || other.addressId == addressId)&&(identical(other.type, type) || other.type == type)&&(identical(other.deliveryPrice, deliveryPrice) || other.deliveryPrice == deliveryPrice)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.couponId, couponId) || other.couponId == couponId)&&(identical(other.couponDiscount, couponDiscount) || other.couponDiscount == couponDiscount)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.couponModel, couponModel) || other.couponModel == couponModel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.addressId, addressId) || other.addressId == addressId)&&(identical(other.type, type) || other.type == type)&&(identical(other.deliveryPrice, deliveryPrice) || other.deliveryPrice == deliveryPrice)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPrice, totalPrice) || other.totalPrice == totalPrice)&&(identical(other.couponId, couponId) || other.couponId == couponId)&&(identical(other.couponDiscount, couponDiscount) || other.couponDiscount == couponDiscount)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.status, status) || other.status == status)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.review, review) || other.review == review)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.couponModel, couponModel) || other.couponModel == couponModel));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,userId,addressId,type,deliveryPrice,price,totalPrice,couponId,couponDiscount,paymentMethod,status,createdAt,updatedAt,couponModel);
+int get hashCode => Object.hash(runtimeType,id,userId,addressId,type,deliveryPrice,price,totalPrice,couponId,couponDiscount,paymentMethod,status,rating,review,createdAt,updatedAt,couponModel);
 
 @override
 String toString() {
-  return 'OrderModel(id: $id, userId: $userId, addressId: $addressId, type: $type, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, couponId: $couponId, couponDiscount: $couponDiscount, paymentMethod: $paymentMethod, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, couponModel: $couponModel)';
+  return 'OrderModel(id: $id, userId: $userId, addressId: $addressId, type: $type, deliveryPrice: $deliveryPrice, price: $price, totalPrice: $totalPrice, couponId: $couponId, couponDiscount: $couponDiscount, paymentMethod: $paymentMethod, status: $status, rating: $rating, review: $review, createdAt: $createdAt, updatedAt: $updatedAt, couponModel: $couponModel)';
 }
 
 
@@ -291,7 +295,7 @@ abstract mixin class _$OrderModelCopyWith<$Res> implements $OrderModelCopyWith<$
   factory _$OrderModelCopyWith(_OrderModel value, $Res Function(_OrderModel) _then) = __$OrderModelCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, int? userId, int? addressId, int? type, double? deliveryPrice, double? price, double? totalPrice, int? couponId, int? couponDiscount, int? paymentMethod, int? status, String? createdAt, String? updatedAt,@JsonKey(name: 'coupon') CouponModel? couponModel
+ int? id, int? userId, int? addressId, int? type, double? deliveryPrice, double? price, double? totalPrice, int? couponId, int? couponDiscount, int? paymentMethod, int? status, double? rating, String? review, String? createdAt, String? updatedAt,@JsonKey(name: 'coupon') CouponModel? couponModel
 });
 
 
@@ -308,7 +312,7 @@ class __$OrderModelCopyWithImpl<$Res>
 
 /// Create a copy of OrderModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? userId = freezed,Object? addressId = freezed,Object? type = freezed,Object? deliveryPrice = freezed,Object? price = freezed,Object? totalPrice = freezed,Object? couponId = freezed,Object? couponDiscount = freezed,Object? paymentMethod = freezed,Object? status = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? couponModel = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? userId = freezed,Object? addressId = freezed,Object? type = freezed,Object? deliveryPrice = freezed,Object? price = freezed,Object? totalPrice = freezed,Object? couponId = freezed,Object? couponDiscount = freezed,Object? paymentMethod = freezed,Object? status = freezed,Object? rating = freezed,Object? review = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? couponModel = freezed,}) {
   return _then(_OrderModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
@@ -321,7 +325,9 @@ as double?,couponId: freezed == couponId ? _self.couponId : couponId // ignore: 
 as int?,couponDiscount: freezed == couponDiscount ? _self.couponDiscount : couponDiscount // ignore: cast_nullable_to_non_nullable
 as int?,paymentMethod: freezed == paymentMethod ? _self.paymentMethod : paymentMethod // ignore: cast_nullable_to_non_nullable
 as int?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as int?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,review: freezed == review ? _self.review : review // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,couponModel: freezed == couponModel ? _self.couponModel : couponModel // ignore: cast_nullable_to_non_nullable
 as CouponModel?,

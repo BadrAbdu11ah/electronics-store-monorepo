@@ -13,5 +13,6 @@ abstract class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     @Default(HomeScreenStatus.initial()) HomeScreenStatus status,
     @Default(0) int currentPage,
+    @Default("en") String lang,
   }) = _HomeScreenState;
 }

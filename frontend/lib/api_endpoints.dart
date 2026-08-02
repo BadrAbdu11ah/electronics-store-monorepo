@@ -1,6 +1,6 @@
 class ApiEndpoints {
   // السيرفر المحلي
-  static const String baseUrl = "http://192.168.1.5:8000/api";
+  static const String baseUrl = "http://192.168.1.7:8000/api";
 
   // -----------------------------------------------------------
   // 1. مسارات المصادقة (Auth)
@@ -8,6 +8,7 @@ class ApiEndpoints {
   static const String login = "/login";
   static const String signup = "/signup";
   static const String verifyCode = "/auth/verify-code";
+  static const String logout = "/logout";
 
   // استعادة كلمة المرور
   static const String checkEmail = "/forgetpassword/checkemail";
@@ -19,6 +20,7 @@ class ApiEndpoints {
   // 2. الرئيسية والمنتجات (Home & Items)
   // -----------------------------------------------------------
   static const String home = "/home";
+  static const String offers = "/offers";
   static const String searchItems = "/items/search";
   static String itemsByCategory(int id) => "/items/view/$id";
 
@@ -53,5 +55,13 @@ class ApiEndpoints {
 
   static const String checkout = "/order/checkout";
   static const String pending = "/order/pending";
+  static const String archive = "/order/archive";
+  static String rateOrder(int id) => "/order/rate/$id";
   static String orderDetails(int id) => "/order/details/$id";
+  static String orderDelete(int id) => "/order/delete/$id";
+
+  // -----------------------------------------------------------
+  // 7. الاشعارات (Notification)
+  // -----------------------------------------------------------
+  static const String notificationView = "/notification/view";
 }

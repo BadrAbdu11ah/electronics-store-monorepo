@@ -61,7 +61,7 @@ class CustomSearchDelegate extends SearchDelegate {
           notFound: () =>
               const Center(child: Text("لم نجد أي نتائج تطابق بحثك")),
           failure: (error) => Center(child: Text(error)),
-          loaded: () => ListItemsSearch(listDataModel: state.searchResults),
+          loaded: () => ListItemsSearch(items: state.searchResults),
         );
       },
     );

@@ -14,61 +14,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeScreenEvent {
 
- int get page;
-/// Create a copy of HomeScreenEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$HomeScreenEventCopyWith<HomeScreenEvent> get copyWith => _$HomeScreenEventCopyWithImpl<HomeScreenEvent>(this as HomeScreenEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeScreenEvent&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeScreenEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,page);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeScreenEvent(page: $page)';
+  return 'HomeScreenEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $HomeScreenEventCopyWith<$Res>  {
-  factory $HomeScreenEventCopyWith(HomeScreenEvent value, $Res Function(HomeScreenEvent) _then) = _$HomeScreenEventCopyWithImpl;
-@useResult
-$Res call({
- int page
-});
-
-
-
-
-}
-/// @nodoc
-class _$HomeScreenEventCopyWithImpl<$Res>
-    implements $HomeScreenEventCopyWith<$Res> {
-  _$HomeScreenEventCopyWithImpl(this._self, this._then);
-
-  final HomeScreenEvent _self;
-  final $Res Function(HomeScreenEvent) _then;
-
-/// Create a copy of HomeScreenEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? page = null,}) {
-  return _then(_self.copyWith(
-page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
+class $HomeScreenEventCopyWith<$Res>  {
+$HomeScreenEventCopyWith(HomeScreenEvent _, $Res Function(HomeScreenEvent) __);
 }
 
 
@@ -86,10 +55,11 @@ extension HomeScreenEventPatterns on HomeScreenEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _PageChanged value)?  pageChanged,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _PageChanged value)?  pageChanged,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _PageChanged() when pageChanged != null:
+case _Started() when started != null:
+return started(_that);case _PageChanged() when pageChanged != null:
 return pageChanged(_that);case _:
   return orElse();
 
@@ -108,10 +78,11 @@ return pageChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _PageChanged value)  pageChanged,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _PageChanged value)  pageChanged,}){
 final _that = this;
 switch (_that) {
-case _PageChanged():
+case _Started():
+return started(_that);case _PageChanged():
 return pageChanged(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -129,10 +100,11 @@ return pageChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _PageChanged value)?  pageChanged,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _PageChanged value)?  pageChanged,}){
 final _that = this;
 switch (_that) {
-case _PageChanged() when pageChanged != null:
+case _Started() when started != null:
+return started(_that);case _PageChanged() when pageChanged != null:
 return pageChanged(_that);case _:
   return null;
 
@@ -150,9 +122,10 @@ return pageChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int page)?  pageChanged,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( int page)?  pageChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _PageChanged() when pageChanged != null:
+case _Started() when started != null:
+return started();case _PageChanged() when pageChanged != null:
 return pageChanged(_that.page);case _:
   return orElse();
 
@@ -171,9 +144,10 @@ return pageChanged(_that.page);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int page)  pageChanged,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( int page)  pageChanged,}) {final _that = this;
 switch (_that) {
-case _PageChanged():
+case _Started():
+return started();case _PageChanged():
 return pageChanged(_that.page);case _:
   throw StateError('Unexpected subclass');
 
@@ -191,9 +165,10 @@ return pageChanged(_that.page);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int page)?  pageChanged,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( int page)?  pageChanged,}) {final _that = this;
 switch (_that) {
-case _PageChanged() when pageChanged != null:
+case _Started() when started != null:
+return started();case _PageChanged() when pageChanged != null:
 return pageChanged(_that.page);case _:
   return null;
 
@@ -205,15 +180,47 @@ return pageChanged(_that.page);case _:
 /// @nodoc
 
 
+class _Started implements HomeScreenEvent {
+  const _Started();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeScreenEvent.started()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
 class _PageChanged implements HomeScreenEvent {
   const _PageChanged(this.page);
   
 
-@override final  int page;
+ final  int page;
 
 /// Create a copy of HomeScreenEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 _$PageChangedCopyWith<_PageChanged> get copyWith => __$PageChangedCopyWithImpl<_PageChanged>(this, _$identity);
 
@@ -239,7 +246,7 @@ String toString() {
 /// @nodoc
 abstract mixin class _$PageChangedCopyWith<$Res> implements $HomeScreenEventCopyWith<$Res> {
   factory _$PageChangedCopyWith(_PageChanged value, $Res Function(_PageChanged) _then) = __$PageChangedCopyWithImpl;
-@override @useResult
+@useResult
 $Res call({
  int page
 });
@@ -258,7 +265,7 @@ class __$PageChangedCopyWithImpl<$Res>
 
 /// Create a copy of HomeScreenEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? page = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? page = null,}) {
   return _then(_PageChanged(
 null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int,
@@ -611,7 +618,7 @@ as String,
 /// @nodoc
 mixin _$HomeScreenState {
 
- HomeScreenStatus get status; int get currentPage;
+ HomeScreenStatus get status; int get currentPage; String get lang;
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -622,16 +629,16 @@ $HomeScreenStateCopyWith<HomeScreenState> get copyWith => _$HomeScreenStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeScreenState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeScreenState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.lang, lang) || other.lang == lang));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,currentPage);
+int get hashCode => Object.hash(runtimeType,status,currentPage,lang);
 
 @override
 String toString() {
-  return 'HomeScreenState(status: $status, currentPage: $currentPage)';
+  return 'HomeScreenState(status: $status, currentPage: $currentPage, lang: $lang)';
 }
 
 
@@ -642,7 +649,7 @@ abstract mixin class $HomeScreenStateCopyWith<$Res>  {
   factory $HomeScreenStateCopyWith(HomeScreenState value, $Res Function(HomeScreenState) _then) = _$HomeScreenStateCopyWithImpl;
 @useResult
 $Res call({
- HomeScreenStatus status, int currentPage
+ HomeScreenStatus status, int currentPage, String lang
 });
 
 
@@ -659,11 +666,12 @@ class _$HomeScreenStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? currentPage = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? currentPage = null,Object? lang = null,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as HomeScreenStatus,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int,
+as int,lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 /// Create a copy of HomeScreenState
@@ -757,10 +765,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( HomeScreenStatus status,  int currentPage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( HomeScreenStatus status,  int currentPage,  String lang)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeScreenState() when $default != null:
-return $default(_that.status,_that.currentPage);case _:
+return $default(_that.status,_that.currentPage,_that.lang);case _:
   return orElse();
 
 }
@@ -778,10 +786,10 @@ return $default(_that.status,_that.currentPage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( HomeScreenStatus status,  int currentPage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( HomeScreenStatus status,  int currentPage,  String lang)  $default,) {final _that = this;
 switch (_that) {
 case _HomeScreenState():
-return $default(_that.status,_that.currentPage);case _:
+return $default(_that.status,_that.currentPage,_that.lang);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -798,10 +806,10 @@ return $default(_that.status,_that.currentPage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( HomeScreenStatus status,  int currentPage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( HomeScreenStatus status,  int currentPage,  String lang)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeScreenState() when $default != null:
-return $default(_that.status,_that.currentPage);case _:
+return $default(_that.status,_that.currentPage,_that.lang);case _:
   return null;
 
 }
@@ -813,11 +821,12 @@ return $default(_that.status,_that.currentPage);case _:
 
 
 class _HomeScreenState implements HomeScreenState {
-  const _HomeScreenState({this.status = const HomeScreenStatus.initial(), this.currentPage = 0});
+  const _HomeScreenState({this.status = const HomeScreenStatus.initial(), this.currentPage = 0, this.lang = "en"});
   
 
 @override@JsonKey() final  HomeScreenStatus status;
 @override@JsonKey() final  int currentPage;
+@override@JsonKey() final  String lang;
 
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
@@ -829,16 +838,16 @@ _$HomeScreenStateCopyWith<_HomeScreenState> get copyWith => __$HomeScreenStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeScreenState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeScreenState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.lang, lang) || other.lang == lang));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,currentPage);
+int get hashCode => Object.hash(runtimeType,status,currentPage,lang);
 
 @override
 String toString() {
-  return 'HomeScreenState(status: $status, currentPage: $currentPage)';
+  return 'HomeScreenState(status: $status, currentPage: $currentPage, lang: $lang)';
 }
 
 
@@ -849,7 +858,7 @@ abstract mixin class _$HomeScreenStateCopyWith<$Res> implements $HomeScreenState
   factory _$HomeScreenStateCopyWith(_HomeScreenState value, $Res Function(_HomeScreenState) _then) = __$HomeScreenStateCopyWithImpl;
 @override @useResult
 $Res call({
- HomeScreenStatus status, int currentPage
+ HomeScreenStatus status, int currentPage, String lang
 });
 
 
@@ -866,11 +875,12 @@ class __$HomeScreenStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? currentPage = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? currentPage = null,Object? lang = null,}) {
   return _then(_HomeScreenState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as HomeScreenStatus,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int,
+as int,lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

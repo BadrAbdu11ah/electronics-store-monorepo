@@ -23,7 +23,7 @@ class ListItemsHome extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 AppRoute.itemsDetails,
-                arguments: {"itemsmodel": itemsModel},
+                arguments: itemsModel,
               );
             },
             child: Stack(

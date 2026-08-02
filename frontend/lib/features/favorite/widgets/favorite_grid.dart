@@ -26,7 +26,7 @@ class FavoriteGrid extends StatelessWidget {
             Navigator.pushNamed(
               context,
               AppRoute.itemsDetails,
-              arguments: {"itemId": item.id},
+              arguments: item,
             );
           },
           onFavorite: () {

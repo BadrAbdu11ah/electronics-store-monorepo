@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:electronics_store/core/class/failure.dart';
-import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/features/auth/feature/login/bloc/login_bloc.dart';
 import 'package:fpdart/fpdart.dart'; // للتعامل مع Left و Right في الـ Either
 import 'package:electronics_store/features/auth/data/auth_data.dart';
@@ -10,20 +9,16 @@ import 'package:mocktail/mocktail.dart';
 // 1. بناء الـ Mock لطبقة البيانات
 class MockAuthData extends Mock implements AuthData {}
 
-class MockAppService extends Mock implements AppService {}
-
 void main() {
   late LoginBloc loginBloc;
   late MockAuthData mockAuthData;
-  late MockAppService mockAppService;
 
   const tEmail = 'badr@example.com';
   const tPassword = 'password123';
 
   setUp(() {
     mockAuthData = MockAuthData();
-    mockAppService = MockAppService();
-    loginBloc = LoginBloc(mockAuthData, mockAppService);
+    loginBloc = LoginBloc(mockAuthData);
   });
 
   group('LoginBloc Tests - هندسة اختبارات نظام تسجيل الدخول', () {

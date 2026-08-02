@@ -6,7 +6,15 @@ enum PaymentMethod { cash, card }
 
 enum DeliveryType { delivery, driveThru }
 
-enum OrderStatus { waiting, preparing, archived }
+enum OrderStatus {
+  pending,
+  rejected,
+  accepted,
+  prepare,
+  delivered,
+  done,
+  cancelled,
+}
 
 extension PaymentMethodExtension on PaymentMethod {
   String text(BuildContext context) {
@@ -35,14 +43,26 @@ extension DeliveryTypeExtension on DeliveryType {
 extension OrderStatusExtension on OrderStatus {
   String text(BuildContext context) {
     switch (this) {
-      case OrderStatus.waiting:
+      case OrderStatus.pending:
         return AppTranslations.translate(context, AppText.ordersWaiting);
 
-      case OrderStatus.preparing:
+      case OrderStatus.rejected:
+        return AppTranslations.translate(context, AppText.ordersRejected);
+
+      case OrderStatus.accepted:
+        return AppTranslations.translate(context, AppText.ordersAccepted);
+
+      case OrderStatus.prepare:
         return AppTranslations.translate(context, AppText.ordersPreparing);
 
-      case OrderStatus.archived:
-        return AppTranslations.translate(context, AppText.ordersArchived);
+      case OrderStatus.delivered:
+        return AppTranslations.translate(context, AppText.ordersDelivered);
+
+      case OrderStatus.done:
+        return AppTranslations.translate(context, AppText.ordersDone);
+
+      case OrderStatus.cancelled:
+        return AppTranslations.translate(context, AppText.ordersCancelled);
     }
   }
 }

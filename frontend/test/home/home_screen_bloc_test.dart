@@ -1,14 +1,20 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:electronics_store/core/services/app_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:electronics_store/features/home/home_screen/bloc/home_screen_bloc.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockAppService extends Mock implements AppService {}
 
 void main() {
   group('HomeScreenBloc Tests', () {
     late HomeScreenBloc homeScreenBloc;
+    late MockAppService mockAppService;
 
     // يتم تنفيذها قبل كل فحص (Test) لتهيئة الـ Bloc من جديد
     setUp(() {
-      homeScreenBloc = HomeScreenBloc();
+      mockAppService = MockAppService();
+      homeScreenBloc = HomeScreenBloc(appService: mockAppService);
     });
 
     // يتم تنفيذها بعد كل فحص لإغلاق الـ Bloc وتحرير الذاكرة

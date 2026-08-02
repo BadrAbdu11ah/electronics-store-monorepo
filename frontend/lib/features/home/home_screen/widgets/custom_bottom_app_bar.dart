@@ -2,6 +2,7 @@ import 'package:electronics_store/features/home/home_screen/widgets/custom_botto
 import 'package:flutter/material.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
+  final String lang;
   final int listPageLength;
   final int currentPage;
   final Function(int) onTap;
@@ -11,6 +12,7 @@ class CustomBottomAppBar extends StatefulWidget {
     required this.listPageLength,
     required this.currentPage,
     required this.onTap,
+    required this.lang,
   });
 
   @override
@@ -19,19 +21,19 @@ class CustomBottomAppBar extends StatefulWidget {
 
 class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   // Navigation Assets
-  List<String> titleBottomEn = ["Home", "Favorite", "Profile", "Settings"];
-  List<String> titleBottomAr = ["الرئيسي", "المفضلة", "صفحتي", "إعدادات"];
+  List<String> titleBottomEn = ["Home", "Notifications", "offers", "Settings"];
+  List<String> titleBottomAr = ["الرئيسية", "الإشعارات", "العروض", "إعدادات"];
 
   List<IconData> iconNotActive = [
     Icons.home_outlined,
-    Icons.star_border_outlined,
-    Icons.person_2_outlined,
+    Icons.notifications_active_outlined,
+    Icons.local_offer_outlined,
     Icons.settings_outlined,
   ];
   List<IconData> iconActive = [
     Icons.home,
-    Icons.star,
-    Icons.person_2,
+    Icons.notifications_active,
+    Icons.local_offer,
     Icons.settings,
   ];
   @override
@@ -53,7 +55,9 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                     icon: widget.currentPage == i
                         ? iconActive[i]
                         : iconNotActive[i],
-                    textIcon: titleBottomEn[i],
+                    textIcon: widget.lang == "ar"
+                        ? titleBottomAr[i]
+                        : titleBottomEn[i],
                     active: widget.currentPage == i ? true : false,
                   );
           }),

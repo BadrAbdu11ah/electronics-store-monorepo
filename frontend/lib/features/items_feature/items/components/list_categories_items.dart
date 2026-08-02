@@ -24,10 +24,13 @@ class ListCategoriesItems extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (BuildContext context, int index) {
+          // // جلب عنصر القسم الحالي للوصول للـ ID الخاص به
+          final category = categories[index];
+
           return InkWell(
             onTap: () {
               context.read<ItemsBloc>().add(
-                ItemsEvent.loadItems(categoryId: index),
+                ItemsEvent.loadItems(categoryId: category.id!),
               );
             },
             child: Column(
@@ -35,7 +38,7 @@ class ListCategoriesItems extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   height: 40,
-                  decoration: categoryId == index
+                  decoration: categoryId == category.id
                       ? BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
@@ -46,10 +49,7 @@ class ListCategoriesItems extends StatelessWidget {
                         )
                       : null,
                   child: Text(
-                    translateDatabase(
-                      categories[index].name!,
-                      categories[index].nameAr!,
-                    ),
+                    translateDatabase(category.name!, category.nameAr!),
                     style: TextStyle(fontSize: 20),
                   ),
                 ),

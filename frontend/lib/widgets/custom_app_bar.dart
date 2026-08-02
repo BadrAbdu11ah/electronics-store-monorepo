@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final void Function() onSearch;
-  final void Function() onOrder;
   final void Function()? onFavorite;
   final bool isFavorite;
 
   const CustomAppBar({
     super.key,
-    required this.onOrder,
     required this.onSearch,
     required this.title,
     this.onFavorite,
@@ -43,11 +41,7 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 10),
-          _buildAppBarButton(
-            onPressed: onOrder,
-            icon: Icons.shopping_cart_outlined,
-          ),
+
           if (isFavorite) ...[
             const SizedBox(width: 10),
             _buildAppBarButton(

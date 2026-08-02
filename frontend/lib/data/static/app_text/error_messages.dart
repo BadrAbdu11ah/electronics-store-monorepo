@@ -29,6 +29,10 @@ Map<String, String> errorMessagesAr = {
   AppText.activateNow: "تفعيل الآن",
   AppText.cancel: "إلغاء",
   AppText.confirm: "موافق",
+  AppText.delete: "حذف",
+  AppText.deleteOrder: "حذف الطلب",
+  AppText.areYouSureYouWantToDeleteThisOrder:
+      "هل أنت متأكد من رغبتك في حذف هذا الطلب؟",
 };
 
 Map<String, String> errorMessagesEn = {
@@ -61,4 +65,8 @@ Map<String, String> errorMessagesEn = {
   AppText.activateNow: "Activate Now",
   AppText.cancel: "Cancel",
   AppText.confirm: "Confirm",
+  AppText.delete: "Delete",
+  AppText.deleteOrder: "Delete Order",
+  AppText.areYouSureYouWantToDeleteThisOrder:
+      "Are you sure you want to delete this order?",
 };

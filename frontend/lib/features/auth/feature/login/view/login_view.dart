@@ -92,21 +92,16 @@ class _LoginViewState extends State<LoginView> {
             failure: (errorMessage) =>
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(errorMessage),
+                    content: Text(
+                      AppTranslations.translate(context, errorMessage),
+                    ),
                     backgroundColor: Colors.redAccent,
                   ),
                 ),
             orElse: () {},
           );
         },
-        buildWhen: (previous, current) {
-          return current.maybeWhen(
-            initial: () => true,
-            loading: () => true,
-            serverFailure: (_) => true,
-            orElse: () => false,
-          );
-        },
+
         builder: (context, state) {
           final isLoading = state.maybeWhen(
             loading: () => true,

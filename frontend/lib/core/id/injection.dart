@@ -25,12 +25,16 @@ import 'package:electronics_store/features/favorite/data/favorite_data.dart';
 import 'package:electronics_store/features/home/data/home_data.dart';
 import 'package:electronics_store/features/home/home_page/bloc/home_page_bloc.dart';
 import 'package:electronics_store/features/home/home_screen/bloc/home_screen_bloc.dart';
+import 'package:electronics_store/features/home/notifications/bloc/notifications_bloc.dart';
+import 'package:electronics_store/features/home/notifications/data/notifications_data.dart';
+import 'package:electronics_store/features/home/offers/bloc/offers_bloc.dart';
 import 'package:electronics_store/features/home/settings_page/bloc/settings_page_bloc.dart';
 import 'package:electronics_store/features/items_feature/data/item_data.dart';
 import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:electronics_store/features/items_feature/items_details/bloc/items_details_bloc.dart';
 import 'package:electronics_store/features/on_boarding/bloc/on_boarding_bloc.dart';
 import 'package:electronics_store/features/orders/data/orders_data.dart';
+import 'package:electronics_store/features/orders/feature/archive/bloc/archive_bloc.dart';
 import 'package:electronics_store/features/orders/feature/details/bloc/order_details_bloc.dart';
 import 'package:electronics_store/features/orders/feature/pending/bloc/pending_bloc.dart';
 import 'package:electronics_store/features/search/data/search_data.dart';
@@ -54,13 +58,14 @@ Future<void> initGetIt() async {
   sl.registerLazySingleton(() => AddressData(sl<ApiService>()));
   sl.registerLazySingleton(() => CheckoutData(sl<ApiService>()));
   sl.registerLazySingleton(() => OrdersData(sl<ApiService>()));
+  sl.registerLazySingleton(() => NotificationsData(sl<ApiService>()));
   sl.registerLazySingleton(() => LocationServiceImpl());
 
   // 3. Blocs
 
   // Auth Blocs
   sl.registerFactory(() => OnBoardingBloc(sl<AppService>()));
-  sl.registerFactory(() => LoginBloc(sl<AuthData>(), sl<AppService>()));
+  sl.registerFactory(() => LoginBloc(sl<AuthData>()));
   sl.registerFactory(() => SignUpBloc(sl<AuthData>()));
   sl.registerFactory(() => VerfiyCodeSignUpBloc(sl<AuthData>()));
   sl.registerFactory(() => SuccessSignUpBloc(appService: sl<AppService>()));
@@ -72,12 +77,20 @@ Future<void> initGetIt() async {
   sl.registerFactory(() => SuccessResetPasswordBloc());
 
   // Home
-  sl.registerFactory(() => HomeScreenBloc());
+  sl.registerFactory(() => HomeScreenBloc(appService: sl<AppService>()));
   sl.registerFactory(
     () => HomePageBloc(homeData: sl<HomeData>(), appService: sl<AppService>()),
   );
-  sl.registerFactory(() => SettingsPageBloc(appService: sl<AppService>()));
+  sl.registerFactory(() => SettingsPageBloc(authData: sl<AuthData>()));
+  sl.registerFactory(() => NotificationsBloc(sl<NotificationsData>()));
   sl.registerFactory(() => SearchBloc(searchData: sl<SearchData>()));
+  sl.registerFactory(
+    () => OffersBloc(
+      appService: sl<AppService>(),
+      homeData: sl<HomeData>(),
+      favoriteData: sl<FavoriteData>(),
+    ),
+  );
 
   // Items
   sl.registerFactory(
@@ -118,9 +131,9 @@ Future<void> initGetIt() async {
 
   // order
   sl.registerFactory(() => PendingBloc(sl<OrdersData>()));
+  sl.registerFactory(() => ArchiveBloc(sl<OrdersData>()));
   sl.registerFactory(
     () => OrderDetailsBloc(
-      locationService: sl<LocationServiceImpl>(),
       appService: sl<AppService>(),
       ordersData: sl<OrdersData>(),
     ),

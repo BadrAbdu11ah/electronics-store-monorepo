@@ -1,5 +1,4 @@
 import 'package:electronics_store/app_translations.dart';
-import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/favorite/bloc/favorite_bloc.dart';
@@ -24,8 +23,6 @@ class Favorite extends StatelessWidget {
             SliverToBoxAdapter(
               child: CustomAppBar(
                 title: AppTranslations.translate(context, AppText.findProduct),
-                onOrder: () =>
-                    Navigator.pushNamed(context, AppRoute.ordersPending),
                 onSearch: () {
                   showSearch(
                     context: context,

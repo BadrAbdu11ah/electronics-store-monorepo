@@ -40,15 +40,10 @@ class _LoginFormState extends State<LoginForm> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
-        // منع الخروج أثناء التحميل لحماية دورة البيانات
-        if (!widget.isLoading) {
-          alertExitApp(context);
-        }
+        alertExitApp(context);
       },
       child: Stack(
-        // استخدام Stack يتيح لنا رص الطبقات فوق بعضها
         children: [
-          // // الطبقة الأولى: الـ Form الطبيعي الخاص بك (ثابت ومستقر دائماً)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Form(

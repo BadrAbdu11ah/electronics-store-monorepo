@@ -584,8 +584,7 @@ as String,
 /// @nodoc
 mixin _$AddressAddState {
 
- AddressAddStatus get status;// Location Data
- Position? get position; double? get lat; double? get long;
+ AddressAddStatus get status; double? get lat; double? get long;
 /// Create a copy of AddressAddState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -596,16 +595,16 @@ $AddressAddStateCopyWith<AddressAddState> get copyWith => _$AddressAddStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressAddState&&(identical(other.status, status) || other.status == status)&&(identical(other.position, position) || other.position == position)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressAddState&&(identical(other.status, status) || other.status == status)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,position,lat,long);
+int get hashCode => Object.hash(runtimeType,status,lat,long);
 
 @override
 String toString() {
-  return 'AddressAddState(status: $status, position: $position, lat: $lat, long: $long)';
+  return 'AddressAddState(status: $status, lat: $lat, long: $long)';
 }
 
 
@@ -616,7 +615,7 @@ abstract mixin class $AddressAddStateCopyWith<$Res>  {
   factory $AddressAddStateCopyWith(AddressAddState value, $Res Function(AddressAddState) _then) = _$AddressAddStateCopyWithImpl;
 @useResult
 $Res call({
- AddressAddStatus status, Position? position, double? lat, double? long
+ AddressAddStatus status, double? lat, double? long
 });
 
 
@@ -633,11 +632,10 @@ class _$AddressAddStateCopyWithImpl<$Res>
 
 /// Create a copy of AddressAddState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? position = freezed,Object? lat = freezed,Object? long = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? lat = freezed,Object? long = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as AddressAddStatus,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position?,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
+as AddressAddStatus,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
 as double?,long: freezed == long ? _self.long : long // ignore: cast_nullable_to_non_nullable
 as double?,
   ));
@@ -733,10 +731,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AddressAddStatus status,  Position? position,  double? lat,  double? long)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AddressAddStatus status,  double? lat,  double? long)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AdderssAddState() when $default != null:
-return $default(_that.status,_that.position,_that.lat,_that.long);case _:
+return $default(_that.status,_that.lat,_that.long);case _:
   return orElse();
 
 }
@@ -754,10 +752,10 @@ return $default(_that.status,_that.position,_that.lat,_that.long);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AddressAddStatus status,  Position? position,  double? lat,  double? long)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AddressAddStatus status,  double? lat,  double? long)  $default,) {final _that = this;
 switch (_that) {
 case _AdderssAddState():
-return $default(_that.status,_that.position,_that.lat,_that.long);case _:
+return $default(_that.status,_that.lat,_that.long);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -774,10 +772,10 @@ return $default(_that.status,_that.position,_that.lat,_that.long);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AddressAddStatus status,  Position? position,  double? lat,  double? long)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AddressAddStatus status,  double? lat,  double? long)?  $default,) {final _that = this;
 switch (_that) {
 case _AdderssAddState() when $default != null:
-return $default(_that.status,_that.position,_that.lat,_that.long);case _:
+return $default(_that.status,_that.lat,_that.long);case _:
   return null;
 
 }
@@ -789,12 +787,10 @@ return $default(_that.status,_that.position,_that.lat,_that.long);case _:
 
 
 class _AdderssAddState implements AddressAddState {
-  const _AdderssAddState({this.status = const AddressAddStatus.initial(), this.position, this.lat, this.long});
+  const _AdderssAddState({this.status = const AddressAddStatus.initial(), this.lat, this.long});
   
 
 @override@JsonKey() final  AddressAddStatus status;
-// Location Data
-@override final  Position? position;
 @override final  double? lat;
 @override final  double? long;
 
@@ -808,16 +804,16 @@ _$AdderssAddStateCopyWith<_AdderssAddState> get copyWith => __$AdderssAddStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdderssAddState&&(identical(other.status, status) || other.status == status)&&(identical(other.position, position) || other.position == position)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdderssAddState&&(identical(other.status, status) || other.status == status)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.long, long) || other.long == long));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,position,lat,long);
+int get hashCode => Object.hash(runtimeType,status,lat,long);
 
 @override
 String toString() {
-  return 'AddressAddState(status: $status, position: $position, lat: $lat, long: $long)';
+  return 'AddressAddState(status: $status, lat: $lat, long: $long)';
 }
 
 
@@ -828,7 +824,7 @@ abstract mixin class _$AdderssAddStateCopyWith<$Res> implements $AddressAddState
   factory _$AdderssAddStateCopyWith(_AdderssAddState value, $Res Function(_AdderssAddState) _then) = __$AdderssAddStateCopyWithImpl;
 @override @useResult
 $Res call({
- AddressAddStatus status, Position? position, double? lat, double? long
+ AddressAddStatus status, double? lat, double? long
 });
 
 
@@ -845,11 +841,10 @@ class __$AdderssAddStateCopyWithImpl<$Res>
 
 /// Create a copy of AddressAddState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? position = freezed,Object? lat = freezed,Object? long = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? lat = freezed,Object? long = freezed,}) {
   return _then(_AdderssAddState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as AddressAddStatus,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position?,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
+as AddressAddStatus,lat: freezed == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
 as double?,long: freezed == long ? _self.long : long // ignore: cast_nullable_to_non_nullable
 as double?,
   ));

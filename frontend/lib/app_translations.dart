@@ -62,12 +62,17 @@ class AppTranslations {
     },
   };
 
-  // دالة لجلب النص المترجم بناءً على سياق الشاشة الحالي (BuildContext)
-  static String translate(BuildContext context, String key) {
-    // جلب كود اللغة الحالية المتوفرة في الـ MaterialApp
-    final String langCode = Localizations.localeOf(context).languageCode;
+  // // دالة لجلب النص المترجم بصورة آمنة تمنع توقف التطبيق
+  static String translate(
+    BuildContext context,
+    String key, {
+    String defaultLang = 'ar',
+  }) {
+    // // استخدام maybeLocaleOf لفحص وجود اللغة بدون استثناءات
+    final Locale? locale = Localizations.maybeLocaleOf(context);
+    final String langCode = locale?.languageCode ?? defaultLang;
 
-    // إرجاع النص المترجم، وإذا لم يجد المفتاح يعيد المفتاح نفسه كحماية من الـ Crash
+    // // إرجاع النص المترجم أو المفتاح في حال عدم وجوده
     return keys[langCode]?[key] ?? key;
   }
 }

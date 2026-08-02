@@ -15,12 +15,12 @@ class AddressEditBloc extends Bloc<AddressEditEvent, AddressEditState> {
   Future<void> _onSubmit(_Submit event, Emitter<AddressEditState> emit) async {
     emit(_Loading());
 
-    var response = await addressData.editAddress(event.addressId!, {
+    var response = await addressData.editAddress(event.addressId, {
       "name": event.name,
       "city": event.city,
       "street": event.street,
-      "lat": event.lat.toString(),
-      "long": event.long.toString(),
+      "lat": event.lat,
+      "long": event.long,
       "phone": event.phone,
     });
 

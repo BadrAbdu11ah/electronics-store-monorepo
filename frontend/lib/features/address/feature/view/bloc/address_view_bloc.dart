@@ -27,7 +27,9 @@ class AddressViewBloc extends Bloc<AddressViewEvent, AddressViewState> {
     _LoadAddresses event,
     Emitter<AddressViewState> emit,
   ) async {
-    emit(state.copyWith(status: _Loading()));
+    emit(
+      state.copyWith(status: _Loading(), deleteState: const _DeleteInitial()),
+    );
 
     var response = await addressData.getAddresses();
 
@@ -47,35 +49,15 @@ class AddressViewBloc extends Bloc<AddressViewEvent, AddressViewState> {
     _DeleteAddress event,
     Emitter<AddressViewState> emit,
   ) async {
-    final previousAddresses = state.addresses;
-
-    // 1. حذف محلي سريع (Optimistic UI)
-    final updatedAddresses = state.addresses
-        .where((address) => address.id != event.id)
-        .toList();
-    emit(
-      state.copyWith(
-        addresses: updatedAddresses,
-        deleteState: const _DeleteInitial(),
-      ),
-    );
-
-    // 2. إرسال الطلب للسيرفر
     var response = await addressData.removeAddress(event.id);
-
-    // 3. معالجة الرد
     response.fold(
       (failure) {
-        emit(
-          state.copyWith(
-            // استعادة المنتجات لأن الحذف فشل بالسيرفر
-            addresses: previousAddresses,
-            deleteState: _DeleteFailure(failure.message),
-          ),
-        );
+        emit(state.copyWith(deleteState: _DeleteFailure(failure.message)));
+        add(_LoadAddresses());
       },
       (message) {
         emit(state.copyWith(deleteState: _DeleteSuccess(message)));
+        add(_LoadAddresses());
       },
     );
   }

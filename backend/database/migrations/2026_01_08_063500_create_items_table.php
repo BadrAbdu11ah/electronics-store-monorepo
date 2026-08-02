@@ -12,18 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->id("items_id");
-            $table->string("items_name");
-            $table->string("items_name_ar");
-            $table->text("items_desc"); 
-            $table->text("items_desc_ar");
-            $table->string("items_image");
-            $table->integer("items_count");
-            $table->integer("items_active")->default(1);
-            $table->double("items_price");
-            $table->double("items_discount")->default(0);
+            $table->id();
+            $table->string("name");
+            $table->string("name_ar");
+            $table->text("desc"); 
+            $table->text("desc_ar");
+            $table->string("image");
+            $table->integer("count");
+            $table->integer("active")->default(1);
+            $table->double("price");
+            $table->double("discount")->default(0);
+            $table->integer('delivery_time');
 
-            $table->foreignId('items_categoriesID')->constrained('categories', 'categories_id')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });
