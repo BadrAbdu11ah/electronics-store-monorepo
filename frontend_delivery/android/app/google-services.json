@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "146036295592",
+    "project_id": "electronics-store-273ce",
+    "storage_bucket": "electronics-store-273ce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146036295592:android:b239ddebeafd158cedbf9d",
+        "android_client_info": {
+          "package_name": "com.electronicsstore.electronics_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjMz5DUluL0YhSXKN5mqgUvcJ8OOwssXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146036295592:android:57576a28dd6eaa5fedbf9d",
+        "android_client_info": {
+          "package_name": "com.electronicsstore.electronics_store_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjMz5DUluL0YhSXKN5mqgUvcJ8OOwssXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146036295592:android:67c824f62cfdba3bedbf9d",
+        "android_client_info": {
+          "package_name": "com.electronicsstore.electronics_store_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjMz5DUluL0YhSXKN5mqgUvcJ8OOwssXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

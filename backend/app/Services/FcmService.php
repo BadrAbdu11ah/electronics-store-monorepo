@@ -19,6 +19,24 @@ class FcmService
     }
 
     /**
+     * إرسال إشعار لمستخدم محدد عبر الـ Topic الخاص به (delivery + userId)
+     */
+    public function sendToDelivery($userId, $title, $body, array $extraData = [])
+    {
+        $topicName = "delivery" . $userId;
+        return $this->sendToTopic($topicName, $title, $body, $extraData);
+    }
+
+    /**
+     * إرسال إشعار لمستخدم محدد عبر الـ Topic الخاص به (service + userId)
+     */
+    public function sendToServices($userId, $title, $body, array $extraData = [])
+    {
+        $topicName = "service" . $userId;
+        return $this->sendToTopic($topicName, $title, $body, $extraData);
+    }
+
+    /**
      * إرسال إشعار عام لأي Topic
      */
     public function sendToTopic($topicName, $title, $body, array $extraData = [])

@@ -10,47 +10,50 @@ use App\Models\Coupon;
 
 class Order extends Model
 {
-    // تحديد اسم الجدول في قاعدة البيانات
     protected $table = 'orders';
 
-    /**
-     * الحقول القابلة للتعبئة جماعياً
-     */
     protected $fillable = [
         'user_id',
         'address_id',
-        'type',             // 0 => Delivery, 1 => Drive Thru 
+        'address_name',
+        'address_city',
+        'address_street',
+        'address_lat',
+        'address_long',
+        
+        'type',
         'delivery_price',
-        'price',
-        'total_price',
-        'coupon_id',
-        'payment_method',   // 0 => cash, 1 => payment card
-        'status',           // 0 => pending, 1 => rejected, 2 => accepted, 3 => prepare, 4 => delivered, 5 => done, 6 => cancelled
+        'price',             // Subtotal (إجمالي المنتجات)
+        'discount_amount',   // قيمة الخصم الثابتة بالريال
+        'discount_rate',     // نسبة الخصم
+        'total_price',       // الإجمالي النهائي بعد الخصم والشحن
+        'coupon_id',         // ID الكوبون (لأغراض الإحصائيات)
+        'coupon_name',       // اسم/كود الكوبون وقت الشراء
+        'payment_method',
+        'status',
+        'delivery_id',
         'rating',
         'review',
     ];
 
-    /**
-     * الطلب ينتمي لمستحدم واحد محدد
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    /**
-     * الطلب ينتمي لعنوان شحن واحد (يكون nullable في حال كان الاستلام من المتجر Drive Thru)
-     */
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class, 'address_id', 'id');
     }
 
-    /**
-     * الطلب ينتمي لكوبون خصم واحد (إذا استخدم المستخدم كوبون)
-     */
+    // علاقة اختيارية (قد تكون null لو تم حذف الكوبون من قاعدة البيانات)
     public function coupon(): BelongsTo
     {
         return $this->belongsTo(Coupon::class, 'coupon_id', 'id');
+    }
+
+    public function delivery(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'delivery_id', 'id');
     }
 }
