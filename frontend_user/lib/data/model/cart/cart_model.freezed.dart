@@ -317,8 +317,7 @@ $ItemModelCopyWith<$Res>? get item {
 /// @nodoc
 mixin _$CartResponseModel {
 
- String? get status; List<CartModel> get items; CouponModel? get coupon;// تم إضافة الكوبون ليتوافق مع الباك إند
- double? get subtotal; double? get discountAmount; double? get shippingPrice; double? get totalPrice; int? get totalQuantity;
+ String? get status; List<CartModel> get items; CouponModel? get coupon; double? get subtotal; double? get discountAmount; double? get shippingPrice; double? get totalPrice; int? get totalQuantity;
 /// Create a copy of CartResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -543,7 +542,6 @@ class _CartResponseModel extends CartResponseModel {
 }
 
 @override final  CouponModel? coupon;
-// تم إضافة الكوبون ليتوافق مع الباك إند
 @override final  double? subtotal;
 @override final  double? discountAmount;
 @override final  double? shippingPrice;

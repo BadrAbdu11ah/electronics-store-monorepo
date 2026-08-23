@@ -1,6 +1,6 @@
 class ApiEndpoints {
   // السيرفر المحلي
-  static const String baseUrl = "http://192.168.1.4:8000/api/delivery";
+  static const String baseUrl = "http://192.168.1.9:8000/api/delivery";
 
   // -----------------------------------------------------------
   // 1. مسارات المصادقة (Auth)

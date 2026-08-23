@@ -137,10 +137,10 @@ return resetStatusToLoaded(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadAddresses,TResult Function( String val)?  choosePymentMethod,TResult Function( String val)?  chooseDeliveryType,TResult Function( String val)?  chooseShippingAddress,TResult Function( String priceOrders,  String? couponsID)?  checkout,TResult Function()?  resetStatusToLoaded,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double subtotalPrice,  double totalAppPrice,  int discountPercentage,  double shippingPrice)?  started,TResult Function()?  loadAddresses,TResult Function( String val)?  choosePymentMethod,TResult Function( String val)?  chooseDeliveryType,TResult Function( String val)?  chooseShippingAddress,TResult Function( String priceOrders,  String? couponsID)?  checkout,TResult Function()?  resetStatusToLoaded,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _LoadAddresses() when loadAddresses != null:
+return started(_that.subtotalPrice,_that.totalAppPrice,_that.discountPercentage,_that.shippingPrice);case _LoadAddresses() when loadAddresses != null:
 return loadAddresses();case _ChoosePymentMethod() when choosePymentMethod != null:
 return choosePymentMethod(_that.val);case _ChooseDeliveryType() when chooseDeliveryType != null:
 return chooseDeliveryType(_that.val);case _ChooseShippingAddress() when chooseShippingAddress != null:
@@ -164,10 +164,10 @@ return resetStatusToLoaded();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadAddresses,required TResult Function( String val)  choosePymentMethod,required TResult Function( String val)  chooseDeliveryType,required TResult Function( String val)  chooseShippingAddress,required TResult Function( String priceOrders,  String? couponsID)  checkout,required TResult Function()  resetStatusToLoaded,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double subtotalPrice,  double totalAppPrice,  int discountPercentage,  double shippingPrice)  started,required TResult Function()  loadAddresses,required TResult Function( String val)  choosePymentMethod,required TResult Function( String val)  chooseDeliveryType,required TResult Function( String val)  chooseShippingAddress,required TResult Function( String priceOrders,  String? couponsID)  checkout,required TResult Function()  resetStatusToLoaded,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case _LoadAddresses():
+return started(_that.subtotalPrice,_that.totalAppPrice,_that.discountPercentage,_that.shippingPrice);case _LoadAddresses():
 return loadAddresses();case _ChoosePymentMethod():
 return choosePymentMethod(_that.val);case _ChooseDeliveryType():
 return chooseDeliveryType(_that.val);case _ChooseShippingAddress():
@@ -190,10 +190,10 @@ return resetStatusToLoaded();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadAddresses,TResult? Function( String val)?  choosePymentMethod,TResult? Function( String val)?  chooseDeliveryType,TResult? Function( String val)?  chooseShippingAddress,TResult? Function( String priceOrders,  String? couponsID)?  checkout,TResult? Function()?  resetStatusToLoaded,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double subtotalPrice,  double totalAppPrice,  int discountPercentage,  double shippingPrice)?  started,TResult? Function()?  loadAddresses,TResult? Function( String val)?  choosePymentMethod,TResult? Function( String val)?  chooseDeliveryType,TResult? Function( String val)?  chooseShippingAddress,TResult? Function( String priceOrders,  String? couponsID)?  checkout,TResult? Function()?  resetStatusToLoaded,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _LoadAddresses() when loadAddresses != null:
+return started(_that.subtotalPrice,_that.totalAppPrice,_that.discountPercentage,_that.shippingPrice);case _LoadAddresses() when loadAddresses != null:
 return loadAddresses();case _ChoosePymentMethod() when choosePymentMethod != null:
 return choosePymentMethod(_that.val);case _ChooseDeliveryType() when chooseDeliveryType != null:
 return chooseDeliveryType(_that.val);case _ChooseShippingAddress() when chooseShippingAddress != null:
@@ -211,33 +211,73 @@ return resetStatusToLoaded();case _:
 
 
 class _Started implements CheckOutEvent {
-  const _Started();
+  const _Started({required this.subtotalPrice, required this.totalAppPrice, required this.discountPercentage, required this.shippingPrice});
   
 
+ final  double subtotalPrice;
+ final  double totalAppPrice;
+ final  int discountPercentage;
+ final  double shippingPrice;
 
-
+/// Create a copy of CheckOutEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StartedCopyWith<_Started> get copyWith => __$StartedCopyWithImpl<_Started>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started&&(identical(other.subtotalPrice, subtotalPrice) || other.subtotalPrice == subtotalPrice)&&(identical(other.totalAppPrice, totalAppPrice) || other.totalAppPrice == totalAppPrice)&&(identical(other.discountPercentage, discountPercentage) || other.discountPercentage == discountPercentage)&&(identical(other.shippingPrice, shippingPrice) || other.shippingPrice == shippingPrice));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,subtotalPrice,totalAppPrice,discountPercentage,shippingPrice);
 
 @override
 String toString() {
-  return 'CheckOutEvent.started()';
+  return 'CheckOutEvent.started(subtotalPrice: $subtotalPrice, totalAppPrice: $totalAppPrice, discountPercentage: $discountPercentage, shippingPrice: $shippingPrice)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$StartedCopyWith<$Res> implements $CheckOutEventCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) _then) = __$StartedCopyWithImpl;
+@useResult
+$Res call({
+ double subtotalPrice, double totalAppPrice, int discountPercentage, double shippingPrice
+});
 
 
+
+
+}
+/// @nodoc
+class __$StartedCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(this._self, this._then);
+
+  final _Started _self;
+  final $Res Function(_Started) _then;
+
+/// Create a copy of CheckOutEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? subtotalPrice = null,Object? totalAppPrice = null,Object? discountPercentage = null,Object? shippingPrice = null,}) {
+  return _then(_Started(
+subtotalPrice: null == subtotalPrice ? _self.subtotalPrice : subtotalPrice // ignore: cast_nullable_to_non_nullable
+as double,totalAppPrice: null == totalAppPrice ? _self.totalAppPrice : totalAppPrice // ignore: cast_nullable_to_non_nullable
+as double,discountPercentage: null == discountPercentage ? _self.discountPercentage : discountPercentage // ignore: cast_nullable_to_non_nullable
+as int,shippingPrice: null == shippingPrice ? _self.shippingPrice : shippingPrice // ignore: cast_nullable_to_non_nullable
+as double,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
@@ -1468,7 +1508,11 @@ as String,
 /// @nodoc
 mixin _$CheckOutState {
 
- CheckOutStatus get status; AddressStatus get addressStatus; String? get paymentMethod; String? get deliveryType; String? get addressID; List<AddressModel> get addresses;
+ CheckOutStatus get status; AddressStatus get addressStatus; String? get paymentMethod; String? get deliveryType; String? get addressID; double get subtotalPrice;// السعر الإجمالي بالريال قبل الشحن والخصم
+ double get totalAppPrice;// السعر النهائي بالريال بعد الخصم والشحن
+ int get discountPercentage;// نسبة خصم الكوبون
+ double get shippingPrice;// سعر الشحن الثابت بالريال
+ List<AddressModel> get addresses; String get lang;
 /// Create a copy of CheckOutState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1479,16 +1523,16 @@ $CheckOutStateCopyWith<CheckOutState> get copyWith => _$CheckOutStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckOutState&&(identical(other.status, status) || other.status == status)&&(identical(other.addressStatus, addressStatus) || other.addressStatus == addressStatus)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.deliveryType, deliveryType) || other.deliveryType == deliveryType)&&(identical(other.addressID, addressID) || other.addressID == addressID)&&const DeepCollectionEquality().equals(other.addresses, addresses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckOutState&&(identical(other.status, status) || other.status == status)&&(identical(other.addressStatus, addressStatus) || other.addressStatus == addressStatus)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.deliveryType, deliveryType) || other.deliveryType == deliveryType)&&(identical(other.addressID, addressID) || other.addressID == addressID)&&(identical(other.subtotalPrice, subtotalPrice) || other.subtotalPrice == subtotalPrice)&&(identical(other.totalAppPrice, totalAppPrice) || other.totalAppPrice == totalAppPrice)&&(identical(other.discountPercentage, discountPercentage) || other.discountPercentage == discountPercentage)&&(identical(other.shippingPrice, shippingPrice) || other.shippingPrice == shippingPrice)&&const DeepCollectionEquality().equals(other.addresses, addresses)&&(identical(other.lang, lang) || other.lang == lang));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,addressStatus,paymentMethod,deliveryType,addressID,const DeepCollectionEquality().hash(addresses));
+int get hashCode => Object.hash(runtimeType,status,addressStatus,paymentMethod,deliveryType,addressID,subtotalPrice,totalAppPrice,discountPercentage,shippingPrice,const DeepCollectionEquality().hash(addresses),lang);
 
 @override
 String toString() {
-  return 'CheckOutState(status: $status, addressStatus: $addressStatus, paymentMethod: $paymentMethod, deliveryType: $deliveryType, addressID: $addressID, addresses: $addresses)';
+  return 'CheckOutState(status: $status, addressStatus: $addressStatus, paymentMethod: $paymentMethod, deliveryType: $deliveryType, addressID: $addressID, subtotalPrice: $subtotalPrice, totalAppPrice: $totalAppPrice, discountPercentage: $discountPercentage, shippingPrice: $shippingPrice, addresses: $addresses, lang: $lang)';
 }
 
 
@@ -1499,7 +1543,7 @@ abstract mixin class $CheckOutStateCopyWith<$Res>  {
   factory $CheckOutStateCopyWith(CheckOutState value, $Res Function(CheckOutState) _then) = _$CheckOutStateCopyWithImpl;
 @useResult
 $Res call({
- CheckOutStatus status, AddressStatus addressStatus, String? paymentMethod, String? deliveryType, String? addressID, List<AddressModel> addresses
+ CheckOutStatus status, AddressStatus addressStatus, String? paymentMethod, String? deliveryType, String? addressID, double subtotalPrice, double totalAppPrice, int discountPercentage, double shippingPrice, List<AddressModel> addresses, String lang
 });
 
 
@@ -1516,15 +1560,20 @@ class _$CheckOutStateCopyWithImpl<$Res>
 
 /// Create a copy of CheckOutState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? addressStatus = null,Object? paymentMethod = freezed,Object? deliveryType = freezed,Object? addressID = freezed,Object? addresses = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? addressStatus = null,Object? paymentMethod = freezed,Object? deliveryType = freezed,Object? addressID = freezed,Object? subtotalPrice = null,Object? totalAppPrice = null,Object? discountPercentage = null,Object? shippingPrice = null,Object? addresses = null,Object? lang = null,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as CheckOutStatus,addressStatus: null == addressStatus ? _self.addressStatus : addressStatus // ignore: cast_nullable_to_non_nullable
 as AddressStatus,paymentMethod: freezed == paymentMethod ? _self.paymentMethod : paymentMethod // ignore: cast_nullable_to_non_nullable
 as String?,deliveryType: freezed == deliveryType ? _self.deliveryType : deliveryType // ignore: cast_nullable_to_non_nullable
 as String?,addressID: freezed == addressID ? _self.addressID : addressID // ignore: cast_nullable_to_non_nullable
-as String?,addresses: null == addresses ? _self.addresses : addresses // ignore: cast_nullable_to_non_nullable
-as List<AddressModel>,
+as String?,subtotalPrice: null == subtotalPrice ? _self.subtotalPrice : subtotalPrice // ignore: cast_nullable_to_non_nullable
+as double,totalAppPrice: null == totalAppPrice ? _self.totalAppPrice : totalAppPrice // ignore: cast_nullable_to_non_nullable
+as double,discountPercentage: null == discountPercentage ? _self.discountPercentage : discountPercentage // ignore: cast_nullable_to_non_nullable
+as int,shippingPrice: null == shippingPrice ? _self.shippingPrice : shippingPrice // ignore: cast_nullable_to_non_nullable
+as double,addresses: null == addresses ? _self.addresses : addresses // ignore: cast_nullable_to_non_nullable
+as List<AddressModel>,lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 /// Create a copy of CheckOutState
@@ -1627,10 +1676,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CheckOutStatus status,  AddressStatus addressStatus,  String? paymentMethod,  String? deliveryType,  String? addressID,  List<AddressModel> addresses)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CheckOutStatus status,  AddressStatus addressStatus,  String? paymentMethod,  String? deliveryType,  String? addressID,  double subtotalPrice,  double totalAppPrice,  int discountPercentage,  double shippingPrice,  List<AddressModel> addresses,  String lang)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CheckOutState() when $default != null:
-return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliveryType,_that.addressID,_that.addresses);case _:
+return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliveryType,_that.addressID,_that.subtotalPrice,_that.totalAppPrice,_that.discountPercentage,_that.shippingPrice,_that.addresses,_that.lang);case _:
   return orElse();
 
 }
@@ -1648,10 +1697,10 @@ return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliv
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CheckOutStatus status,  AddressStatus addressStatus,  String? paymentMethod,  String? deliveryType,  String? addressID,  List<AddressModel> addresses)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CheckOutStatus status,  AddressStatus addressStatus,  String? paymentMethod,  String? deliveryType,  String? addressID,  double subtotalPrice,  double totalAppPrice,  int discountPercentage,  double shippingPrice,  List<AddressModel> addresses,  String lang)  $default,) {final _that = this;
 switch (_that) {
 case _CheckOutState():
-return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliveryType,_that.addressID,_that.addresses);case _:
+return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliveryType,_that.addressID,_that.subtotalPrice,_that.totalAppPrice,_that.discountPercentage,_that.shippingPrice,_that.addresses,_that.lang);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1668,10 +1717,10 @@ return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliv
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CheckOutStatus status,  AddressStatus addressStatus,  String? paymentMethod,  String? deliveryType,  String? addressID,  List<AddressModel> addresses)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CheckOutStatus status,  AddressStatus addressStatus,  String? paymentMethod,  String? deliveryType,  String? addressID,  double subtotalPrice,  double totalAppPrice,  int discountPercentage,  double shippingPrice,  List<AddressModel> addresses,  String lang)?  $default,) {final _that = this;
 switch (_that) {
 case _CheckOutState() when $default != null:
-return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliveryType,_that.addressID,_that.addresses);case _:
+return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliveryType,_that.addressID,_that.subtotalPrice,_that.totalAppPrice,_that.discountPercentage,_that.shippingPrice,_that.addresses,_that.lang);case _:
   return null;
 
 }
@@ -1683,7 +1732,7 @@ return $default(_that.status,_that.addressStatus,_that.paymentMethod,_that.deliv
 
 
 class _CheckOutState implements CheckOutState {
-  const _CheckOutState({this.status = const CheckOutStatus.initial(), this.addressStatus = const AddressStatus.initial(), this.paymentMethod, this.deliveryType, this.addressID, final  List<AddressModel> addresses = const []}): _addresses = addresses;
+  const _CheckOutState({this.status = const CheckOutStatus.initial(), this.addressStatus = const AddressStatus.initial(), this.paymentMethod, this.deliveryType, this.addressID, this.subtotalPrice = 0.0, this.totalAppPrice = 0.0, this.discountPercentage = 0, this.shippingPrice = 20.0, final  List<AddressModel> addresses = const [], this.lang = "en"}): _addresses = addresses;
   
 
 @override@JsonKey() final  CheckOutStatus status;
@@ -1691,13 +1740,23 @@ class _CheckOutState implements CheckOutState {
 @override final  String? paymentMethod;
 @override final  String? deliveryType;
 @override final  String? addressID;
+@override@JsonKey() final  double subtotalPrice;
+// السعر الإجمالي بالريال قبل الشحن والخصم
+@override@JsonKey() final  double totalAppPrice;
+// السعر النهائي بالريال بعد الخصم والشحن
+@override@JsonKey() final  int discountPercentage;
+// نسبة خصم الكوبون
+@override@JsonKey() final  double shippingPrice;
+// سعر الشحن الثابت بالريال
  final  List<AddressModel> _addresses;
+// سعر الشحن الثابت بالريال
 @override@JsonKey() List<AddressModel> get addresses {
   if (_addresses is EqualUnmodifiableListView) return _addresses;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_addresses);
 }
 
+@override@JsonKey() final  String lang;
 
 /// Create a copy of CheckOutState
 /// with the given fields replaced by the non-null parameter values.
@@ -1709,16 +1768,16 @@ _$CheckOutStateCopyWith<_CheckOutState> get copyWith => __$CheckOutStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckOutState&&(identical(other.status, status) || other.status == status)&&(identical(other.addressStatus, addressStatus) || other.addressStatus == addressStatus)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.deliveryType, deliveryType) || other.deliveryType == deliveryType)&&(identical(other.addressID, addressID) || other.addressID == addressID)&&const DeepCollectionEquality().equals(other._addresses, _addresses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckOutState&&(identical(other.status, status) || other.status == status)&&(identical(other.addressStatus, addressStatus) || other.addressStatus == addressStatus)&&(identical(other.paymentMethod, paymentMethod) || other.paymentMethod == paymentMethod)&&(identical(other.deliveryType, deliveryType) || other.deliveryType == deliveryType)&&(identical(other.addressID, addressID) || other.addressID == addressID)&&(identical(other.subtotalPrice, subtotalPrice) || other.subtotalPrice == subtotalPrice)&&(identical(other.totalAppPrice, totalAppPrice) || other.totalAppPrice == totalAppPrice)&&(identical(other.discountPercentage, discountPercentage) || other.discountPercentage == discountPercentage)&&(identical(other.shippingPrice, shippingPrice) || other.shippingPrice == shippingPrice)&&const DeepCollectionEquality().equals(other._addresses, _addresses)&&(identical(other.lang, lang) || other.lang == lang));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,addressStatus,paymentMethod,deliveryType,addressID,const DeepCollectionEquality().hash(_addresses));
+int get hashCode => Object.hash(runtimeType,status,addressStatus,paymentMethod,deliveryType,addressID,subtotalPrice,totalAppPrice,discountPercentage,shippingPrice,const DeepCollectionEquality().hash(_addresses),lang);
 
 @override
 String toString() {
-  return 'CheckOutState(status: $status, addressStatus: $addressStatus, paymentMethod: $paymentMethod, deliveryType: $deliveryType, addressID: $addressID, addresses: $addresses)';
+  return 'CheckOutState(status: $status, addressStatus: $addressStatus, paymentMethod: $paymentMethod, deliveryType: $deliveryType, addressID: $addressID, subtotalPrice: $subtotalPrice, totalAppPrice: $totalAppPrice, discountPercentage: $discountPercentage, shippingPrice: $shippingPrice, addresses: $addresses, lang: $lang)';
 }
 
 
@@ -1729,7 +1788,7 @@ abstract mixin class _$CheckOutStateCopyWith<$Res> implements $CheckOutStateCopy
   factory _$CheckOutStateCopyWith(_CheckOutState value, $Res Function(_CheckOutState) _then) = __$CheckOutStateCopyWithImpl;
 @override @useResult
 $Res call({
- CheckOutStatus status, AddressStatus addressStatus, String? paymentMethod, String? deliveryType, String? addressID, List<AddressModel> addresses
+ CheckOutStatus status, AddressStatus addressStatus, String? paymentMethod, String? deliveryType, String? addressID, double subtotalPrice, double totalAppPrice, int discountPercentage, double shippingPrice, List<AddressModel> addresses, String lang
 });
 
 
@@ -1746,15 +1805,20 @@ class __$CheckOutStateCopyWithImpl<$Res>
 
 /// Create a copy of CheckOutState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? addressStatus = null,Object? paymentMethod = freezed,Object? deliveryType = freezed,Object? addressID = freezed,Object? addresses = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? addressStatus = null,Object? paymentMethod = freezed,Object? deliveryType = freezed,Object? addressID = freezed,Object? subtotalPrice = null,Object? totalAppPrice = null,Object? discountPercentage = null,Object? shippingPrice = null,Object? addresses = null,Object? lang = null,}) {
   return _then(_CheckOutState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as CheckOutStatus,addressStatus: null == addressStatus ? _self.addressStatus : addressStatus // ignore: cast_nullable_to_non_nullable
 as AddressStatus,paymentMethod: freezed == paymentMethod ? _self.paymentMethod : paymentMethod // ignore: cast_nullable_to_non_nullable
 as String?,deliveryType: freezed == deliveryType ? _self.deliveryType : deliveryType // ignore: cast_nullable_to_non_nullable
 as String?,addressID: freezed == addressID ? _self.addressID : addressID // ignore: cast_nullable_to_non_nullable
-as String?,addresses: null == addresses ? _self._addresses : addresses // ignore: cast_nullable_to_non_nullable
-as List<AddressModel>,
+as String?,subtotalPrice: null == subtotalPrice ? _self.subtotalPrice : subtotalPrice // ignore: cast_nullable_to_non_nullable
+as double,totalAppPrice: null == totalAppPrice ? _self.totalAppPrice : totalAppPrice // ignore: cast_nullable_to_non_nullable
+as double,discountPercentage: null == discountPercentage ? _self.discountPercentage : discountPercentage // ignore: cast_nullable_to_non_nullable
+as int,shippingPrice: null == shippingPrice ? _self.shippingPrice : shippingPrice // ignore: cast_nullable_to_non_nullable
+as double,addresses: null == addresses ? _self._addresses : addresses // ignore: cast_nullable_to_non_nullable
+as List<AddressModel>,lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

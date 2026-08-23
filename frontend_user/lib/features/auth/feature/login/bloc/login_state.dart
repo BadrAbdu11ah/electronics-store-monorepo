@@ -2,11 +2,24 @@ part of 'login_bloc.dart';
 
 @freezed
 class LoginState with _$LoginState {
+  // الحالة الابتدائية
   const factory LoginState.initial() = _Initial;
+
+  // حالة جاري التحميل
   const factory LoginState.loading() = _Loading;
-  const factory LoginState.accountNotActive() = _AccountNotActive;
-  const factory LoginState.successResendCode() = _SuccessResendCode;
+
+  // حالة نجاح تسجيل الدخول
   const factory LoginState.success() = _Success;
-  const factory LoginState.serverFailure(String errorMessage) = _ServerFailure;
-  const factory LoginState.failure(String errorMessage) = _Failure;
+
+  // حالة فشل عملية تسجيل الدخول
+  const factory LoginState.failure(String message) = _Failure;
+
+  // حالة خطأ الاتصال بالسيرفر
+  const factory LoginState.serverFailure(String message) = _ServerFailure;
+
+  // حالة الحساب غير مفعل
+  const factory LoginState.accountNotActive() = _AccountNotActive;
+
+  // حالة نجاح إعادة إرسال كود التفعيل
+  const factory LoginState.successResendCode() = _SuccessResendCode;
 }

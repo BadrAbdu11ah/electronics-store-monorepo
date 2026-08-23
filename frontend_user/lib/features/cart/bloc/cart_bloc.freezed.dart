@@ -915,11 +915,12 @@ extension CouponStatusPatterns on CouponStatus {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _CouponInitial value)?  initial,TResult Function( _CouponSuccess value)?  couponSuccess,TResult Function( _CouponFailure value)?  couponFailure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _CouponInitial value)?  initial,TResult Function( _CouponLoading value)?  loading,TResult Function( _CouponSuccess value)?  couponSuccess,TResult Function( _CouponFailure value)?  couponFailure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _CouponInitial() when initial != null:
-return initial(_that);case _CouponSuccess() when couponSuccess != null:
+return initial(_that);case _CouponLoading() when loading != null:
+return loading(_that);case _CouponSuccess() when couponSuccess != null:
 return couponSuccess(_that);case _CouponFailure() when couponFailure != null:
 return couponFailure(_that);case _:
   return orElse();
@@ -939,11 +940,12 @@ return couponFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _CouponInitial value)  initial,required TResult Function( _CouponSuccess value)  couponSuccess,required TResult Function( _CouponFailure value)  couponFailure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _CouponInitial value)  initial,required TResult Function( _CouponLoading value)  loading,required TResult Function( _CouponSuccess value)  couponSuccess,required TResult Function( _CouponFailure value)  couponFailure,}){
 final _that = this;
 switch (_that) {
 case _CouponInitial():
-return initial(_that);case _CouponSuccess():
+return initial(_that);case _CouponLoading():
+return loading(_that);case _CouponSuccess():
 return couponSuccess(_that);case _CouponFailure():
 return couponFailure(_that);case _:
   throw StateError('Unexpected subclass');
@@ -962,11 +964,12 @@ return couponFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _CouponInitial value)?  initial,TResult? Function( _CouponSuccess value)?  couponSuccess,TResult? Function( _CouponFailure value)?  couponFailure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _CouponInitial value)?  initial,TResult? Function( _CouponLoading value)?  loading,TResult? Function( _CouponSuccess value)?  couponSuccess,TResult? Function( _CouponFailure value)?  couponFailure,}){
 final _that = this;
 switch (_that) {
 case _CouponInitial() when initial != null:
-return initial(_that);case _CouponSuccess() when couponSuccess != null:
+return initial(_that);case _CouponLoading() when loading != null:
+return loading(_that);case _CouponSuccess() when couponSuccess != null:
 return couponSuccess(_that);case _CouponFailure() when couponFailure != null:
 return couponFailure(_that);case _:
   return null;
@@ -985,10 +988,11 @@ return couponFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String message)?  couponSuccess,TResult Function( String message)?  couponFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String message)?  couponSuccess,TResult Function( String message)?  couponFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CouponInitial() when initial != null:
-return initial();case _CouponSuccess() when couponSuccess != null:
+return initial();case _CouponLoading() when loading != null:
+return loading();case _CouponSuccess() when couponSuccess != null:
 return couponSuccess(_that.message);case _CouponFailure() when couponFailure != null:
 return couponFailure(_that.message);case _:
   return orElse();
@@ -1008,10 +1012,11 @@ return couponFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String message)  couponSuccess,required TResult Function( String message)  couponFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String message)  couponSuccess,required TResult Function( String message)  couponFailure,}) {final _that = this;
 switch (_that) {
 case _CouponInitial():
-return initial();case _CouponSuccess():
+return initial();case _CouponLoading():
+return loading();case _CouponSuccess():
 return couponSuccess(_that.message);case _CouponFailure():
 return couponFailure(_that.message);case _:
   throw StateError('Unexpected subclass');
@@ -1030,10 +1035,11 @@ return couponFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String message)?  couponSuccess,TResult? Function( String message)?  couponFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String message)?  couponSuccess,TResult? Function( String message)?  couponFailure,}) {final _that = this;
 switch (_that) {
 case _CouponInitial() when initial != null:
-return initial();case _CouponSuccess() when couponSuccess != null:
+return initial();case _CouponLoading() when loading != null:
+return loading();case _CouponSuccess() when couponSuccess != null:
 return couponSuccess(_that.message);case _CouponFailure() when couponFailure != null:
 return couponFailure(_that.message);case _:
   return null;
@@ -1067,6 +1073,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'CouponStatus.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _CouponLoading implements CouponStatus {
+  const _CouponLoading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CouponLoading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CouponStatus.loading()';
 }
 
 

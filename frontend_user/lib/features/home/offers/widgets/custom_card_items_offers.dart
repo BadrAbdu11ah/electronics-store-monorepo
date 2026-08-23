@@ -5,7 +5,6 @@ import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/function/translate_database.dart';
 import 'package:electronics_store/data/model/item/item_model.dart';
 import 'package:electronics_store/features/home/offers/bloc/offers_bloc.dart';
-import 'package:electronics_store/features/items_feature/items/bloc/items_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -130,12 +129,12 @@ class CustomCardItemsOffers extends StatelessWidget {
                             onPressed: () {
                               // إذا كان 1 احذفه، وإذا كان 0 أضفه
                               if (state.isFavorite[itemsModel.id]!) {
-                                context.read<ItemsBloc>().add(
-                                  ItemsEvent.removeFavorite(itemsModel.id!),
+                                context.read<OffersBloc>().add(
+                                  OffersEvent.removeFavorite(itemsModel.id!),
                                 );
                               } else {
-                                context.read<ItemsBloc>().add(
-                                  ItemsEvent.addFavorite(itemsModel.id!),
+                                context.read<OffersBloc>().add(
+                                  OffersEvent.addFavorite(itemsModel.id!),
                                 );
                               }
                             },

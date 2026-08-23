@@ -11,10 +11,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CheckOut extends StatelessWidget {
   final String? couponsID;
   final String priceOrders;
+  final int discountPercentage;
+  final double shippingPrice;
+  final double totalAppPrice;
+  final String lang;
   const CheckOut({
     super.key,
     required this.couponsID,
     required this.priceOrders,
+    required this.discountPercentage,
+    required this.shippingPrice,
+    required this.totalAppPrice,
+    required this.lang,
   });
 
   @override
@@ -23,13 +31,26 @@ class CheckOut extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppTranslations.translate(context, AppText.checkoutButton)),
       ),
-      bottomNavigationBar: BottomCheckout(
-        textButton: AppTranslations.translate(context, AppText.checkoutButton),
-        onCheckout: () {
-          context.read<CheckOutBloc>().add(
-            CheckOutEvent.checkout(
-              priceOrders: priceOrders,
-              couponsID: couponsID,
+      bottomNavigationBar: BlocBuilder<CheckOutBloc, CheckOutState>(
+        builder: (context, state) {
+          return state.status.maybeWhen(
+            loading: () => SizedBox.shrink(),
+            serverFailure: (_) => SizedBox.shrink(),
+            orElse: () => BottomCheckout(
+              textButton: AppTranslations.translate(
+                context,
+                AppText.checkoutButton,
+              ),
+              onCheckout: () {
+                context.read<CheckOutBloc>().add(
+                  CheckOutEvent.checkout(
+                    priceOrders: priceOrders,
+                    couponsID: couponsID,
+                  ),
+                );
+              },
+
+              state: state,
             ),
           );
         },
@@ -81,8 +102,14 @@ class CheckOut extends StatelessWidget {
             loading: () => AppLoadingWidget(),
             serverFailure: (message) => AppErrorWidget(
               message: message,
-              onRetry: () =>
-                  context.read<CheckOutBloc>().add(CheckOutEvent.started()),
+              onRetry: () => context.read<CheckOutBloc>().add(
+                CheckOutEvent.started(
+                  subtotalPrice: double.parse(priceOrders),
+                  totalAppPrice: totalAppPrice,
+                  discountPercentage: discountPercentage,
+                  shippingPrice: shippingPrice,
+                ),
+              ),
             ),
             orElse: () => CheckOutView(state: state),
           );

@@ -27,6 +27,15 @@ abstract class CheckOutState with _$CheckOutState {
     String? paymentMethod,
     String? deliveryType,
     String? addressID,
+
+    @Default(0.0)
+    double subtotalPrice, // السعر الإجمالي بالريال قبل الشحن والخصم
+    @Default(0.0)
+    double totalAppPrice, // السعر النهائي بالريال بعد الخصم والشحن
+    @Default(0) int discountPercentage, // نسبة خصم الكوبون
+    @Default(20.0) double shippingPrice, // سعر الشحن الثابت بالريال
+
     @Default([]) List<AddressModel> addresses,
+    @Default("en") String lang,
   }) = _CheckOutState;
 }

@@ -28,11 +28,6 @@ class CartView extends StatelessWidget {
             noData: (_) => const SizedBox.shrink(),
             orElse: () => CustomBottomCart(
               state: state,
-              onCoupon: (enteredCouponName) {
-                context.read<CartBloc>().add(
-                  CartEvent.applyCoupon(couponName: enteredCouponName),
-                );
-              },
               onOrder: () {
                 if (state.cartItems.isEmpty) return;
                 Navigator.pushNamed(
@@ -41,6 +36,10 @@ class CartView extends StatelessWidget {
                   arguments: {
                     'couponsid': state.couponId,
                     'priceorders': state.subtotalPrice.toString(),
+                    "discountPercentage": state.discountPercentage,
+                    "shippingPrice": state.shippingPrice,
+                    "totalAppPrice": state.totalAppPrice,
+                    'lang': state.lang,
                   },
                 );
               },
@@ -53,12 +52,20 @@ class CartView extends StatelessWidget {
           state.couponStatus.whenOrNull(
             couponSuccess: (message) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(message), backgroundColor: Colors.green),
+                SnackBar(
+                  content: Text(message),
+                  backgroundColor: Colors.green,
+                  behavior: SnackBarBehavior.floating,
+                ),
               );
             },
             couponFailure: (message) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(message), backgroundColor: Colors.red),
+                SnackBar(
+                  content: Text(message),
+                  backgroundColor: Colors.red,
+                  behavior: SnackBarBehavior.floating,
+                ),
               );
             },
           );

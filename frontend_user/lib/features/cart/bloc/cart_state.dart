@@ -12,6 +12,7 @@ class CartStatus with _$CartStatus {
 @freezed
 class CouponStatus with _$CouponStatus {
   const factory CouponStatus.initial() = _CouponInitial;
+  const factory CouponStatus.loading() = _CouponLoading;
   const factory CouponStatus.couponSuccess(String message) = _CouponSuccess;
   const factory CouponStatus.couponFailure(String message) = _CouponFailure;
 }

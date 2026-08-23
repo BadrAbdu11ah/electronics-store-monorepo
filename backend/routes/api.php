@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\Delivery\Order\DeliveryOrderController;
 // -----------------------------------------------------------
 Route::prefix('user')->group(function () {
     Route::controller(AuthController::class)->group(function () {
+        Route::post('/google-login', 'googleLogin');
         Route::post('/login', 'login');
         Route::post('/signup', 'signup');
         Route::post('/auth/verify-code', 'verifyCode'); 

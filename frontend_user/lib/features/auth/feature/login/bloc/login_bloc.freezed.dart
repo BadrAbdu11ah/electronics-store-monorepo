@@ -55,12 +55,13 @@ extension LoginEventPatterns on LoginEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Submitted value)?  submitted,TResult Function( _ResendCode value)?  resendCode,TResult Function( _Reset value)?  reset,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Submitted value)?  submitted,TResult Function( _ResendCode value)?  resendCode,TResult Function( _LoginWithGoogle value)?  loginWithGoogle,TResult Function( _Reset value)?  reset,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Submitted() when submitted != null:
 return submitted(_that);case _ResendCode() when resendCode != null:
-return resendCode(_that);case _Reset() when reset != null:
+return resendCode(_that);case _LoginWithGoogle() when loginWithGoogle != null:
+return loginWithGoogle(_that);case _Reset() when reset != null:
 return reset(_that);case _:
   return orElse();
 
@@ -79,12 +80,13 @@ return reset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Submitted value)  submitted,required TResult Function( _ResendCode value)  resendCode,required TResult Function( _Reset value)  reset,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Submitted value)  submitted,required TResult Function( _ResendCode value)  resendCode,required TResult Function( _LoginWithGoogle value)  loginWithGoogle,required TResult Function( _Reset value)  reset,}){
 final _that = this;
 switch (_that) {
 case _Submitted():
 return submitted(_that);case _ResendCode():
-return resendCode(_that);case _Reset():
+return resendCode(_that);case _LoginWithGoogle():
+return loginWithGoogle(_that);case _Reset():
 return reset(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -102,12 +104,13 @@ return reset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Submitted value)?  submitted,TResult? Function( _ResendCode value)?  resendCode,TResult? Function( _Reset value)?  reset,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Submitted value)?  submitted,TResult? Function( _ResendCode value)?  resendCode,TResult? Function( _LoginWithGoogle value)?  loginWithGoogle,TResult? Function( _Reset value)?  reset,}){
 final _that = this;
 switch (_that) {
 case _Submitted() when submitted != null:
 return submitted(_that);case _ResendCode() when resendCode != null:
-return resendCode(_that);case _Reset() when reset != null:
+return resendCode(_that);case _LoginWithGoogle() when loginWithGoogle != null:
+return loginWithGoogle(_that);case _Reset() when reset != null:
 return reset(_that);case _:
   return null;
 
@@ -125,11 +128,12 @@ return reset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  submitted,TResult Function( String email)?  resendCode,TResult Function()?  reset,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  submitted,TResult Function( String email)?  resendCode,TResult Function()?  loginWithGoogle,TResult Function()?  reset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Submitted() when submitted != null:
 return submitted(_that.email,_that.password);case _ResendCode() when resendCode != null:
-return resendCode(_that.email);case _Reset() when reset != null:
+return resendCode(_that.email);case _LoginWithGoogle() when loginWithGoogle != null:
+return loginWithGoogle();case _Reset() when reset != null:
 return reset();case _:
   return orElse();
 
@@ -148,11 +152,12 @@ return reset();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  submitted,required TResult Function( String email)  resendCode,required TResult Function()  reset,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  submitted,required TResult Function( String email)  resendCode,required TResult Function()  loginWithGoogle,required TResult Function()  reset,}) {final _that = this;
 switch (_that) {
 case _Submitted():
 return submitted(_that.email,_that.password);case _ResendCode():
-return resendCode(_that.email);case _Reset():
+return resendCode(_that.email);case _LoginWithGoogle():
+return loginWithGoogle();case _Reset():
 return reset();case _:
   throw StateError('Unexpected subclass');
 
@@ -170,11 +175,12 @@ return reset();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  submitted,TResult? Function( String email)?  resendCode,TResult? Function()?  reset,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  submitted,TResult? Function( String email)?  resendCode,TResult? Function()?  loginWithGoogle,TResult? Function()?  reset,}) {final _that = this;
 switch (_that) {
 case _Submitted() when submitted != null:
 return submitted(_that.email,_that.password);case _ResendCode() when resendCode != null:
-return resendCode(_that.email);case _Reset() when reset != null:
+return resendCode(_that.email);case _LoginWithGoogle() when loginWithGoogle != null:
+return loginWithGoogle();case _Reset() when reset != null:
 return reset();case _:
   return null;
 
@@ -320,6 +326,38 @@ as String,
 /// @nodoc
 
 
+class _LoginWithGoogle implements LoginEvent {
+  const _LoginWithGoogle();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginWithGoogle);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LoginEvent.loginWithGoogle()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
 class _Reset implements LoginEvent {
   const _Reset();
   
@@ -393,17 +431,17 @@ extension LoginStatePatterns on LoginState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _AccountNotActive value)?  accountNotActive,TResult Function( _SuccessResendCode value)?  successResendCode,TResult Function( _Success value)?  success,TResult Function( _ServerFailure value)?  serverFailure,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,TResult Function( _ServerFailure value)?  serverFailure,TResult Function( _AccountNotActive value)?  accountNotActive,TResult Function( _SuccessResendCode value)?  successResendCode,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _AccountNotActive() when accountNotActive != null:
+return loading(_that);case _Success() when success != null:
+return success(_that);case _Failure() when failure != null:
+return failure(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _AccountNotActive() when accountNotActive != null:
 return accountNotActive(_that);case _SuccessResendCode() when successResendCode != null:
-return successResendCode(_that);case _Success() when success != null:
-return success(_that);case _ServerFailure() when serverFailure != null:
-return serverFailure(_that);case _Failure() when failure != null:
-return failure(_that);case _:
+return successResendCode(_that);case _:
   return orElse();
 
 }
@@ -421,17 +459,17 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _AccountNotActive value)  accountNotActive,required TResult Function( _SuccessResendCode value)  successResendCode,required TResult Function( _Success value)  success,required TResult Function( _ServerFailure value)  serverFailure,required TResult Function( _Failure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,required TResult Function( _ServerFailure value)  serverFailure,required TResult Function( _AccountNotActive value)  accountNotActive,required TResult Function( _SuccessResendCode value)  successResendCode,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
-return loading(_that);case _AccountNotActive():
+return loading(_that);case _Success():
+return success(_that);case _Failure():
+return failure(_that);case _ServerFailure():
+return serverFailure(_that);case _AccountNotActive():
 return accountNotActive(_that);case _SuccessResendCode():
-return successResendCode(_that);case _Success():
-return success(_that);case _ServerFailure():
-return serverFailure(_that);case _Failure():
-return failure(_that);case _:
+return successResendCode(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -448,17 +486,17 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _AccountNotActive value)?  accountNotActive,TResult? Function( _SuccessResendCode value)?  successResendCode,TResult? Function( _Success value)?  success,TResult? Function( _ServerFailure value)?  serverFailure,TResult? Function( _Failure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,TResult? Function( _ServerFailure value)?  serverFailure,TResult? Function( _AccountNotActive value)?  accountNotActive,TResult? Function( _SuccessResendCode value)?  successResendCode,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _AccountNotActive() when accountNotActive != null:
+return loading(_that);case _Success() when success != null:
+return success(_that);case _Failure() when failure != null:
+return failure(_that);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that);case _AccountNotActive() when accountNotActive != null:
 return accountNotActive(_that);case _SuccessResendCode() when successResendCode != null:
-return successResendCode(_that);case _Success() when success != null:
-return success(_that);case _ServerFailure() when serverFailure != null:
-return serverFailure(_that);case _Failure() when failure != null:
-return failure(_that);case _:
+return successResendCode(_that);case _:
   return null;
 
 }
@@ -475,16 +513,16 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  accountNotActive,TResult Function()?  successResendCode,TResult Function()?  success,TResult Function( String errorMessage)?  serverFailure,TResult Function( String errorMessage)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( String message)?  failure,TResult Function( String message)?  serverFailure,TResult Function()?  accountNotActive,TResult Function()?  successResendCode,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
-return loading();case _AccountNotActive() when accountNotActive != null:
+return loading();case _Success() when success != null:
+return success();case _Failure() when failure != null:
+return failure(_that.message);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.message);case _AccountNotActive() when accountNotActive != null:
 return accountNotActive();case _SuccessResendCode() when successResendCode != null:
-return successResendCode();case _Success() when success != null:
-return success();case _ServerFailure() when serverFailure != null:
-return serverFailure(_that.errorMessage);case _Failure() when failure != null:
-return failure(_that.errorMessage);case _:
+return successResendCode();case _:
   return orElse();
 
 }
@@ -502,16 +540,16 @@ return failure(_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  accountNotActive,required TResult Function()  successResendCode,required TResult Function()  success,required TResult Function( String errorMessage)  serverFailure,required TResult Function( String errorMessage)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( String message)  failure,required TResult Function( String message)  serverFailure,required TResult Function()  accountNotActive,required TResult Function()  successResendCode,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
-return loading();case _AccountNotActive():
+return loading();case _Success():
+return success();case _Failure():
+return failure(_that.message);case _ServerFailure():
+return serverFailure(_that.message);case _AccountNotActive():
 return accountNotActive();case _SuccessResendCode():
-return successResendCode();case _Success():
-return success();case _ServerFailure():
-return serverFailure(_that.errorMessage);case _Failure():
-return failure(_that.errorMessage);case _:
+return successResendCode();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -528,16 +566,16 @@ return failure(_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  accountNotActive,TResult? Function()?  successResendCode,TResult? Function()?  success,TResult? Function( String errorMessage)?  serverFailure,TResult? Function( String errorMessage)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( String message)?  failure,TResult? Function( String message)?  serverFailure,TResult? Function()?  accountNotActive,TResult? Function()?  successResendCode,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
-return loading();case _AccountNotActive() when accountNotActive != null:
+return loading();case _Success() when success != null:
+return success();case _Failure() when failure != null:
+return failure(_that.message);case _ServerFailure() when serverFailure != null:
+return serverFailure(_that.message);case _AccountNotActive() when accountNotActive != null:
 return accountNotActive();case _SuccessResendCode() when successResendCode != null:
-return successResendCode();case _Success() when success != null:
-return success();case _ServerFailure() when serverFailure != null:
-return serverFailure(_that.errorMessage);case _Failure() when failure != null:
-return failure(_that.errorMessage);case _:
+return successResendCode();case _:
   return null;
 
 }
@@ -612,6 +650,170 @@ String toString() {
 /// @nodoc
 
 
+class _Success implements LoginState {
+  const _Success();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LoginState.success()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Failure implements LoginState {
+  const _Failure(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of LoginState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'LoginState.failure(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FailureCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class __$FailureCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(this._self, this._then);
+
+  final _Failure _self;
+  final $Res Function(_Failure) _then;
+
+/// Create a copy of LoginState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(_Failure(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _ServerFailure implements LoginState {
+  const _ServerFailure(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of LoginState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServerFailureCopyWith<_ServerFailure> get copyWith => __$ServerFailureCopyWithImpl<_ServerFailure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerFailure&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'LoginState.serverFailure(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServerFailureCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
+  factory _$ServerFailureCopyWith(_ServerFailure value, $Res Function(_ServerFailure) _then) = __$ServerFailureCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class __$ServerFailureCopyWithImpl<$Res>
+    implements _$ServerFailureCopyWith<$Res> {
+  __$ServerFailureCopyWithImpl(this._self, this._then);
+
+  final _ServerFailure _self;
+  final $Res Function(_ServerFailure) _then;
+
+/// Create a copy of LoginState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(_ServerFailure(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
 class _AccountNotActive implements LoginState {
   const _AccountNotActive();
   
@@ -672,169 +874,5 @@ String toString() {
 
 
 
-
-/// @nodoc
-
-
-class _Success implements LoginState {
-  const _Success();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'LoginState.success()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _ServerFailure implements LoginState {
-  const _ServerFailure(this.errorMessage);
-  
-
- final  String errorMessage;
-
-/// Create a copy of LoginState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ServerFailureCopyWith<_ServerFailure> get copyWith => __$ServerFailureCopyWithImpl<_ServerFailure>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerFailure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,errorMessage);
-
-@override
-String toString() {
-  return 'LoginState.serverFailure(errorMessage: $errorMessage)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ServerFailureCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$ServerFailureCopyWith(_ServerFailure value, $Res Function(_ServerFailure) _then) = __$ServerFailureCopyWithImpl;
-@useResult
-$Res call({
- String errorMessage
-});
-
-
-
-
-}
-/// @nodoc
-class __$ServerFailureCopyWithImpl<$Res>
-    implements _$ServerFailureCopyWith<$Res> {
-  __$ServerFailureCopyWithImpl(this._self, this._then);
-
-  final _ServerFailure _self;
-  final $Res Function(_ServerFailure) _then;
-
-/// Create a copy of LoginState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
-  return _then(_ServerFailure(
-null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _Failure implements LoginState {
-  const _Failure(this.errorMessage);
-  
-
- final  String errorMessage;
-
-/// Create a copy of LoginState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,errorMessage);
-
-@override
-String toString() {
-  return 'LoginState.failure(errorMessage: $errorMessage)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$FailureCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
-@useResult
-$Res call({
- String errorMessage
-});
-
-
-
-
-}
-/// @nodoc
-class __$FailureCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(this._self, this._then);
-
-  final _Failure _self;
-  final $Res Function(_Failure) _then;
-
-/// Create a copy of LoginState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
-  return _then(_Failure(
-null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
 
 // dart format on

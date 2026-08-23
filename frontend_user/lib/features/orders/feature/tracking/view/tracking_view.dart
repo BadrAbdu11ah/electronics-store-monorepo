@@ -1,5 +1,4 @@
 import 'package:electronics_store/app_translations.dart';
-import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/data/model/order/order_model.dart';
 import 'package:electronics_store/data/static/app_text.dart';

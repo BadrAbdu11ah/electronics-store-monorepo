@@ -1,10 +1,11 @@
 class ApiEndpoints {
   // السيرفر المحلي
-  static const String baseUrl = "http://192.168.1.4:8000/api/user";
+  static const String baseUrl = "http://192.168.1.5:8000/api/user";
 
   // -----------------------------------------------------------
   // 1. مسارات المصادقة (Auth)
   // -----------------------------------------------------------
+  static const String googleLogin = "/google-login";
   static const String login = "/login";
   static const String signup = "/signup";
   static const String verifyCode = "/auth/verify-code";

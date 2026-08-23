@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\User\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User; 
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http; 
+use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -192,5 +194,85 @@ class AuthController extends Controller
         return response()->json([
             "status" => "success"
         ]); 
+    }
+
+    // --- [ 8. تسجيل الدخول عبر قوقل - Google Login ] ---
+    public function googleLogin(Request $request)
+    {
+        // 1. التحقق من وجود id_token القادم من Flutter
+        $request->validate([
+            // رمز التوكن مطلوب
+            'id_token' => 'required|string', 
+        ]);
+
+        // 2. إرسال طلب إلى سيرفرات قوقل للتحقق من صحة التوكن
+        $googleResponse = Http::get("https://oauth2.googleapis.com/tokeninfo", [
+            // إرسال الـ id_token كباراميتر
+            'id_token' => $request->id_token, 
+        ]);
+
+        // 3. التأكد من نجاح الاستجابة واحتوائها على البريد الإلكتروني
+        if ($googleResponse->failed() || !isset($googleResponse->json()['email'])) {
+            // إرجاع خطأ أمني إذا كان التوكن مزيفاً أو منتهي الصلاحية
+            return response()->json([ 
+                // حالة الفشل
+                'status' => 'fail', 
+                // رسالة الخطأ
+                'message' => 'رمز id_token غير صالح أو منتهي الصلاحية', 
+            ], 401);
+        }
+
+        // 4. استخراج بيانات المستخدم الموثقة رسمياً من قوقل
+        $googleData = $googleResponse->json(); 
+        // البريد الموثق من قوقل
+        $email = $googleData['email']; 
+        // الاسم المسجل في قوقل
+        $name = $googleData['name'] ?? 'Google User'; 
+
+        // 5. البحث عن المستخدم في قاعدة البيانات عبر البريد الموثق
+        $user = User::where('email', $email)->first(); 
+
+        // 6. إنشاء حساب جديد إذا لم يكن مسجلاً
+        if (!$user) { 
+            // إنشاء المستخدم وتفعيله تلقائياً
+            $user = User::create([ 
+                // الاسم المستخرج من قوقل
+                'name'     => $name, 
+                // البريد الإلكتروني الموثق
+                'email'    => $email, 
+                // كلمة مرور عشوائية ومشفرة
+                'password' => Hash::make(Str::random(16)), 
+                // رقم الهاتف غير متوفر
+                'phone'    => null, 
+                // تفعيل الحساب فوراً
+                'approve'  => true, 
+                // تحديد دور المستخدم
+                'role'     => 'user', 
+            ]);
+        } else {
+            // 7. تفعيل الحساب تلقائياً إذا كان موجوداً وغير مفعل
+            if (!$user->approve) { 
+                // تحديث حالة التفعيل
+                $user->update(['approve' => true]); 
+            }
+        }
+
+        // 8. حذف التوكنات القديمة لحماية الجلسة
+        $user->tokens()->delete(); 
+
+        // 9. إنشاء توكن جديد للمستخدم عبر Sanctum
+        $token = $user->createToken('API Token')->plainTextToken; 
+
+        // 10. إرجاع الرد النهائي بنجاح
+        return response()->json([ 
+            // حالة العملية
+            "status" => "success", 
+            // التوكن الجديد
+            "token"  => $token, 
+            // كائن المستخدم
+            "user"   => $user, 
+            // بيانات المستخدم للتوافق مع فلاتر
+            "data"   => $user 
+        ]);
     }
 }

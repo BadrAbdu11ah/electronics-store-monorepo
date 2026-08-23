@@ -127,6 +127,7 @@ Future<void> initGetIt() async {
     () => CheckOutBloc(
       addressData: sl<AddressData>(),
       checkoutData: sl<CheckoutData>(),
+      appService: sl<AppService>(),
     ),
   );
 

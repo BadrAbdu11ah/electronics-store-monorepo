@@ -2,6 +2,7 @@ import 'package:electronics_store/core/services/notification_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // دالة تعمل في الخلفية عند وصول إشعار والتطبيق مغلق أو بالخلفية
 @pragma('vm:entry-point')
@@ -33,6 +34,12 @@ class AppService {
 
     // // 4. تهيئة SharedPreferences
     sharedPreferences = await SharedPreferences.getInstance();
+
+    // // 5. تهيئة Google Sign In مع Web Client ID
+    await GoogleSignIn.instance.initialize(
+      serverClientId:
+          '146036295592-1e7q795jn5me9rljvgenrb9td07v05eq.apps.googleusercontent.com',
+    );
   }
 }
 

@@ -290,11 +290,30 @@ class AppRouter {
 
         final couponsid = args?['couponsid'];
         final priceOrders = args?['priceorders'];
+        final discountPercentage = args?['discountPercentage'];
+        final shippingPrice = args?['shippingPrice'];
+        final totalAppPrice = args?['totalAppPrice'];
+        final lang = args?['lang'];
+
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) =>
-                sl<CheckOutBloc>()..add(CheckOutEvent.started()),
-            child: CheckOut(couponsID: couponsid, priceOrders: priceOrders),
+            create: (context) => sl<CheckOutBloc>()
+              ..add(
+                CheckOutEvent.started(
+                  subtotalPrice: double.parse(priceOrders),
+                  totalAppPrice: totalAppPrice,
+                  discountPercentage: discountPercentage,
+                  shippingPrice: shippingPrice,
+                ),
+              ),
+            child: CheckOut(
+              couponsID: couponsid,
+              priceOrders: priceOrders,
+              discountPercentage: discountPercentage,
+              shippingPrice: shippingPrice,
+              totalAppPrice: totalAppPrice,
+              lang: lang,
+            ),
           ),
         );
       case AppRoute.ordersPending:

@@ -220,6 +220,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     if (event.couponName.isEmpty) return;
 
+    emit(state.copyWith(couponStatus: CouponStatus.loading()));
+
     var response = await cartData.checkCoupon(event.couponName);
 
     response.fold(

@@ -8,6 +8,7 @@ sealed class Failure extends Equatable {
   List<Object?> get props => [message];
 }
 
+// خطأ السيرفر
 class ServerFailure extends Failure {
   final int? statusCode;
   const ServerFailure(super.message, {this.statusCode});
@@ -19,4 +20,8 @@ class OfflineFailure extends Failure {
 
 class EmptyDataFailure extends Failure {
   const EmptyDataFailure(super.message);
+}
+
+class AuthFailure extends Failure {
+  const AuthFailure(super.message);
 }

@@ -7,5 +7,6 @@ class LoginEvent with _$LoginEvent {
     required String password,
   }) = _Submitted;
   const factory LoginEvent.resendCode({required String email}) = _ResendCode;
+  const factory LoginEvent.loginWithGoogle() = _LoginWithGoogle;
   const factory LoginEvent.reset() = _Reset;
 }

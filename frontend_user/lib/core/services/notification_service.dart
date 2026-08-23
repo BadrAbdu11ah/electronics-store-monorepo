@@ -29,7 +29,8 @@ class NotificationService {
   // // 2. طلب الصلاحيات من المستخدم (تُستدعى في صفحة الهوم)
   static Future<void> requestPermissions() async {
     AppService appService = AppService();
-    int usersId = appService.sharedPreferences.getInt('id')!;
+    // استخدام nullable لتجنب الـ crash عند غياب الـ id
+    int? usersId = appService.sharedPreferences.getInt('id');
 
     // // طلب صلاحيات الفايربيس
     await FirebaseMessaging.instance.requestPermission(
@@ -38,9 +39,12 @@ class NotificationService {
       sound: true,
     );
 
-    // // الاشتراك في الـ Topic
+    // // الاشتراك في الـ Topic العام
     await FirebaseMessaging.instance.subscribeToTopic("users");
-    await FirebaseMessaging.instance.subscribeToTopic("users$usersId");
+    // الاشتراك في الـ Topic الخاص بالمستخدم فقط إذا كان الـ id متوفراً
+    if (usersId != null) {
+      await FirebaseMessaging.instance.subscribeToTopic("users$usersId");
+    }
 
     // // طلب صلاحية أندرويد 13+ للمكتبة المحلية
     final androidPlugin = _notificationsPlugin

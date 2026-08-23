@@ -1,4 +1,6 @@
+// متحكم إدارة حالة عملية الدفع
 import 'package:electronics_store/core/class/failure.dart';
+import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/address/address_model.dart';
 import 'package:electronics_store/features/address/data/address_data.dart';
 import 'package:electronics_store/features/check_out/data/checkout_data.dart';
@@ -12,8 +14,12 @@ part 'check_out_bloc.freezed.dart';
 class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
   final AddressData addressData;
   final CheckoutData checkoutData;
-  CheckOutBloc({required this.addressData, required this.checkoutData})
-    : super(CheckOutState()) {
+  final AppService appService;
+  CheckOutBloc({
+    required this.addressData,
+    required this.checkoutData,
+    required this.appService,
+  }) : super(CheckOutState()) {
     on<_Started>(_onStarted);
     on<_LoadAddresses>(_onLoadAddresses);
     on<_ChoosePymentMethod>(_onChoosePymentMethod);
@@ -26,6 +32,21 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
   }
 
   Future<void> _onStarted(_Started event, Emitter<CheckOutState> emit) async {
+    // 1. جلب اللغة المحفوظة
+    final String lang = appService.sharedPreferences.getString("lang") ?? "en";
+    // 2. تعيين البيانات الأولية
+    emit(
+      state.copyWith(
+        lang: lang,
+        status: _Initial(),
+        subtotalPrice: event.subtotalPrice,
+        totalAppPrice: event.totalAppPrice,
+        discountPercentage: event.discountPercentage,
+        shippingPrice: event.shippingPrice,
+        deliveryType: "0",
+      ),
+    );
+    // 3. تحميل العناوين
     add(_LoadAddresses());
   }
 
@@ -59,7 +80,7 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
           status: _Loaded(),
           addressStatus: _AddressLoaded(),
           addresses: addresses,
-          addressID: addresses[0].id.toString(),
+          addressID: addresses.isNotEmpty ? addresses[0].id.toString() : null,
         ),
       ),
     );
@@ -69,6 +90,7 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
     _ChoosePymentMethod event,
     Emitter<CheckOutState> emit,
   ) async {
+    // تغيير طريقة الدفع
     emit(state.copyWith(paymentMethod: event.val));
   }
 
@@ -76,6 +98,34 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
     _ChooseDeliveryType event,
     Emitter<CheckOutState> emit,
   ) async {
+    // 1. عدم تكرار المعالجة إذا التحديد هو نفسه
+    if (state.deliveryType == event.val) return;
+
+    // 2. حالة الاختيار: "1" تعني الاستلام من الفرع
+    if (event.val == "1") {
+      // حفظ تكلفة الشحن السابقة قبل تحويلها لـ 0 لاسترجاعها لاحقاً
+      return emit(
+        state.copyWith(
+          deliveryType: event.val,
+          totalAppPrice: state.totalAppPrice - state.shippingPrice,
+          shippingPrice: 0,
+        ),
+      );
+    }
+
+    if (event.val == "0" && state.deliveryType == "1") {
+      double restoredShipping = 10.0;
+
+      return emit(
+        state.copyWith(
+          deliveryType: event.val,
+          shippingPrice: restoredShipping,
+          totalAppPrice: state.totalAppPrice + restoredShipping,
+        ),
+      );
+    }
+
+    // 4. في باقي الحالات العادية
     emit(state.copyWith(deliveryType: event.val));
   }
 
@@ -83,11 +133,12 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
     _ChooseShippingAddress event,
     Emitter<CheckOutState> emit,
   ) async {
+    // اختيار عنوان الشحن
     emit(state.copyWith(addressID: event.val));
   }
 
   Future<void> _onCheckout(_Checkout event, Emitter<CheckOutState> emit) async {
-    // // التحقق من المدخلات (Validation)
+    // التحقق من المدخلات
     if (state.paymentMethod == null) {
       return emit(state.copyWith(status: _Failure("يرجى اختيار طريقة الدفع")));
     }
@@ -102,11 +153,11 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
 
     emit(state.copyWith(status: _Loading()));
 
-    // // تعديل أسماء المفاتيح لكي تتطابق تماماً مع لارافيل Validation
+    // إرسال البيانات للخدمة
     var response = await checkoutData.checkout({
       'address_id': state.addressID,
       'type': state.deliveryType,
-      'delivery_price': "20",
+      'delivery_price': state.shippingPrice.toString(),
       'price': event.priceOrders,
       'coupon_id': event.couponsID,
       'payment_method': state.paymentMethod,
@@ -117,13 +168,11 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> {
         emit(state.copyWith(status: _ServerFailure(failure.message)));
       },
       (data) {
-        // // حالة فشل الكوبون
         if (data['status'] == "failure" &&
             data['message'] == "الكوبون لم يعد صالحاً") {
           return emit(state.copyWith(status: _CouponeFailure(data['message'])));
         }
 
-        // // حالة النجاح الكامل
         emit(state.copyWith(status: _Success(data['message'])));
       },
     );

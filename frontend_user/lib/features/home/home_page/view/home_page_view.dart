@@ -5,6 +5,7 @@ import 'package:electronics_store/features/home/home_page/widgets/home_view.dart
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:show_up_animation/show_up_animation.dart';
 
 class HomePageView extends StatelessWidget {
   const HomePageView({super.key});
@@ -48,11 +49,18 @@ class HomePageView extends StatelessWidget {
                 context.read<HomePageBloc>().add(const HomePageEvent.started()),
           ),
           noData: (message) => AppEmptyWidget(text: message),
-          loaded: (lang, categories, items, settings) => HomeView(
-            lang: lang,
-            categories: categories,
-            items: items,
-            settings: settings,
+          loaded: (lang, categories, items, settings) => ShowUpAnimation(
+            delayStart: Duration(seconds: 1),
+            animationDuration: Duration(seconds: 1),
+            curve: Curves.bounceIn,
+            direction: Direction.vertical,
+            offset: 0.5,
+            child: HomeView(
+              lang: lang,
+              categories: categories,
+              items: items,
+              settings: settings,
+            ),
           ),
           orElse: () => const SizedBox.shrink(),
         );

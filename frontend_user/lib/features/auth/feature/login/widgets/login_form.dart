@@ -2,6 +2,7 @@ import 'package:electronics_store/app_translations.dart';
 import 'package:electronics_store/core/constant/app_route.dart';
 import 'package:electronics_store/core/function/alert_exit_app.dart';
 import 'package:electronics_store/core/function/valid_input.dart';
+import 'package:electronics_store/core/shared/custom_text_form.dart';
 import 'package:electronics_store/core/shared/handling_data_view.dart';
 import 'package:electronics_store/data/static/app_text.dart';
 import 'package:electronics_store/features/auth/feature/login/bloc/login_bloc.dart';
@@ -9,7 +10,6 @@ import 'package:electronics_store/features/auth/widgets/custom_button_auth.dart'
 import 'package:electronics_store/features/auth/widgets/custom_logo.dart';
 import 'package:electronics_store/features/auth/widgets/custom_text_body_auth.dart';
 import 'package:electronics_store/features/auth/widgets/custom_text_convert.dart';
-import 'package:electronics_store/core/shared/custom_text_form.dart';
 import 'package:electronics_store/features/auth/widgets/custom_text_title_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,6 +40,7 @@ class _LoginFormState extends State<LoginForm> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
+        // إظهار تنبيه الخروج من التطبيق
         alertExitApp(context);
       },
       child: Stack(
@@ -50,8 +51,10 @@ class _LoginFormState extends State<LoginForm> {
               key: formstate,
               child: ListView(
                 children: [
+                  // شعار التطبيق المخصص
                   const CustomLogo(),
                   const SizedBox(height: 10),
+                  // عنوان الترحب بالعميل
                   CustomTextTitleAuth(
                     text: AppTranslations.translate(
                       context,
@@ -59,6 +62,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ),
                   const SizedBox(height: 10),
+                  // النص الإرشادي لشاشة الدخول
                   CustomTextBodyAuth(
                     text: AppTranslations.translate(
                       context,
@@ -66,6 +70,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ),
                   const SizedBox(height: 50),
+                  // حقل إدخال البريد الإلكتروني
                   CustomTextForm(
                     valid: (val) => validInput(context, val!, 5, 20, "email"),
                     hintText: AppTranslations.translate(
@@ -80,9 +85,11 @@ class _LoginFormState extends State<LoginForm> {
                     myController: widget.email,
                   ),
                   const SizedBox(height: 20),
+                  // حقل إدخال كلمة المرور مع زر الإظهار/الإخفاء
                   CustomTextForm(
                     obscureText: isShowPassword,
                     onTapIcon: () {
+                      // تبديل حالة رؤية النص
                       setState(() {
                         isShowPassword = !isShowPassword;
                       });
@@ -103,12 +110,14 @@ class _LoginFormState extends State<LoginForm> {
                     myController: widget.password,
                   ),
                   const SizedBox(height: 10),
+                  // رابط نسيان كلمة المرور
                   Align(
                     alignment: AlignmentDirectional.centerEnd,
                     child: InkWell(
                       onTap: widget.isLoading
-                          ? null // تعطيل الرابط أثناء التحميل
+                          ? null // تعطيل الرابط أثناء جلب البيانات
                           : () {
+                              // إغلاق لوحة المفاتيح والتوجيه لنسيان كلمة المرور
                               FocusScope.of(context).unfocus();
                               Navigator.pushNamed(
                                 context,
@@ -124,13 +133,17 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
+                  // زر تسجيل الدخول بالبريد وكلمة المرور
                   CustomButtonAuth(
                     text: AppTranslations.translate(context, AppText.signIn),
                     onPressed: () {
                       if (widget.isLoading) return;
+                      // فحص صحة الحقول
                       if (formstate.currentState?.validate() == true) {
+                        // إغلاق الكيبورد
                         FocusScope.of(context).unfocus();
+                        // إرسال حدث تسجيل الدخول المعتاد
                         context.read<LoginBloc>().add(
                           LoginEvent.submitted(
                             email: widget.email.text,
@@ -140,7 +153,57 @@ class _LoginFormState extends State<LoginForm> {
                       }
                     },
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 15),
+                  // فاصل زمني بصري بين خيارات الدخول
+                  Row(
+                    children: [
+                      // خط فاصل جهة اليمين
+                      const Expanded(child: Divider()),
+                      // كلمة الفاصل
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          "أو",
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                      ),
+                      // خط فاصل جهة اليسار
+                      const Expanded(child: Divider()),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  // زر تسجيل الدخول عبر حساب Google
+                  OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    // أيقونة Google
+                    icon: const Icon(
+                      Icons.g_mobiledata,
+                      size: 28,
+                      color: Colors.red,
+                    ),
+                    // نص الزر
+                    label: const Text(
+                      "تسجيل الدخول بواسطة Google",
+                      style: TextStyle(fontSize: 14, color: Colors.black87),
+                    ),
+                    onPressed: widget.isLoading
+                        ? null // تعطيل الزر في حالة التحميل
+                        : () {
+                            // إغلاق الكيبورد
+                            FocusScope.of(context).unfocus();
+                            // إرسال حدث تسجيل الدخول عبر قوقل للـ Bloc
+                            context.read<LoginBloc>().add(
+                              const LoginEvent.loginWithGoogle(),
+                            );
+                          },
+                  ),
+                  const SizedBox(height: 20),
+                  // رابط الانتقال لإنشاء حساب جديد
                   CustomTextConvert(
                     textone: AppTranslations.translate(
                       context,
@@ -149,6 +212,7 @@ class _LoginFormState extends State<LoginForm> {
                     texttow: AppTranslations.translate(context, AppText.signUp),
                     onTap: () {
                       if (widget.isLoading) return;
+                      // إغلاق لوحة المفاتيح والتوجيه لإنشاء حساب
                       FocusScope.of(context).unfocus();
                       Navigator.pushNamed(context, AppRoute.signUp);
                     },
@@ -158,14 +222,14 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
 
-          // // الطبقة الثانية: شاشة التحميل الكاملة (تظهر فقط عندما يتفعل الـ Loading)
+          // طبقة التظليل ومؤشر التحميل عند تفعيل isLoading
           if (widget.isLoading) ...[
-            // 1. حاجز شفاف يمنع المستخدم من الضغط على أي زر خلفه
+            // حاجز شفاف لمنع النقر على الواجهة الخلفية
             const ModalBarrier(
               dismissible: false,
-              color: Colors.black26, // تعتيم خفيف وأنيق للشاشة (25% سواد)
+              color: Colors.black26, // تعتيم خفيف
             ),
-            // 2. مؤشر التحميل متمركز في منتصف الشاشة تماماً
+            // مؤشر التحميل المخصص
             Center(
               child: AppLoadingWidget(), // الوجت المخصص للتحميل
             ),

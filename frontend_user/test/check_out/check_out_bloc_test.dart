@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:electronics_store/core/class/failure.dart';
+import 'package:electronics_store/core/services/app_service.dart';
 import 'package:electronics_store/data/model/address/address_model.dart';
 import 'package:electronics_store/features/address/data/address_data.dart';
 import 'package:electronics_store/features/check_out/bloc/check_out_bloc.dart';
@@ -12,20 +13,24 @@ class MockAddressData extends Mock implements AddressData {}
 
 class MockCheckoutData extends Mock implements CheckoutData {}
 
+class MockAppService extends Mock implements AppService {}
+
 void main() {
   late CheckOutBloc checkOutBloc;
   late MockAddressData mockAddressData;
   late MockCheckoutData mockCheckoutData;
+  late MockAppService mockAppService;
 
   List<AddressModel> mockAddresses = [AddressModel()];
   group("CheckOut BloC Test", () {
     setUp(() {
       mockAddressData = MockAddressData();
       mockCheckoutData = MockCheckoutData();
-
+      mockAppService = MockAppService();
       checkOutBloc = CheckOutBloc(
         addressData: mockAddressData,
         checkoutData: mockCheckoutData,
+        appService: mockAppService,
       );
     });
 
@@ -43,7 +48,14 @@ void main() {
         ).thenAnswer((_) async => Right(mockAddresses));
         return checkOutBloc;
       },
-      act: (bloc) => bloc.add(CheckOutEvent.started()),
+      act: (bloc) => bloc.add(
+        CheckOutEvent.started(
+          subtotalPrice: 0,
+          totalAppPrice: 0,
+          discountPercentage: 0,
+          shippingPrice: 0,
+        ),
+      ),
       expect: () => <CheckOutState>[
         CheckOutState(
           status: CheckOutStatus.initial(),
@@ -65,7 +77,14 @@ void main() {
         ).thenAnswer((_) async => Left(EmptyDataFailure("لا توجد عناوين")));
         return checkOutBloc;
       },
-      act: (bloc) => bloc.add(CheckOutEvent.started()),
+      act: (bloc) => bloc.add(
+        CheckOutEvent.started(
+          subtotalPrice: 0,
+          totalAppPrice: 0,
+          discountPercentage: 0,
+          shippingPrice: 0,
+        ),
+      ),
       expect: () => <CheckOutState>[
         CheckOutState(
           status: CheckOutStatus.initial(),
@@ -88,7 +107,14 @@ void main() {
         ).thenAnswer((_) async => Left(ServerFailure("هناك خطأ في السرفر")));
         return checkOutBloc;
       },
-      act: (bloc) => bloc.add(CheckOutEvent.started()),
+      act: (bloc) => bloc.add(
+        CheckOutEvent.started(
+          subtotalPrice: 0,
+          totalAppPrice: 0,
+          discountPercentage: 0,
+          shippingPrice: 0,
+        ),
+      ),
       expect: () => <CheckOutState>[
         CheckOutState(
           status: CheckOutStatus.initial(),

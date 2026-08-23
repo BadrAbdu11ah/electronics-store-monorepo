@@ -33,7 +33,7 @@ abstract class CartResponseModel with _$CartResponseModel {
   const factory CartResponseModel({
     String? status,
     @Default([]) List<CartModel> items,
-    CouponModel? coupon, // تم إضافة الكوبون ليتوافق مع الباك إند
+    CouponModel? coupon,
     double? subtotal,
     double? discountAmount,
     double? shippingPrice,

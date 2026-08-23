@@ -8,6 +8,7 @@ class TopCountItemCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
