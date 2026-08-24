@@ -1,5 +1,7 @@
 # 🛒 Electronics Store Monorepo
 
+🇬🇧 English | 🇸🇦 [العربية](README.ar.md)
+
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)
 ![Laravel](https://img.shields.io/badge/Laravel-12-red)
 ![License](https://img.shields.io/badge/License-MIT-green)
