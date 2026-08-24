@@ -14,7 +14,7 @@ use App\Http\Controllers\Api\User\NotificationController;
 use App\Http\Controllers\Api\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Api\Admin\Order\AdminOrderController;
 use App\Http\Controllers\Api\Admin\Categories\AdminCategoriesController;
-use App\Http\Controllers\Api\Admin\items\AdminItemsController;
+use App\Http\Controllers\Api\Admin\Items\AdminItemsController;
 
 use App\Http\Controllers\Api\Delivery\Auth\DeliveryAuthController;
 use App\Http\Controllers\Api\Delivery\Order\DeliveryOrderController;
